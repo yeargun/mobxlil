@@ -1,0 +1,42 @@
+{
+  "pin": "mobx@7.0.0",
+  "package": "@itslil/mobx",
+  "node": "v24.11.1",
+  "codec": "lilscript-codec gzip-9 / brotli-11",
+  "tests": {
+    "passed": 769,
+    "pending": 11,
+    "failed": 0
+  },
+  "memory": {
+    "retainedRatio": 0.98
+  },
+  "size": [
+    { "name": "Official ESM", "raw": 180997, "gzip9": 40282, "brotli11": 33453, "note": "mobx@7.0.0 published ESM" },
+    { "name": "Vite + esbuild", "raw": 71447, "gzip9": 20025, "brotli11": 17808, "note": "official source, Vite minify" },
+    { "name": "Vite + Terser", "raw": 71255, "gzip9": 19850, "brotli11": 17610, "note": "official source, Terser" },
+    { "name": "@itslil/mobx", "raw": 65664, "gzip9": 18690, "brotli11": 16736, "note": "LilScript production ESM", "primary": true },
+    { "name": "Closure ADVANCED", "raw": 48686, "gzip9": 15393, "brotli11": 13701, "note": "official source, size lane only" }
+  ],
+  "throughput": [
+    { "name": "boxes", "officialMs": 12.12, "candidateMs": 12.313, "ratio": 1.016 },
+    { "name": "dynamic-deps", "officialMs": 5.301, "candidateMs": 5.534, "ratio": 1.044 },
+    { "name": "computed-chain", "officialMs": 16.547, "candidateMs": 16.36, "ratio": 0.989 },
+    { "name": "computed-diamond", "officialMs": 9.111, "candidateMs": 8.31, "ratio": 0.912 },
+    { "name": "batching-actions", "officialMs": 7.635, "candidateMs": 7.265, "ratio": 0.952 },
+    { "name": "reactions", "officialMs": 6.348, "candidateMs": 5.515, "ratio": 0.869 },
+    { "name": "object-proxy", "officialMs": 22.845, "candidateMs": 23.271, "ratio": 1.019 },
+    { "name": "array", "officialMs": 7.314, "candidateMs": 6.698, "ratio": 0.916 },
+    { "name": "map", "officialMs": 10.183, "candidateMs": 10.293, "ratio": 1.011 },
+    { "name": "set", "officialMs": 11.101, "candidateMs": 10.561, "ratio": 0.951 },
+    { "name": "decorators", "officialMs": 7.26, "candidateMs": 7.044, "ratio": 0.97 },
+    { "name": "flow-when", "officialMs": 14.012, "candidateMs": 13.986, "ratio": 0.998 }
+  ],
+  "examples": [
+    { "id": "counter", "title": "Counter", "blurb": "Box, computed, autorun, actions." },
+    { "id": "todos", "title": "Todos", "blurb": "Observable array and derived remaining count." },
+    { "id": "cart", "title": "Cart", "blurb": "Observable map, computed totals." },
+    { "id": "search", "title": "Search", "blurb": "flow plus when for an async lookup." },
+    { "id": "reactions", "title": "Reactions", "blurb": "reaction, intercept, and observe." }
+  ]
+}

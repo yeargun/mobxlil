@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Search · mobxlil</title>
+    <link rel="stylesheet" href="./app.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <nav class="nav">
+        <a href="./index.html">Examples</a>
+        <a href="./counter.html">Counter</a>
+        <a href="./todos.html">Todos</a>
+        <a href="./cart.html">Cart</a>
+        <a href="./search.html" aria-current="page">Search</a>
+        <a href="./reactions.html">Reactions</a>
+      </nav>
+      <h1>Search</h1>
+      <p class="lede">
+        <code>flow</code> runs the lookup as a generator; <code>when</code> resolves once results exist.
+      </p>
+      <div class="row">
+        <input id="query" placeholder="Try “atom” or “flow”" />
+        <button id="go">Search</button>
+      </div>
+      <p class="muted" id="status">Idle</p>
+      <ul class="list" id="hits"></ul>
+    </main>
+    <script type="module">
+      import { observable, flow, when, action } from "/dist/mobx.esm.js";
+
+      const catalog = [
+        "atom",
+        "computed",
+        "reaction",
+        "autorun",
+        "action",
+        "flow",
+        "when",
+        "observable map",
+        "observable set"
+      ];
+
+      const state = observable({
+        query: "",
+        status: "idle",
+        hits: []
+      });
+
+      function lookup(query) {
+        return new Promise(resolve => {
+          window.setTimeout(() => {
+            const q = query.trim().toLowerCase();
+            resolve(catalog.filter(item => item.includes(q)));
+          }, 280);
+        });
+      }
+
+      const runSearch = flow(function* (query) {
+        state.status = "pending";
+        state.hits.replace([]);
+        const hits = yield lookup(query);
+        state.hits.replace(hits);
+        state.status = hits.length ? "ready" : "empty";
+        return hits;
+      });
+
+      const paint = action(() => {
+        document.getElementById("status").textContent =
+          state.status === "pending"
+            ? "Searching…"
+            : state.status === "empty"
+              ? "No matches"
+              : state.status === "ready"
+                ? `${state.hits.length} match${state.hits.length === 1 ? "" : "es"}`
+                : "Idle";
+        const list = document.getElementById("hits");
+        list.replaceChildren();
+        for (const hit of state.hits) {
+          const li = document.createElement("li");
+          li.textContent = hit;
+          list.append(li);
+        }
+      });
+
+      document.getElementById("go").onclick = async () => {
+        const query = document.getElementById("query").value;
+        state.query = query;
+        const pending = runSearch(query);
+        await when(() => state.status !== "pending");
+        paint();
+        await pending;
+      };
+
+      paint();
+    </script>
+  </body>
+</html>

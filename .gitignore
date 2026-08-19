@@ -1,0 +1,12 @@
+node_modules/
+reports/
+.playwright-cli/
+e2e-out/
+coverage/
+*.log
+.DS_Store
+upstream/mobx/
+_site/
+*.tgz
+tests/dist
+.tmp/

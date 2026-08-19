@@ -1,0 +1,1769 @@
+import { DEV } from "./dev-flag.lil";
+import {
+  gObject,
+  gArray,
+  gError,
+  gSymbol,
+  undef,
+  isUndef,
+  isNullish,
+  isFn,
+  isStr,
+  isObj,
+  isArr,
+  yes,
+  objectIs,
+  toInt,
+  toStr,
+  len,
+  sizeOf,
+  call0,
+  call1,
+  call2,
+  apply,
+  invoke0,
+  invoke1,
+  invoke2,
+  construct0,
+  construct1,
+  construct2,
+  newMap,
+  newSet,
+  newArray,
+  newArrayLen,
+  arrayFrom,
+  slice,
+  push,
+  pop,
+  indexOf,
+  splice1,
+  setAdd,
+  setHas,
+  setDelete,
+  mapHas,
+  mapGet,
+  mapSet,
+  mapDelete,
+  ownKeys,
+  objectKeys,
+  getDescriptor,
+  defineProperty,
+  getPrototypeOf,
+  setPrototypeOf,
+  hasOwn,
+  inOp,
+  assign,
+  assign3,
+  addHiddenProp,
+  addHiddenFinalProp,
+  defineGetter,
+  createInstanceofPredicate,
+  symbol,
+  wellKnown,
+  now,
+  warn,
+  warn2,
+  error1,
+  error2,
+  makeError,
+  throwErr,
+  throwMsg,
+  bind,
+  fnName,
+  isGenerator,
+  isPlainObject,
+  isES6Map,
+  isES6Set,
+  isPlainES6Map,
+  stringifyKey,
+  toPrimitive,
+  getPlainObjectKeys,
+  makeIterable,
+  once,
+  noop,
+  includesStr,
+  setTimeoutHost,
+  clearTimeoutHost,
+  unaryPlus,
+  reflectSet,
+  reflectDefine,
+  reflectDelete,
+  newProxy,
+  emptyArrayFrozen,
+  emptyObjectFrozen,
+  isExtensible,
+  getDescriptors,
+  createProto,
+  iteratorPrototype,
+  dateCtor,
+  hostGlobal
+} from "./host.lil";
+
+export JsValue EMPTY_ARRAY = emptyArrayFrozen();
+export JsValue EMPTY_OBJECT = emptyObjectFrozen();
+export JsValue $mobx = symbol("mobx administration");
+export string ACTION = "action";
+export string ACTION_BOUND = "action.bound";
+export string AUTOACTION = "autoAction";
+export string AUTOACTION_BOUND = "autoAction.bound";
+export string OBSERVABLE = "observable";
+export string OBSERVABLE_REF = "observable.ref";
+export string OBSERVABLE_SHALLOW = "observable.shallow";
+export string OBSERVABLE_STRUCT = "observable.struct";
+export string COMPUTED = "computed";
+export string COMPUTED_STRUCT = "computed.struct";
+export string FLOW = "flow";
+export string UPDATE = "update";
+export string ADD = "add";
+export string DELETE = "delete";
+export string SPLICE = "splice";
+export string REMOVE = "remove";
+export string CREATE = "create";
+export int NOT_TRACKING = -1;
+export int UP_TO_DATE = 0;
+export int POSSIBLY_STALE = 1;
+export int STALE = 2;
+export int MAX_REACTION_ITERATIONS = 100;
+export int MAX_SPLICE_SIZE = 10000;
+export int MAKE_CANCEL = 0;
+export int MAKE_BREAK = 1;
+export int MAKE_CONTINUE = 2;
+
+int currentActionId = 0;
+int nextActionId = 1;
+int generatorId = 0;
+bool canMergeGlobalState = true;
+bool isolateCalled = false;
+
+JsValue tmpNameDescriptor = record {
+  value: "action",
+  configurable: true,
+  writable: false,
+  enumerable: false
+};
+
+JsValue isFunctionNameConfigurableDesc = getDescriptor(JS.method0((JsValue _self) => {
+  return undef();
+}), "name");
+bool isFunctionNameConfigurable = !isNullish(isFunctionNameConfigurableDesc) && isFunctionNameConfigurableDesc["configurable"].truthy();
+
+JsValue persistentKeys = JS.array();
+
+void initPersistentKeys() {
+  push(persistentKeys, "mobxGuid");
+  push(persistentKeys, "spyListeners");
+  push(persistentKeys, "enforceActions");
+  push(persistentKeys, "computedRequiresReaction");
+  push(persistentKeys, "reactionRequiresObservable");
+  push(persistentKeys, "observableRequiresReaction");
+  push(persistentKeys, "allowStateReads");
+  push(persistentKeys, "disableErrorBoundaries");
+  push(persistentKeys, "runId");
+  push(persistentKeys, "UNCHANGED");
+}
+
+initPersistentKeys();
+
+JsValue createMobXGlobals() {
+  JsValue g = JS.object();
+  g["version"] = 7;
+  g["UNCHANGED"] = JS.object();
+  g["trackingDerivation"] = null;
+  g["trackingContext"] = null;
+  g["runId"] = 0;
+  g["mobxGuid"] = 0;
+  g["inBatch"] = 0;
+  g["pendingUnobservations"] = JS.array();
+  g["pendingReactions"] = JS.array();
+  g["isRunningReactions"] = false;
+  g["allowStateChanges"] = false;
+  g["allowStateReads"] = true;
+  g["enforceActions"] = true;
+  g["spyListeners"] = JS.array();
+  g["globalReactionErrorHandlers"] = JS.array();
+  g["computedRequiresReaction"] = false;
+  g["reactionRequiresObservable"] = false;
+  g["observableRequiresReaction"] = false;
+  g["disableErrorBoundaries"] = false;
+  g["suppressReactionErrors"] = false;
+  g["safeDescriptors"] = true;
+  return g;
+}
+
+JsValue initGlobalState() {
+  JsValue global = hostGlobal();
+  if (global["__mobxInstanceCount"].truthy() && toInt(global["__mobxInstanceCount"]) > 0 && !global["__mobxGlobals"].truthy()) {
+    canMergeGlobalState = false;
+  }
+  JsValue existing = global["__mobxGlobals"];
+  if (existing.truthy() && toInt(existing["version"]) != 7) {
+    canMergeGlobalState = false;
+  }
+  if (!canMergeGlobalState) {
+    setTimeoutHost(JS.method0((JsValue _self) => {
+      if (!isolateCalled) {
+        die(35);
+      }
+      return undef();
+    }), 1);
+    return createMobXGlobals();
+  } else if (existing.truthy()) {
+    global["__mobxInstanceCount"] = toInt(global["__mobxInstanceCount"]) + 1;
+    if (!existing["UNCHANGED"].truthy()) {
+      existing["UNCHANGED"] = JS.object();
+    }
+    return existing;
+  }
+  global["__mobxInstanceCount"] = 1;
+  JsValue created = createMobXGlobals();
+  global["__mobxGlobals"] = created;
+  return created;
+}
+
+export JsValue globalState = initGlobalState();
+
+export int getNextId() {
+  int id = toInt(globalState["mobxGuid"]) + 1;
+  globalState["mobxGuid"] = id;
+  return id;
+}
+
+string niceError(JsValue error, JsValue args) {
+  if (isStr(error)) {
+    return toStr(error);
+  }
+  int code = toInt(error);
+  if (code == 0) {
+    return "Invalid value for configuration 'enforceActions', expected 'never', 'always' or 'observed'";
+  }
+  if (code == 1) {
+    return "Cannot apply '" + toStr(args[0]) + "' to '" + stringifyKey(args[1]) + "': Field not found.";
+  }
+  if (code == 5) {
+    return "'keys()' can only be used on observable objects, arrays, sets and maps";
+  }
+  if (code == 6) {
+    return "'values()' can only be used on observable objects, arrays, sets and maps";
+  }
+  if (code == 7) {
+    return "'entries()' can only be used on observable objects, arrays and maps";
+  }
+  if (code == 8) {
+    return "'set()' can only be used on observable objects, arrays and maps";
+  }
+  if (code == 9) {
+    return "'remove()' can only be used on observable objects, arrays and maps";
+  }
+  if (code == 10) {
+    return "'has()' can only be used on observable objects, arrays and maps";
+  }
+  if (code == 11) {
+    return "'get()' can only be used on observable objects, arrays and maps";
+  }
+  if (code == 12) {
+    return "Invalid annotation";
+  }
+  if (code == 13) {
+    return "Dynamic observable objects cannot be frozen. If you're passing observables to 3rd party component/function that calls Object.freeze, pass copy instead: toJS(observable)";
+  }
+  if (code == 14) {
+    return "Intercept handlers should return nothing or a change object";
+  }
+  if (code == 15) {
+    return "Observable arrays cannot be frozen. If you're passing observables to 3rd party component/function that calls Object.freeze, pass copy instead: toJS(observable)";
+  }
+  if (code == 16) {
+    return "Modification exception: the internal structure of an observable array was changed.";
+  }
+  if (code == 19) {
+    return "Cannot initialize from classes that inherit from Map: " + toStr(args[0]["constructor"]["name"]);
+  }
+  if (code == 20) {
+    return "Cannot initialize map from " + toStr(args[0]);
+  }
+  if (code == 21) {
+    return "Cannot convert to map from '" + toStr(args[0]) + "'";
+  }
+  if (code == 23) {
+    return "It is not possible to get index atoms from arrays";
+  }
+  if (code == 24) {
+    return "Cannot obtain administration from " + toStr(args[0]);
+  }
+  if (code == 25) {
+    return "the entry '" + toStr(args[0]) + "' does not exist in the observable map '" + toStr(args[1]) + "'";
+  }
+  if (code == 26) {
+    return "please specify a property";
+  }
+  if (code == 27) {
+    return "no observable property '" + stringifyKey(args[0]) + "' found on the observable object '" + toStr(args[1]) + "'";
+  }
+  if (code == 28) {
+    return "Cannot obtain atom from " + toStr(args[0]);
+  }
+  if (code == 29) {
+    return "Expecting some object";
+  }
+  if (code == 30) {
+    return "invalid action stack. did you forget to finish an action?";
+  }
+  if (code == 31) {
+    return "missing option for computed: get";
+  }
+  if (code == 32) {
+    return "Cycle detected in computation " + toStr(args[0]) + ": " + toStr(args[1]);
+  }
+  if (code == 33) {
+    return "The setter of computed value '" + toStr(args[0]) + "' is trying to update itself. Did you intend to update an _observable_ value, instead of the computed property?";
+  }
+  if (code == 34) {
+    return "[ComputedValue '" + toStr(args[0]) + "'] It is not possible to assign a new value to a computed value.";
+  }
+  if (code == 35) {
+    return "There are multiple, different versions of MobX active. Make sure MobX is loaded only once or use `configure({ isolateGlobalState: true })`";
+  }
+  if (code == 36) {
+    return "isolateGlobalState should be called before MobX is running any reactions";
+  }
+  if (code == 37) {
+    return "[mobx] `observableArray." + toStr(args[0]) + "()` mutates the array in-place, which is not allowed inside a derivation. Use `array.slice()." + toStr(args[0]) + "()` instead";
+  }
+  if (code == 38) {
+    return "'ownKeys()' can only be used on observable objects";
+  }
+  if (code == 39) {
+    return "'defineProperty()' can only be used on observable objects";
+  }
+  if (code == 40) {
+    return "Out of range: " + toStr(args[0]);
+  }
+  if (code == 41) {
+    return "Cannot initialize set from " + toStr(args[0]);
+  }
+  if (code == 42) {
+    return "Invalid index: '" + toStr(args[0]) + "'";
+  }
+  if (code == 43) {
+    return "Cannot apply '" + toStr(args[0]) + "' to '" + toStr(args[1]) + "' (kind: " + toStr(args[2]) + "):\n'" + toStr(args[0]) + "' can only be used on properties with a function value.";
+  }
+  if (code == 44) {
+    return "'" + toStr(args[0]) + "' can only be used with 'makeObservable'";
+  }
+  return toStr(error);
+}
+
+export void dieRest(JsValue error, JsValue args) {
+  if (DEV) {
+    throwErr(makeError("[MobX] " + niceError(error, args)));
+  }
+  string extra = "";
+  if (len(args) > 0) {
+    extra = " " + toStr(JS.invoke(JS.invoke(args, "map", hostGlobal()["String"]), "join", ","));
+  }
+  throwErr(makeError("[MobX] minified error nr: " + toStr(error) + extra + ". See mobx.js.org/errors"));
+}
+
+export void die(JsValue error) {
+  dieRest(error, JS.array());
+}
+
+export void die1(JsValue error, JsValue a) {
+  JsValue args = JS.array();
+  push(args, a);
+  dieRest(error, args);
+}
+
+export void die2(JsValue error, JsValue a, JsValue b) {
+  JsValue args = JS.array();
+  push(args, a);
+  push(args, b);
+  dieRest(error, args);
+}
+
+export void die3(JsValue error, JsValue a, JsValue b, JsValue c) {
+  JsValue args = JS.array();
+  push(args, a);
+  push(args, b);
+  push(args, c);
+  dieRest(error, args);
+}
+
+export bool compareIdentity(JsValue a, JsValue b) {
+  return JS.strictEqual(a, b);
+}
+
+export bool compareDefault(JsValue a, JsValue b) {
+  return objectIs(a, b);
+}
+
+export JsValue defaultEquals = JS.method2((JsValue _self, JsValue a, JsValue b) => {
+  return objectIs(a, b);
+});
+
+bool hasMobXFlag(JsValue x, string flag) {
+  return isObj(x) && JS.strictEqual(x[flag], true);
+}
+
+export bool isAtom(JsValue x) {
+  return hasMobXFlag(x, "isMobXAtom");
+}
+
+export bool isComputedValue(JsValue x) {
+  return hasMobXFlag(x, "isMobXComputedValue");
+}
+
+export bool isReaction(JsValue x) {
+  return hasMobXFlag(x, "isMobXReaction");
+}
+
+export bool isObservableValue(JsValue x) {
+  return hasMobXFlag(x, "isMobXObservableValue");
+}
+
+export bool isObservableMap(JsValue x) {
+  return hasMobXFlag(x, "isMobXObservableMap");
+}
+
+export bool isObservableSet(JsValue x) {
+  return hasMobXFlag(x, "isMobXObservableSet");
+}
+
+export bool isObservableArray(JsValue thing) {
+  if (!isObj(thing)) {
+    return false;
+  }
+  return hasMobXFlag(thing[$mobx], "isMobXObservableArrayAdministration");
+}
+
+export bool isObservableObject(JsValue thing) {
+  if (!isObj(thing)) {
+    return false;
+  }
+  return hasMobXFlag(thing[$mobx], "isMobXObservableObjectAdministration");
+}
+
+export bool isAction(JsValue thing) {
+  return isFn(thing) && JS.strictEqual(thing["isMobxAction"], true);
+}
+
+export bool isFlow(JsValue fn) {
+  if (JS.isNullish(fn)) {
+    return false;
+  }
+  return JS.strictEqual(fn["isMobXFlow"], true);
+}
+
+export bool isSpyEnabled() {
+  return DEV && len(globalState["spyListeners"]) > 0;
+}
+
+export void spyReport(JsValue event) {
+  if (!DEV) {
+    return;
+  }
+  JsValue listeners = globalState["spyListeners"];
+  int n = len(listeners);
+  if (n == 0) {
+    return;
+  }
+  int i = 0;
+  while (i < n) {
+    call1(listeners[i], undef(), event);
+    i = i + 1;
+  }
+}
+
+export void spyReportStart(JsValue event) {
+  if (!DEV) {
+    return;
+  }
+  spyReport(assign3(JS.object(), event, record { spyReportStart: true }));
+}
+
+JsValue END_EVENT = record {
+  type: "report-end",
+  spyReportEnd: true
+};
+
+export void spyReportEnd(JsValue change) {
+  if (!DEV) {
+    return;
+  }
+  if (change.truthy()) {
+    spyReport(assign3(JS.object(), change, record {
+      type: "report-end",
+      spyReportEnd: true
+    }));
+  } else {
+    spyReport(END_EVENT);
+  }
+}
+
+export void spyReportEnd0() {
+  spyReportEnd(undef());
+}
+
+export JsValue spy = JS.method1((JsValue _self, JsValue listener) => {
+  if (!DEV) {
+    warn("[mobx.spy] Is a no-op in production builds");
+    return JS.method0((JsValue __self) => {
+      return undef();
+    });
+  }
+  push(globalState["spyListeners"], listener);
+  return once(JS.method0((JsValue __self) => {
+    globalState["spyListeners"] = filterArrKeep(globalState["spyListeners"], listener);
+    return undef();
+  }));
+});
+
+JsValue filterArrKeep(JsValue arr, JsValue skip) {
+  JsValue out = JS.array();
+  int n = len(arr);
+  int i = 0;
+  while (i < n) {
+    if (!JS.strictEqual(arr[i], skip)) {
+      push(out, arr[i]);
+    }
+    i = i + 1;
+  }
+  return out;
+}
+
+export bool hasObservers(JsValue observable) {
+  return observable["observers_"].truthy() && observable["observers_"]["size"].truthy();
+}
+
+export JsValue getObservers(JsValue observable) {
+  return observable["observers_"];
+}
+
+export void addObserver(JsValue observable, JsValue node) {
+  setAdd(observable["observers_"], node);
+  if (toInt(observable["lowestObserverState_"]) > toInt(node["dependenciesState_"])) {
+    observable["lowestObserverState_"] = node["dependenciesState_"];
+  }
+}
+
+export void queueForUnobservation(JsValue observable) {
+  if (!observable["isPendingUnobservation"].truthy()) {
+    observable["isPendingUnobservation"] = true;
+    push(globalState["pendingUnobservations"], observable);
+  }
+}
+
+export void removeObserver(JsValue observable, JsValue node) {
+  setDelete(observable["observers_"], node);
+  if (!observable["observers_"]["size"].truthy()) {
+    queueForUnobservation(observable);
+  }
+}
+
+export void startBatch() {
+  globalState["inBatch"] = toInt(globalState["inBatch"]) + 1;
+}
+
+export void endBatch() {
+  int next = toInt(globalState["inBatch"]) - 1;
+  globalState["inBatch"] = next;
+  if (next == 0) {
+    runReactions();
+    JsValue list = globalState["pendingUnobservations"];
+    int i = 0;
+    while (i < len(list)) {
+      JsValue observable = list[i];
+      observable["isPendingUnobservation"] = false;
+      if (!observable["observers_"]["size"].truthy()) {
+        if (observable["isBeingObserved"].truthy()) {
+          observable["isBeingObserved"] = false;
+          invoke0(observable, "onBUO");
+        }
+        if (isComputedValue(observable)) {
+          invoke0(observable, "suspend_");
+        }
+      }
+      i = i + 1;
+    }
+    globalState["pendingUnobservations"] = JS.array();
+  }
+}
+
+export void checkIfStateReadsAreAllowed(JsValue observable) {
+  if (DEV && !globalState["allowStateReads"].truthy() && globalState["observableRequiresReaction"].truthy()) {
+    warn("[mobx] Observable '" + toStr(observable["name_"]) + "' being read outside a reactive context.");
+  }
+}
+
+export bool reportObserved(JsValue observable) {
+  if (DEV && !globalState["allowStateReads"].truthy() && globalState["observableRequiresReaction"].truthy()) {
+    warn("[mobx] Observable '" + toStr(observable["name_"]) + "' being read outside a reactive context.");
+  }
+  JsValue derivation = globalState["trackingDerivation"];
+  if (!JS.isNullish(derivation)) {
+    if (!JS.strictEqual(derivation["runId_"], observable["lastAccessedBy_"])) {
+      observable["lastAccessedBy_"] = derivation["runId_"];
+      int count = toInt(derivation["unboundDepsCount_"]);
+      derivation["newObserving_"][count] = observable;
+      derivation["unboundDepsCount_"] = count + 1;
+      if (!observable["isBeingObserved"].truthy() && globalState["trackingContext"].truthy()) {
+        observable["isBeingObserved"] = true;
+        invoke0(observable, "onBO");
+      }
+    }
+    return observable["isBeingObserved"].truthy();
+  } else if (!observable["observers_"]["size"].truthy() && globalState["inBatch"].truthy()) {
+    queueForUnobservation(observable);
+  }
+  return false;
+}
+
+JsValue propagateChangedEach = JS.method1((JsValue _self, JsValue d) => {
+  if (!d["dependenciesState_"].truthy()) {
+    invoke0(d, "onBecomeStale_");
+  }
+  d["dependenciesState_"] = STALE;
+  return undef();
+});
+
+JsValue propagateMaybeChangedEach = JS.method1((JsValue _self, JsValue d) => {
+  if (!d["dependenciesState_"].truthy()) {
+    d["dependenciesState_"] = POSSIBLY_STALE;
+    invoke0(d, "onBecomeStale_");
+  }
+  return undef();
+});
+
+JsValue confirmedObservable = undef();
+JsValue propagateChangeConfirmedEach = JS.method1((JsValue _self, JsValue d) => {
+  JsValue state = d["dependenciesState_"];
+  if (JS.strictEqual(state, POSSIBLY_STALE)) {
+    d["dependenciesState_"] = STALE;
+  } else if (!state.truthy()) {
+    confirmedObservable["lowestObserverState_"] = UP_TO_DATE;
+  }
+  return undef();
+});
+
+export void propagateChanged(JsValue observable) {
+  if (JS.strictEqual(observable["lowestObserverState_"], STALE)) {
+    return;
+  }
+  observable["lowestObserverState_"] = STALE;
+  JS.invoke(observable["observers_"], "forEach", propagateChangedEach);
+}
+
+export void propagateChangeConfirmed(JsValue observable) {
+  if (JS.strictEqual(observable["lowestObserverState_"], STALE)) {
+    return;
+  }
+  observable["lowestObserverState_"] = STALE;
+  JsValue prev = confirmedObservable;
+  confirmedObservable = observable;
+  JS.invoke(observable["observers_"], "forEach", propagateChangeConfirmedEach);
+  confirmedObservable = prev;
+}
+
+export void reportChanged(JsValue observable) {
+  startBatch();
+  propagateChanged(observable);
+  endBatch();
+}
+
+export void propagateMaybeChanged(JsValue observable) {
+  if (observable["lowestObserverState_"].truthy()) {
+    return;
+  }
+  observable["lowestObserverState_"] = POSSIBLY_STALE;
+  JS.invoke(observable["observers_"], "forEach", propagateMaybeChangedEach);
+}
+
+export JsValue untrackedStart() {
+  JsValue prev = globalState["trackingDerivation"];
+  globalState["trackingDerivation"] = null;
+  return prev;
+}
+
+export void untrackedEnd(JsValue prev) {
+  globalState["trackingDerivation"] = prev;
+}
+
+export JsValue untracked = JS.method1((JsValue _self, JsValue actionFn) => {
+  JsValue prev = untrackedStart();
+  try {
+    return call0(actionFn, undef());
+  } finally {
+    untrackedEnd(prev);
+  }
+});
+
+export bool allowStateReadsStart(bool allowStateReads) {
+  bool prev = globalState["allowStateReads"].truthy();
+  globalState["allowStateReads"] = allowStateReads;
+  return prev;
+}
+
+export void allowStateReadsEnd(bool prev) {
+  globalState["allowStateReads"] = prev;
+}
+
+export bool allowStateChangesStart(bool allow) {
+  bool prev = globalState["allowStateChanges"].truthy();
+  globalState["allowStateChanges"] = allow;
+  return prev;
+}
+
+export void allowStateChangesEnd(bool prev) {
+  globalState["allowStateChanges"] = prev;
+}
+
+export JsValue allowStateChanges = JS.methodRest((JsValue _self, JsValue args) => {
+  JsValue allow = args[0];
+  JsValue callback = args[1];
+  bool prev = allowStateChangesStart(allow.truthy());
+  try {
+    return call0(callback, undef());
+  } finally {
+    allowStateChangesEnd(prev);
+  }
+});
+
+export void checkIfStateModificationsAreAllowed(JsValue atom) {
+  if (!DEV) {
+    return;
+  }
+  bool hasObs = sizeOf(atom["observers_"]) > 0;
+  if (!globalState["allowStateChanges"].truthy() && (hasObs || JS.strictEqual(globalState["enforceActions"], "always"))) {
+    string msg = "Side effects like changing state are not allowed at this point. Are you trying to modify state from, for example, a computed value or the render function of a React component? You can wrap side effects in 'runInAction' (or decorate functions with 'action') if needed. Tried to modify: ";
+    if (globalState["enforceActions"].truthy()) {
+      msg = "Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: ";
+    }
+    warn("[MobX] " + msg + toStr(atom["name_"]));
+  }
+}
+
+export void changeDependenciesStateTo0(JsValue derivation) {
+  if (toInt(derivation["dependenciesState_"]) == UP_TO_DATE) {
+    return;
+  }
+  derivation["dependenciesState_"] = UP_TO_DATE;
+  JsValue obs = derivation["observing_"];
+  int i = len(obs);
+  while (i > 0) {
+    i = i - 1;
+    obs[i]["lowestObserverState_"] = UP_TO_DATE;
+  }
+}
+
+export bool isComputingDerivation() {
+  return !JS.isNullish(globalState["trackingDerivation"]);
+}
+
+export JsValue CaughtException = JS.method1((JsValue self, JsValue cause) => {
+  self["cause"] = cause;
+  return self;
+});
+defineProperty(CaughtException, "name", record {
+  value: "CaughtException",
+  configurable: true
+});
+
+CaughtException["prototype"]["isMobXCaughtException"] = true;
+
+export bool isCaughtException(JsValue e) {
+  return isObj(e) && JS.strictEqual(e["isMobXCaughtException"], true);
+}
+
+export bool shouldCompute(JsValue derivation) {
+  int state = toInt(derivation["dependenciesState_"]);
+  if (state == UP_TO_DATE) {
+    return false;
+  }
+  if (state == NOT_TRACKING || state == STALE) {
+    return true;
+  }
+  if (state == POSSIBLY_STALE) {
+    bool prevAllowStateReads = true;
+    if (DEV) {
+      prevAllowStateReads = allowStateReadsStart(true);
+    }
+    JsValue prevUntracked = untrackedStart();
+    JsValue obs = derivation["observing_"];
+    int n = len(obs);
+    int i = 0;
+    while (i < n) {
+      JsValue obj = obs[i];
+      if (isComputedValue(obj)) {
+        if (JS.strictEqual(globalState["disableErrorBoundaries"], true)) {
+          invoke0(obj, "get");
+        } else {
+          try {
+            invoke0(obj, "get");
+          } catch (JsValue e) {
+            untrackedEnd(prevUntracked);
+            if (DEV) {
+              allowStateReadsEnd(prevAllowStateReads);
+            }
+            return true;
+          }
+        }
+        if (JS.strictEqual(derivation["dependenciesState_"], STALE)) {
+          untrackedEnd(prevUntracked);
+          if (DEV) {
+            allowStateReadsEnd(prevAllowStateReads);
+          }
+          return true;
+        }
+      }
+      i = i + 1;
+    }
+    changeDependenciesStateTo0(derivation);
+    untrackedEnd(prevUntracked);
+    if (DEV) {
+      allowStateReadsEnd(prevAllowStateReads);
+    }
+    return false;
+  }
+  return false;
+}
+
+void warnAboutDerivationWithoutDependencies(JsValue derivation) {
+  if (!DEV) {
+    return;
+  }
+  if (len(derivation["observing_"]) != 0) {
+    return;
+  }
+  bool required = false;
+  if (isBoolish(derivation["requiresObservable_"])) {
+    required = derivation["requiresObservable_"].truthy();
+  } else {
+    required = globalState["reactionRequiresObservable"].truthy();
+  }
+  if (required) {
+    warn("[mobx] Derivation '" + toStr(derivation["name_"]) + "' is created/updated without reading any observable value.");
+  }
+}
+
+bool isBoolish(JsValue value) {
+  return JS.typeOf(value) == "boolean";
+}
+
+void bindDependencies(JsValue derivation) {
+  JsValue prevObserving = derivation["observing_"];
+  JsValue observing = derivation["newObserving_"];
+  derivation["observing_"] = observing;
+  int lowestNewObservingDerivationState = UP_TO_DATE;
+  int i0 = 0;
+  int l = toInt(derivation["unboundDepsCount_"]);
+  int i = 0;
+  while (i < l) {
+    JsValue dep = observing[i];
+    if (toInt(dep["diffValue"]) == 0) {
+      dep["diffValue"] = 1;
+      if (i0 != i) {
+        observing[i0] = dep;
+      }
+      i0 = i0 + 1;
+    }
+    JsValue depState = dep["dependenciesState_"];
+    if (!isUndef(depState) && toInt(depState) > lowestNewObservingDerivationState) {
+      lowestNewObservingDerivationState = toInt(depState);
+    }
+    i = i + 1;
+  }
+  observing["length"] = i0;
+  derivation["newObserving_"] = null;
+  l = len(prevObserving);
+  while (l > 0) {
+    l = l - 1;
+    JsValue dep = prevObserving[l];
+    if (toInt(dep["diffValue"]) == 0) {
+      removeObserver(dep, derivation);
+    }
+    dep["diffValue"] = 0;
+  }
+  while (i0 > 0) {
+    i0 = i0 - 1;
+    JsValue dep = observing[i0];
+    if (toInt(dep["diffValue"]) == 1) {
+      dep["diffValue"] = 0;
+      addObserver(dep, derivation);
+    }
+  }
+  if (lowestNewObservingDerivationState != UP_TO_DATE) {
+    derivation["dependenciesState_"] = lowestNewObservingDerivationState;
+    invoke0(derivation, "onBecomeStale_");
+  }
+}
+
+export JsValue trackDerivedFunction(JsValue derivation, JsValue f, JsValue context) {
+  bool prevAllowStateReads = true;
+  if (DEV) {
+    prevAllowStateReads = allowStateReadsStart(true);
+  }
+  changeDependenciesStateTo0(derivation);
+  int reserve = 100;
+  if (toInt(derivation["runId_"]) != 0) {
+    reserve = len(derivation["observing_"]);
+  }
+  derivation["newObserving_"] = newArrayLen(reserve);
+  derivation["unboundDepsCount_"] = 0;
+  int runId = toInt(globalState["runId"]) + 1;
+  globalState["runId"] = runId;
+  derivation["runId_"] = runId;
+  JsValue prevTracking = globalState["trackingDerivation"];
+  globalState["trackingDerivation"] = derivation;
+  globalState["inBatch"] = toInt(globalState["inBatch"]) + 1;
+  JsValue result = undef();
+  if (JS.strictEqual(globalState["disableErrorBoundaries"], true)) {
+    result = call0(f, context);
+  } else {
+    try {
+      result = call0(f, context);
+    } catch (JsValue e) {
+      result = construct1(CaughtException, e);
+    }
+  }
+  globalState["inBatch"] = toInt(globalState["inBatch"]) - 1;
+  globalState["trackingDerivation"] = prevTracking;
+  bindDependencies(derivation);
+  if (DEV) {
+    warnAboutDerivationWithoutDependencies(derivation);
+  }
+  if (DEV) {
+    allowStateReadsEnd(prevAllowStateReads);
+  }
+  return result;
+}
+
+export void clearObserving(JsValue derivation) {
+  JsValue obs = derivation["observing_"];
+  derivation["observing_"] = JS.array();
+  int i = len(obs);
+  while (i > 0) {
+    i = i - 1;
+    removeObserver(obs[i], derivation);
+  }
+  derivation["dependenciesState_"] = NOT_TRACKING;
+}
+
+void onBOImpl(JsValue self) {
+  if (self["onBOL"].truthy()) {
+    JS.invoke(self["onBOL"], "forEach", JS.method1((JsValue _self, JsValue listener) => {
+      call0(listener, undef());
+      return undef();
+    }));
+  }
+}
+
+void onBUOImpl(JsValue self) {
+  if (self["onBUOL"].truthy()) {
+    JS.invoke(self["onBUOL"], "forEach", JS.method1((JsValue _self, JsValue listener) => {
+      call0(listener, undef());
+      return undef();
+    }));
+  }
+}
+
+export JsValue Atom = JS.methodRest((JsValue self, JsValue args) => {
+  string name = "Atom";
+  if (len(args) > 0 && !isUndef(args[0])) {
+    name = toStr(args[0]);
+  } else if (DEV) {
+    name = "Atom@" + getNextId();
+  }
+  self["name_"] = name;
+  self["observers_"] = newSet();
+  self["lastAccessedBy_"] = 0;
+  self["lowestObserverState_"] = NOT_TRACKING;
+  self["flags_"] = 0;
+  return self;
+});
+
+Atom["prototype"]["onBO"] = JS.method0((JsValue self) => {
+  onBOImpl(self);
+  return undef();
+});
+Atom["prototype"]["onBUO"] = JS.method0((JsValue self) => {
+  onBUOImpl(self);
+  return undef();
+});
+Atom["prototype"]["reportObserved"] = JS.method0((JsValue self) => {
+  return reportObserved(self);
+});
+Atom["prototype"]["reportChanged"] = JS.method0((JsValue self) => {
+  reportChanged(self);
+  return undef();
+});
+Atom["prototype"]["toString"] = JS.method0((JsValue self) => {
+  return self["name_"];
+});
+void installFlagAccessor(JsValue proto, string name, int mask) {
+  defineProperty(proto, name, record {
+    configurable: true,
+    get: JS.method0((JsValue self) => {
+      return (toInt(self["flags_"]) & mask) != 0;
+    }),
+    set: JS.method1((JsValue self, JsValue value) => {
+      int flags = toInt(self["flags_"]);
+      if (value.truthy()) {
+        self["flags_"] = flags | mask;
+      } else {
+        int cleared = mask ^ -1;
+        self["flags_"] = flags & cleared;
+      }
+      return undef();
+    })
+  });
+}
+
+void installNumericFlagAccessor(JsValue proto, string name, int mask) {
+  defineProperty(proto, name, record {
+    configurable: true,
+    get: JS.method0((JsValue self) => {
+      if ((toInt(self["flags_"]) & mask) != 0) {
+        return 1;
+      }
+      return 0;
+    }),
+    set: JS.method1((JsValue self, JsValue value) => {
+      int flags = toInt(self["flags_"]);
+      if (toInt(value) == 1) {
+        self["flags_"] = flags | mask;
+      } else {
+        int cleared = mask ^ -1;
+        self["flags_"] = flags & cleared;
+      }
+      return undef();
+    })
+  });
+}
+
+createInstanceofPredicate("Atom", Atom);
+installFlagAccessor(Atom["prototype"], "isBeingObserved", 1);
+installFlagAccessor(Atom["prototype"], "isPendingUnobservation", 2);
+installNumericFlagAccessor(Atom["prototype"], "diffValue", 4);
+
+export JsValue createAtom = JS.methodRest((JsValue _self, JsValue args) => {
+  JsValue atom = undef();
+  if (len(args) > 0 && !isUndef(args[0])) {
+    atom = construct1(Atom, args[0]);
+  } else {
+    atom = construct0(Atom);
+  }
+  JsValue onObs = noop;
+  if (len(args) > 1) {
+    onObs = args[1];
+  }
+  JsValue onUnobs = noop;
+  if (len(args) > 2) {
+    onUnobs = args[2];
+  }
+  if (!JS.strictEqual(onObs, noop)) {
+    atom["onBOL"] = newSet();
+    setAdd(atom["onBOL"], onObs);
+  }
+  if (!JS.strictEqual(onUnobs, noop)) {
+    atom["onBUOL"] = newSet();
+    setAdd(atom["onBUOL"], onUnobs);
+  }
+  return atom;
+});
+
+export JsValue createAction(string actionName, JsValue fn, bool autoActionFlag, JsValue ref) {
+  if (DEV) {
+    if (!isFn(fn)) {
+      die("`action` can only be invoked on functions");
+    }
+    if (!isStr(actionName) || actionName == "") {
+      die("actions should have valid names, got: '" + actionName + "'");
+    }
+  }
+  JsValue res = JS.methodRest((JsValue self, JsValue args) => {
+    JsValue scope = ref;
+    if (isNullish(ref)) {
+      scope = self;
+    }
+    return executeAction(actionName, autoActionFlag, fn, scope, args);
+  });
+  res["isMobxAction"] = true;
+  res["toString"] = JS.method0((JsValue _s) => {
+    return JS.invoke(fn, "toString");
+  });
+  if (isFunctionNameConfigurable) {
+    tmpNameDescriptor["value"] = actionName;
+    defineProperty(res, "name", tmpNameDescriptor);
+  }
+  return res;
+}
+
+export JsValue _startAction(string actionName, bool canRunAsDerivation, JsValue scope, JsValue args) {
+  bool notifySpy_ = DEV && isSpyEnabled() && actionName.truthy();
+  JsValue startTime_ = 0;
+  if (notifySpy_) {
+    startTime_ = now();
+    JsValue flattenedArgs = EMPTY_ARRAY;
+    if (args.truthy()) {
+      flattenedArgs = arrayFrom(args);
+    }
+    spyReportStart(record {
+      type: ACTION,
+      name: actionName,
+      object: scope,
+      arguments: flattenedArgs
+    });
+  }
+  JsValue prevDerivation_ = globalState["trackingDerivation"];
+  bool runAsAction = !canRunAsDerivation || JS.isNullish(prevDerivation_);
+  startBatch();
+  bool prevAllowStateChanges_ = globalState["allowStateChanges"].truthy();
+  if (runAsAction) {
+    untrackedStart();
+    if (DEV) {
+      prevAllowStateChanges_ = allowStateChangesStart(true);
+    }
+  }
+  bool prevAllowStateReads_ = globalState["allowStateReads"].truthy();
+  if (DEV) {
+    allowStateReadsStart(true);
+  }
+  int actionId_ = nextActionId;
+  nextActionId = nextActionId + 1;
+  int parentActionId_ = currentActionId;
+  currentActionId = actionId_;
+  JsValue runInfo = JS.object();
+  runInfo["runAsAction_"] = runAsAction;
+  runInfo["prevDerivation_"] = prevDerivation_;
+  runInfo["prevAllowStateChanges_"] = prevAllowStateChanges_;
+  runInfo["prevAllowStateReads_"] = prevAllowStateReads_;
+  runInfo["notifySpy_"] = notifySpy_;
+  runInfo["startTime_"] = startTime_;
+  runInfo["actionId_"] = actionId_;
+  runInfo["parentActionId_"] = parentActionId_;
+  return runInfo;
+}
+
+export void _endAction(JsValue runInfo) {
+  if (currentActionId != toInt(runInfo["actionId_"])) {
+    die(30);
+  }
+  currentActionId = toInt(runInfo["parentActionId_"]);
+  if (!isUndef(runInfo["error_"])) {
+    globalState["suppressReactionErrors"] = true;
+  }
+  if (DEV) {
+    allowStateChangesEnd(runInfo["prevAllowStateChanges_"].truthy());
+    allowStateReadsEnd(runInfo["prevAllowStateReads_"].truthy());
+  }
+  endBatch();
+  if (runInfo["runAsAction_"].truthy()) {
+    untrackedEnd(runInfo["prevDerivation_"]);
+  }
+  if (DEV && runInfo["notifySpy_"].truthy()) {
+    spyReportEnd(record { time: toInt(now()) - toInt(runInfo["startTime_"]) });
+  }
+  globalState["suppressReactionErrors"] = false;
+}
+
+export JsValue executeAction(string actionName, bool canRunAsDerivation, JsValue fn, JsValue scope, JsValue args) {
+  JsValue runInfo = _startAction(actionName, canRunAsDerivation, scope, args);
+  try {
+    return apply(fn, scope, args);
+  } catch (JsValue err) {
+    runInfo["error_"] = err;
+    throw err;
+  } finally {
+    _endAction(runInfo);
+  }
+}
+
+JsValue reactionScheduler = (JsValue f) => {
+  return JS.call(f, undef());
+};
+
+JsValue runReactionsHelperFn = () => {
+  globalState["isRunningReactions"] = true;
+  JsValue allReactions = globalState["pendingReactions"];
+  int iterations = 0;
+  while (len(allReactions) > 0) {
+    iterations = iterations + 1;
+    if (iterations == MAX_REACTION_ITERATIONS) {
+      if (DEV) {
+        error1("Reaction doesn't converge to a stable state after 100 iterations. Probably there is a cycle in the reactive function: " + toStr(allReactions[0]));
+      } else {
+        error1("[mobx] cycle in reaction: " + toStr(allReactions[0]));
+      }
+      splice1(allReactions, 0, len(allReactions));
+    }
+    JsValue remainingReactions = splice1(allReactions, 0, len(allReactions));
+    int n = len(remainingReactions);
+    int i = 0;
+    while (i < n) {
+      invoke0(remainingReactions[i], "runReaction_");
+      i = i + 1;
+    }
+  }
+  globalState["isRunningReactions"] = false;
+  return undef();
+};
+
+export void runReactions() {
+  if (toInt(globalState["inBatch"]) > 0 || globalState["isRunningReactions"].truthy()) {
+    return;
+  }
+  call1(reactionScheduler, undef(), runReactionsHelperFn);
+}
+
+export void setReactionScheduler(JsValue fn) {
+  JsValue baseScheduler = reactionScheduler;
+  reactionScheduler = (JsValue f) => {
+    JsValue wrapped = () => {
+      return call1(baseScheduler, undef(), f);
+    };
+    return call1(fn, undef(), wrapped);
+  };
+}
+
+export JsValue Reaction = JS.methodRest((JsValue self, JsValue args) => {
+  string name = "Reaction";
+  if (len(args) > 0 && !isUndef(args[0])) {
+    name = toStr(args[0]);
+  } else if (DEV) {
+    name = "Reaction@" + getNextId();
+  }
+  self["name_"] = name;
+  self["onInvalidate_"] = undef();
+  if (len(args) > 1) {
+    self["onInvalidate_"] = args[1];
+  }
+  if (len(args) > 2 && args[2].truthy()) {
+    self["errorHandler_"] = args[2];
+  }
+  if (len(args) > 3 && !isUndef(args[3])) {
+    self["requiresObservable_"] = args[3];
+  }
+  self["observing_"] = JS.array();
+  self["newObserving_"] = null;
+  self["dependenciesState_"] = NOT_TRACKING;
+  self["runId_"] = 0;
+  self["unboundDepsCount_"] = 0;
+  self["flags_"] = 0;
+  return self;
+});
+
+Reaction["prototype"]["onBecomeStale_"] = JS.method0((JsValue self) => {
+  invoke0(self, "schedule_");
+  return undef();
+});
+Reaction["prototype"]["schedule_"] = JS.method0((JsValue self) => {
+  if (!self["isScheduled"].truthy()) {
+    self["isScheduled"] = true;
+    push(globalState["pendingReactions"], self);
+    runReactions();
+  }
+  return undef();
+});
+Reaction["prototype"]["runReaction_"] = JS.method0((JsValue self) => {
+  if (!self["isDisposed"].truthy()) {
+    startBatch();
+    self["isScheduled"] = false;
+    JsValue prev = globalState["trackingContext"];
+    globalState["trackingContext"] = self;
+    if (shouldCompute(self)) {
+      self["isTrackPending"] = true;
+      try {
+        invoke0(self, "onInvalidate_");
+        if (DEV && self["isTrackPending"].truthy() && isSpyEnabled()) {
+          spyReport(record {
+            name: self["name_"],
+            type: "scheduled-reaction"
+          });
+        }
+      } catch (JsValue e) {
+        call1(self["reportExceptionInDerivation_"], self, e);
+      }
+    }
+    globalState["trackingContext"] = prev;
+    endBatch();
+  }
+  return undef();
+});
+Reaction["prototype"]["track"] = JS.method1((JsValue self, JsValue fn) => {
+  if (self["isDisposed"].truthy()) {
+    return undef();
+  }
+  startBatch();
+  bool notify = DEV && isSpyEnabled();
+  JsValue startTime = undef();
+  if (DEV && notify) {
+    startTime = now();
+    spyReportStart(record {
+      name: self["name_"],
+      type: "reaction"
+    });
+  }
+  self["isRunning"] = true;
+  JsValue prevReaction = globalState["trackingContext"];
+  globalState["trackingContext"] = self;
+  JsValue result = trackDerivedFunction(self, fn, undef());
+  globalState["trackingContext"] = prevReaction;
+  self["isRunning"] = false;
+  self["isTrackPending"] = false;
+  if (self["isDisposed"].truthy()) {
+    clearObserving(self);
+  }
+  if (isCaughtException(result)) {
+    call1(self["reportExceptionInDerivation_"], self, result["cause"]);
+  }
+  if (DEV && notify) {
+    spyReportEnd(record { time: toInt(now()) - toInt(startTime) });
+  }
+  endBatch();
+  return undef();
+});
+Reaction["prototype"]["reportExceptionInDerivation_"] = JS.method1((JsValue self, JsValue error) => {
+  if (self["errorHandler_"].truthy()) {
+    call2(self["errorHandler_"], undef(), error, self);
+    return undef();
+  }
+  if (globalState["disableErrorBoundaries"].truthy()) {
+    throwErr(error);
+  }
+  string message = "[mobx] uncaught error in '" + toStr(self) + "'";
+  if (DEV) {
+    message = "[mobx] Encountered an uncaught exception that was thrown by a reaction or observer component, in: '" + toStr(self) + "'";
+  }
+  if (!globalState["suppressReactionErrors"].truthy()) {
+    error2(message, error);
+  } else if (DEV) {
+    warn("[mobx] (error in reaction '" + toStr(self["name_"]) + "' suppressed, fix error of causing action below)");
+  }
+  if (DEV && isSpyEnabled()) {
+    spyReport(record {
+      type: "error",
+      name: self["name_"],
+      message: message,
+      error: "" + error
+    });
+  }
+  JsValue handlers = globalState["globalReactionErrorHandlers"];
+  int n = len(handlers);
+  int i = 0;
+  while (i < n) {
+    call2(handlers[i], undef(), error, self);
+    i = i + 1;
+  }
+  return undef();
+});
+Reaction["prototype"]["dispose"] = JS.method0((JsValue self) => {
+  if (!self["isDisposed"].truthy()) {
+    self["isDisposed"] = true;
+    if (!self["isRunning"].truthy()) {
+      startBatch();
+      clearObserving(self);
+      endBatch();
+    }
+  }
+  return undef();
+});
+Reaction["prototype"]["getDisposer_"] = JS.method1((JsValue self, JsValue abortSignal) => {
+  JsValue dispose = () => {
+    call0(self["dispose"], self);
+    if (!isNullish(abortSignal) && isFn(abortSignal["removeEventListener"])) {
+      JS.invoke(abortSignal, "removeEventListener", "abort", dispose);
+    }
+    return undef();
+  };
+  if (!isNullish(abortSignal) && isFn(abortSignal["addEventListener"])) {
+    JS.invoke(abortSignal, "addEventListener", "abort", dispose);
+  }
+  dispose[$mobx] = self;
+  if (inOp("dispose", gSymbol()) && isSymCheck(gSymbol()["dispose"])) {
+    dispose[gSymbol()["dispose"]] = dispose;
+  }
+  return dispose;
+});
+Reaction["prototype"]["toString"] = JS.method0((JsValue self) => {
+  return "Reaction[" + toStr(self["name_"]) + "]";
+});
+createInstanceofPredicate("Reaction", Reaction);
+installFlagAccessor(Reaction["prototype"], "isDisposed", 1);
+installFlagAccessor(Reaction["prototype"], "isScheduled", 2);
+installFlagAccessor(Reaction["prototype"], "isTrackPending", 4);
+installFlagAccessor(Reaction["prototype"], "isRunning", 8);
+installNumericFlagAccessor(Reaction["prototype"], "diffValue", 16);
+
+bool isSymCheck(JsValue value) {
+  return JS.typeOf(value) == "symbol";
+}
+
+export JsValue onReactionError = JS.method1((JsValue _self, JsValue handler) => {
+  push(globalState["globalReactionErrorHandlers"], handler);
+  return JS.method0((JsValue __self) => {
+    int idx = indexOf(globalState["globalReactionErrorHandlers"], handler);
+    if (idx >= 0) {
+      splice1(globalState["globalReactionErrorHandlers"], idx, 1);
+    }
+    return undef();
+  });
+});
+
+export JsValue ComputedValue = JS.method1((JsValue self, JsValue options) => {
+  if (!options["get"].truthy()) {
+    die(31);
+  }
+  self["derivation"] = options["get"];
+  string name = "ComputedValue";
+  if (options["name"].truthy()) {
+    name = toStr(options["name"]);
+  } else if (DEV) {
+    name = "ComputedValue@" + getNextId();
+  }
+  self["name_"] = name;
+  if (options["set"].truthy()) {
+    string setterName = "ComputedValue-setter";
+    if (DEV) {
+      setterName = name + "-setter";
+    }
+    self["setter_"] = createAction(setterName, options["set"], false, undef());
+  } else {
+    self["setter_"] = undef();
+  }
+  self["equals_"] = defaultEquals;
+  if (options["equals"].truthy()) {
+    self["equals_"] = options["equals"];
+  }
+  self["scope_"] = options["context"];
+  self["requiresReaction_"] = options["requiresReaction"];
+  self["keepAlive_"] = options["keepAlive"].truthy();
+  self["dependenciesState_"] = NOT_TRACKING;
+  self["observing_"] = JS.array();
+  self["newObserving_"] = null;
+  self["observers_"] = newSet();
+  self["runId_"] = 0;
+  self["lastAccessedBy_"] = 0;
+  self["lowestObserverState_"] = UP_TO_DATE;
+  self["unboundDepsCount_"] = 0;
+  self["value_"] = construct1(CaughtException, null);
+  self["flags_"] = 0;
+  return self;
+});
+
+ComputedValue["prototype"]["onBecomeStale_"] = JS.method0((JsValue self) => {
+  propagateMaybeChanged(self);
+  return undef();
+});
+ComputedValue["prototype"]["onBO"] = JS.method0((JsValue self) => {
+  onBOImpl(self);
+  return undef();
+});
+ComputedValue["prototype"]["onBUO"] = JS.method0((JsValue self) => {
+  onBUOImpl(self);
+  return undef();
+});
+ComputedValue["prototype"]["computeValue_"] = JS.method1((JsValue self, JsValue track) => {
+  self["isComputing"] = true;
+  bool prev = false;
+  if (DEV) {
+    prev = allowStateChangesStart(false);
+  }
+  JsValue res = undef();
+  if (track.truthy()) {
+    res = trackDerivedFunction(self, self["derivation"], self["scope_"]);
+  } else {
+    if (JS.strictEqual(globalState["disableErrorBoundaries"], true)) {
+      res = call0(self["derivation"], self["scope_"]);
+    } else {
+      try {
+        res = call0(self["derivation"], self["scope_"]);
+      } catch (JsValue e) {
+        res = construct1(CaughtException, e);
+      }
+    }
+  }
+  if (DEV) {
+    allowStateChangesEnd(prev);
+  }
+  self["isComputing"] = false;
+  return res;
+});
+ComputedValue["prototype"]["trackAndCompute"] = JS.method0((JsValue self) => {
+  JsValue oldValue = self["value_"];
+  bool wasSuspended = toInt(self["dependenciesState_"]) == NOT_TRACKING;
+  JsValue newValue = call1(self["computeValue_"], self, true);
+  bool changed = wasSuspended || isCaughtException(oldValue) || isCaughtException(newValue) || !yes(call2(self["equals_"], self, oldValue, newValue));
+  if (changed) {
+    self["value_"] = newValue;
+    if (DEV && isSpyEnabled()) {
+      spyReport(record {
+        observableKind: "computed",
+        debugObjectName: self["name_"],
+        object: self["scope_"],
+        type: UPDATE,
+        oldValue: oldValue,
+        newValue: newValue
+      });
+    }
+  }
+  return changed;
+});
+ComputedValue["prototype"]["get"] = JS.method0((JsValue self) => {
+  if (self["isComputing"].truthy()) {
+    die2(32, self["name_"], self["derivation"]);
+  }
+  if (!globalState["inBatch"].truthy() && !self["observers_"]["size"].truthy() && !self["keepAlive_"].truthy()) {
+    if (shouldCompute(self)) {
+      if (DEV) {
+        invoke0(self, "warnAboutUntrackedRead_");
+      }
+      startBatch();
+      self["value_"] = call1(self["computeValue_"], self, false);
+      endBatch();
+    }
+  } else {
+    reportObserved(self);
+    if (shouldCompute(self)) {
+      JsValue prevTrackingContext = globalState["trackingContext"];
+      if (self["keepAlive_"].truthy() && !prevTrackingContext.truthy()) {
+        globalState["trackingContext"] = self;
+      }
+      if (invoke0(self, "trackAndCompute").truthy()) {
+        propagateChangeConfirmed(self);
+      }
+      globalState["trackingContext"] = prevTrackingContext;
+    }
+  }
+  JsValue result = self["value_"];
+  if (isCaughtException(result)) {
+    throwErr(result["cause"]);
+  }
+  return result;
+});
+ComputedValue["prototype"]["set"] = JS.method1((JsValue self, JsValue value) => {
+  if (self["setter_"].truthy()) {
+    if (self["isRunningSetter"].truthy()) {
+      die1(33, self["name_"]);
+    }
+    self["isRunningSetter"] = true;
+    try {
+      call1(self["setter_"], self["scope_"], value);
+    } finally {
+      self["isRunningSetter"] = false;
+    }
+  } else {
+    die1(34, self["name_"]);
+  }
+  return undef();
+});
+ComputedValue["prototype"]["suspend_"] = JS.method0((JsValue self) => {
+  if (!self["keepAlive_"].truthy()) {
+    clearObserving(self);
+    self["value_"] = undef();
+  }
+  return undef();
+});
+ComputedValue["prototype"]["warnAboutUntrackedRead_"] = JS.method0((JsValue self) => {
+  if (!DEV) {
+    return undef();
+  }
+  bool required = false;
+  if (isBoolish(self["requiresReaction_"])) {
+    required = self["requiresReaction_"].truthy();
+  } else {
+    required = globalState["computedRequiresReaction"].truthy();
+  }
+  if (required) {
+    warn("[mobx] Computed value '" + toStr(self["name_"]) + "' is being read outside a reactive context. Doing a full recompute.");
+  }
+  return undef();
+});
+ComputedValue["prototype"]["toString"] = JS.method0((JsValue self) => {
+  return toStr(self["name_"]) + "[" + toStr(JS.invoke(self["derivation"], "toString")) + "]";
+});
+ComputedValue["prototype"]["valueOf"] = JS.method0((JsValue self) => {
+  return toPrimitive(call0(self["get"], self));
+});
+ComputedValue["prototype"][wellKnown("toPrimitive")] = JS.method0((JsValue self) => {
+  return call0(self["valueOf"], self);
+});
+createInstanceofPredicate("ComputedValue", ComputedValue);
+installFlagAccessor(ComputedValue["prototype"], "isComputing", 1);
+installFlagAccessor(ComputedValue["prototype"], "isRunningSetter", 2);
+installFlagAccessor(ComputedValue["prototype"], "isBeingObserved", 4);
+installFlagAccessor(ComputedValue["prototype"], "isPendingUnobservation", 8);
+installNumericFlagAccessor(ComputedValue["prototype"], "diffValue", 16);
+
+export JsValue isolateGlobalState = JS.method0((JsValue _self) => {
+  if (len(globalState["pendingReactions"]) != 0 || toInt(globalState["inBatch"]) != 0 || globalState["isRunningReactions"].truthy()) {
+    die(36);
+  }
+  isolateCalled = true;
+  if (canMergeGlobalState) {
+    JsValue global = hostGlobal();
+    int count = toInt(global["__mobxInstanceCount"]) - 1;
+    global["__mobxInstanceCount"] = count;
+    if (count == 0) {
+      global["__mobxGlobals"] = undef();
+    }
+    globalState = createMobXGlobals();
+  }
+  return undef();
+});
+
+export JsValue getGlobalState = JS.method0((JsValue _self) => {
+  return globalState;
+});
+
+export JsValue resetGlobalState = JS.method0((JsValue _self) => {
+  JsValue defaultGlobals = createMobXGlobals();
+  JsValue keys = objectKeys(defaultGlobals);
+  int n = len(keys);
+  int i = 0;
+  while (i < n) {
+    JsValue key = keys[i];
+    if (indexOf(persistentKeys, key) == -1) {
+      globalState[key] = defaultGlobals[key];
+    }
+    i = i + 1;
+  }
+  globalState["allowStateChanges"] = !globalState["enforceActions"].truthy();
+  return undef();
+});
+
+export bool hasInterceptors(JsValue interceptable) {
+  return !isUndef(interceptable["interceptors_"]) && len(interceptable["interceptors_"]) > 0;
+}
+
+export JsValue registerInterceptor(JsValue interceptable, JsValue handler) {
+  if (isUndef(interceptable["interceptors_"])) {
+    interceptable["interceptors_"] = JS.array();
+  }
+  JsValue interceptors = interceptable["interceptors_"];
+  push(interceptors, handler);
+  return once(JS.method0((JsValue _self) => {
+    int idx = indexOf(interceptors, handler);
+    if (idx != -1) {
+      splice1(interceptors, idx, 1);
+    }
+    return undef();
+  }));
+}
+
+export JsValue interceptChange(JsValue interceptable, JsValue change) {
+  JsValue prevU = untrackedStart();
+  try {
+    JsValue interceptorsSrc = JS.array();
+    if (interceptable["interceptors_"].truthy()) {
+      interceptorsSrc = interceptable["interceptors_"];
+    }
+    JsValue interceptors = slice(interceptorsSrc);
+    int n = len(interceptors);
+    int i = 0;
+    while (i < n) {
+      change = call1(interceptors[i], undef(), change);
+      if (change.truthy() && !change["type"].truthy()) {
+        die(14);
+      }
+      if (!change.truthy()) {
+        break;
+      }
+      i = i + 1;
+    }
+    return change;
+  } finally {
+    untrackedEnd(prevU);
+  }
+}
+
+export bool hasListeners(JsValue listenable) {
+  return !isUndef(listenable["changeListeners_"]) && len(listenable["changeListeners_"]) > 0;
+}
+
+export JsValue registerListener(JsValue listenable, JsValue handler) {
+  if (isUndef(listenable["changeListeners_"])) {
+    listenable["changeListeners_"] = JS.array();
+  }
+  JsValue listeners = listenable["changeListeners_"];
+  push(listeners, handler);
+  return once(JS.method0((JsValue _self) => {
+    int idx = indexOf(listeners, handler);
+    if (idx != -1) {
+      splice1(listeners, idx, 1);
+    }
+    return undef();
+  }));
+}
+
+export void notifyListeners(JsValue listenable, JsValue change) {
+  JsValue prevU = untrackedStart();
+  JsValue listeners = listenable["changeListeners_"];
+  if (!listeners.truthy()) {
+    untrackedEnd(prevU);
+    return;
+  }
+  listeners = slice(listeners);
+  int n = len(listeners);
+  int i = 0;
+  while (i < n) {
+    call1(listeners[i], undef(), change);
+    i = i + 1;
+  }
+  untrackedEnd(prevU);
+}
+
+export JsValue initObservable(JsValue cb) {
+  JsValue derivation = untrackedStart();
+  bool allow = true;
+  if (DEV) {
+    allow = allowStateChangesStart(true);
+  }
+  startBatch();
+  try {
+    return call0(cb, undef());
+  } finally {
+    endBatch();
+    if (DEV) {
+      allowStateChangesEnd(allow);
+    }
+    untrackedEnd(derivation);
+  }
+}
+
+export JsValue transaction = JS.methodRest((JsValue _self, JsValue args) => {
+  JsValue actionFn = args[0];
+  JsValue thisArg = undef();
+  if (len(args) > 1) {
+    thisArg = args[1];
+  }
+  startBatch();
+  try {
+    return JS.invoke(actionFn, "apply", thisArg);
+  } finally {
+    endBatch();
+  }
+});
+
+export bool isAnnotation(JsValue thing) {
+  return (isObj(thing) || isFn(thing)) && isStr(thing["annotationType_"]) && isFn(thing["make_"]) && isFn(thing["extend_"]);
+}
+
+export void assert20223DecoratorType(JsValue context, JsValue types) {
+  if (DEV && !includesStr(types, context["kind"])) {
+    die("The decorator applied to '" + stringifyKey(context["name"]) + "' cannot be used on a " + toStr(context["kind"]) + " element");
+  }
+}
+
+export JsValue createDecoratorAnnotation(JsValue annotation, JsValue decorate) {
+  return assign(JS.methodRest((JsValue _self, JsValue args) => {
+    JsValue value = args[0];
+    JsValue context = args[1];
+    if (context.truthy() && isStr(context["kind"])) {
+      return JS.call(decorate, undef(), annotation, value, context);
+    }
+    if (DEV) {
+      die("Invalid arguments for `" + toStr(annotation["annotationType_"]) + "`");
+    }
+    return undef();
+  }), annotation);
+}

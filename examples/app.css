@@ -1,0 +1,96 @@
+:root {
+  color-scheme: light;
+  --bg: #f4f1ea;
+  --ink: #1c1917;
+  --muted: #57534e;
+  --paper: #fffcf7;
+  --line: #e7e0d4;
+  --accent: #b45309;
+  --ok: #166534;
+  --danger: #9f1239;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); }
+body { min-height: 100vh; }
+a { color: var(--accent); }
+button, input, select {
+  font: inherit;
+  color: inherit;
+}
+button {
+  background: var(--ink);
+  color: var(--paper);
+  border: 0;
+  border-radius: 4px;
+  padding: 0.45rem 0.8rem;
+  cursor: pointer;
+}
+button.ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+button.danger { background: var(--danger); }
+input, select {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.45rem 0.6rem;
+}
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+}
+.nav {
+  display: flex;
+  gap: 0.75rem 1.1rem;
+  flex-wrap: wrap;
+  margin: 0 0 2rem;
+  font-size: 0.92rem;
+}
+.nav a { text-decoration: none; color: var(--muted); }
+.nav a[aria-current="page"] { color: var(--ink); text-decoration: underline; }
+h1 { font-size: 2rem; font-weight: 600; margin: 0 0 0.35rem; letter-spacing: -0.02em; }
+.lede { color: var(--muted); margin: 0 0 1.5rem; }
+.row { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+.stat {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--line);
+}
+.stat:first-of-type { border-top: 0; }
+.list { list-style: none; padding: 0; margin: 1rem 0; }
+.list li {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.done { color: var(--muted); text-decoration: line-through; }
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  margin: 0.7rem 0;
+}
+.log {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.82rem;
+  color: var(--muted);
+  white-space: pre-wrap;
+  min-height: 3rem;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8rem;
+}
+.muted { color: var(--muted); }
+.ok { color: var(--ok); }

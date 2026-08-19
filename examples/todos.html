@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Todos · mobxlil</title>
+    <link rel="stylesheet" href="./app.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <nav class="nav">
+        <a href="./index.html">Examples</a>
+        <a href="./counter.html">Counter</a>
+        <a href="./todos.html" aria-current="page">Todos</a>
+        <a href="./cart.html">Cart</a>
+        <a href="./search.html">Search</a>
+        <a href="./reactions.html">Reactions</a>
+      </nav>
+      <h1>Todos</h1>
+      <p class="lede">Observable array of objects, computed remaining count, actions for mutate.</p>
+      <form class="row" id="form">
+        <input id="title" placeholder="What needs doing?" autocomplete="off" />
+        <button type="submit">Add</button>
+      </form>
+      <ul class="list" id="list"></ul>
+      <div class="stat"><span>Remaining</span><strong id="remaining">0</strong></div>
+      <div class="row">
+        <button class="ghost" id="complete">Complete all</button>
+        <button class="ghost danger" id="clear">Clear done</button>
+      </div>
+    </main>
+    <script type="module">
+      import { observable, computed, autorun, action } from "/dist/mobx.esm.js";
+
+      const state = observable({
+        items: [
+          { title: "Port MobX", done: true },
+          { title: "Keep boxes fast", done: false }
+        ]
+      });
+
+      const remaining = computed(() => state.items.filter(item => !item.done).length);
+
+      const add = action(title => {
+        state.items.push({ title, done: false });
+      });
+      const toggle = action(item => {
+        item.done = !item.done;
+      });
+      const completeAll = action(() => {
+        for (const item of state.items) item.done = true;
+      });
+      const clearDone = action(() => {
+        state.items.replace(state.items.filter(item => !item.done));
+      });
+
+      autorun(() => {
+        const list = document.getElementById("list");
+        list.replaceChildren();
+        for (const item of state.items) {
+          const li = document.createElement("li");
+          const box = document.createElement("input");
+          box.type = "checkbox";
+          box.checked = item.done;
+          box.onchange = () => toggle(item);
+          const label = document.createElement("span");
+          label.textContent = item.title;
+          if (item.done) label.className = "done";
+          li.append(box, label);
+          list.append(li);
+        }
+        document.getElementById("remaining").textContent = String(remaining.get());
+      });
+
+      document.getElementById("form").onsubmit = event => {
+        event.preventDefault();
+        const input = document.getElementById("title");
+        const title = input.value.trim();
+        if (!title) return;
+        add(title);
+        input.value = "";
+      };
+      document.getElementById("complete").onclick = completeAll;
+      document.getElementById("clear").onclick = clearDone;
+    </script>
+  </body>
+</html>

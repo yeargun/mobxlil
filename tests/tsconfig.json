@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "lib": ["ESNext", "DOM"],
+        "strict": false,
+        "noEmit": true,
+        "allowJs": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "useDefineForClassFields": true,
+        "experimentalDecorators": false,
+        "downlevelIteration": true,
+        "noUnusedLocals": false,
+        "noImplicitAny": false,
+        "types": ["jest", "node"]
+    },
+    "include": ["./upstream/base/**/*.ts", "./upstream/utils/**/*.ts", "./setup.ts"]
+}

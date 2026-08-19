@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="@itslil/mobx: MobX 7.0.0 reimplemented in LilScript. Half the official ESM Brotli, within 1.05× throughput." />
+    <meta name="theme-color" content="#ff7a3c" />
+    <title>itslil/mobx — MobX 7 through LilScript</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <div class="progress" aria-hidden="true"></div>
+    <header class="nav shell">
+      <a class="wordmark" href="#top" aria-label="itslil/mobx home">
+        <span class="mark">m</span>
+        <span>itslil/mobx</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#performance">performance</a>
+        <a href="#lab">demos</a>
+        <a href="#evidence">size</a>
+        <a href="https://github.com/yeargun/mobxlil">GitHub ↗</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero shell">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="live-dot"></span> MobX 7.0.0 · LilScript port · @itslil/mobx</p>
+          <h1>MobX,<br /><em>compiled.</em></h1>
+          <p class="lede">The <code>mobx@7.0.0</code> public API, rewritten in LilScript and shipped as a dependency-free drop-in. Half the official ESM Brotli. Throughput stays within 1.05× of official on a quiet machine.</p>
+          <div class="install-row">
+            <code>npm install @itslil/mobx</code>
+            <button class="copy" data-copy="npm install @itslil/mobx" type="button">copy</button>
+          </div>
+          <div class="hero-actions">
+            <a class="button primary" href="#performance">Performance</a>
+            <a class="button secondary" href="https://www.npmjs.com/package/@itslil/mobx">npm ↗</a>
+          </div>
+        </div>
+
+        <div class="scoreboard" aria-label="Compression and performance results">
+          <div class="score-main">
+            <span class="score-label">Brotli-11 vs official ESM</span>
+            <strong>0.50<span>×</span></strong>
+            <p>33,453 B → 16,736 B</p>
+          </div>
+          <div class="score-grid">
+            <div><strong>0.95×</strong><span>vs Vite+Terser</span></div>
+            <div><strong>1.22×</strong><span>vs Closure ADVANCED</span></div>
+            <div><strong>12/12</strong><span>suites ≤ 1.05×</span></div>
+            <div><strong>0.98×</strong><span>retained memory</span></div>
+          </div>
+          <p class="score-note">Canonical size is lilscript-codec gzip-9 / Brotli-11. Closure ADVANCED is still the smallest compressed lane. Throughput is candidate / official, Node v24.11.1, NODE_ENV=production.</p>
+        </div>
+      </section>
+
+      <section class="ticker" aria-label="Supported APIs">
+        <div>observable <span>✦</span> computed <span>✦</span> autorun <span>✦</span> reaction <span>✦</span> action <span>✦</span> flow <span>✦</span> when <span>✦</span> makeAutoObservable <span>✦</span> map <span>✦</span> set <span>✦</span> intercept <span>✦</span> spy</div>
+      </section>
+
+      <section class="performance shell" id="performance">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Measured vs mobx@7.0.0</p>
+            <h2>Throughput,<br />not inferred.</h2>
+          </div>
+          <p>Same graph operations against official <code>mobx@7.0.0</code>. 8 samples, first 2 discarded, median of the rest. Ratio is @itslil/mobx / official (lower is faster). Checksums match on every suite.</p>
+        </div>
+        <div class="perf-cards" id="perf-cards"></div>
+        <div class="table-wrap light">
+          <table>
+            <thead>
+              <tr>
+                <th>Suite</th>
+                <th>mobx@7.0.0</th>
+                <th>@itslil/mobx</th>
+                <th>Ratio</th>
+              </tr>
+            </thead>
+            <tbody id="perf-body"></tbody>
+          </table>
+        </div>
+        <p class="perf-note" id="perf-note"></p>
+      </section>
+
+      <section class="lab shell" id="lab">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">The compiled runtime, in the browser</p>
+            <h2>Five small<br />apps.</h2>
+          </div>
+          <p>These load the same production ESM that npm publishes. Boxes, arrays, maps, flow/when, intercept, observe.</p>
+        </div>
+        <div class="demo-grid" id="demo-grid"></div>
+      </section>
+
+      <section class="evidence" id="evidence">
+        <div class="shell">
+          <div class="section-heading inverse">
+            <div>
+              <p class="eyebrow">The receipts</p>
+              <h2>Raw, gzip,<br />and Brotli.</h2>
+            </div>
+            <p>Reusable package ESM, not a closed-world app. Official is the published <code>mobx@7.0.0</code> ESM. Vite/Terser/Closure run on that same official source. @itslil/mobx is the LilScript production artifact.</p>
+          </div>
+          <div class="total-bar" id="total-bar"></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Lane</th>
+                  <th>Raw</th>
+                  <th>gzip-9</th>
+                  <th>Brotli-11</th>
+                  <th>vs official</th>
+                </tr>
+              </thead>
+              <tbody id="results-body"></tbody>
+            </table>
+          </div>
+          <div class="method-note">
+            <p><strong>Why Closure ADVANCED is still smaller.</strong> This package compiles <code>realistic-performance-first</code> with property mangling off: it is a reusable MobX ABI, and tests/JS consumers read real keys. The current source is also open-world <code>JsValue</code> bags (<code>value_</code>, <code>observers_</code>), so LilScript’s owned-field mangler would not rename those keys even if the flag were on. Closure ADVANCED of official is a size-only lane and is not the throughput baseline.</p>
+            <a href="https://github.com/yeargun/mobxlil#size">README ↗</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing shell">
+        <p class="eyebrow">Zero runtime dependencies</p>
+        <h2>Drop MobX 7 into<br />a smaller box.</h2>
+        <div class="install-row large">
+          <code>npm install @itslil/mobx</code>
+          <button class="copy" data-copy="npm install @itslil/mobx" type="button">copy</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="shell">
+      <span>@itslil/mobx · MIT</span>
+      <span>Independent LilScript reimplementation of mobx@7.0.0</span>
+      <a href="https://github.com/yeargun/mobxlil">source ↗</a>
+    </footer>
+  </body>
+</html>

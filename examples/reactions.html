@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reactions · mobxlil</title>
+    <link rel="stylesheet" href="./app.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <nav class="nav">
+        <a href="./index.html">Examples</a>
+        <a href="./counter.html">Counter</a>
+        <a href="./todos.html">Todos</a>
+        <a href="./cart.html">Cart</a>
+        <a href="./search.html">Search</a>
+        <a href="./reactions.html" aria-current="page">Reactions</a>
+      </nav>
+      <h1>Reactions</h1>
+      <p class="lede">
+        A <code>reaction</code> logs changes, <code>intercept</code> clamps the slider, and
+        <code>observe</code> records the raw mutation.
+      </p>
+      <div class="card">
+        <div class="stat"><span>Temperature</span><strong id="temp">20</strong></div>
+        <input id="slider" type="range" min="0" max="40" value="20" />
+      </div>
+      <pre class="log" id="log"></pre>
+    </main>
+    <script type="module">
+      import { observable, reaction, intercept, observe, action } from "/dist/mobx.esm.js";
+
+      const climate = observable({ celsius: 20 });
+      const lines = [];
+
+      function push(line) {
+        lines.unshift(line);
+        document.getElementById("log").textContent = lines.slice(0, 8).join("\n");
+      }
+
+      intercept(climate, "celsius", change => {
+        if (typeof change.newValue !== "number") return null;
+        change.newValue = Math.max(0, Math.min(40, Math.round(change.newValue)));
+        return change;
+      });
+
+      observe(climate, "celsius", change => {
+        push(`observe ${change.oldValue} → ${change.newValue}`);
+      });
+
+      reaction(
+        () => climate.celsius,
+        value => {
+          document.getElementById("temp").textContent = String(value);
+          document.getElementById("slider").value = String(value);
+          push(`reaction ${value}°C / ${Math.round(value * 1.8 + 32)}°F`);
+        },
+        { fireImmediately: true }
+      );
+
+      const setTemp = action(value => {
+        climate.celsius = Number(value);
+      });
+
+      document.getElementById("slider").oninput = event => setTemp(event.target.value);
+    </script>
+  </body>
+</html>

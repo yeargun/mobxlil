@@ -1,0 +1,23 @@
+[javascript]
+priority = "size-first"
+optimization_level = 8
+cost_model = "brotli"
+function_spelling = "function"
+public_aggregate_abi = "named"
+strip_console = false
+pool_numeric_literals = true
+candidate_search = "off"
+candidate_limit = 1
+candidate_byte_budget = 1
+candidate_beam_width = 1
+local_name_reserve = 48
+stable_local_names = true
+
+[mangle]
+identifiers = false
+properties = false
+exports = false
+pool_strings = false
+
+[bundle]
+mode = "single"

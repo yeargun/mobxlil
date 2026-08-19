@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cart · mobxlil</title>
+    <link rel="stylesheet" href="./app.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <nav class="nav">
+        <a href="./index.html">Examples</a>
+        <a href="./counter.html">Counter</a>
+        <a href="./todos.html">Todos</a>
+        <a href="./cart.html" aria-current="page">Cart</a>
+        <a href="./search.html">Search</a>
+        <a href="./reactions.html">Reactions</a>
+      </nav>
+      <h1>Cart</h1>
+      <p class="lede">An observable map of line items plus computed subtotal, tax, and total.</p>
+      <div class="row">
+        <select id="sku">
+          <option value="paper">Paper · $6</option>
+          <option value="ink">Ink · $14</option>
+          <option value="press">Press · $40</option>
+        </select>
+        <button id="add">Add to cart</button>
+      </div>
+      <ul class="list" id="lines"></ul>
+      <div class="card">
+        <div class="stat"><span>Items</span><strong id="count">0</strong></div>
+        <div class="stat"><span>Subtotal</span><strong id="subtotal">$0</strong></div>
+        <div class="stat"><span>Tax (8%)</span><strong id="tax">$0</strong></div>
+        <div class="stat"><span>Total</span><strong id="total">$0</strong></div>
+      </div>
+    </main>
+    <script type="module">
+      import { observable, computed, autorun, action } from "/dist/mobx.esm.js";
+
+      const catalog = {
+        paper: { name: "Paper", price: 6 },
+        ink: { name: "Ink", price: 14 },
+        press: { name: "Press", price: 40 }
+      };
+
+      const cart = observable.map();
+
+      const count = computed(() => {
+        let n = 0;
+        for (const line of cart.values()) n += line.qty;
+        return n;
+      });
+      const subtotal = computed(() => {
+        let sum = 0;
+        for (const [sku, line] of cart) sum += catalog[sku].price * line.qty;
+        return sum;
+      });
+      const tax = computed(() => Math.round(subtotal.get() * 0.08));
+      const total = computed(() => subtotal.get() + tax.get());
+
+      const add = action(sku => {
+        const line = cart.get(sku);
+        if (line) line.qty += 1;
+        else cart.set(sku, observable({ qty: 1 }));
+      });
+      const bump = action((sku, delta) => {
+        const line = cart.get(sku);
+        if (!line) return;
+        line.qty += delta;
+        if (line.qty <= 0) cart.delete(sku);
+      });
+
+      const money = n => `$${n}`;
+
+      autorun(() => {
+        const list = document.getElementById("lines");
+        list.replaceChildren();
+        for (const [sku, line] of cart) {
+          const li = document.createElement("li");
+          const label = document.createElement("span");
+          label.textContent = `${catalog[sku].name} × ${line.qty}`;
+          const minus = document.createElement("button");
+          minus.className = "ghost";
+          minus.textContent = "−";
+          minus.onclick = () => bump(sku, -1);
+          const plus = document.createElement("button");
+          plus.className = "ghost";
+          plus.textContent = "+";
+          plus.onclick = () => bump(sku, 1);
+          li.append(label, minus, plus);
+          list.append(li);
+        }
+        document.getElementById("count").textContent = String(count.get());
+        document.getElementById("subtotal").textContent = money(subtotal.get());
+        document.getElementById("tax").textContent = money(tax.get());
+        document.getElementById("total").textContent = money(total.get());
+      });
+
+      document.getElementById("add").onclick = () => add(document.getElementById("sku").value);
+    </script>
+  </body>
+</html>

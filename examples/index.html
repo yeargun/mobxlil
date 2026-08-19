@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>mobxlil examples</title>
+    <link rel="stylesheet" href="./app.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <nav class="nav">
+        <a href="./index.html" aria-current="page">Examples</a>
+        <a href="./counter.html">Counter</a>
+        <a href="./todos.html">Todos</a>
+        <a href="./cart.html">Cart</a>
+        <a href="./search.html">Search</a>
+        <a href="./reactions.html">Reactions</a>
+      </nav>
+      <h1>mobxlil examples</h1>
+      <p class="lede">
+        Small browser apps that load the compiled LilScript MobX runtime from
+        <code>dist/mobx.esm.js</code>. Serve the repo root so that import works:
+        <code>npm run examples</code>
+      </p>
+      <div class="grid">
+        <a class="card" href="./counter.html">
+          <strong>Counter</strong>
+          <p class="muted">Box, computed, autorun, and actions.</p>
+        </a>
+        <a class="card" href="./todos.html">
+          <strong>Todos</strong>
+          <p class="muted">Observable array, derived remaining count, batched edits.</p>
+        </a>
+        <a class="card" href="./cart.html">
+          <strong>Cart</strong>
+          <p class="muted">Observable map, object fields, computed totals.</p>
+        </a>
+        <a class="card" href="./search.html">
+          <strong>Search</strong>
+          <p class="muted">flow plus when for an async lookup.</p>
+        </a>
+        <a class="card" href="./reactions.html">
+          <strong>Reactions</strong>
+          <p class="muted">reaction, intercept, and observe side effects.</p>
+        </a>
+      </div>
+    </main>
+  </body>
+</html>

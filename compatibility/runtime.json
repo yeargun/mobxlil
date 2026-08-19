@@ -1,0 +1,708 @@
+{
+  "pin": "mobx@7.0.0",
+  "count": 78,
+  "exports": [
+    {
+      "name": "$mobx",
+      "kind": "symbol",
+      "officialKind": "symbol",
+      "arity": null,
+      "officialArity": null,
+      "constructible": false,
+      "implemented": true
+    },
+    {
+      "name": "FlowCancellationError",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 0,
+      "officialArity": 0,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "ObservableMap",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 3,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "ObservableSet",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 3,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "Reaction",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 4,
+      "officialArity": 0,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "_allowStateChanges",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "_allowStateChangesInsideComputed",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "_allowStateReadsEnd",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "_allowStateReadsStart",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "_autoAction",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "_autoActionBound",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "_endAction",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "_getAdministration",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "_getGlobalState",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 0,
+      "officialArity": 0,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "_interceptReads",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 3,
+      "officialArity": 3,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "_isComputingDerivation",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 0,
+      "officialArity": 0,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "_resetGlobalState",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 0,
+      "officialArity": 0,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "_startAction",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 4,
+      "officialArity": 4,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "action",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "actionBound",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "autorun",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "compareDefault",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "compareIdentity",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "compareShallow",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "compareStructural",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "computed",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "computedStruct",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "configure",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "createAtom",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 3,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "defineProperty",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 3,
+      "officialArity": 3,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "entries",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "extendObservable",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 4,
+      "officialArity": 4,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "flow",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "flowBound",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "flowResult",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "get",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "getAtom",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "getDebugName",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "getDependencyTree",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "getObserverTree",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "has",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "intercept",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 3,
+      "officialArity": 3,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "isAction",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "isBoxedObservable",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "isComputed",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "isComputedProp",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "isFlow",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "isFlowCancellationError",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "isObservable",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "isObservableArray",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "isObservableMap",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "isObservableObject",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "isObservableProp",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "isObservableSet",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "keys",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "makeAutoObservable",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 3,
+      "officialArity": 3,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "makeObservable",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 3,
+      "officialArity": 3,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "observable",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 3,
+      "officialArity": 3,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "observableDeep",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "observableRef",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "observableShallow",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "observableStruct",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "observe",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 4,
+      "officialArity": 4,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "onBecomeObserved",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 0,
+      "officialArity": 3,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "onBecomeUnobserved",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 0,
+      "officialArity": 3,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "onReactionError",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "override",
+      "kind": "object",
+      "officialKind": "object",
+      "arity": null,
+      "officialArity": null,
+      "constructible": false,
+      "implemented": true
+    },
+    {
+      "name": "ownKeys",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "reaction",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 3,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "remove",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "runInAction",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "set",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 3,
+      "officialArity": 3,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "spy",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "toJS",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 2,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "transaction",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 2,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "untracked",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "values",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 1,
+      "officialArity": 1,
+      "constructible": true,
+      "implemented": true
+    },
+    {
+      "name": "when",
+      "kind": "function",
+      "officialKind": "function",
+      "arity": 3,
+      "officialArity": 3,
+      "constructible": true,
+      "implemented": true
+    }
+  ]
+}
