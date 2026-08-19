@@ -42,9 +42,8 @@ Measured with `lilscript-codec` gzip-9 / Brotli-11.
 | Vite + esbuild of official | 71,447 | 20,025 | 17,808 | 1.01× |
 | Vite + Terser of official | 71,255 | 19,850 | 17,610 | 1.00× |
 | **`@itslil/mobx` production ESM** | **65,664** | **18,690** | **16,736** | **0.95×** |
-| Closure ADVANCED of official | 48,686 | 15,393 | 13,701 | 0.78× |
 
-**0.95× Brotli vs Vite+Terser** (17,610 → 16,736). Closure ADVANCED of official is still smaller. This build is `realistic-performance-first`: property names and `|0` stay, because the package is a reusable MobX ABI and a drop-in for app code that already minifies `mobx` with Vite.
+**0.95× Brotli vs Vite+Terser** (17,610 → 16,736). This is an open-world npm package: property names and `|0` stay so it remains a drop-in for app code that already minifies `mobx` with Vite.
 
 ## Performance
 

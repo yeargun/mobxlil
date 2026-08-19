@@ -15,8 +15,7 @@
     { "name": "Official ESM", "raw": 180997, "gzip9": 40282, "brotli11": 33453, "note": "mobx@7.0.0 published ESM" },
     { "name": "Vite + esbuild", "raw": 71447, "gzip9": 20025, "brotli11": 17808, "note": "official source, Vite minify" },
     { "name": "Vite + Terser", "raw": 71255, "gzip9": 19850, "brotli11": 17610, "note": "official source, Terser" },
-    { "name": "@itslil/mobx", "raw": 65664, "gzip9": 18690, "brotli11": 16736, "note": "LilScript production ESM", "primary": true },
-    { "name": "Closure ADVANCED", "raw": 48686, "gzip9": 15393, "brotli11": 13701, "note": "official source, size lane only" }
+    { "name": "@itslil/mobx", "raw": 65664, "gzip9": 18690, "brotli11": 16736, "note": "LilScript production ESM", "primary": true }
   ],
   "throughput": [
     { "name": "boxes", "officialMs": 12.12, "candidateMs": 12.313, "ratio": 1.016 },

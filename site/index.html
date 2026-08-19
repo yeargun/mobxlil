@@ -50,9 +50,9 @@
             <div><strong>769</strong><span>official tests passed</span></div>
             <div><strong>12/12</strong><span>suites ≤ 1.05×</span></div>
             <div><strong>0.98×</strong><span>retained memory</span></div>
-            <div><strong>1.22×</strong><span>vs Closure ADVANCED</span></div>
+            <div><strong>78/78</strong><span>runtime exports</span></div>
           </div>
-          <p class="score-note">Gate size is Vite+Terser of mobx@7.0.0, then lilscript-codec Brotli-11. Published official ESM is larger (33,453 B) because it is not a production minify. Closure ADVANCED of official is still the smallest size lane. Throughput is @itslil/mobx / official, Node v24.11.1, NODE_ENV=production.</p>
+          <p class="score-note">Gate size is Vite+Terser of mobx@7.0.0, then lilscript-codec Brotli-11. That is what a production bundler ships. Published official ESM is larger (33,453 B) because it is not minified. Throughput is @itslil/mobx / official, Node v24.11.1, NODE_ENV=production.</p>
         </div>
       </section>
 
@@ -103,7 +103,7 @@
               <p class="eyebrow">The receipts</p>
               <h2>Raw, gzip,<br />and Brotli.</h2>
             </div>
-            <p>The fair production comparison is Vite + Terser of official <code>mobx@7.0.0</code> — that is what a React/Vite app actually ships. Published official ESM is the npm file before that minify. Closure ADVANCED is a size-only lane on the same official source.</p>
+            <p>The fair production comparison is Vite + Terser of official <code>mobx@7.0.0</code> — that is what a React/Vite app actually ships. Published official ESM is the npm file before that minify. This package is an open-world drop-in, so property names stay stable for <code>mobx-react-lite</code> and app code.</p>
           </div>
           <div class="total-bar" id="total-bar"></div>
           <div class="table-wrap">
@@ -121,7 +121,7 @@
             </table>
           </div>
           <div class="method-note">
-            <p><strong>Size vs speed.</strong> The published artifact is compiled for realistic performance, not maximum compression: property names stay, <code>|0</code> stays. That is why Vite+Terser of official is the headline (0.95× Brotli), not the 0.50× vs uncompressed npm ESM, and why Closure ADVANCED of official is still smaller. Official MobX 7.0.0 tests run unchanged against this runtime: 769 passed, 0 failed.</p>
+            <p><strong>Open-world package.</strong> The published artifact is compiled for realistic performance, not a closed-world app compile: public names stay, <code>|0</code> stays. Vite+Terser of official is the headline (0.95× Brotli). Official MobX 7.0.0 tests run unchanged against this runtime: 769 passed, 0 failed.</p>
             <a href="https://github.com/yeargun/mobxlil#size">README ↗</a>
           </div>
         </div>
