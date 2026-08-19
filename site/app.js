@@ -50,14 +50,14 @@ function renderDemos() {
 }
 
 function renderSize() {
-  const official = data.size.find((lane) => lane.name === "Official ESM")
+  const terser = data.size.find((lane) => lane.name === "Vite + Terser")
   document.querySelector("#results-body").innerHTML = data.size.map((lane) => `
     <tr>
       <th scope="row">${lane.name}</th>
       <td>${formatter.format(lane.raw)}</td>
       <td>${formatter.format(lane.gzip9)}</td>
       <td>${formatter.format(lane.brotli11)}</td>
-      <td><strong>${(lane.brotli11 / official.brotli11).toFixed(2)}×</strong></td>
+      <td><strong>${(lane.brotli11 / terser.brotli11).toFixed(2)}×</strong></td>
     </tr>
   `).join("")
 
@@ -96,7 +96,7 @@ function renderPerf() {
   `).join("")
 
   document.querySelector("#perf-note").textContent =
-    `Node ${data.node}, NODE_ENV=production, 8 samples, first 2 discarded, median of the rest. Ratio is @itslil/mobx / mobx@7.0.0 (lower is faster). ${data.tests.passed} upstream tests passed, ${data.tests.pending} pending, ${data.tests.failed} failed.`
+    `Official mobx@7.0.0 tests: ${data.tests.passed} passed, ${data.tests.failed} failed (${data.tests.pending} skipped in upstream). Node ${data.node}, NODE_ENV=production, 8 samples, first 2 discarded, median of the rest. Ratio is @itslil/mobx / official (lower is faster). Checksums match.`
 }
 
 renderDemos()

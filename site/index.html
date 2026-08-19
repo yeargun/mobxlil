@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="@itslil/mobx: MobX 7.0.0 reimplemented in LilScript. Half the official ESM Brotli, within 1.05× throughput." />
+    <meta name="description" content="@itslil/mobx: MobX 7.0.0 reimplemented in LilScript. 0.95× Brotli vs Vite+Terser of official, official tests passed, throughput within 1.05×." />
     <meta name="theme-color" content="#ff7a3c" />
     <title>itslil/mobx — MobX 7 through LilScript</title>
     <link rel="stylesheet" href="./styles.css" />
@@ -29,7 +29,7 @@
         <div class="hero-copy">
           <p class="eyebrow"><span class="live-dot"></span> MobX 7.0.0 · LilScript port · @itslil/mobx</p>
           <h1>MobX,<br /><em>compiled.</em></h1>
-          <p class="lede">The <code>mobx@7.0.0</code> public API, rewritten in LilScript and shipped as a dependency-free drop-in. Half the official ESM Brotli. Throughput stays within 1.05× of official on a quiet machine.</p>
+          <p class="lede">The <code>mobx@7.0.0</code> public API, rewritten in LilScript. Official MobX tests pass. A Vite+Terser production build of official is the fair size baseline: this package is <strong>0.95×</strong> that Brotli. Throughput stays within 1.05× of official.</p>
           <div class="install-row">
             <code>npm install @itslil/mobx</code>
             <button class="copy" data-copy="npm install @itslil/mobx" type="button">copy</button>
@@ -42,17 +42,17 @@
 
         <div class="scoreboard" aria-label="Compression and performance results">
           <div class="score-main">
-            <span class="score-label">Brotli-11 vs official ESM</span>
-            <strong>0.50<span>×</span></strong>
-            <p>33,453 B → 16,736 B</p>
+            <span class="score-label">Brotli-11 vs Vite + Terser of official</span>
+            <strong>0.95<span>×</span></strong>
+            <p>17,610 B → 16,736 B</p>
           </div>
           <div class="score-grid">
-            <div><strong>0.95×</strong><span>vs Vite+Terser</span></div>
-            <div><strong>1.22×</strong><span>vs Closure ADVANCED</span></div>
+            <div><strong>769</strong><span>official tests passed</span></div>
             <div><strong>12/12</strong><span>suites ≤ 1.05×</span></div>
             <div><strong>0.98×</strong><span>retained memory</span></div>
+            <div><strong>1.22×</strong><span>vs Closure ADVANCED</span></div>
           </div>
-          <p class="score-note">Canonical size is lilscript-codec gzip-9 / Brotli-11. Closure ADVANCED is still the smallest compressed lane. Throughput is candidate / official, Node v24.11.1, NODE_ENV=production.</p>
+          <p class="score-note">Gate size is Vite+Terser of mobx@7.0.0, then lilscript-codec Brotli-11. Published official ESM is larger (33,453 B) because it is not a production minify. Closure ADVANCED of official is still the smallest size lane. Throughput is @itslil/mobx / official, Node v24.11.1, NODE_ENV=production.</p>
         </div>
       </section>
 
@@ -66,7 +66,7 @@
             <p class="eyebrow">Measured vs mobx@7.0.0</p>
             <h2>Throughput,<br />not inferred.</h2>
           </div>
-          <p>Same graph operations against official <code>mobx@7.0.0</code>. 8 samples, first 2 discarded, median of the rest. Ratio is @itslil/mobx / official (lower is faster). Checksums match on every suite.</p>
+          <p>Compiled <code>realistic-performance-first</code> against official <code>mobx@7.0.0</code>. Reactions, arrays, and computed diamonds are faster. Boxes, maps, and object proxies sit within a few percent. Dynamic deps is the slowest at 1.044×, still under the 1.05× gate. Checksums match on every suite. Official MobX tests: 769 passed, 0 failed.</p>
         </div>
         <div class="perf-cards" id="perf-cards"></div>
         <div class="table-wrap light">
@@ -103,7 +103,7 @@
               <p class="eyebrow">The receipts</p>
               <h2>Raw, gzip,<br />and Brotli.</h2>
             </div>
-            <p>Reusable package ESM, not a closed-world app. Official is the published <code>mobx@7.0.0</code> ESM. Vite/Terser/Closure run on that same official source. @itslil/mobx is the LilScript production artifact.</p>
+            <p>The fair production comparison is Vite + Terser of official <code>mobx@7.0.0</code> — that is what a React/Vite app actually ships. Published official ESM is the npm file before that minify. Closure ADVANCED is a size-only lane on the same official source.</p>
           </div>
           <div class="total-bar" id="total-bar"></div>
           <div class="table-wrap">
@@ -114,14 +114,14 @@
                   <th>Raw</th>
                   <th>gzip-9</th>
                   <th>Brotli-11</th>
-                  <th>vs official</th>
+                  <th>vs Vite+Terser</th>
                 </tr>
               </thead>
               <tbody id="results-body"></tbody>
             </table>
           </div>
           <div class="method-note">
-            <p><strong>Why Closure ADVANCED is still smaller.</strong> This package compiles <code>realistic-performance-first</code> with property mangling off: it is a reusable MobX ABI, and tests/JS consumers read real keys. The current source is also open-world <code>JsValue</code> bags (<code>value_</code>, <code>observers_</code>), so LilScript’s owned-field mangler would not rename those keys even if the flag were on. Closure ADVANCED of official is a size-only lane and is not the throughput baseline.</p>
+            <p><strong>Size vs speed.</strong> The published artifact is compiled for realistic performance, not maximum compression: property names stay, <code>|0</code> stays. That is why Vite+Terser of official is the headline (0.95× Brotli), not the 0.50× vs uncompressed npm ESM, and why Closure ADVANCED of official is still smaller. Official MobX 7.0.0 tests run unchanged against this runtime: 769 passed, 0 failed.</p>
             <a href="https://github.com/yeargun/mobxlil#size">README ↗</a>
           </div>
         </div>
