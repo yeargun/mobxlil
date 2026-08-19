@@ -32,18 +32,17 @@ Alias the import if you already write `from "mobx"`:
 
 ## Size
 
-The fair production comparison is **Vite + Terser of official `mobx@7.0.0`**. That is what a React/Vite app actually ships. Published official ESM is the npm file *before* that minify, so it is not the headline.
+Official MobX 7 advertises **13.96 KiB gzip** for ESM prod. That is `dist/mobx.esm.production.min.js`, not the unminified `dist/mobx.esm.js`. We measured the wrong file earlier.
 
-Measured with `lilscript-codec` gzip-9 / Brotli-11.
+Same codec (`lilscript-codec` gzip-9 / Brotli-11):
 
-| Lane | Raw | gzip-9 | Brotli-11 | vs Vite+Terser |
+| Lane | Raw | gzip-9 | Brotli-11 | vs official prod |
 | --- | ---: | ---: | ---: | ---: |
-| Official published ESM | 180,997 | 40,282 | 33,453 | 1.90× |
-| Vite + esbuild of official | 71,447 | 20,025 | 17,808 | 1.01× |
-| Vite + Terser of official | 71,255 | 19,850 | 17,610 | 1.00× |
-| **`@itslil/mobx` production ESM** | **65,664** | **18,690** | **16,736** | **0.95×** |
+| Official ESM unminified (`mobx.esm.js`) | 180,997 | 40,282 | 33,453 | 2.59× |
+| **Official ESM production.min** | **46,483** | **14,299 (13.96 KiB)** | **12,937** | **1.00×** |
+| **`@itslil/mobx`** | **65,664** | **18,690 (18.25 KiB)** | **16,736** | **1.29×** |
 
-**0.95× Brotli vs Vite+Terser** (17,610 → 16,736). This is an open-world npm package: property names and `|0` stay so it remains a drop-in for app code that already minifies `mobx` with Vite.
+This package is **larger** than official production min (1.31× gzip, 1.29× Brotli). Official already mangles internal fields (`this.ct`). This port still emits `value_` / `observers_`. Their **10.32 KiB gzip** number is a tree-shaken *example*, not the full library.
 
 ## Performance
 

@@ -32,6 +32,10 @@ async function writeTemp(name, source) {
 }
 
 const officialEsm = readFileSync(resolve(root, "node_modules/mobx/dist/mobx.esm.js"), "utf8")
+const officialProd = readFileSync(
+    resolve(root, "node_modules/mobx/dist/mobx.esm.production.min.js"),
+    "utf8"
+)
 const lilEsm = readFileSync(resolve(root, "dist/mobx.esm.js"), "utf8")
 
 const terser = await terserMinify(officialEsm, {
@@ -106,6 +110,7 @@ async function addLane(name, source, diagnostic = false) {
 }
 
 await addLane("official-mobx-esm", officialEsm)
+await addLane("official-mobx-esm-production-min", officialProd)
 await addLane("vite-esbuild", esbuildOut.code)
 await addLane("vite-terser", terser.code)
 if (closure.status === 0 && readFileSync(closureOut, "utf8").length > 0) {

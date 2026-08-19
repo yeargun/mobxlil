@@ -12,9 +12,8 @@
     "retainedRatio": 0.98
   },
   "size": [
-    { "name": "Official ESM", "raw": 180997, "gzip9": 40282, "brotli11": 33453, "note": "mobx@7.0.0 published ESM" },
-    { "name": "Vite + esbuild", "raw": 71447, "gzip9": 20025, "brotli11": 17808, "note": "official source, Vite minify" },
-    { "name": "Vite + Terser", "raw": 71255, "gzip9": 19850, "brotli11": 17610, "note": "official source, Terser" },
+    { "name": "Official ESM unminified", "raw": 180997, "gzip9": 40282, "brotli11": 33453, "note": "dist/mobx.esm.js — not the advertised prod file" },
+    { "name": "Official ESM production.min", "raw": 46483, "gzip9": 14299, "brotli11": 12937, "note": "dist/mobx.esm.production.min.js — 13.96 KiB gzip", "baseline": true },
     { "name": "@itslil/mobx", "raw": 65664, "gzip9": 18690, "brotli11": 16736, "note": "LilScript production ESM", "primary": true }
   ],
   "throughput": [

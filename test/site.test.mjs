@@ -30,10 +30,10 @@ describe("github pages artifact", () => {
     assert.doesNotMatch(counter, /\/dist\/mobx/)
   })
 
-  it("headlines Vite+Terser and official tests", () => {
+  it("headlines official production.min and official tests", () => {
     const html = readFileSync(resolve(site, "index.html"), "utf8")
     assert.match(html, /@itslil\/mobx/)
-    assert.match(html, /Vite \+ Terser/)
+    assert.match(html, /production\.min/)
     assert.match(html, /769/)
     assert.doesNotMatch(html, /Closure/)
   })

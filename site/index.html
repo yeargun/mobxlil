@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="@itslil/mobx: MobX 7.0.0 reimplemented in LilScript. 0.95× Brotli vs Vite+Terser of official, official tests passed, throughput within 1.05×." />
+    <meta name="description" content="@itslil/mobx: MobX 7.0.0 reimplemented in LilScript. Official tests passed. Throughput within 1.05×. Size is 1.29× official ESM production.min Brotli." />
     <meta name="theme-color" content="#ff7a3c" />
     <title>itslil/mobx — MobX 7 through LilScript</title>
     <link rel="stylesheet" href="./styles.css" />
@@ -29,7 +29,7 @@
         <div class="hero-copy">
           <p class="eyebrow"><span class="live-dot"></span> MobX 7.0.0 · LilScript port · @itslil/mobx</p>
           <h1>MobX,<br /><em>compiled.</em></h1>
-          <p class="lede">The <code>mobx@7.0.0</code> public API, rewritten in LilScript. Official MobX tests pass. A Vite+Terser production build of official is the fair size baseline: this package is <strong>0.95×</strong> that Brotli. Throughput stays within 1.05× of official.</p>
+          <p class="lede">The <code>mobx@7.0.0</code> public API, rewritten in LilScript. Official MobX tests pass. Throughput stays within 1.05× of official. Size is not smaller than official’s own production min — that file is 13.96 KiB gzip / 12.63 KiB Brotli. This package is 18.25 / 16.34.</p>
           <div class="install-row">
             <code>npm install @itslil/mobx</code>
             <button class="copy" data-copy="npm install @itslil/mobx" type="button">copy</button>
@@ -42,17 +42,17 @@
 
         <div class="scoreboard" aria-label="Compression and performance results">
           <div class="score-main">
-            <span class="score-label">Brotli-11 vs Vite + Terser of official</span>
-            <strong>0.95<span>×</span></strong>
-            <p>17,610 B → 16,736 B</p>
+            <span class="score-label">Brotli-11 vs official ESM production.min</span>
+            <strong>1.29<span>×</span></strong>
+            <p>12,937 B → 16,736 B</p>
           </div>
           <div class="score-grid">
             <div><strong>769</strong><span>official tests passed</span></div>
             <div><strong>12/12</strong><span>suites ≤ 1.05×</span></div>
             <div><strong>0.98×</strong><span>retained memory</span></div>
-            <div><strong>78/78</strong><span>runtime exports</span></div>
+            <div><strong>1.31×</strong><span>gzip vs official prod</span></div>
           </div>
-          <p class="score-note">Gate size is Vite+Terser of mobx@7.0.0, then lilscript-codec Brotli-11. That is what a production bundler ships. Published official ESM is larger (33,453 B) because it is not minified. Throughput is @itslil/mobx / official, Node v24.11.1, NODE_ENV=production.</p>
+          <p class="score-note">Official’s advertised file is dist/mobx.esm.production.min.js (13.96 KiB gzip). We previously compared against unminified dist/mobx.esm.js. Same codec: gzip-9 / Brotli-11. Throughput is @itslil/mobx / official, Node v24.11.1, NODE_ENV=production.</p>
         </div>
       </section>
 
@@ -103,7 +103,7 @@
               <p class="eyebrow">The receipts</p>
               <h2>Raw, gzip,<br />and Brotli.</h2>
             </div>
-            <p>The fair production comparison is Vite + Terser of official <code>mobx@7.0.0</code> — that is what a React/Vite app actually ships. Published official ESM is the npm file before that minify. This package is an open-world drop-in, so property names stay stable for <code>mobx-react-lite</code> and app code.</p>
+            <p>The gate file is official <code>mobx.esm.production.min.js</code> — 46,483 B raw, 14,299 B gzip-9 (13.96 KiB), 12,937 B Brotli-11. Their changelog number is that file. Unminified <code>mobx.esm.js</code> is 181 KB and is not what they advertise.</p>
           </div>
           <div class="total-bar" id="total-bar"></div>
           <div class="table-wrap">
@@ -114,14 +114,14 @@
                   <th>Raw</th>
                   <th>gzip-9</th>
                   <th>Brotli-11</th>
-                  <th>vs Vite+Terser</th>
+                  <th>vs official prod</th>
                 </tr>
               </thead>
               <tbody id="results-body"></tbody>
             </table>
           </div>
           <div class="method-note">
-            <p><strong>Open-world package.</strong> The published artifact is compiled for realistic performance, not a closed-world app compile: public names stay, <code>|0</code> stays. Vite+Terser of official is the headline (0.95× Brotli). Official MobX 7.0.0 tests run unchanged against this runtime: 769 passed, 0 failed.</p>
+            <p><strong>Why we are larger.</strong> Official’s production min already mangles internal fields (<code>this.ct</code>, <code>this.Ot</code>). This port still spells <code>value_</code> / <code>observers_</code> because it is an open-world drop-in compiled realistic-performance-first. Official MobX 7.0.0 tests: 769 passed, 0 failed. Their 10.32 KiB gzip figure is a tree-shaken example, not the full library.</p>
             <a href="https://github.com/yeargun/mobxlil#size">README ↗</a>
           </div>
         </div>

@@ -50,14 +50,14 @@ function renderDemos() {
 }
 
 function renderSize() {
-  const terser = data.size.find((lane) => lane.name === "Vite + Terser")
+  const baseline = data.size.find((lane) => lane.baseline) ?? data.size[0]
   document.querySelector("#results-body").innerHTML = data.size.map((lane) => `
     <tr>
       <th scope="row">${lane.name}</th>
       <td>${formatter.format(lane.raw)}</td>
       <td>${formatter.format(lane.gzip9)}</td>
       <td>${formatter.format(lane.brotli11)}</td>
-      <td><strong>${(lane.brotli11 / terser.brotli11).toFixed(2)}×</strong></td>
+      <td><strong>${(lane.brotli11 / baseline.brotli11).toFixed(2)}×</strong></td>
     </tr>
   `).join("")
 
