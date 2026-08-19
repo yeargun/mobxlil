@@ -80,16 +80,7 @@ function writeUmd(esmPath, umdPath) {
 }
 
 function writeMinCjs(srcPath, destPath) {
-  run(resolve(root, "node_modules", ".bin", "esbuild"), [
-    resolve(root, srcPath),
-    "--bundle",
-    "--format=cjs",
-    "--platform=neutral",
-    "--minify",
-    "--banner:js=\"use strict\";",
-    `--outfile=${resolve(root, destPath)}`,
-    "--log-level=error",
-  ]);
+  copyFileSync(resolve(root, srcPath), resolve(root, destPath));
 }
 
 function writeMjs(esmPath) {

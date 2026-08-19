@@ -3,32 +3,35 @@
   "package": "@itslil/mobx",
   "node": "v24.11.1",
   "codec": "lilscript-codec gzip-9 / brotli-11",
+  "verifiedAt": "2026-08-19T21:45:00.000Z",
   "tests": {
     "passed": 769,
     "pending": 11,
     "failed": 0
   },
   "memory": {
-    "retainedRatio": 0.98
+    "retainedRatio": 0.975
   },
   "size": [
-    { "name": "Official ESM unminified", "raw": 180997, "gzip9": 40282, "brotli11": 33453, "note": "dist/mobx.esm.js — not the advertised prod file" },
-    { "name": "Official ESM production.min", "raw": 46483, "gzip9": 14299, "brotli11": 12937, "note": "dist/mobx.esm.production.min.js — 13.96 KiB gzip", "baseline": true },
-    { "name": "@itslil/mobx", "raw": 65664, "gzip9": 18690, "brotli11": 16736, "note": "LilScript production ESM", "primary": true }
+    { "name": "Vite 8 Oxc of official ESM", "raw": 69506, "gzip9": 19282, "brotli11": 17159, "note": "current Vite client minifier of unminified mobx.esm.js", "baseline": true },
+    { "name": "Vite + Terser of official ESM", "raw": 71255, "gzip9": 19850, "brotli11": 17610, "note": "toplevel Terser, 3 passes" },
+    { "name": "@itslil/mobx", "raw": 65664, "gzip9": 18690, "brotli11": 16736, "note": "LilScript production ESM, same 78 exports as mobx@7.0.0", "primary": true },
+    { "name": "Official ESM production.min", "raw": 46483, "gzip9": 14299, "brotli11": 12937, "note": "DEV-stripped official compile — not a Vite lane" },
+    { "name": "Official ESM unminified", "raw": 180997, "gzip9": 40282, "brotli11": 33453, "note": "dist/mobx.esm.js — not the advertised prod file" }
   ],
   "throughput": [
-    { "name": "boxes", "officialMs": 12.12, "candidateMs": 12.313, "ratio": 1.016 },
-    { "name": "dynamic-deps", "officialMs": 5.301, "candidateMs": 5.534, "ratio": 1.044 },
-    { "name": "computed-chain", "officialMs": 16.547, "candidateMs": 16.36, "ratio": 0.989 },
-    { "name": "computed-diamond", "officialMs": 9.111, "candidateMs": 8.31, "ratio": 0.912 },
-    { "name": "batching-actions", "officialMs": 7.635, "candidateMs": 7.265, "ratio": 0.952 },
-    { "name": "reactions", "officialMs": 6.348, "candidateMs": 5.515, "ratio": 0.869 },
-    { "name": "object-proxy", "officialMs": 22.845, "candidateMs": 23.271, "ratio": 1.019 },
-    { "name": "array", "officialMs": 7.314, "candidateMs": 6.698, "ratio": 0.916 },
-    { "name": "map", "officialMs": 10.183, "candidateMs": 10.293, "ratio": 1.011 },
-    { "name": "set", "officialMs": 11.101, "candidateMs": 10.561, "ratio": 0.951 },
-    { "name": "decorators", "officialMs": 7.26, "candidateMs": 7.044, "ratio": 0.97 },
-    { "name": "flow-when", "officialMs": 14.012, "candidateMs": 13.986, "ratio": 0.998 }
+    { "name": "array", "officialMs": 6.354, "candidateMs": 5.8, "ratio": 0.913 },
+    { "name": "computed-diamond", "officialMs": 8.375, "candidateMs": 7.835, "ratio": 0.936 },
+    { "name": "reactions", "officialMs": 5.82, "candidateMs": 5.463, "ratio": 0.939 },
+    { "name": "batching-actions", "officialMs": 7.21, "candidateMs": 6.845, "ratio": 0.949 },
+    { "name": "computed-chain", "officialMs": 15.663, "candidateMs": 15.106, "ratio": 0.964 },
+    { "name": "dynamic-deps", "officialMs": 4.779, "candidateMs": 4.646, "ratio": 0.972 },
+    { "name": "flow-when", "officialMs": 18.501, "candidateMs": 18.145, "ratio": 0.981 },
+    { "name": "boxes", "officialMs": 11.287, "candidateMs": 11.501, "ratio": 1.019 },
+    { "name": "object-proxy", "officialMs": 19.822, "candidateMs": 21.259, "ratio": 1.072 },
+    { "name": "decorators", "officialMs": 6.016, "candidateMs": 6.951, "ratio": 1.155 },
+    { "name": "map", "officialMs": 9.195, "candidateMs": 10.85, "ratio": 1.18 },
+    { "name": "set", "officialMs": 9.477, "candidateMs": 11.202, "ratio": 1.182 }
   ],
   "examples": [
     { "id": "counter", "title": "Counter", "blurb": "Box, computed, autorun, actions." },

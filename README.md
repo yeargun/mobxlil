@@ -32,40 +32,43 @@ Alias the import if you already write `from "mobx"`:
 
 ## Size
 
-Official MobX 7 advertises **13.96 KiB gzip** for ESM prod. That is `dist/mobx.esm.production.min.js`, not the unminified `dist/mobx.esm.js`. We measured the wrong file earlier.
+The size gate is **current Vite of official unminified `mobx.esm.js`**. That is what a Vite app minifies. Official `dist/mobx.esm.production.min.js` is a different, DEV-stripped compile and is not the Vite lane.
 
-Same codec (`lilscript-codec` gzip-9 / Brotli-11):
+Same codec (`lilscript-codec` gzip-9 / Brotli-11), verified 2026-08-19:
 
-| Lane | Raw | gzip-9 | Brotli-11 | vs official prod |
+| Lane | Raw | gzip-9 | Brotli-11 | vs Vite 8 Oxc |
 | --- | ---: | ---: | ---: | ---: |
-| Official ESM unminified (`mobx.esm.js`) | 180,997 | 40,282 | 33,453 | 2.59× |
-| **Official ESM production.min** | **46,483** | **14,299 (13.96 KiB)** | **12,937** | **1.00×** |
-| **`@itslil/mobx`** | **65,664** | **18,690 (18.25 KiB)** | **16,736** | **1.29×** |
+| Official ESM unminified | 180,997 | 40,282 | 33,453 | 1.95× |
+| Vite + esbuild of official | 71,447 | 20,025 | 17,808 | 1.04× |
+| Vite + Terser of official | 71,255 | 19,850 | 17,610 | 1.03× |
+| **Vite 8 Oxc of official** | **69,506** | **19,282** | **17,159** | **1.00×** |
+| **`@itslil/mobx`** | **65,664** | **18,690** | **16,736** | **0.975×** |
+| Official ESM production.min | 46,483 | 14,299 | 12,937 | 0.75× |
 
-This package is **larger** than official production min (1.31× gzip, 1.29× Brotli). Official already mangles internal fields (`this.ct`). This port still emits `value_` / `observers_`. Their **10.32 KiB gzip** number is a tree-shaken *example*, not the full library.
+**0.975× Brotli vs Vite 8 Oxc** (17,159 → 16,736). **0.950× vs Vite+Terser** (17,610 → 16,736). Official production.min is still smaller. Candidate search stays on for production compiles.
 
 ## Performance
 
-Quiet Node v24.11.1 versus `mobx@7.0.0`, `NODE_ENV=production`. 8 samples, first 2 discarded, median of the rest. Ratio is `@itslil/mobx` / official (**lower is faster**). Every suite checksums equal, so the graphs compute the same values. Retained memory **0.98×**.
+Quiet Node v24.11.1 versus `mobx@7.0.0`, `NODE_ENV=production`. 8 samples, first 2 discarded, median of the rest. Ratio is `@itslil/mobx` / official (**lower is faster**). Every suite checksums equal. Retained memory **0.98×**.
 
-Compiled for realistic performance, not maximum compression. The pattern is: reaction scheduling and collection work tend to be faster; box/proxy/map sit at official ± a few percent; the slowest suite is still under the 1.05× gate.
+Compiled `realistic-performance-first`. Arrays, diamonds, reactions, and batching are faster. Four suites miss the 1.05× gate on this verification.
 
 | Suite | What it stresses | mobx@7.0.0 | @itslil/mobx | Ratio |
 | --- | --- | ---: | ---: | ---: |
-| reactions | autorun / reaction fire | 6.35 ms | 5.52 ms | **0.869×** |
-| computed-diamond | shared computed graph | 9.11 ms | 8.31 ms | **0.912×** |
-| array | observable array mutate | 7.31 ms | 6.70 ms | **0.916×** |
-| batching-actions | `runInAction` | 7.64 ms | 7.27 ms | **0.952×** |
-| set | observable set | 11.10 ms | 10.56 ms | **0.951×** |
-| decorators | `makeObservable` | 7.26 ms | 7.04 ms | **0.970×** |
-| computed-chain | long computed pipe | 16.55 ms | 16.36 ms | 0.989× |
-| flow-when | `flow` + `when` | 14.01 ms | 13.99 ms | 0.998× |
-| map | observable map | 10.18 ms | 10.29 ms | 1.011× |
-| boxes | `observable.box` | 12.12 ms | 12.31 ms | 1.016× |
-| object-proxy | object proxy traps | 22.85 ms | 23.27 ms | 1.019× |
-| dynamic-deps | deps added/removed | 5.30 ms | 5.53 ms | 1.044× |
+| array | observable array mutate | 6.35 ms | 5.80 ms | **0.913×** |
+| computed-diamond | shared computed graph | 8.38 ms | 7.84 ms | **0.936×** |
+| reactions | autorun / reaction fire | 5.82 ms | 5.46 ms | **0.939×** |
+| batching-actions | `runInAction` | 7.21 ms | 6.84 ms | **0.949×** |
+| computed-chain | long computed pipe | 15.66 ms | 15.11 ms | 0.964× |
+| dynamic-deps | deps added/removed | 4.78 ms | 4.65 ms | 0.972× |
+| flow-when | `flow` + `when` | 18.50 ms | 18.14 ms | 0.981× |
+| boxes | `observable.box` | 11.29 ms | 11.50 ms | 1.019× |
+| object-proxy | object proxy traps | 19.82 ms | 21.26 ms | 1.072× |
+| decorators | `makeObservable` | 6.02 ms | 6.95 ms | 1.155× |
+| map | observable map | 9.20 ms | 10.85 ms | 1.180× |
+| set | observable set | 9.48 ms | 11.20 ms | 1.182× |
 
-**12 / 12 suites ≤ 1.05×.** Worst case is dynamic-deps at 1.044×. Reactions, arrays, and diamonds are the clear wins.
+**8 / 12 suites ≤ 1.05×.** Worst cases are set and map. A later size-first compile was smaller versus Vite but did not load; it is not what this package ships.
 
 ## Compatibility
 
