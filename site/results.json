@@ -30,9 +30,9 @@
     },
     {
       "name": "@itslil/mobx",
-      "raw": 62032,
-      "gzip9": 19104,
-      "brotli11": 17223,
+      "raw": 52259,
+      "gzip9": 16391,
+      "brotli11": 14782,
       "note": "LilScript production ESM, same 78 exports as mobx@7.0.0",
       "primary": true
     },
@@ -41,14 +41,14 @@
       "raw": 46483,
       "gzip9": 14299,
       "brotli11": 12937,
-      "note": "DEV-stripped official compile \u2014 not a Vite lane"
+      "note": "DEV-stripped official compile — not a Vite lane"
     },
     {
       "name": "Official ESM unminified",
       "raw": 180997,
       "gzip9": 40282,
       "brotli11": 33453,
-      "note": "dist/mobx.esm.js \u2014 not the advertised prod file"
+      "note": "dist/mobx.esm.js — not the advertised prod file"
     }
   ],
   "throughput": [
@@ -151,5 +151,58 @@
       "title": "Reactions",
       "blurb": "reaction, intercept, and observe."
     }
-  ]
+  ],
+  "compilerComparison": {
+    "schemaVersion": 1,
+    "objective": "brotli11",
+    "runs": [
+      {
+        "id": "published-before",
+        "role": "before",
+        "label": "Published production ESM before compiler work",
+        "recordedAt": "2026-08-24T00:00:00.000Z",
+        "source": {
+          "revision": "ef1d18487d2b153e1fa9fab7a90dd1518a0cda0b",
+          "tree": "cb4217662c9b262092b8ffc0fbdf41ecfb5f348f",
+          "entrySha256": "daffae3ebb3585f3f6751c8d38b715b9f311062f76e63fbc7530a27789453e2a",
+          "packageLockSha256": "d327ae7b0093237874f64263ee3fe922ad4695cf00e27a1761a951a55af85667"
+        },
+        "config": {
+          "path": "lilscript.toml",
+          "sha256": "15c1dec745765dc87eb9fca0cbd3423f917091dd21d2ef0caf305dc332b51cbe",
+          "derivation": {
+            "kind": "identity"
+          }
+        },
+        "compiler": {
+          "revision": null,
+          "binarySha256": null
+        },
+        "codec": {
+          "binarySha256": "b3d93da88e4516f3b22e5e67b288bb2504868f1c438010e0ac9492ec33de2063",
+          "gzipLevel": 9,
+          "brotliQuality": 11
+        },
+        "artifact": {
+          "path": "dist/mobx.esm.js",
+          "sha256": "d953a70c359ff3c13ab6439916155d82eb89680c8c6ba74cb04992473d1c3c96",
+          "sizes": {
+            "raw": 65664,
+            "gzip9": 18690,
+            "brotli11": 16736
+          }
+        },
+        "timing": {
+          "scope": "compile",
+          "samples": [],
+          "unavailableReason": "published artifact has no reproducible compiler timing"
+        },
+        "semantic": {
+          "status": "reported-passed",
+          "command": null,
+          "summary": "project report: 78 exports; 769 passed, 0 failed, and 11 skipped"
+        }
+      }
+    ]
+  }
 }
