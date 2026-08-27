@@ -13,32 +13,144 @@
     "retainedRatio": 0.975
   },
   "size": [
-    { "name": "Vite 8 Oxc of official ESM", "raw": 69506, "gzip9": 19282, "brotli11": 17159, "note": "current Vite client minifier of unminified mobx.esm.js", "baseline": true },
-    { "name": "Vite + Terser of official ESM", "raw": 71255, "gzip9": 19850, "brotli11": 17610, "note": "toplevel Terser, 3 passes" },
-    { "name": "@itslil/mobx", "raw": 65664, "gzip9": 18690, "brotli11": 16736, "note": "LilScript production ESM, same 78 exports as mobx@7.0.0", "primary": true },
-    { "name": "Official ESM production.min", "raw": 46483, "gzip9": 14299, "brotli11": 12937, "note": "DEV-stripped official compile — not a Vite lane" },
-    { "name": "Official ESM unminified", "raw": 180997, "gzip9": 40282, "brotli11": 33453, "note": "dist/mobx.esm.js — not the advertised prod file" }
+    {
+      "name": "Vite 8 Oxc of official ESM",
+      "raw": 69506,
+      "gzip9": 19282,
+      "brotli11": 17159,
+      "note": "current Vite client minifier of unminified mobx.esm.js",
+      "baseline": true
+    },
+    {
+      "name": "Vite + Terser of official ESM",
+      "raw": 71255,
+      "gzip9": 19850,
+      "brotli11": 17610,
+      "note": "toplevel Terser, 3 passes"
+    },
+    {
+      "name": "@itslil/mobx",
+      "raw": 52259,
+      "gzip9": 16391,
+      "brotli11": 14782,
+      "note": "LilScript production ESM, same 78 exports as mobx@7.0.0",
+      "primary": true
+    },
+    {
+      "name": "Official ESM production.min",
+      "raw": 46483,
+      "gzip9": 14299,
+      "brotli11": 12937,
+      "note": "DEV-stripped official compile — not a Vite lane"
+    },
+    {
+      "name": "Official ESM unminified",
+      "raw": 180997,
+      "gzip9": 40282,
+      "brotli11": 33453,
+      "note": "dist/mobx.esm.js — not the advertised prod file"
+    }
   ],
   "throughput": [
-    { "name": "array", "officialMs": 6.354, "candidateMs": 5.8, "ratio": 0.913 },
-    { "name": "computed-diamond", "officialMs": 8.375, "candidateMs": 7.835, "ratio": 0.936 },
-    { "name": "reactions", "officialMs": 5.82, "candidateMs": 5.463, "ratio": 0.939 },
-    { "name": "batching-actions", "officialMs": 7.21, "candidateMs": 6.845, "ratio": 0.949 },
-    { "name": "computed-chain", "officialMs": 15.663, "candidateMs": 15.106, "ratio": 0.964 },
-    { "name": "dynamic-deps", "officialMs": 4.779, "candidateMs": 4.646, "ratio": 0.972 },
-    { "name": "flow-when", "officialMs": 18.501, "candidateMs": 18.145, "ratio": 0.981 },
-    { "name": "boxes", "officialMs": 11.287, "candidateMs": 11.501, "ratio": 1.019 },
-    { "name": "object-proxy", "officialMs": 19.822, "candidateMs": 21.259, "ratio": 1.072 },
-    { "name": "decorators", "officialMs": 6.016, "candidateMs": 6.951, "ratio": 1.155 },
-    { "name": "map", "officialMs": 9.195, "candidateMs": 10.85, "ratio": 1.18 },
-    { "name": "set", "officialMs": 9.477, "candidateMs": 11.202, "ratio": 1.182 }
+    {
+      "name": "array",
+      "officialMs": 6.354,
+      "candidateMs": 5.8,
+      "ratio": 0.913
+    },
+    {
+      "name": "computed-diamond",
+      "officialMs": 8.375,
+      "candidateMs": 7.835,
+      "ratio": 0.936
+    },
+    {
+      "name": "reactions",
+      "officialMs": 5.82,
+      "candidateMs": 5.463,
+      "ratio": 0.939
+    },
+    {
+      "name": "batching-actions",
+      "officialMs": 7.21,
+      "candidateMs": 6.845,
+      "ratio": 0.949
+    },
+    {
+      "name": "computed-chain",
+      "officialMs": 15.663,
+      "candidateMs": 15.106,
+      "ratio": 0.964
+    },
+    {
+      "name": "dynamic-deps",
+      "officialMs": 4.779,
+      "candidateMs": 4.646,
+      "ratio": 0.972
+    },
+    {
+      "name": "flow-when",
+      "officialMs": 18.501,
+      "candidateMs": 18.145,
+      "ratio": 0.981
+    },
+    {
+      "name": "boxes",
+      "officialMs": 11.287,
+      "candidateMs": 11.501,
+      "ratio": 1.019
+    },
+    {
+      "name": "object-proxy",
+      "officialMs": 19.822,
+      "candidateMs": 21.259,
+      "ratio": 1.072
+    },
+    {
+      "name": "decorators",
+      "officialMs": 6.016,
+      "candidateMs": 6.951,
+      "ratio": 1.155
+    },
+    {
+      "name": "map",
+      "officialMs": 9.195,
+      "candidateMs": 10.85,
+      "ratio": 1.18
+    },
+    {
+      "name": "set",
+      "officialMs": 9.477,
+      "candidateMs": 11.202,
+      "ratio": 1.182
+    }
   ],
   "examples": [
-    { "id": "counter", "title": "Counter", "blurb": "Box, computed, autorun, actions." },
-    { "id": "todos", "title": "Todos", "blurb": "Observable array and derived remaining count." },
-    { "id": "cart", "title": "Cart", "blurb": "Observable map, computed totals." },
-    { "id": "search", "title": "Search", "blurb": "flow plus when for an async lookup." },
-    { "id": "reactions", "title": "Reactions", "blurb": "reaction, intercept, and observe." }
+    {
+      "id": "counter",
+      "title": "Counter",
+      "blurb": "Box, computed, autorun, actions."
+    },
+    {
+      "id": "todos",
+      "title": "Todos",
+      "blurb": "Observable array and derived remaining count."
+    },
+    {
+      "id": "cart",
+      "title": "Cart",
+      "blurb": "Observable map, computed totals."
+    },
+    {
+      "id": "search",
+      "title": "Search",
+      "blurb": "flow plus when for an async lookup."
+    },
+    {
+      "id": "reactions",
+      "title": "Reactions",
+      "blurb": "reaction, intercept, and observe."
+    }
   ],
   "compilerComparison": {
     "schemaVersion": 1,
@@ -58,7 +170,9 @@
         "config": {
           "path": "lilscript.toml",
           "sha256": "15c1dec745765dc87eb9fca0cbd3423f917091dd21d2ef0caf305dc332b51cbe",
-          "derivation": { "kind": "identity" }
+          "derivation": {
+            "kind": "identity"
+          }
         },
         "compiler": {
           "revision": null,
@@ -72,7 +186,11 @@
         "artifact": {
           "path": "dist/mobx.esm.js",
           "sha256": "d953a70c359ff3c13ab6439916155d82eb89680c8c6ba74cb04992473d1c3c96",
-          "sizes": { "raw": 65664, "gzip9": 18690, "brotli11": 16736 }
+          "sizes": {
+            "raw": 65664,
+            "gzip9": 18690,
+            "brotli11": 16736
+          }
         },
         "timing": {
           "scope": "compile",

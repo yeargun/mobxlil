@@ -21,2582 +21,2573 @@ var mobx = (() => {
   // dist/mobx.esm.js
   var mobx_esm_exports = {};
   __export(mobx_esm_exports, {
-    $mobx: () => $,
-    FlowCancellationError: () => We,
-    ObservableMap: () => ne,
-    ObservableSet: () => ce,
-    Reaction: () => _e,
-    _allowStateChanges: () => ur,
-    _allowStateChangesInsideComputed: () => Mn,
-    _allowStateReadsEnd: () => Nn,
-    _allowStateReadsStart: () => zn,
-    _autoAction: () => xt,
-    _autoActionBound: () => Wt,
-    _endAction: () => Br,
-    _getAdministration: () => Xe,
-    _getGlobalState: () => va,
-    _interceptReads: () => N,
-    _isComputingDerivation: () => ga,
-    _resetGlobalState: () => o,
-    _startAction: () => Pr,
-    action: () => Ye,
-    actionBound: () => v,
-    autorun: () => $t,
-    compareDefault: () => Xn,
-    compareIdentity: () => qn,
-    compareShallow: () => Un,
-    compareStructural: () => Wn,
-    computed: () => ut,
-    computedStruct: () => p,
-    configure: () => h,
-    createAtom: () => qt,
-    defineProperty: () => x,
-    entries: () => S,
-    extendObservable: () => Ct,
-    flow: () => Ze,
-    flowBound: () => Ht,
-    flowResult: () => z,
-    get: () => k,
-    getAtom: () => He,
-    getDebugName: () => C,
-    getDependencyTree: () => D,
-    getObserverTree: () => P,
-    has: () => wr,
-    intercept: () => V,
-    isAction: () => nt,
-    isBoxedObservable: () => ha,
-    isComputed: () => B,
-    isComputedProp: () => M,
-    isFlow: () => I,
-    isFlowCancellationError: () => g,
-    isObservable: () => d,
-    isObservableArray: () => me,
-    isObservableMap: () => ve,
-    isObservableObject: () => fe,
-    isObservableProp: () => b,
-    isObservableSet: () => pe,
-    keys: () => Et,
-    makeAutoObservable: () => w,
-    makeObservable: () => m,
-    observable: () => Y,
-    observableDeep: () => c,
-    observableRef: () => kt,
-    observableShallow: () => l,
-    observableStruct: () => u,
-    observe: () => T,
-    onBecomeObserved: () => j,
-    onBecomeUnobserved: () => E,
-    onReactionError: () => a,
-    override: () => y,
-    ownKeys: () => Or,
-    reaction: () => _,
-    remove: () => A,
+    $mobx: () => Z,
+    FlowCancellationError: () => Pe,
+    ObservableMap: () => _,
+    ObservableSet: () => ie,
+    Reaction: () => he,
+    _allowStateChanges: () => on,
+    _allowStateChangesInsideComputed: () => jr,
+    _allowStateReadsEnd: () => qr,
+    _allowStateReadsStart: () => Er,
+    _autoAction: () => gt,
+    _autoActionBound: () => Ht,
+    _endAction: () => Cn,
+    _getAdministration: () => Ue,
+    _getGlobalState: () => _r,
+    _interceptReads: () => ti,
+    _isComputingDerivation: () => oi,
+    _resetGlobalState: () => s,
+    _startAction: () => An,
+    action: () => _e,
+    actionBound: () => g,
+    autorun: () => Gt,
+    compareDefault: () => Ir,
+    compareIdentity: () => Sr,
+    compareShallow: () => Or,
+    compareStructural: () => Ur,
+    computed: () => Qe,
+    computedStruct: () => f,
+    configure: () => w,
+    createAtom: () => Lt,
+    defineProperty: () => T,
+    entries: () => j,
+    extendObservable: () => yt,
+    flow: () => Be,
+    flowBound: () => Pt,
+    flowResult: () => u,
+    get: () => E,
+    getAtom: () => Fe,
+    getDebugName: () => N,
+    getDependencyTree: () => A,
+    getObserverTree: () => C,
+    has: () => kn,
+    intercept: () => I,
+    isAction: () => Ke,
+    isBoxedObservable: () => ri,
+    isComputed: () => L,
+    isComputedProp: () => D,
+    isFlow: () => y,
+    isFlowCancellationError: () => m,
+    isObservable: () => c,
+    isObservableArray: () => fe,
+    isObservableMap: () => re,
+    isObservableObject: () => oe,
+    isObservableProp: () => l,
+    isObservableSet: () => se,
+    keys: () => wt,
+    makeAutoObservable: () => x,
+    makeObservable: () => k,
+    observable: () => J,
+    observableDeep: () => p,
+    observableRef: () => mt,
+    observableShallow: () => h,
+    observableStruct: () => d,
+    observe: () => R,
+    onBecomeObserved: () => S,
+    onBecomeUnobserved: () => O,
+    onReactionError: () => n,
+    override: () => e,
+    ownKeys: () => xn,
+    reaction: () => b,
+    remove: () => q,
     runInAction: () => t,
-    set: () => mr,
-    spy: () => r,
-    toJS: () => R,
-    transaction: () => s,
-    untracked: () => n,
-    values: () => O,
-    when: () => f
+    set: () => wn,
+    spy: () => o,
+    toJS: () => U,
+    transaction: () => r,
+    untracked: () => a,
+    values: () => z,
+    when: () => v
   });
-  var $e = (e2) => !!e2 ? e2 : pr;
-  var Ve = (e2) => {
-    ae(), Vr(e2), ie();
+  var h;
+  var ir;
+  var es = "ObservableObject.key";
+  var ts = "ObservableObject.";
+  var ns = "<unnamed action>";
+  var Me = (s2) => s2 != null && "object" == typeof s2;
+  var Bt = (s2) => {
+    s2 = typeof s2;
+    return "string" == s2 || "symbol" == s2 || "number" == s2;
   };
-  var Nr = () => {
-    if (!(Q(J.inBatch) > 0 || J.isRunningReactions)) Ut(sn);
+  var zn = (e2, s2) => s2 == null ? false : true === Kn.call(e2.prototype, s2);
+  var pe = (e2) => Array.from(e2);
+  var de = (d2, n2, p2) => {
+    Q.defineProperty(d2, n2, p2);
   };
-  var ae = () => {
-    J.inBatch++;
-  };
-  var le = (e2) => {
-    rt(e2, []);
-  };
-  var Q = (e2) => +e2 | 0;
-  var Z = (e2) => true === e2;
-  var pe = (e2) => re(e2, "isMobXObservableSet");
-  var ve = (e2) => re(e2, "isMobXObservableMap");
-  var fe = (e2) => !gt(e2) ? false : re(e2[$], "isMobXObservableObjectAdministration");
-  var me = (e2) => !gt(e2) ? false : re(e2[$], "isMobXObservableArrayAdministration");
-  var Kr = (e2) => me(e2) ? e2.slice() : vt(e2) || ve(e2) ? ye(e2.entries()) : _t(e2) || pe(e2) ? ye(e2.entries()) : e2;
-  var kr = (e2) => null === e2 ? null : "object" == typeof e2 ? "" + e2 : e2;
-  var gt = (e2) => e2 != null && "object" == typeof e2;
-  var te = (e2) => "function" == typeof e2;
-  var Zt = (e2) => {
-    e2 = typeof e2;
-    return "string" == e2 || "symbol" == e2 || "number" == e2;
-  };
-  var zt = (e2) => !e2 ? false : fe(e2) || e2[$] || re(e2, "isMobXAtom") || re(e2, "isMobXReaction") || re(e2, "isMobXComputedValue");
-  var Jr = (r2, n2, a2) => {
-    if (re(r2, "isMobXComputedValue")) {
-      var t2, e2 = true;
-      return $t(function() {
-        var s2 = r2.get;
-        s2 = r2.get(), (!e2 || a2) && (n2({ __proto__: null, observableKind: "computed", debugObjectName: r2.name_, type: "update", object: r2, newValue: s2, oldValue: t2 }), je(Ue())), e2 = false, t2 = s2;
-      });
-    }
-    a2 && n2({ __proto__: null, observableKind: "value", debugObjectName: r2.name_, object: r2, type: "update", newValue: r2.value_, oldValue: void 0 });
-    return mt(r2, n2);
-  };
-  var Mt = (e2, t2, r2, n2) => {
-    var a2 = e2.values_.length;
-    t2 > a2 ? t2 = a2 : t2 < 0 && (t2 = a2 + t2 | 0, t2 < 0 && (t2 = 0)), r2 < 0 && (r2 = 0), a2 = a2 - t2 | 0, r2 > a2 || (a2 = r2), n2 == null ? n2 = [] : Array.isArray(n2) || (n2 = globalThis.Array.prototype.slice.call(n2));
-    if (Ee(e2)) {
-      r2 = Re(e2, { __proto__: null, object: e2.proxy_, type: "splice", index: t2, removedCount: a2, added: n2 });
-      if (!r2) return ar;
-      a2 = Q(r2.removedCount), n2 = r2.added;
-    }
-    if (0 != n2.length) {
-      r2 = [];
-      var o2 = n2.length, i2 = 0;
-      while (i2 < o2) r2.push(e2.enhancer_(n2[i2], void 0)), i2 = i2 + 1 | 0;
-    } else {
-      r2 = n2;
-    }
-    i2 = ((e3, t3, r3, n3) => {
-      var a3 = e3.values_, i3 = n3.length;
-      if (0 == r3 && t3 == a3.length) {
-        e3 = 0;
-        while (e3 < i3) a3.push(n3[e3]), e3 = e3 + 1 | 0;
-        return ar;
-      }
-      if (i3 < 1e4) {
-        e3 = [], e3.push(t3), e3.push(r3), t3 = 0;
-        while (t3 < n3.length) e3.push(n3[t3]), t3 = t3 + 1 | 0;
-        return a3.splice.apply(a3, e3);
-      }
-      e3 = t3 + r3 | 0;
-      var o3 = Qe.call(a3, t3, e3);
-      i3 = Qe.call(a3, e3, a3.length), e3 = a3.length, a3.length = (e3 + n3.length | 0) - r3 | 0, e3 = 0;
-      while (e3 < n3.length) a3[t3 + e3 | 0] = n3[e3], e3 = e3 + 1 | 0;
-      e3 = 0;
-      while (e3 < i3.length) r3 = (t3 + n3.length | 0) + e3 | 0, a3[r3] = i3[e3], e3 = e3 + 1 | 0;
-      return o3;
-    })(e2, t2, a2, r2);
-    (0 != a2 || 0 != r2.length) && ((e3, t3, r3, n3) => {
-      var o3, a3 = Be(e3), i3 = null;
-      a3 && (i3 = e3.proxy_, o3 = e3.atom_.name_, i3 = { __proto__: null, observableKind: "array", object: i3, debugObjectName: o3, type: "splice", index: t3, removed: n3, added: r3, removedCount: n3.length, addedCount: r3.length }), Ve(e3.atom_), a3 && Me(e3, i3);
-    })(e2, t2, r2, i2);
-    return e2.dehanceValues_(i2);
-  };
-  var Ne = (e2) => {
-    te(globalThis.Array.prototype[e2]) && (de[e2] = function() {
-      var r2 = this, a2 = r2[$];
-      be(a2.atom_);
-      var i2;
-      i2 = a2.dehanceValues_(a2.values_), a2 = arguments[0];
-      var n2;
-      arguments.length > 1 && (n2 = arguments[1]);
-      return i2[e2](function(u2, i3) {
-        let s2 = n2;
-        return a2.call(s2, u2, i3, r2);
-      });
-    });
-  };
-  var qr = (e2) => {
-    te(globalThis.Array.prototype[e2]) && (de[e2] = function() {
-      var t2 = this;
-      let n2 = t2[$];
-      be(n2.atom_);
-      let a2 = n2.dehanceValues_;
-      n2 = n2.dehanceValues_(n2.values_), a2 = arguments[0], arguments[0] = function(r2, n3, i2) {
-        return a2(r2, n3, i2, t2);
-      };
-      return n2[e2].apply(n2, arguments);
-    });
-  };
-  var ke = (e2) => {
-    te(globalThis.Array.prototype[e2]) && (de[e2] = function() {
-      let t2 = this[$];
-      be(t2.atom_), t2 = t2.dehanceValues_(t2.values_);
-      return t2[e2].apply(t2, arguments);
-    });
-  };
-  var ot = (e2) => {
-    let t2 = ce.prototype;
-    t2[e2] = function(n2) {
-      var i2 = this.atom_;
-      be(i2);
-      if (("intersection" == e2 || "union" == e2 || "symmetricDifference" == e2 || "isDisjointFrom" == e2) && _t(n2) && !pe(n2) && te(n2[e2])) return n2[e2](this);
-      var t3 = new globalThis.Set(this);
-      return te(t3[e2]) ? t3[e2].apply(t3, arguments) : ((n3, a2, i3) => {
-        if ("intersection" == n3) {
-          n3 = new globalThis.Set(), it(a2, function(s2) {
-            rr(i3, s2) && n3.add(s2);
-          });
-          return n3;
-        }
-        if ("union" == n3) {
-          n3 = new globalThis.Set(a2), it(i3, function(r3) {
-            n3.add(r3);
-          });
-          return n3;
-        }
-        if ("difference" == n3) {
-          n3 = new globalThis.Set(a2), it(i3, function(r3) {
-            n3.delete(r3);
-          });
-          return n3;
-        }
-        if ("symmetricDifference" == n3) {
-          n3 = new globalThis.Set(a2), it(i3, function(r3) {
-            Z(n3.has(r3)) ? n3.delete(r3) : n3.add(r3);
-          });
-          return n3;
-        }
-        if ("isSubsetOf" == n3) {
-          var e3 = true;
-          it(a2, function(n4) {
-            rr(i3, n4) || (e3 = false);
-          });
-          return e3;
-        }
-        if ("isSupersetOf" == n3) {
-          var t4 = true;
-          it(i3, function(n4) {
-            Z(a2.has(n4)) || (t4 = false);
-          });
-          return t4;
-        }
-        var r2 = true;
-        it(a2, function(n4) {
-          rr(i3, n4) && (r2 = false);
-        });
-        return r2;
-      })(e2, t3, n2);
+  var be = (d2, V) => Q.assign(d2, V);
+  var Ge = (o2, e2) => {
+    o2 = "isMobX" + o2, e2.prototype[o2] = true;
+    return function(F) {
+      return Me(F) && true === F[o2];
     };
   };
-  var Gr = (n2, a2, i2) => {
-    i2 = i2 || {};
-    var e2, t2;
-    if ("number" == typeof i2.timeout) {
-      var u2 = new globalThis.Error("WHEN_TIMEOUT"), s2 = i2.timeout;
-      t2 = globalThis.setTimeout(function() {
-        if (!e2[$].isDisposed) e2(), i2.onError ? i2.onError(u2) : Rt(u2);
-      }, s2);
-    }
-    i2.name || (i2.name = "When");
-    var r2 = Je("When-effect", a2, false, void 0);
-    e2 = $t(function(a3) {
-      if (ur(false, n2)) a3.dispose(), t2 && globalThis.clearTimeout(t2), r2();
-    }, i2);
-    return e2;
+  var xt = (e2) => {
+    throw e2;
   };
-  var Hr = (e2) => e2.scheduler ? e2.scheduler : e2.delay ? function(r2) {
-    return globalThis.setTimeout(r2, e2.delay);
-  } : function(t2) {
-    return t2();
-  };
-  var $r = (r2, n2) => {
-    var e2, a2, t2 = n2[1];
-    n2.length > 2 && te(n2[2]) ? (a2 = He, e2 = a2(n2[0], n2[1]), t2 = n2[2]) : (a2 = He, e2 = a2(n2[0])), e2[r2] ? (n2 = e2[r2], n2.add(t2)) : (n2 = e2, n2[r2] = new globalThis.Set(), n2 = e2[r2], n2.add(t2));
-    return function() {
-      var n3 = e2[r2];
-      n3 && (n3.delete(t2), 0 == (+n3.size | 0) && delete e2[r2]);
-    };
-  };
-  var xr = (t2) => {
-    var e2 = false;
-    return function() {
-      if (!e2) {
-        e2 = true;
-        return t2.apply(this, arguments);
-      }
-    };
-  };
-  var jn = (e2, t2) => !e2 ? t2 : function() {
-    try {
-      return t2.apply(this, arguments);
-    } catch (a2) {
-      e2.call(this, a2);
-      return;
-    }
-  };
-  var Dt = (e2) => {
-    let t2 = xe().iterator;
-    e2[t2] = function() {
-      return this;
-    }, t2 = (() => {
-      var e3 = globalThis.Iterator;
-      return e3 ? e3.prototype : { __proto__: null };
-    })();
-    return Ce(ee().create(t2), e2);
-  };
-  var Je = (e2, t2, r2, n2) => {
-    var a2 = (0, function() {
-      var a3 = n2 == null ? this : n2;
-      return Mr(e2, r2, t2, a3, arguments);
-    });
-    a2.isMobxAction = true, a2.toString = function() {
-      return t2.toString();
-    }, rn && (sr.value = e2, se(a2, "name", sr));
-    return a2;
-  };
-  var ft = (e2, t2) => {
-    if (e2 == null || "object" != typeof e2 || !zt(e2)) return e2;
-    if (re(e2, "isMobXObservableValue") || re(e2, "isMobXComputedValue")) return ft(e2.get(), t2);
-    if (t2.has(e2)) return t2.get(e2);
-    if (me(e2)) {
-      var n2 = [];
-      t2.set(e2, n2);
-      var a2, i2, r2 = 0;
-      while (r2 < Q(e2.length)) n2[r2] = ft(e2[r2], t2), r2 = r2 + 1 | 0;
-      return n2;
-    }
-    if (pe(e2)) {
-      r2 = new globalThis.Set(), t2.set(e2, r2), n2 = ye(e2.values()), e2 = 0;
-      while (e2 < n2.length) r2.add(ft(n2[e2], t2)), e2 = e2 + 1 | 0;
-      return r2;
-    }
-    if (ve(e2)) {
-      n2 = new (Oe())(), t2.set(e2, n2), r2 = ye(e2.entries()), e2 = 0;
-      while (e2 < r2.length) a2 = r2[e2][0], n2.set(a2, ft(r2[e2][1], t2)), e2 = e2 + 1 | 0;
-      return n2;
-    }
-    a2 = {};
-    t2.set(e2, a2), n2 = Or(e2), r2 = 0;
-    while (r2 < n2.length) i2 = ee().prototype.propertyIsEnumerable, Z(i2.call(e2, n2[r2])) && (i2 = n2[r2], a2[i2] = ft(e2[n2[r2]], t2)), r2 = r2 + 1 | 0;
-    return a2;
-  };
-  var dn = (e2) => {
-    var r2 = ee().keys(e2), t2 = ee().getOwnPropertySymbols(e2);
-    if (0 == t2.length) return r2;
-    var a2 = Qe.call(r2), i2 = t2.length;
-    r2 = 0;
-    while (r2 < i2) {
-      var n2 = t2[r2];
-      Z(ee().prototype.propertyIsEnumerable.call(e2, n2)) && a2.push(n2), r2 = r2 + 1 | 0;
-    }
-    return a2;
-  };
-  var Ie = (e2, t2) => Ce(function(a2, r2) {
-    if (r2 && "string" == typeof r2.kind) return t2(e2, a2, r2);
-  }, e2);
-  var Rr = (e2) => {
-    !e2.onBOL || (e2 = e2.onBOL, e2.forEach(function(t2) {
-      t2();
-    }));
-  };
-  var Dr = (e2) => {
-    !e2.onBUOL || (e2 = e2.onBUOL, e2.forEach(function(t2) {
-      t2();
-    }));
-  };
-  var zr = (e2, t2) => {
-    e2.interceptors_ === void 0 && (e2.interceptors_ = []), e2 = e2.interceptors_, e2.push(t2);
-    return xr(function() {
-      var r2 = +e2.indexOf(t2) | 0;
-      r2 != -1 && e2.splice(r2, 1);
-    });
-  };
-  var mt = (e2, t2) => {
-    e2.changeListeners_ === void 0 && (e2.changeListeners_ = []), e2 = e2.changeListeners_, e2.push(t2);
-    return xr(function() {
-      var r2 = +e2.indexOf(t2) | 0;
-      r2 != -1 && e2.splice(r2, 1);
-    });
-  };
-  var Be = (e2) => {
-    e2 = e2.changeListeners_ !== void 0 && e2.changeListeners_.length > 0;
-    return e2;
-  };
-  var Ee = (e2) => {
-    e2 = e2.interceptors_ !== void 0 && e2.interceptors_.length > 0;
-    return e2;
-  };
-  var Re = (e2, t2) => {
-    try {
-      var N2 = [];
-      !e2.interceptors_ || (N2 = e2.interceptors_);
-      var z2 = Qe.call(N2), I2 = z2.length, K = 0;
-      while (K < I2) {
-        t2 = z2[K](t2), t2 && !t2.type && le(14);
-        if (!t2) break;
-        K = K + 1 | 0;
-      }
-      return t2;
-    } finally {
-      je(Ue());
-    }
-  };
-  var Me = (e2, t2) => {
-    var r2 = Ue();
-    e2 = e2.changeListeners_;
-    if (!e2) {
-      je(r2);
-      return;
-    }
-    var n2 = Qe.call(e2), a2 = n2.length;
-    e2 = 0;
-    while (e2 < a2) n2[e2](t2), e2 = e2 + 1 | 0;
-    je(r2);
-  };
-  var Ge = (e2, t2) => {
-    t2.prototype["isMobX" + e2] = true;
-  };
-  var Te = (e2, t2) => {
-    let r2 = [];
-    r2.push(t2), rt(e2, r2);
-  };
-  var Ce = (e2, t2) => ee().assign(e2, t2);
-  var re = (e2, t2) => gt(e2) && true === e2[t2];
-  var Bt = (e2) => gt(e2) && true === e2.isMobXCaughtException;
-  var nt = (e2) => te(e2) && true === e2.isMobxAction;
-  var ct = (e2) => e2 == null ? false : true === e2.isMobXFlow;
-  var _t = (e2) => e2 == null ? false : "[object Set]" == ee().prototype.toString.call(e2) + "";
-  var vt = (e2) => e2 == null ? false : "[object Map]" == ee().prototype.toString.call(e2) + "";
-  var pt = (e2, t2, r2, n2, a2) => {
-    if (e2 === t2) {
-      if (0 !== e2) return true;
-      r2 = 1 / Fe(e2) | 0, tt(r2, 1 / Fe(t2) | 0) ? e2 = true : (e2 = Fe(e2), e2 = tt(e2, Fe(t2)));
-      return e2;
-    }
-    if (e2 == null || t2 == null) return false;
-    if (e2 !== e2) return t2 !== t2;
-    var i2 = typeof e2;
-    if ("function" != i2 && "object" != i2 && "object" != typeof t2) return false;
-    i2 = ee().prototype.toString.call(e2) + "";
-    if (i2 != ee().prototype.toString.call(t2) + "") return false;
-    if ("[object RegExp]" == i2 || "[object String]" == i2) {
-      e2 = "" + e2;
-      return e2 == "" + t2;
-    }
-    if ("[object Number]" == i2) {
-      e2 = Fe(e2), t2 = Fe(t2);
-      if (!tt(e2, e2)) return !tt(t2, t2);
-      if (0 === e2) {
-        e2 = 1 / +e2;
-        return tt(e2, 1 / +t2);
-      }
-      return e2 === t2;
-    }
-    if ("[object Date]" == i2 || "[object Boolean]" == i2) {
-      e2 = Fe(e2);
-      return e2 === Fe(t2);
-    }
-    if ("[object Symbol]" == i2) {
-      e2 = globalThis.Symbol.valueOf.call(e2);
-      return e2 === globalThis.Symbol.valueOf.call(t2);
-    }
-    ("[object Map]" == i2 || "[object Set]" == i2) && r2 >= 0 && (r2 = r2 + 1 | 0);
-    var o2 = Kr(e2);
-    e2 = Kr(t2);
-    var s2 = "[object Array]" == i2;
-    if (!s2) {
-      if ("object" != typeof o2 || "object" != typeof e2) return false;
-      t2 = o2.constructor, i2 = e2.constructor;
-      if (t2 !== i2 && !(te(t2) && Ir(t2, t2) && te(i2) && Ir(i2, i2)) && Z("constructor" in o2) && Z("constructor" in e2)) return false;
-    }
-    if (0 == r2) return false;
-    else {
-      r2 < 0 && (r2 = -1);
-    }
-    n2 === void 0 && (n2 = [], a2 = []);
-    t2 = n2.length;
-    while (t2 > 0) {
-      t2 = t2 - 1 | 0;
-      if (n2[t2] === o2) return a2[t2] === e2;
-    }
-    n2.push(o2);
-    a2.push(e2);
-    if (s2) {
-      t2 = o2.length;
-      if (t2 != e2.length) return false;
-      while (t2 > 0) {
-        t2 = t2 - 1 | 0, i2 = o2[t2], s2 = e2[t2];
-        if (!pt(i2, s2, r2 - 1 | 0, n2, a2)) return false;
-      }
-    } else {
-      var u2 = ee().keys(o2);
-      s2 = u2.length;
-      if (ee().keys(e2).length != s2) return false;
-      i2 = 0;
-      while (i2 < s2) {
-        t2 = u2[i2];
-        if (Ke.call(e2, t2)) {
-          var l2 = o2[t2];
-          t2 = e2[t2], t2 = pt(l2, t2, r2 - 1 | 0, n2, a2);
-        } else {
-          t2 = false;
-        }
-        if (!t2) return false;
-        i2 = i2 + 1 | 0;
-      }
-    }
-    n2.pop();
-    a2.pop();
-    return true;
-  };
-  var Ar = (e2) => {
-    if (e2 == null) return false;
-    e2 = e2.constructor;
+  var jn = (y2) => {
+    if (y2 == null) return false;
+    var e2 = y2.constructor;
     return !e2 ? false : "GeneratorFunction" == e2.name + "" ? true : "GeneratorFunction" == e2.displayName + "" ? true : false;
   };
-  var qe = (e2) => {
-    if (!gt(e2)) return false;
-    var t2 = ee().getPrototypeOf(e2);
-    if (t2 == null) return true;
-    e2 = void 0, !Ke.call(t2, "constructor") || (e2 = t2.constructor), e2 = te(e2) && e2.toString() === tn;
-    return e2;
+  var Ae = (s2) => {
+    if (!Me(s2)) return false;
+    var e2 = Q.getPrototypeOf(s2);
+    if (e2 == null) return true;
+    s2 = void 0, !De.call(e2, "constructor") || (s2 = e2.constructor), s2 = "function" == typeof s2 && s2.toString() === Xn;
+    return s2;
   };
-  var Ir = (e2, t2) => {
-    if (!e2) return false;
-    if (te(e2.isPrototypeOf)) return Z(e2.isPrototypeOf(t2));
-    e2 = Z("constructor" in t2) && Z(t2.constructor == e2);
-    return e2;
-  };
-  var rr = (e2, t2) => te(e2.has) ? Z(e2.has(t2)) : false;
-  var it = (e2, t2) => {
-    if (te(e2.forEach)) {
-      e2.forEach(t2);
-      return;
-    }
-    if (te(e2.keys)) {
-      e2 = e2.keys();
-      var r2 = e2.next();
-      while (!r2.done) t2(r2.value), r2 = e2.next();
-    }
-  };
-  var Nt = (e2, t2) => e2.dehancer !== void 0 ? e2.dehancer(t2) : t2;
-  var Fe = (e2) => globalThis.Number(e2);
-  var ye = (e2) => globalThis.Array.from(e2);
-  var xe = () => globalThis.Symbol;
-  var Pe = () => globalThis.Reflect;
-  var Oe = () => globalThis.Map;
-  var ee = () => globalThis.Object;
-  var Sr = (e2) => {
-    throw new globalThis.TypeError(e2);
-  };
-  var rt = (e2, t2) => {
-    t2 = t2.length > 0 ? " " + t2.map(globalThis.String).join(",") : "", e2 = "[MobX] minified error nr: " + e2 + t2 + ". See mobx.js.org/errors", Rt(new globalThis.Error(e2));
-  };
-  var Ae = (e2) => "string" == typeof e2 ? e2 + "" : "symbol" == typeof e2 ? e2.toString() + "" : new globalThis.String(e2) + "";
-  var G = (e2) => e2.proxy_ ? e2.proxy_ : e2.target_;
-  var Tr = (e2, t2) => {
-    e2.observers_.delete(t2), e2.observers_.size || Cr(e2);
-  };
-  var tt = (e2, t2) => Z(Zr(e2, t2));
-  var se = (e2, t2, r2) => {
-    ee().defineProperty(e2, t2, r2);
-  };
-  var Fr = (e2, t2, r2) => {
-    true === r2 && (r2 = e2.defaultAnnotation_);
-    if (false !== r2) {
-      if (!Z(t2 in e2.target_)) {
-        var n2 = e2.name_ + ".", i2 = n2 + Ae(t2);
-        n2 = [], n2.push(r2.annotationType_), n2.push(i2), rt(1, n2);
-      }
-      for (n2 = e2.target_; ; ) {
-        a = n2 && n2 !== ee().prototype;
-        if (!a) break;
-        if (a = ee().getOwnPropertyDescriptor(n2, t2)) {
-          a = r2.make_(e2, t2, a, n2);
-          if (0 === a) return;
-          if (1 === a) break;
-        }
-        n2 = ee().getPrototypeOf(n2);
-      }
-    }
-  };
-  var wt = (e2, t2) => ({ annotationType_: e2, options_: t2, make_: pn, extend_: fn });
-  var Kt = (e2, t2) => ({ annotationType_: e2, options_: t2, make_: Vt, extend_: cn });
-  var It = (e2) => true === e2.deep ? et : false === e2.deep ? dt : e2.defaultDecorator && e2.defaultDecorator.options_ && e2.defaultDecorator.options_.enhancer_ ? e2.defaultDecorator.options_.enhancer_ : et;
-  var nr = (e2, t2, r2, n2) => {
-    e2 = lt(e2)[$], e2.lazyObservableKeys_ || (e2.lazyObservableKeys_ = new (Oe())());
-    var a2 = e2.lazyObservableKeys_;
-    a2.set(r2, function() {
-      var a3, i2 = et;
-      t2.options_ && t2.options_.enhancer_ && (i2 = t2.options_.enhancer_), a3 = "ObservableObject." + Ae(r2);
-      return new ue(n2, i2, a3, false);
-    });
-    return e2;
-  };
-  var Ur = (e2, t2, r2, n2, a2) => {
-    var i2 = n2.value;
-    t2.options_ && t2.options_.bound && (i2 = i2.bind(G(e2)));
-    var o2 = Ae(r2);
-    t2.options_ && t2.options_.name && (o2 = t2.options_.name + ""), r2 = t2.options_ && t2.options_.autoAction;
-    var s2 = void 0;
-    t2.options_ && t2.options_.bound && (s2 = G(e2)), a2 ? (e2 = !!e2.isPlainObject_, t2 = false) : (e2 = true, t2 = true);
-    return { __proto__: null, value: Je(o2, i2, r2, s2), configurable: e2, enumerable: false, writable: t2 };
-  };
-  var Wr = (e2, t2, r2, n2) => {
-    t2 = t2.value, ct(t2) || (t2 = Ze(t2)), r2 && (t2 = t2.bind(G(e2)), t2.isMobXFlow = true), n2 ? (e2 = !!e2.isPlainObject_, r2 = false) : (e2 = true, r2 = true);
-    return { __proto__: null, value: t2, configurable: e2, enumerable: false, writable: r2 };
-  };
-  var Xr = (e2, t2, r2, n2) => {
-    if (Ke.call(e2.target_, t2)) {
-      if (e2.values_.has(t2)) return e2.setObservablePropValue_(t2, r2);
-      if (n2) {
-        e2 = e2.target_;
-        return Z(Pe().set(e2, t2, r2));
-      }
-      e2.target_[t2] = r2;
-      return true;
-    }
-    return e2.extend_(t2, { __proto__: null, value: r2, enumerable: true, writable: true, configurable: true }, e2.defaultAnnotation_, n2);
-  };
-  var ze = (e2, t2, r2) => {
-    se(e2, t2, { __proto__: null, configurable: true, get: function() {
-      return 0 != (this.flags_ & r2);
-    }, set: function(t3) {
-      var n2 = this.flags_;
-      t3 ? this.flags_ = n2 | r2 : this.flags_ = n2 & (r2 ^ -1);
-    } });
-  };
-  var Lr = (e2) => {
-    var t2 = vr.get(e2);
-    if (t2) return t2;
-    t2 = { __proto__: null, get: function() {
-      return this[$].getObservablePropValue_(e2);
-    }, set: function(r2) {
-      return this[$].setObservablePropValue_(e2, r2);
-    } }, vr.set(e2, t2);
-    return t2;
-  };
-  var Yr = (e2) => {
-    var t2 = { __proto__: null, name: e2.name_ };
-    if (((e3) => {
-      e3 = e3.observers_ && e3.observers_.size;
-      return e3;
-    })(e2)) {
-      var r2 = ye(e2.observers_.values()), n2 = [];
-      e2 = 0;
-      while (e2 < r2.length) n2.push(Yr(r2[e2])), e2 = e2 + 1 | 0;
-      t2.observers = n2;
-    }
-    return t2;
-  };
-  var Qr = (e2) => {
-    var t2, n2, r2 = { __proto__: null, name: e2.name_ };
-    if (e2.observing_ && e2.observing_.length > 0) {
-      n2 = [], t2 = 0;
-      while (t2 < e2.observing_.length) n2.push(Qr(e2.observing_[t2])), t2 = t2 + 1 | 0;
-      r2.dependencies = n2;
+  var et = (m2) => m2 == null ? false : "[object Map]" == Q.prototype.toString.call(m2) + "";
+  var tt = (m2) => m2 == null ? false : "[object Set]" == Q.prototype.toString.call(m2) + "";
+  var ve = (n2) => "string" == typeof n2 ? n2 : "symbol" == typeof n2 ? n2.toString() : new String(n2) + "";
+  var qn = (s2) => null === s2 ? null : "object" == typeof s2 ? "" + s2 : s2;
+  var lr = (e2) => {
+    var a2 = Q.keys(e2), t2 = Q.getOwnPropertySymbols(e2);
+    if (0 == t2.length) return a2;
+    var r2 = Ye.call(a2), s2 = t2.length;
+    for (a2 = 0; a2 < s2; a2++) {
+      var n2 = t2[a2], i2 = Q.prototype;
+      true === i2.propertyIsEnumerable.call(e2, n2) && r2.push(n2);
     }
     return r2;
   };
-  var tr = (e2) => {
-    var r2 = e2.observing_;
-    e2.observing_ = [];
-    var t2 = r2.length;
-    while (t2 > 0) t2 = t2 - 1 | 0, Tr(r2[t2], e2);
-    e2.dependenciesState_ = -1;
+  var zt = (e2) => {
+    e2[Symbol.iterator] = Zn;
+    if (!Qt) {
+      var o2 = Qt;
+      Qt = true, o2 = globalThis.Iterator, Ut = o2 ? o2.prototype : {};
+    }
+    o2 = Ut;
+    return be(Q.create(o2), e2);
   };
-  var jr = (e2) => {
-    if (0 != Q(e2.dependenciesState_)) {
-      e2.dependenciesState_ = 0;
-      var t2 = e2.observing_;
-      e2 = t2.length;
-      while (e2 > 0) e2 = e2 - 1 | 0, t2[e2].lowestObserverState_ = 0;
+  var En = (k2) => {
+    var e2 = false;
+    return function() {
+      if (!e2) return e2 = true, k2.apply(this, arguments);
+    };
+  };
+  var We = (e2, r2) => {
+    r2 = r2.length > 0 ? " " + r2.map(String).join(",") : "", xt(new Error("[MobX] minified error nr: " + e2 + r2 + ". See mobx.js.org/errors"));
+  };
+  var ne = (e2) => {
+    We(e2, []);
+  };
+  var we = (e2, v2) => {
+    let r2 = [];
+    r2.push(v2), We(e2, r2);
+  };
+  var Vt = (F) => Me(F) && true === F.isMobXAtom;
+  var ke = (F) => Me(F) && true === F.isMobXComputedValue;
+  var jt = (F) => Me(F) && true === F.isMobXReaction;
+  var re = (F) => !!en(F);
+  var se = (F) => !!tn(F);
+  var fe = (m2) => !Me(m2) ? false : !!nn(m2[Z]);
+  var oe = (m2) => !Me(m2) ? false : !!rn(m2[Z]);
+  var Ke = (m2) => "function" == typeof m2 && true === m2.isMobxAction;
+  var nt = (k2) => k2 == null ? false : true === k2.isMobXFlow;
+  var qt = () => {
+    let e2 = { version: 7, UNCHANGED: {} }, t2 = null;
+    e2.trackingDerivation = t2, e2.trackingContext = t2, e2.runId = 0, e2.mobxGuid = 0, e2.inBatch = 0, e2.pendingUnobservations = [], e2.pendingReactions = [], e2.isRunningReactions = false, e2.allowStateChanges = false, e2.allowStateReads = true, e2.enforceActions = true, e2.spyListeners = [], e2.globalReactionErrorHandlers = [], e2.computedRequiresReaction = false, e2.reactionRequiresObservable = false, e2.observableRequiresReaction = false, e2.disableErrorBoundaries = false, e2.suppressReactionErrors = false, e2.safeDescriptors = true;
+    return e2;
+  };
+  var Tn = (j2) => {
+    if (!j2.isPendingUnobservation) j2.isPendingUnobservation = true, X.pendingUnobservations.push(j2);
+  };
+  var Nn = (j2, e2) => {
+    j2.observers_.delete(e2), e2 = j2.observers_, e2.size || Tn(j2);
+  };
+  var $ = () => {
+    X.inBatch++;
+  };
+  var ee = () => {
+    var j2 = --X.inBatch;
+    if (0 == j2) {
+      In();
+      for (var t2, e2 = X.pendingUnobservations, a2 = 0; a2 < e2.length; a2++) j2 = e2[a2], j2.isPendingUnobservation = false, t2 = j2.observers_, t2.size || (!j2.isBeingObserved || (j2.isBeingObserved = false, j2.onBUO()), ke(j2) && j2.suspend_());
+      X.pendingUnobservations = [];
     }
   };
-  var Vr = (e2) => {
-    if (2 !== e2.lowestObserverState_) e2.lowestObserverState_ = 2, e2 = e2.observers_, e2.forEach(nn);
+  var le = (j2) => {
+    var W = X.trackingDerivation;
+    if (W != null) {
+      var t2 = X, e2 = W.runId_;
+      e2 === j2.lastAccessedBy_ || (j2.lastAccessedBy_ = W.runId_, e2 = W.unboundDepsCount_ | 0, W.newObserving_[e2] = j2, W.unboundDepsCount_ = e2 + 1 | 0, !j2.isBeingObserved && X.trackingContext && (j2.isBeingObserved = true, j2.onBO()));
+      return !!j2.isBeingObserved;
+    } else {
+      t2 = X, W = j2.observers_, !W.size && X.inBatch && Tn(j2);
+    }
+    return false;
   };
-  var er = (e2) => {
-    var t2 = Q(e2.dependenciesState_);
-    if (0 == t2) return false;
-    if (t2 == -1 || 2 == t2) return true;
-    if (1 == t2) {
-      t2 = true, t2 = Ue();
-      var r2, a2 = e2.observing_, i2 = a2.length, n2 = 0;
-      while (n2 < i2) {
-        r2 = a2[n2];
-        if (re(r2, "isMobXComputedValue")) {
-          if (true === J.disableErrorBoundaries) r2.get();
-          else {
-            try {
-              r2.get();
-            } catch {
-              je(t2);
-              return true;
-            }
-          }
-          if (2 === e2.dependenciesState_) {
-            je(t2);
+  var Rn = (j2) => {
+    if (2 !== j2.lowestObserverState_) j2.lowestObserverState_ = 2, j2.observers_.forEach(Qn);
+  };
+  var xe = (j2) => {
+    $(), Rn(j2), ee();
+  };
+  var In = () => {
+    if (!((X.inBatch | 0) > 0 || X.isRunningReactions)) Ct(er);
+  };
+  var Sn = (e2) => {
+    !e2.onBOL || e2.onBOL.forEach(function(e3) {
+      e3();
+    });
+  };
+  var On = (e2) => {
+    !e2.onBUOL || e2.onBUOL.forEach(function(e3) {
+      e3();
+    });
+  };
+  var Ce = () => {
+    let g2 = X.trackingDerivation;
+    X.trackingDerivation = null;
+    return g2;
+  };
+  var ze = (g2) => {
+    X.trackingDerivation = g2;
+  };
+  var _i = (W) => {
+    if (0 != (W.dependenciesState_ | 0)) {
+      W.dependenciesState_ = 0;
+      var e2 = W.observing_, a2 = e2.length;
+      while (a2 > 0) a2--, W = e2[a2], W.lowestObserverState_ = 0;
+    }
+  };
+  var Et = (e2) => Me(e2) && true === e2.isMobXCaughtException;
+  var Kt = (W) => {
+    var g2 = W.dependenciesState_ | 0;
+    if (0 == g2) return false;
+    if (g2 == -1 || 2 == g2) return true;
+    if (1 == g2) {
+      g2 = true, g2 = Ce();
+      for (var y2, t2, e2 = W.observing_, n2 = e2.length, a2 = 0; a2 < n2; a2++) {
+        y2 = e2[a2];
+        if (ke(y2)) {
+          t2 = X.disableErrorBoundaries;
+          if (true === t2) y2.get();
+          else try {
+            y2.get();
+          } catch {
+            ze(g2);
             return true;
           }
+          y2 = W.dependenciesState_;
+          if (2 === y2) return ze(g2), true;
         }
-        n2 = n2 + 1 | 0;
       }
-      jr(e2);
-      je(t2);
+      _i(W);
+      ze(g2);
       return false;
     }
     return false;
   };
-  var Er = (e2, t2, r2) => {
-    var n2 = true;
-    jr(e2), n2 = 0 != Q(e2.runId_) ? e2.observing_.length : 100, e2.newObserving_ = new globalThis.Array(n2), e2.unboundDepsCount_ = 0, n2 = Q(J.runId) + 1 | 0, J.runId = n2, e2.runId_ = n2, n2 = J.trackingDerivation, J.trackingDerivation = e2, J.inBatch++;
-    var Z2;
-    if (true === J.disableErrorBoundaries) Z2 = t2.call(r2);
-    else {
-      try {
-        Z2 = t2.call(r2);
-      } catch (S2) {
-        Z2 = new ht(S2);
-      }
+  var Un = (W, e2, H2) => {
+    var t2, g2 = true;
+    _i(W), 0 != (W.runId_ | 0) ? (t2 = W.observing_, g2 = t2.length) : g2 = 100, W.newObserving_ = new Array(g2), W.unboundDepsCount_ = 0, g2 = (X.runId | 0) + 1 | 0, X.runId = g2, W.runId_ = g2, g2 = X.trackingDerivation, X.trackingDerivation = W, t2 = X, t2.inBatch = (X.inBatch | 0) + 1 | 0;
+    var ne2;
+    t2 = X.disableErrorBoundaries;
+    if (true === t2) ne2 = e2.call(H2);
+    else try {
+      ne2 = e2.call(H2);
+    } catch (f2) {
+      ne2 = new ut(f2);
     }
-    J.inBatch--;
-    J.trackingDerivation = n2, ((e3) => {
-      var o2 = e3.observing_, r3 = e3.newObserving_;
-      e3.observing_ = r3;
-      var a2, s2 = Q(e3.unboundDepsCount_), n3 = 0, t3 = 0, i2 = 0;
-      while (i2 < s2) a2 = e3.observing_[i2], 0 == Q(a2.diffValue) && (a2.diffValue = 1, t3 != i2 && (e3.observing_[t3] = a2), t3 = t3 + 1 | 0), a2 = a2.dependenciesState_, a2 !== void 0 && Q(a2) > n3 && (n3 = Q(a2)), i2 = i2 + 1 | 0;
-      r3.length = t3, e3.newObserving_ = null, a2 = o2.length;
-      while (a2 > 0) a2 = a2 - 1 | 0, i2 = o2[a2], 0 == Q(i2.diffValue) && Tr(i2, e3), i2.diffValue = 0;
-      while (t3 > 0) t3 = t3 - 1 | 0, a2 = e3.observing_[t3], 1 == Q(a2.diffValue) && (a2.diffValue = 0, ((e4, t4) => {
-        e4.observers_.add(t4), Q(e4.lowestObserverState_) > Q(t4.dependenciesState_) && (e4.lowestObserverState_ = t4.dependenciesState_);
-      })(a2, e3));
-      0 != n3 && (e3.dependenciesState_ = n3, e3.onBecomeStale_());
-    })(e2);
-    return Z2;
+    X.inBatch--;
+    X.trackingDerivation = g2, ((W2) => {
+      var s2 = W2.observing_, n2 = W2.newObserving_;
+      W2.observing_ = n2;
+      for (var r2, i2, o2 = W2.unboundDepsCount_ | 0, t3 = 0, e3 = 0, a2 = 0; a2 < o2; a2++) r2 = n2[a2], 0 == (r2.diffValue | 0) && (r2.diffValue = 1, e3 != a2 && (n2[e3] = r2), e3++), i2 = r2.dependenciesState_, i2 !== void 0 && (i2 | 0) > t3 && (t3 = i2 | 0);
+      n2.length = e3, W2.newObserving_ = null, r2 = s2.length;
+      while (r2 > 0) r2--, a2 = s2[r2], 0 == (a2.diffValue | 0) && Nn(a2, W2), a2.diffValue = 0;
+      while (e3 > 0) e3--, r2 = n2[e3], 1 == (r2.diffValue | 0) && (r2.diffValue = 0, ((j2, e4) => {
+        var t4 = j2.observers_;
+        t4.add(e4), t4 = j2.lowestObserverState_ | 0, t4 > (e4.dependenciesState_ | 0) && (j2.lowestObserverState_ = e4.dependenciesState_);
+      })(r2, W2));
+      0 != t3 && (W2.dependenciesState_ = t3, W2.onBecomeStale_());
+    })(W);
+    return ne2;
   };
-  var Ue = () => {
-    let e2 = J.trackingDerivation;
-    J.trackingDerivation = null;
+  var Xt = (W) => {
+    var e2 = W.observing_;
+    W.observing_ = [];
+    var a2 = e2.length;
+    while (a2 > 0) a2--, Nn(e2[a2], W);
+    W.dependenciesState_ = -1;
+  };
+  var Le = (e2, k2, t2, n2) => {
+    var K = (0, function() {
+      var r2 = n2 == null ? this : n2;
+      return Ln(e2, t2, k2, r2, arguments);
+    });
+    K.isMobxAction = true, K.toString = function() {
+      return k2.toString();
+    }, tr && (un.value = e2, de(K, "name", un));
+    return K;
+  };
+  var An = (e2, t2) => {
+    var i2 = X.trackingDerivation;
+    t2 = !t2 || i2 == null, $();
+    var r2 = !!X.allowStateChanges;
+    t2 && Ce();
+    var s2 = !!X.allowStateReads, n2 = Dt;
+    Dt++;
+    var o2 = ft;
+    ft = n2, e2 = { runAsAction_: t2, prevDerivation_: i2, prevAllowStateChanges_: r2, prevAllowStateReads_: s2, notifySpy_: false, startTime_: 0, actionId_: n2, parentActionId_: o2 };
     return e2;
   };
+  var Cn = (e2) => {
+    ft != (e2.actionId_ | 0) && ne(30), ft = e2.parentActionId_ | 0, e2.error_ === void 0 || (X.suppressReactionErrors = true), ee(), !e2.runAsAction_ || ze(e2.prevDerivation_), X.suppressReactionErrors = false;
+  };
+  var Ln = (e2, t2, k2, n2, r2) => {
+    var c2 = An(e2, t2, n2, r2);
+    try {
+      return k2.apply(n2, r2);
+    } catch (e3) {
+      c2.error_ = e3;
+      throw e3;
+    } finally {
+      Cn(c2);
+    }
+  };
+  var Te = (e2) => {
+    if (e2.changeListeners_ !== void 0) var n2 = e2.changeListeners_, t2 = n2.length > 0;
+    else {
+      t2 = false;
+    }
+    return t2;
+  };
+  var Ki = (e2, P) => {
+    e2.changeListeners_ === void 0 && (e2.changeListeners_ = []);
+    var t2 = e2.changeListeners_;
+    t2.push(P);
+    return En(function() {
+      var u2 = +t2.indexOf(P);
+      u2 != -1 && t2.splice(u2, 1);
+    });
+  };
+  var Ne = (a2, h2) => {
+    var e2 = Ce(), t2 = a2.changeListeners_;
+    if (!t2) {
+      ze(e2);
+      return;
+    }
+    t2 = Ye.call(t2);
+    var n2 = t2.length;
+    for (a2 = 0; a2 < n2; a2++) t2[a2](h2);
+    ze(e2);
+  };
   var je = (e2) => {
-    J.trackingDerivation = e2;
-  };
-  var be = (e2) => {
-    var t2 = J.trackingDerivation;
-    if (t2 != null) {
-      var r2 = t2.runId_;
-      r2 === e2.lastAccessedBy_ || (e2.lastAccessedBy_ = r2, t2.newObserving_[t2.unboundDepsCount_++] = e2, !e2.isBeingObserved && J.trackingContext && (e2.isBeingObserved = true, e2.onBO()));
-      return !!e2.isBeingObserved;
-    } else {
-      !e2.observers_.size && J.inBatch && Cr(e2);
+    if (e2.interceptors_ !== void 0) var n2 = e2.interceptors_, t2 = n2.length > 0;
+    else {
+      t2 = false;
     }
-    return false;
+    return t2;
   };
-  var ie = () => {
-    var e2 = --J.inBatch;
-    if (0 == e2) {
-      Nr();
-      var r2 = J.pendingUnobservations, t2 = 0;
-      while (t2 < r2.length) e2 = r2[t2], e2.isPendingUnobservation = false, e2.observers_.size || (!e2.isBeingObserved || (e2.isBeingObserved = false, e2.onBUO()), re(e2, "isMobXComputedValue") && e2.suspend_()), t2 = t2 + 1 | 0;
-      J.pendingUnobservations = [];
+  var Dn = (e2, P) => {
+    e2.interceptors_ === void 0 && (e2.interceptors_ = []);
+    var t2 = e2.interceptors_;
+    t2.push(P);
+    return En(function() {
+      var u2 = +t2.indexOf(P);
+      u2 != -1 && t2.splice(u2, 1);
+    });
+  };
+  var qe = (e2, h2) => {
+    var D2 = Ce();
+    try {
+      var H2 = [];
+      !e2.interceptors_ || (H2 = e2.interceptors_);
+      for (var P = Ye.call(H2), F = P.length, M = 0; M < F; M++) {
+        h2 = P[M](h2), h2 && !h2.type && ne(14);
+        if (!h2) break;
+      }
+      return h2;
+    } finally {
+      ze(D2);
     }
   };
-  var Cr = (e2) => {
-    e2.isPendingUnobservation || (e2.isPendingUnobservation = true, J.pendingUnobservations.push(e2));
-  };
-  var L = () => {
-    let e2 = null;
-    return { version: 7, UNCHANGED: {}, trackingDerivation: e2, trackingContext: e2, runId: 0, mobxGuid: 0, inBatch: 0, pendingUnobservations: [], pendingReactions: [], isRunningReactions: false, allowStateChanges: false, allowStateReads: true, enforceActions: true, spyListeners: [], globalReactionErrorHandlers: [], computedRequiresReaction: false, reactionRequiresObservable: false, observableRequiresReaction: false, disableErrorBoundaries: false, suppressReactionErrors: false, safeDescriptors: true };
-  };
-  var Pr = (e2, t2) => {
-    var a2 = J.trackingDerivation;
-    e2 = !t2 || a2 == null, ae();
-    var r2 = !!J.allowStateChanges;
-    e2 && Ue();
-    var n2 = !!J.allowStateReads;
-    t2 = Lt, Lt = Lt + 1 | 0;
-    var i2 = Ot;
-    Ot = t2;
-    return { runAsAction_: e2, prevDerivation_: a2, prevAllowStateChanges_: r2, prevAllowStateReads_: n2, notifySpy_: false, startTime_: 0, actionId_: t2, parentActionId_: i2 };
-  };
-  var Br = (e2) => {
-    Ot != Q(e2.actionId_) && le(30), Ot = Q(e2.parentActionId_), e2.error_ === void 0 || (J.suppressReactionErrors = true), ie(), !e2.runAsAction_ || je(e2.prevDerivation_), J.suppressReactionErrors = false;
-  };
-  var at = (e2) => {
-    var h2 = true;
-    ae();
+  var Se = (u2, e2) => be(function(s2, H2) {
+    if (H2 && "string" == typeof H2.kind) return e2(u2, s2, H2);
+  }, u2);
+  var Xe = (e2) => {
+    var p2 = Ce(), f2 = true;
+    $();
     try {
       return e2();
     } finally {
-      ie(), je(Ue());
+      ee(), ze(p2);
     }
   };
-  var Mr = (e2, t2, r2, n2, a2) => {
-    var v2 = Pr(e2, t2, n2, a2);
-    try {
-      return r2.apply(n2, a2);
-    } catch (e3) {
-      v2.error_ = e3;
-      throw e3;
-    } finally {
-      Br(v2);
-    }
-  };
-  var Rt = (e2) => {
-    throw e2;
-  };
-  var Ke = globalThis.Object.prototype.hasOwnProperty;
-  var Zr = globalThis.Object.is;
-  var Qe = globalThis.Array.prototype.slice;
-  var en = globalThis.Object.prototype.isPrototypeOf;
-  var tn = ee().toString();
-  var st = (0, function() {
-  });
-  var e = [];
-  ee().freeze(e);
-  var ar = e;
-  e = { __proto__: null }, ee().freeze(e);
-  var ir = e;
-  var $ = xe()("mobx administration");
-  var Ot = 0;
-  var Lt = 1;
-  var St = true;
-  var or = false;
-  var sr = { __proto__: null, value: "action", configurable: true, writable: false, enumerable: false };
-  var t = function() {
-  };
-  t = ee().getOwnPropertyDescriptor(t, "name"), e = t != null && t.configurable;
-  var rn = e;
-  var De = [];
-  De.push("mobxGuid"), De.push("spyListeners"), De.push("enforceActions"), De.push("computedRequiresReaction"), De.push("reactionRequiresObservable"), De.push("observableRequiresReaction"), De.push("allowStateReads"), De.push("disableErrorBoundaries"), De.push("runId"), De.push("UNCHANGED");
-  var J = (function() {
-    var t2, e2 = globalThis;
-    e2.__mobxInstanceCount && Q(e2.__mobxInstanceCount) > 0 && !e2.__mobxGlobals && (St = false), t2 = e2.__mobxGlobals, t2 && 7 != Q(t2.version) && (St = false);
-    if (!St) {
-      e2 = function() {
-        or || le(35);
-      }, t2 = globalThis.setTimeout, t2(e2, 1);
-      return L();
-    } else {
-      if (t2) {
-        e2.__mobxInstanceCount++, t2.UNCHANGED || (t2.UNCHANGED = {});
-        return t2;
+  var Tt = (s2) => !s2 ? false : oe(s2) || s2[Z] || Vt(s2) || jt(s2) || ke(s2);
+  var rt = /* @__PURE__ */ (function() {
+    let e2 = (n2, s2) => {
+      if (!n2) return false;
+      if ("function" == typeof n2.isPrototypeOf) return true === n2.isPrototypeOf(s2);
+      true === "constructor" in s2 ? (n2 = s2.constructor == n2, n2 = true === n2) : n2 = false;
+      return n2;
+    }, t2 = (v2) => fe(v2) ? v2.slice() : et(v2) || re(v2) ? pe(v2.entries()) : tt(v2) || se(v2) ? pe(v2.entries()) : v2;
+    return function(v2, C2, n2, r2, i2) {
+      if (v2 === C2) return 0 !== v2 ? v2 = true : (v2 = 1 / +v2, v2 = v2 === 1 / +C2), v2;
+      if (v2 == null || C2 == null) return false;
+      if (v2 !== v2) return C2 !== C2;
+      var a2 = typeof v2;
+      if ("function" != a2 && "object" != a2 && "object" != typeof C2) return false;
+      var s2 = Q.prototype;
+      a2 = s2.toString.call(v2) + "";
+      if (a2 != Q.prototype.toString.call(C2) + "") return false;
+      if ("[object RegExp]" == a2 || "[object String]" == a2) return "" + v2 == "" + C2;
+      if ("[object Number]" == a2) {
+        v2 = Number(v2), C2 = Number(C2);
+        return true !== st(v2, v2) ? true !== st(C2, C2) : 0 === v2 ? (v2 = 1 / +v2, true === st(v2, 1 / +C2)) : v2 === C2;
       }
-    }
-    e2.__mobxInstanceCount = 1;
-    t2 = L(), e2.__mobxGlobals = t2;
-    return t2;
-  })();
-  var Xt = (0, function(t2, r2) {
-    return tt(t2, r2);
-  });
-  e = true;
-  var r = (0, function(t2) {
-    globalThis.console.warn("[mobx.spy] Is a no-op in production builds");
-    return function() {
-    };
-  });
-  var nn = (0, function(t2) {
-    t2.dependenciesState_ || t2.onBecomeStale_(), t2.dependenciesState_ = 2;
-  });
-  var an = (0, function(t2) {
-    t2.dependenciesState_ || (t2.dependenciesState_ = 1, t2.onBecomeStale_());
-  });
-  var At = void 0;
-  var on = (0, function(t2) {
-    var e2 = t2.dependenciesState_;
-    1 === e2 ? t2.dependenciesState_ = 2 : e2 || (At.lowestObserverState_ = 0);
-  });
-  var n = (0, function(t2) {
-    try {
-      return t2();
-    } finally {
-      je(Ue());
-    }
-  });
-  var ur = (0, function() {
-    var e2 = arguments[0];
-    e2 = !!e2;
-    var r2 = !!J.allowStateChanges;
-    J.allowStateChanges = e2;
-    try {
-      return arguments[1]();
-    } finally {
-      J.allowStateChanges = r2;
-    }
-  });
-  var ht = (0, function(t2) {
-    return this.cause = t2, this;
-  });
-  se(ht, "name", { __proto__: null, value: "CaughtException", configurable: e }), ht.prototype.isMobXCaughtException = e;
-  var ge = (0, function(s2) {
-    var t2 = arguments.length > 0 && s2 !== void 0 ? s2 + "" : "Atom";
-    this.name_ = t2, this.observers_ = new globalThis.Set(), this.lastAccessedBy_ = 0, this.lowestObserverState_ = -1, this.flags_ = 0;
-    return this;
-  });
-  t = ge.prototype, t.onBO = function() {
-    Rr(this);
-  }, t = ge.prototype, t.onBUO = function() {
-    Dr(this);
-  }, t = ge.prototype, t.reportObserved = function() {
-    return be(this);
-  }, t = ge.prototype, t.reportChanged = function() {
-    Ve(this);
-  }, t = ge.prototype, t.toString = function() {
-    return this.name_;
-  }, Ge("Atom", ge), ze(t, "isBeingObserved", 1), ze(t, "isPendingUnobservation", 2), t = ge.prototype, se(t, "diffValue", { __proto__: null, configurable: e, get: function() {
-    return 0 != (this.flags_ & 4) ? 1 : 0;
-  }, set: function(r2) {
-    var n2 = this.flags_;
-    1 == Q(r2) ? this.flags_ = n2 | 4 : this.flags_ = n2 & (4 ^ -1);
-  } });
-  var qt = (0, function(o2, c2, h2) {
-    if (arguments.length > 0 && o2 !== void 0) {
-      var e2 = ge;
-      e2 = new e2(o2);
-    } else {
-      e2 = new ge();
-    }
-    var r2 = st;
-    arguments.length > 1 && (r2 = c2);
-    var n2 = st;
-    arguments.length > 2 && (n2 = h2), r2 === st || (e2.onBOL = new globalThis.Set(), e2.onBOL.add(r2)), n2 === st || (e2.onBUOL = new globalThis.Set(), e2.onBUOL.add(n2));
-    return e2;
-  });
-  var Ut = (e2) => e2();
-  var sn = () => {
-    J.isRunningReactions = true;
-    var r2, n2, e2 = J.pendingReactions, t2 = 0;
-    while (e2.length > 0) {
-      t2 = t2 + 1 | 0, 100 == t2 && (r2 = "[mobx] cycle in reaction: " + e2[0], globalThis.console.error(r2), e2.splice(0, e2.length)), n2 = e2.splice(0, e2.length), r2 = 0;
-      while (r2 < n2.length) n2[r2].runReaction_(), r2 = r2 + 1 | 0;
-    }
-    J.isRunningReactions = false;
-  };
-  var _e = (0, function(s2, v2, p2, g2) {
-    var r2 = arguments.length > 0 && s2 !== void 0 ? s2 + "" : "Reaction";
-    this.name_ = r2, this.onInvalidate_ = void 0, arguments.length > 1 && (this.onInvalidate_ = v2), arguments.length > 2 && p2 && (this.errorHandler_ = p2), arguments.length > 3 && g2 !== void 0 && (this.requiresObservable_ = g2), this.observing_ = [], this.newObserving_ = null, this.dependenciesState_ = -1, this.runId_ = 0, this.unboundDepsCount_ = 0, this.flags_ = 0;
-    return this;
-  });
-  t = _e.prototype, t.onBecomeStale_ = function() {
-    this.schedule_();
-  }, t = _e.prototype, t.schedule_ = function() {
-    this.isScheduled || (this.isScheduled = true, J.pendingReactions.push(this), Nr());
-  }, t = _e.prototype, t.runReaction_ = function() {
-    if (!this.isDisposed) {
-      ae(), this.isScheduled = false;
-      var t2 = J.trackingContext;
-      J.trackingContext = this;
-      if (er(this)) {
-        this.isTrackPending = true;
-        try {
-          this.onInvalidate_();
-          var r2, e2 = false;
-          if (e2) {
-          }
-        } catch (r3) {
-          this.reportExceptionInDerivation_(r3);
-        }
+      if ("[object Date]" == a2 || "[object Boolean]" == a2) return v2 = Number(v2), v2 === Number(C2);
+      if ("[object Symbol]" == a2) return v2 = Symbol.valueOf.call(v2), v2 === Symbol.valueOf.call(C2);
+      ("[object Map]" == a2 || "[object Set]" == a2) && n2 >= 0 && (n2 = n2 + 1 | 0), s2 = t2(v2), v2 = t2(C2);
+      var o2 = "[object Array]" == a2;
+      if (!o2) {
+        if ("object" != typeof s2 || "object" != typeof v2) return false;
+        C2 = s2.constructor, a2 = v2.constructor;
+        if (C2 !== a2 && !("function" == typeof C2 && e2(C2, C2) && "function" == typeof a2 && e2(a2, a2)) && true === "constructor" in s2 && true === "constructor" in v2) return false;
       }
-      J.trackingContext = t2;
-      ie();
-    }
-  }, t = _e.prototype, t.track = function(t2) {
-    if (!this.isDisposed) {
-      ae(), this.isRunning = true;
-      var r2 = J.trackingContext;
-      J.trackingContext = this, t2 = Er(this, t2, void 0), J.trackingContext = r2, this.isRunning = false, this.isTrackPending = false, !this.isDisposed || tr(this), Bt(t2) && this.reportExceptionInDerivation_(t2.cause), ie();
-    }
-  }, t = _e.prototype, t.reportExceptionInDerivation_ = function(t2) {
-    if (this.errorHandler_) {
-      var r2 = this.errorHandler_;
-      r2(t2, this);
-      return;
-    }
-    !J.disableErrorBoundaries || Rt(t2);
-    r2 = "[mobx] uncaught error in '" + this + "'", J.suppressReactionErrors || globalThis.console.error(r2, t2);
-    var n2 = J.globalReactionErrorHandlers, a2 = n2.length;
-    r2 = 0;
-    while (r2 < a2) n2[r2](t2, this), r2 = r2 + 1 | 0;
-  }, t = _e.prototype, t.dispose = function() {
-    this.isDisposed || (this.isDisposed = true, this.isRunning || (ae(), tr(this), ie()));
-  }, t = _e.prototype, t.getDisposer_ = function(r2) {
-    var t2 = this, e2 = () => {
-      t2.dispose(), r2 != null && te(r2.removeEventListener) && r2.removeEventListener("abort", e2);
-    };
-    r2 != null && te(r2.addEventListener) && r2.addEventListener("abort", e2), e2[$] = t2;
-    var n2, a2;
-    Z("dispose" in globalThis.Symbol) && "symbol" == typeof globalThis.Symbol.dispose && (n2 = e2, a2 = globalThis.Symbol.dispose, n2[a2] = e2);
-    return e2;
-  }, t = _e.prototype, t.toString = function() {
-    return "Reaction[" + this.name_ + "]";
-  }, Ge("Reaction", _e), ze(t, "isDisposed", 1), ze(t, "isScheduled", 2), ze(t, "isTrackPending", 4), ze(t, "isRunning", 8), t = _e.prototype, se(t, "diffValue", { __proto__: null, configurable: e, get: function() {
-    return 0 != (this.flags_ & 16) ? 1 : 0;
-  }, set: function(r2) {
-    var n2 = this.flags_;
-    1 == Q(r2) ? this.flags_ = n2 | 16 : this.flags_ = n2 & (16 ^ -1);
-  } });
-  var a = (0, function(t2) {
-    J.globalReactionErrorHandlers.push(t2);
-    return function() {
-      var c2 = +J.globalReactionErrorHandlers.indexOf(t2) | 0;
-      c2 >= 0 && J.globalReactionErrorHandlers.splice(c2, 1);
-    };
-  });
-  var oe = (0, function(t2) {
-    t2.get || le(31), this.derivation = t2.get;
-    var r2 = t2.name ? t2.name + "" : "ComputedValue";
-    this.name_ = r2, t2.set ? (r2 = t2.set, this.setter_ = Je("ComputedValue-setter", r2, false, void 0)) : this.setter_ = void 0, this.equals_ = Xt, !t2.equals || (this.equals_ = t2.equals), this.scope_ = t2.context, this.requiresReaction_ = t2.requiresReaction, this.keepAlive_ = !!t2.keepAlive, this.dependenciesState_ = -1, this.observing_ = [], t2 = null, this.newObserving_ = t2, this.observers_ = new globalThis.Set(), this.runId_ = 0, this.lastAccessedBy_ = 0, this.lowestObserverState_ = 0, this.unboundDepsCount_ = 0, this.value_ = new ht(t2), this.flags_ = 0;
-    return this;
-  });
-  t = oe.prototype, t.onBecomeStale_ = function() {
-    ((e2) => {
-      if (!e2.lowestObserverState_) e2.lowestObserverState_ = 1, e2 = e2.observers_, e2.forEach(an);
-    })(this);
-  }, t = oe.prototype, t.onBO = function() {
-    Rr(this);
-  }, t = oe.prototype, t.onBUO = function() {
-    Dr(this);
-  }, t = oe.prototype, t.computeValue_ = function(t2) {
-    this.isComputing = true;
-    var S2, r2 = false;
-    if (t2) t2 = this.derivation, S2 = Er(this, t2, this.scope_);
-    else {
-      if (true === J.disableErrorBoundaries) t2 = this.derivation, S2 = t2.call(this.scope_);
+      if (0 == n2) return false;
       else {
-        try {
-          t2 = this.derivation, S2 = t2.call(this.scope_);
-        } catch (_2) {
-          S2 = new ht(_2);
-        }
+        n2 < 0 && (n2 = -1);
       }
-    }
-    this.isComputing = false;
-    return S2;
-  }, t = oe.prototype, t.trackAndCompute = function() {
-    var n2 = this.value_, t2 = Q(this.dependenciesState_) == -1, r2 = this.computeValue_(true);
-    t2 = t2 || Bt(n2) || Bt(r2) || !Z(this.equals_(n2, r2)), t2 && (this.value_ = r2);
-    return t2;
-  }, t = oe.prototype, t.get = function() {
-    if (this.isComputing) {
-      var r2 = this.name_, n2 = this.derivation, t2 = [];
-      t2.push(r2), t2.push(n2), rt(32, t2);
-    }
-    if (!J.inBatch && !this.observers_.size && !this.keepAlive_) er(this) && (ae(), this.value_ = this.computeValue_(false), ie());
-    else be(this), er(this) && (t2 = J.trackingContext, this.keepAlive_ && !t2 && (J.trackingContext = this), !this.trackAndCompute() || ((e3) => {
-      if (2 !== e3.lowestObserverState_) {
-        e3.lowestObserverState_ = 2;
-        var t3 = At;
-        At = e3, e3 = e3.observers_, e3.forEach(on), At = t3;
-      }
-    })(this), J.trackingContext = t2);
-    var e2 = this.value_;
-    Bt(e2) && Rt(e2.cause);
-    return e2;
-  }, t = oe.prototype, t.set = /* @__PURE__ */ ((e2) => function(a2) {
-    return e2(this, a2);
-  })((e2, t2) => {
-    if (e2.setter_) {
-      !e2.isRunningSetter || Te(33, e2.name_), e2.isRunningSetter = true;
-      try {
-        var r2 = e2.setter_;
-        r2.call(e2.scope_, t2);
-      } finally {
-        e2.isRunningSetter = false;
-      }
-    } else Te(34, e2.name_);
-  }), t = oe.prototype, t.suspend_ = function() {
-    this.keepAlive_ || (tr(this), this.value_ = void 0);
-  }, t = oe.prototype, t.warnAboutUntrackedRead_ = function() {
-  }, t = oe.prototype, t.toString = function() {
-    let t2 = this.name_ + "[";
-    return t2 + this.derivation.toString() + "]";
-  }, t = oe.prototype, t.valueOf = function() {
-    return kr(this.get());
-  }, t = oe.prototype;
-  var i = xe().toPrimitive;
-  t[i] = function() {
-    return this.valueOf();
-  }, Ge("ComputedValue", oe), ze(t, "isComputing", 1), ze(t, "isRunningSetter", 2), ze(t, "isBeingObserved", 4), ze(t, "isPendingUnobservation", 8), t = oe.prototype, se(t, "diffValue", { __proto__: null, configurable: e, get: function() {
-    return 0 != (this.flags_ & 16) ? 1 : 0;
-  }, set: function(r2) {
-    var n2 = this.flags_;
-    1 == Q(r2) ? this.flags_ = n2 | 16 : this.flags_ = n2 & (16 ^ -1);
-  } });
-  var un = (0, function() {
-    var e2, t2;
-    (0 != J.pendingReactions.length || 0 != Q(J.inBatch) || J.isRunningReactions) && le(36), or = true, St && (e2 = globalThis, t2 = --e2.__mobxInstanceCount, 0 == t2 && (e2.__mobxGlobals = void 0), J = L());
-  });
-  i = (0, function() {
-    return J;
-  });
-  var o = (0, function() {
-    var e2, i2, r2 = L(), n2 = ee().keys(r2), a2 = n2.length, t2 = 0;
-    while (t2 < a2) e2 = n2[t2], (+De.indexOf(e2) | 0) == -1 && (i2 = J, i2[e2] = r2[e2]), t2 = t2 + 1 | 0;
-    J.allowStateChanges = !J.enforceActions;
-  });
-  var s = (0, function(r2, i2) {
-    var e2 = void 0;
-    arguments.length > 1 && (e2 = i2), ae();
-    try {
-      return r2.apply(e2);
-    } finally {
-      ie();
-    }
-  });
-  var Y = void 0;
-  var kt = void 0;
-  var ut = void 0;
-  var Ye;
-  var xt = void 0;
-  var Wt = void 0;
-  var Ze = void 0;
-  var Ht = void 0;
-  var lr = void 0;
-  var Ct = void 0;
-  var et = void 0;
-  var Tt = [];
-  var dt = (0, function(t2) {
-    return t2;
-  });
-  var ue = (0, function(i2, n2, l2, k2, d2) {
-    var a2, r2 = arguments.length > 2 && l2 !== void 0 ? l2 + "" : "ObservableValue";
-    arguments.length > 3 && k2, a2 = Xt, arguments.length > 4 && d2 && (a2 = d2), ge.call(this, r2), this.enhancer_ = n2, this.name_ = r2, this.equals_ = a2, this.hasUnreportedChange_ = false, this.value_ = n2(i2, void 0, r2);
-    return this;
-  });
-  t = ue.prototype;
-  var u = ge.prototype;
-  ee().setPrototypeOf(t, u), t = ue.prototype, t.constructor = ue, t = ue.prototype, t.prepareNewValue_ = function(t2) {
-    if (Ee(this)) {
-      t2 = Re(this, { __proto__: null, object: this, type: "update", newValue: t2 });
-      if (!t2) return J.UNCHANGED;
-      t2 = t2.newValue;
-    }
-    var n2 = this.value_;
-    t2 = this.enhancer_(t2, n2, this.name_);
-    return Z(this.equals_(n2, t2)) ? J.UNCHANGED : t2;
-  }, t = ue.prototype, t.setNewValue_ = function(t2) {
-    var r2 = this.value_;
-    this.value_ = t2, Ve(this), Be(this) && Me(this, { __proto__: null, type: "update", object: this, newValue: t2, oldValue: r2 });
-  }, t = ue.prototype, t.set = function(t2) {
-    t2 = this.prepareNewValue_(t2), t2 === J.UNCHANGED || this.setNewValue_(t2);
-  }, t = ue.prototype, t.get = function() {
-    be(this);
-    if (this.dehancer === void 0) return this.value_;
-    var t2 = this.dehancer;
-    return t2(this.value_);
-  }, t = ue.prototype, t.raw = function() {
-    return this.value_;
-  }, t = ue.prototype, t.toJSON = function() {
-    return this.get();
-  }, t = ue.prototype, t.toString = function() {
-    let t2 = this.name_ + "[";
-    return t2 + this.value_ + "]";
-  }, t = ue.prototype, t.valueOf = function() {
-    return kr(this.get());
-  }, t = ue.prototype, u = xe().toPrimitive, t[u] = function() {
-    return this.valueOf();
-  }, Ge("ObservableValue", ue);
-  var vr = new (Oe())();
-  var he = (0, function(n2, o2, l2, p2) {
-    return this.target_ = n2, arguments.length > 1 && o2 ? this.values_ = o2 : this.values_ = new (Oe())(), this.name_ = l2 + "", this.defaultAnnotation_ = lr, arguments.length > 3 && p2 && (this.defaultAnnotation_ = p2), this.keysAtom_ = new ge("ObservableObject.keys"), this.isPlainObject_ = qe(this.target_), this;
-  });
-  t = he.prototype, t.materializeLazyComputed_ = function(t2) {
-    if (!!this.lazyComputedKeys_) {
-      var r2 = this.lazyComputedKeys_.get(t2);
-      if (r2) {
-        this.lazyComputedKeys_.delete(t2), 0 == (+this.lazyComputedKeys_.size | 0) && (this.lazyComputedKeys_ = void 0), r2 = r2(), this.values_.set(t2, r2);
-        return r2;
-      }
-    }
-  }, t = he.prototype, t.materializeLazyObservable_ = function(t2) {
-    if (!!this.lazyObservableKeys_) {
-      var r2 = this.lazyObservableKeys_.get(t2);
-      if (r2) {
-        this.lazyObservableKeys_.delete(t2), 0 == (+this.lazyObservableKeys_.size | 0) && (this.lazyObservableKeys_ = void 0), r2 = r2(), this.values_.set(t2, r2);
-        return r2;
-      }
-    }
-  }, t = he.prototype, t.getObservablePropValue_ = function(t2) {
-    var r2 = this.values_.get(t2);
-    r2 = r2 || this.materializeLazyComputed_(t2), r2 = r2 || this.materializeLazyObservable_(t2);
-    return r2.get();
-  }, t = he.prototype, t.setObservablePropValue_ = function(t2, r2) {
-    var n2 = this.values_.get(t2);
-    n2 = n2 || this.materializeLazyComputed_(t2), n2 = n2 || this.materializeLazyObservable_(t2);
-    if (re(n2, "isMobXComputedValue")) {
-      n2.set(r2);
-      return true;
-    }
-    if (Ee(this)) {
-      r2 = Re(this, { __proto__: null, type: "update", object: G(this), name: t2, newValue: r2 });
-      if (!r2) return null;
-      r2 = r2.newValue;
-    }
-    r2 = n2.prepareNewValue_(r2);
-    if (r2 !== J.UNCHANGED) {
-      var a2 = Be(this), i2 = null;
-      (a2 || false) && (i2 = this.name_, i2 = { __proto__: null, type: "update", observableKind: "object", debugObjectName: i2, object: G(this), oldValue: n2.value_, name: t2, newValue: r2 }), n2.setNewValue_(r2), a2 && Me(this, i2);
-    }
-    return true;
-  }, t = he.prototype, t.get_ = function(t2) {
-    if (J.trackingDerivation) {
-      var r2 = this.target_;
-      r2 = !Ke.call(r2, t2);
-    } else {
-      r2 = false;
-    }
-    r2 && this.has_(t2);
-    return this.target_[t2];
-  }, t = he.prototype, t.set_ = function(t2, r2) {
-    return Xr(this, t2, r2, false);
-  }, t = he.prototype, t.has_ = function(t2) {
-    if (!J.trackingDerivation) return Z(t2 in this.target_);
-    this.pendingKeys_ || (this.pendingKeys_ = new (Oe())());
-    var r2 = this.pendingKeys_.get(t2);
-    r2 = r2 || ue, r2 = new r2(Z(t2 in this.target_), dt, "ObservableObject.key?", false), this.pendingKeys_.set(t2, r2);
-    return r2.get();
-  }, t = he.prototype, t.extend_ = function() {
-    var e2, n2 = arguments[0], a2 = arguments[1], r2 = arguments[2], t2 = arguments.length > 3 && arguments[3];
-    true === r2 && (r2 = this.defaultAnnotation_);
-    if (false === r2) return this.defineProperty_(n2, a2, t2);
-    if (e2 = r2.extend_(this, n2, a2, t2)) {
-    }
-    return e2;
-  }, t = he.prototype, t.notifyPropertyAddition_ = function(t2, r2) {
-    var n2 = Be(this);
-    (n2 || false) && (r2 = { __proto__: null, type: "add", observableKind: "object", debugObjectName: this.name_, object: G(this), name: t2, newValue: r2 }, n2 && Me(this, r2)), !this.pendingKeys_ || (t2 = this.pendingKeys_.get(t2), !t2 || t2.set(true)), Ve(this.keysAtom_);
-  }, t = he.prototype, t.defineProperty_ = function(t2, r2, n2) {
-    n2 = !!n2;
-    try {
-      ae();
-      var X = this.delete_(t2);
-      if (!X) return X;
-      if (Ee(this)) {
-        var a2 = G(this), q = Re(this, { __proto__: null, object: a2, name: t2, type: "add", newValue: r2.value });
-        if (!q) return null;
-        a2 = r2.value, a2 === q.newValue || (a2 = r2 = Ce({}, r2), r2.value = q.newValue);
-      }
-      if (n2 && (n2 = this.target_, !Z(Pe().defineProperty(n2, t2, r2)))) return false;
-      else {
-        n2 = this.target_, se(n2, t2, r2);
-      }
-      this.notifyPropertyAddition_(t2, r2.value);
-    } finally {
-      ie();
-    }
-    return true;
-  }, t = he.prototype, t.defineObservableProperty_ = function(r2, ke2, n2, l2) {
-    var t2, a2, i2 = arguments.length > 3 && l2;
-    try {
-      ae();
-      var Te2 = this.delete_(r2);
-      if (!Te2) return Te2;
-      if (Ee(this)) {
-        var Ve2 = Re(this, { __proto__: null, object: G(this), name: r2, type: "add", newValue: ke2 });
-        if (!Ve2) return null;
-        ke2 = Ve2.newValue;
-      }
-      var je2 = Lr(r2), Be2 = true;
-      !J.safeDescriptors || (Be2 = !!this.isPlainObject_), t2 = Be2, a2 = je2.get;
-      var Me2 = { __proto__: null, configurable: t2, enumerable: true, get: a2, set: je2.set };
-      if (i2 && (t2 = this.target_, !Z(Pe().defineProperty(t2, r2, Me2)))) return false;
-      else {
-        t2 = this.target_, se(t2, r2, Me2);
-      }
-      var Ne2 = "ObservableObject.key", ze2 = new ue(ke2, n2, Ne2, false);
-      t2 = this.values_, t2.set(r2, ze2), this.notifyPropertyAddition_(r2, ze2.value_);
-    } finally {
-      ie();
-    }
-    return true;
-  }, t = he.prototype, t.defineComputedProperty_ = function(t2, r2, n2) {
-    n2 = !!n2;
-    try {
-      ae();
-      var ve2 = this.delete_(t2);
-      if (!ve2) return ve2;
-      if (Ee(this)) {
-        var pe2 = Re(this, { __proto__: null, object: G(this), name: t2, type: "add", newValue: void 0 });
-        if (!pe2) return null;
-      }
-      r2.name || (r2.name = "ObservableObject.key");
-      r2.context = G(this);
-      var fe2 = Lr(t2), be2 = true;
-      !J.safeDescriptors || (be2 = !!this.isPlainObject_);
-      var i2 = fe2.get, ye2 = { __proto__: null, configurable: be2, enumerable: false, get: i2, set: fe2.set };
-      if (n2 && (n2 = this.target_, !Z(Pe().defineProperty(n2, t2, ye2)))) return false;
-      else {
-        n2 = this.target_, se(n2, t2, ye2);
-      }
-      n2 = this.values_;
-      n2.set(t2, new oe(r2)), this.notifyPropertyAddition_(t2, void 0);
-    } finally {
-      ie();
-    }
-    return true;
-  }, t = he.prototype, t.delete_ = function(t2, r2) {
-    var n2 = !!r2;
-    r2 = this.target_;
-    if (!Ke.call(r2, t2)) return true;
-    if (Ee(this) && !Re(this, { __proto__: null, object: G(this), name: t2, type: "remove" })) return null;
-    try {
-      ae();
-      var pt2 = Be(this);
-      r2 = false;
-      var mt2, ft2 = r2, f2 = this.values_, fe2 = f2.get(t2);
-      if (!fe2 && (pt2 || ft2)) {
-        r2 = this.target_;
-        var wt2 = ee().getOwnPropertyDescriptor(r2, t2);
-        wt2 && (mt2 = wt2.value);
-      }
-      if (n2 && (r2 = this.target_, !Z(Pe().deleteProperty(r2, t2)))) return false;
-      else {
-        r2 = this.target_, Z(Pe().deleteProperty(r2, t2)) || Sr("Cannot delete property '" + Ae(t2) + "'");
-      }
-      r2 = false;
-      r2 && delete this.appliedAnnotations_[t2], fe2 && (this.values_.delete(t2), re(fe2, "isMobXObservableValue") && (mt2 = fe2.value_), Vr(fe2)), Ve(this.keysAtom_);
-      if (this.pendingKeys_) {
-        var Rt2 = this.pendingKeys_.get(t2);
-        Rt2 && (r2 = Rt2.set, n2 = Rt2, r2.call(n2, Z(t2 in this.target_)));
-      }
-      if (pt2 || ft2) {
-        n2 = this.name_;
-        if (t2 = false) {
-        }
-        pt2 && Me(this, { __proto__: null, type: "remove", observableKind: "object", object: G(this), debugObjectName: n2, oldValue: mt2, name: t2 });
-        if (false) {
-        }
-      }
-    } finally {
-      ie();
-    }
-    return true;
-  }, t = he.prototype, t.ownKeys_ = function() {
-    be(this.keysAtom_);
-    let e2 = this.target_;
-    return Pe().ownKeys(e2);
-  }, t = he.prototype, t.keys_ = function() {
-    be(this.keysAtom_);
-    let e2 = this.target_;
-    return ee().keys(e2);
-  }, Ge("ObservableObjectAdministration", he);
-  var lt = (0, function(e2, s2) {
-    var r2 = void 0;
-    arguments.length > 1 && (r2 = s2);
-    if (Ke.call(e2, $)) return e2;
-    var t2, n2, a2;
-    n2 = r2 && r2.name ? r2.name + "" : "ObservableObject", t2 = he, a2 = new (Oe())(), t2 = new t2(e2, a2, n2, ((e3) => {
-      if (e3) {
-        if (e3.defaultDecorator !== void 0) return e3.defaultDecorator;
-        if (e3.autoBind || false === e3.deep) return { annotationType_: "true", options_: e3, make_: _r, extend_: cr };
-      }
-    })(r2)), se(e2, $, { __proto__: null, enumerable: false, writable: true, configurable: true, value: t2 });
-    return e2;
-  });
-  Tt.push({ __proto__: null, has: function() {
-    let e2 = arguments[0];
-    e2 = e2[$].has_;
-    let r2 = arguments[0];
-    r2 = r2[$];
-    return e2.call(r2, arguments[1]);
-  }, get: function(t2, r2) {
-    J.trackingDerivation && !Ke.call(t2, r2) && t2[$].has_(r2);
-    return t2[r2];
-  }, set: function(t2, r2, n2) {
-    if (!Zt(r2)) return false;
-    var e2 = Xr(t2[$], r2, n2, true);
-    if (e2 == null) return true;
-    e2 || Sr("'set' on proxy: trap returned falsish for property '" + Ae(r2) + "'");
-    return true;
-  }, deleteProperty: function() {
-    if (!Zt(arguments[1])) return false;
-    var e2 = arguments[0];
-    e2 = e2[$].delete_;
-    var r2 = arguments[0];
-    r2 = r2[$], e2 = e2.call(r2, arguments[1], true);
-    return e2 == null ? true : !!e2;
-  }, defineProperty: function(t2, r2, n2) {
-    var e2 = t2[$].defineProperty_;
-    e2 = e2.call(t2[$], r2, n2);
-    return e2 == null ? true : !!e2;
-  }, ownKeys: function(t2) {
-    let e2 = t2[$].ownKeys_;
-    return e2.call(t2[$]);
-  }, preventExtensions: function(t2) {
-    le(13);
-    return false;
-  } });
-  var _r = (0, function() {
-    var n2 = arguments[0], a2 = arguments[1], r2 = arguments[2], t2 = arguments[3];
-    if (r2.get) {
-      var e2 = ut.make_;
-      return e2.call(ut, n2, a2, r2, t2);
-    }
-    if (r2.set) {
-      e2 = r2.set, nt(e2) || (e2 = Je(Ae(a2), e2, false, void 0));
-      if (t2 === n2.target_) {
-        t2 = n2.defineProperty_;
-        return n2.defineProperty_(a2, { __proto__: null, configurable: true, set: e2 }) == null ? 0 : 2;
-      }
-      se(t2, a2, { __proto__: null, configurable: true, set: e2 });
-      return 2;
-    }
-    var i2;
-    if (t2 !== n2.target_ && te(r2.value)) {
-      if (Ar(r2.value)) {
-        i2 = Ze, this.options_ && this.options_.autoBind && (i2 = Ht);
-        return i2.make_(n2, a2, r2, t2);
-      }
-      i2 = xt;
-      this.options_ && this.options_.autoBind && (i2 = Wt);
-      return i2.make_(n2, a2, r2, t2);
-    }
-    i2 = Y;
-    this.options_ && false === this.options_.deep && (i2 = kt), te(r2.value) && this.options_ && this.options_.autoBind && (e2 = r2.value, r2.value = e2.bind(G(n2)));
-    return i2.make_(n2, a2, r2, t2);
-  });
-  var cr = (0, function() {
-    var n2 = arguments[0], a2 = arguments[1], r2 = arguments[2], t2 = arguments[3];
-    if (r2.get) return ut.extend_.call(ut, n2, a2, r2, t2);
-    if (r2.set) {
-      r2 = r2.set;
-      return n2.defineProperty_(a2, { __proto__: null, configurable: true, set: Je(Ae(a2), r2, false, void 0) }, t2);
-    }
-    te(r2.value) && this.options_ && this.options_.autoBind && (i = r2.value, r2.value = i.bind(G(n2)));
-    i = Y, this.options_ && false === this.options_.deep && (i = kt);
-    return i.extend_(n2, a2, r2, t2);
-  });
-  lr = { annotationType_: "true", options_: void 0, make_: _r, extend_: cr };
-  var de = {};
-  Tt.push({ __proto__: null, get: function(t2, r2) {
-    var e2 = t2[$];
-    if (r2 === $) return e2;
-    if ("length" === r2) return e2.getArrayLength_();
-    if ("string" == typeof r2 && !Z(globalThis.isNaN(r2))) {
-      t2 = e2.get_;
-      return e2.get_(globalThis.parseInt(r2));
-    }
-    return Ke.call(de, r2) ? de[r2] : t2[r2];
-  }, set: function(t2, r2, n2) {
-    var e2 = t2[$];
-    "length" === r2 && e2.setArrayLength_(n2);
-    "symbol" == typeof r2 || Z(globalThis.isNaN(r2)) ? t2[r2] = n2 : e2.set_(globalThis.parseInt(r2), n2);
-    return true;
-  }, preventExtensions: function() {
-    le(15);
-    return false;
-  } });
-  var Le = (0, function() {
-    var n2, a2 = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] + "" : "ObservableArray";
-    n2 = arguments[1], this.owned_ = false, arguments.length > 2 && (this.owned_ = !!arguments[2]), this.atom_ = new ge(a2), this.values_ = [], this.interceptors_ = void 0, this.changeListeners_ = void 0, this.dehancer = void 0, this.proxy_ = void 0, this.lastKnownLength_ = 0;
-    var e2 = "ObservableArray[..]";
-    this.enhancer_ = function(r2, a3, i2) {
-      return n2(r2, a3, e2);
-    };
-    return this;
-  });
-  t = Le.prototype, t.dehanceValue_ = function(t2) {
-    return this.dehancer !== void 0 ? this.dehancer(t2) : t2;
-  }, t = Le.prototype, t.dehanceValues_ = function(t2) {
-    return this.dehancer !== void 0 && t2.length > 0 ? t2.map(this.dehancer) : t2;
-  }, t = Le.prototype, t.getArrayLength_ = function() {
-    be(this.atom_);
-    return this.values_.length;
-  }, t = Le.prototype, t.setArrayLength_ = function(t2) {
-    ("number" != typeof t2 || Z(globalThis.Number.isNaN(t2)) || Q(t2) < 0) && Te(40, t2), t2 = Q(t2);
-    var r2 = this.values_.length;
-    if (t2 != r2) {
-      if (t2 > r2) {
-        var n2 = globalThis.Array;
-        t2 = new n2(t2 - r2 | 0), this.spliceWithArray_(r2, 0, t2);
-      } else this.spliceWithArray_(t2, r2 - t2 | 0);
-    }
-  }, t = Le.prototype, t.spliceWithArray_ = function(v2, y2, x2) {
-    var n2, a2, r2 = this.values_.length;
-    n2 = arguments.length > 0 && v2 !== void 0 ? Q(v2) : 0, r2 = 1 == arguments.length ? r2 - n2 | 0 : arguments.length > 1 && y2 !== void 0 && y2 != null ? Q(y2) : 0, a2 = void 0, arguments.length > 2 && (a2 = x2);
-    return Mt(this, n2, r2, a2);
-  }, t = Le.prototype, t.get_ = function(t2) {
-    be(this.atom_);
-    let r2 = this.dehanceValue_;
-    return this.dehanceValue_(this.values_[t2]);
-  }, t = Le.prototype, t.set_ = function(t2, r2) {
-    t2 = Q(t2);
-    var n2 = this.values_;
-    if (t2 < n2.length) {
-      var a2 = n2[t2];
-      if (Ee(this)) {
-        r2 = Re(this, { __proto__: null, type: "update", object: this.proxy_, index: t2, newValue: r2 });
-        if (!r2) return;
-        r2 = r2.newValue;
-      }
-      var i2 = this.enhancer_;
-      r2 = i2(r2, a2), r2 === a2 || (n2[t2] = r2, ((e2, t3, r3, n3) => {
-        var a3 = Be(e2), i3 = null;
-        a3 && (i3 = e2.proxy_, i3 = { __proto__: null, observableKind: "array", object: i3, type: "update", debugObjectName: e2.atom_.name_, index: t3, newValue: r3, oldValue: n3 }), Ve(e2.atom_), a3 && Me(e2, i3);
-      })(this, t2, r2, a2));
-    } else t2 = t2 + 1 | 0, t2 = new globalThis.Array(t2 - n2.length | 0), t2[t2.length - 1 | 0] = r2, Mt(this, n2.length, 0, t2);
-  };
-  var ln = (0, function(a2, i2, u2, p2) {
-    var e2 = "ObservableArray";
-    arguments.length > 2 && u2 !== void 0 && (e2 = u2 + "");
-    var t2 = false;
-    arguments.length > 3 && (t2 = !!p2);
-    return at(function() {
-      var l2 = e2, v2 = t2, A2 = new Le(l2, i2, v2), o2 = A2.values_;
-      se(o2, $, { __proto__: null, enumerable: false, writable: false, configurable: true, value: A2 }), o2 = A2.values_, o2 = new globalThis.Proxy(o2, Tt[1]), A2.proxy_ = o2, a2 && a2.length > 0 && A2.spliceWithArray_(0, 0, a2);
-      return o2;
-    });
-  });
-  Ge("ObservableArrayAdministration", Le), de.clear = function() {
-    return this.splice(0);
-  }, de.replace = function(t2) {
-    let e2 = this[$];
-    return e2.spliceWithArray_(0, e2.values_.length, t2);
-  }, de.toJSON = function() {
-    return this.slice();
-  }, de.splice = function(_2, b2) {
-    var e2 = this[$];
-    return 0 == arguments.length ? [] : 1 == arguments.length ? e2.spliceWithArray_(_2) : 2 == arguments.length ? e2.spliceWithArray_(_2, b2) : e2.spliceWithArray_(_2, b2, Qe.call(arguments, 2, arguments.length));
-  }, de.spliceWithArray = function() {
-    let r2 = this[$].spliceWithArray_;
-    return r2.apply(this[$], arguments);
-  }, de.push = function() {
-    let e2 = this[$];
-    Mt(e2, e2.values_.length, 0, arguments);
-    return e2.values_.length;
-  }, de.pop = function() {
-    var t2 = this[$].values_.length - 1 | 0;
-    t2 < 0 && (t2 = 0);
-    return this.splice(t2, 1)[0];
-  }, de.shift = function() {
-    return this.splice(0, 1)[0];
-  }, de.unshift = function() {
-    let e2 = this[$];
-    Mt(e2, 0, 0, arguments);
-    return e2.values_.length;
-  }, de.reverse = function() {
-    return !J.trackingDerivation || Te(37, "reverse"), this.replace(this.slice().reverse()), this;
-  }, de.sort = function() {
-    !J.trackingDerivation || Te(37, "sort");
-    var r2 = this.slice();
-    r2.sort.apply(r2, arguments), this.replace(r2);
-    return this;
-  }, de.remove = function(t2) {
-    var r2 = this[$];
-    t2 = +r2.dehanceValues_(r2.values_).indexOf(t2) | 0;
-    if (t2 > -1) {
-      this.splice(t2, 1);
-      return true;
-    }
-    return false;
-  }, ke("at"), ke("concat"), ke("flat"), ke("includes"), ke("indexOf"), ke("join"), ke("lastIndexOf"), ke("slice"), ke("toString"), ke("toLocaleString"), ke("toSorted"), ke("toSpliced"), ke("with"), Ne("every"), Ne("filter"), Ne("find"), Ne("findIndex"), Ne("findLast"), Ne("findLastIndex"), Ne("flatMap"), Ne("forEach"), Ne("map"), Ne("some"), Ne("toReversed"), qr("reduce"), qr("reduceRight");
-  var ne = (0, function(y2, _2, f2) {
-    var t2 = this;
-    t2[$] = {}, t2.enhancer_ = et;
-    var n2;
-    arguments.length > 1 && _2 && (t2.enhancer_ = _2), n2 = arguments.length > 2 && f2 !== void 0 ? f2 + "" : "ObservableMap", t2.name_ = n2, t2.interceptors_ = void 0, t2.changeListeners_ = void 0, t2.dehancer = void 0;
-    var e2;
-    arguments.length > 0 && (e2 = y2), at(function() {
-      t2.keysAtom_ = qt("ObservableMap.keys()"), t2.data_ = new (Oe())(), t2.hasMap_ = new (Oe())(), e2 && t2.merge(e2);
-    });
-    return t2;
-  });
-  t = ne.prototype, t.has_ = function(t2) {
-    return this.data_.has(t2);
-  }, t = ne.prototype, t.has = function(t2) {
-    var e2 = this;
-    if (!J.trackingDerivation) return e2.has_(t2);
-    var r2 = e2.hasMap_.get(t2);
-    if (!r2) r2 = ue, r2 = new r2(e2.has_(t2), dt, "ObservableMap.key?", false), e2.hasMap_.set(t2, r2), r2.onBUOL = new globalThis.Set(), r2.onBUOL.add(function() {
-      e2.hasMap_.delete(t2);
-    });
-    return r2.get();
-  }, t = ne.prototype, t.set = function(t2, r2) {
-    var n2 = this.data_.has(t2);
-    if (Ee(this)) {
-      r2 = Re(this, { __proto__: null, type: n2 ? "update" : "add", object: this, newValue: r2, name: t2 });
-      if (!r2) return this;
-      r2 = r2.newValue;
-    }
-    n2 ? this.updateValue_(t2, r2) : this.addValue_(t2, r2);
-    return this;
-  }, t = ne.prototype, t.updateValue_ = function(t2, r2) {
-    var n2 = this.data_.get(t2);
-    r2 = n2.prepareNewValue_(r2);
-    if (r2 !== J.UNCHANGED) {
-      var a2 = Be(this), i2 = null;
-      a2 && (i2 = this.name_, i2 = { __proto__: null, observableKind: "map", debugObjectName: i2, type: "update", object: this, oldValue: n2.value_, name: t2, newValue: r2 }), n2.setNewValue_(r2), a2 && Me(this, i2);
-    }
-  }, t = ne.prototype, t.addValue_ = function(t2, r2) {
-    ae();
-    try {
-      var R2 = "ObservableMap.key", n2 = ue, a2 = r2, i2 = this.enhancer_, D2 = new n2(a2, i2, R2, false);
-      n2 = this.data_, n2.set(t2, D2), r2 = D2.value_;
-      var P2 = this.hasMap_.get(t2);
-      P2 && (n2 = P2.setNewValue_, n2.call(P2, true)), Ve(this.keysAtom_);
-    } finally {
-      ie();
-    }
-    n2 = false;
-    a2 = Be(this), i2 = null, a2 && (n2 = true), n2 && (n2 = this.name_, i2 = { __proto__: null, observableKind: "map", debugObjectName: n2, type: "add", object: this, name: t2, newValue: r2 }), a2 && Me(this, i2);
-  }, t = ne.prototype, t.delete = function(t2) {
-    if (Ee(this) && !Re(this, { __proto__: null, type: "delete", object: this, name: t2 })) return false;
-    if (this.data_.has(t2)) {
-      var n2, a2, r2 = false;
-      n2 = Be(this), a2 = null, n2 && (r2 = true), r2 && (r2 = this.name_, a2 = { __proto__: null, observableKind: "map", debugObjectName: r2, type: "delete", object: this, oldValue: this.data_.get(t2).value_, name: t2 }), ae();
-      try {
-        Ve(this.keysAtom_);
-        var X = this.hasMap_.get(t2);
-        X && (r2 = X.setNewValue_, r2.call(X, false));
-        var q = this.data_.get(t2);
-        q.setNewValue_.call(q, void 0), this.data_.delete(t2);
-      } finally {
-        ie();
-      }
-      n2 && Me(this, a2);
-      return true;
-    }
-    return false;
-  }, t = ne.prototype, t.get = function(t2) {
-    if (this.has(t2)) {
-      t2 = this.data_.get(t2);
-      return Nt(this, t2.get());
-    }
-    return Nt(this, void 0);
-  }, t = ne.prototype, t.getOrInsert = function(r2, s2) {
-    if (!this.has(r2)) {
-      var n2 = this.set;
-      this.set(r2, s2);
-    }
-    return this.get(r2);
-  }, t = ne.prototype, t.getOrInsertComputed = function(r2, t2) {
-    if (!this.has(r2)) {
-      var n2 = this.set;
-      this.set(r2, t2(r2));
-    }
-    return this.get(r2);
-  }, t = ne.prototype, t.keys = function() {
-    be(this.keysAtom_);
-    return this.data_.keys();
-  }, t = ne.prototype, t.values = function() {
-    var e2 = this;
-    let r2 = e2.keys(), t2 = { __proto__: null, next: function() {
-      var _2 = r2.next();
-      if (_2.done) return { __proto__: null, done: true, value: void 0 };
-      var c2 = e2.get;
-      return { __proto__: null, done: false, value: e2.get(_2.value) };
-    } };
-    t2[xe().toStringTag] = "MapIterator";
-    return Dt(t2);
-  }, t = ne.prototype, t.entries = function() {
-    var e2 = this;
-    let r2 = e2.keys(), t2 = { __proto__: null, next: function() {
-      var d2 = r2.next();
-      if (d2.done) return { __proto__: null, done: true, value: void 0 };
-      var b2 = [];
-      b2.push(d2.value);
-      var n2 = e2.get;
-      b2.push(e2.get(d2.value));
-      return { __proto__: null, done: false, value: b2 };
-    } };
-    t2[xe().toStringTag] = "MapIterator";
-    return Dt(t2);
-  }, t = ne.prototype, t.forEach = function(a2, u2) {
-    var r2 = void 0;
-    arguments.length > 1 && (r2 = u2);
-    var i2, n2 = this.entries(), t2 = n2.next();
-    while (!t2.done) i2 = t2.value[1], a2.call(r2, i2, t2.value[0], this), t2 = n2.next();
-  }, t = ne.prototype, t.merge = function(t2) {
-    var e2 = this;
-    ve(t2) && (t2 = new globalThis.Map(t2)), ae();
-    try {
-      if (qe(t2)) {
-        for (var Z2 = dn(t2), te2 = 0; ; ) {
-          var r2 = te2;
-          if (r2 >= Z2.length) break;
-          r2 = e2.set;
-          var n2 = Z2[te2];
-          e2.set(n2, t2[Z2[te2]]), te2 = te2 + 1 | 0;
+      r2 === void 0 && (r2 = [], i2 = []);
+      for (C2 = r2.length; C2--; ) if (r2[C2] === s2) return i2[C2] === v2;
+      r2.push(s2), i2.push(v2);
+      if (o2) {
+        C2 = s2.length;
+        if (C2 != v2.length) return false;
+        while (C2 > 0) {
+          C2--;
+          if (!rt(s2[C2], v2[C2], n2 - 1 | 0, r2, i2)) return false;
         }
       } else {
-        if (Array.isArray(t2)) {
-          for (var re2 = 0; ; ) {
-            r2 = re2;
-            if (r2 >= t2.length) break;
-            r2 = e2.set;
-            n2 = t2[re2][0], e2.set(n2, t2[re2][1]), re2 = re2 + 1 | 0;
+        o2 = Q.keys(s2);
+        var u2 = o2.length;
+        if (Q.keys(v2).length != u2) return false;
+        for (a2 = 0; a2 < u2; a2++) {
+          C2 = o2[a2];
+          if (De.call(v2, C2)) {
+            var c2 = s2[C2];
+            C2 = v2[C2], C2 = rt(c2, C2, n2 - 1 | 0, r2, i2);
+          } else {
+            C2 = false;
           }
-        } else vt(t2) ? (r2 = ee().getPrototypeOf(t2), r2 = ee().getPrototypeOf(r2), ee().getPrototypeOf(r2) == null || Te(19, t2), t2.forEach(function(a2, n3) {
-          let t3 = e2.set;
-          e2.set(n3, a2);
-        })) : t2 == null || Te(20, t2);
+          if (!C2) return false;
+        }
       }
-    } finally {
-      ie();
+      r2.pop();
+      i2.pop();
+      return true;
+    };
+  })();
+  var Nt = (l2) => {
+    var e2 = l2.deep;
+    if (true === e2) return Ve;
+    e2 = l2.deep;
+    if (false === e2) return at;
+    if (l2.defaultDecorator) {
+      var t2 = l2.defaultDecorator;
+      e2 = !!t2.options_;
+    } else {
+      e2 = false;
     }
+    return e2 && l2.defaultDecorator.options_.enhancer_ ? (e2 = l2.defaultDecorator, t2 = e2.options_, t2.enhancer_) : Ve;
+  };
+  var Rt = (m2) => !!m2 ? m2 : cn;
+  var me = (e2) => e2.proxy_ ? e2.proxy_ : e2.target_;
+  var Hn = (n2) => {
+    var e2 = hn[n2];
+    if (e2) return e2;
+    e2 = { get: function() {
+      let t2 = this[Z];
+      return t2.getObservablePropValue_(n2);
+    }, set: function(s2) {
+      let t2 = this[Z];
+      return t2.setObservablePropValue_(n2, s2);
+    } }, hn[n2] = e2;
     return e2;
-  }, t = ne.prototype, t.clear = function() {
-    ae();
-    try {
-      try {
-        for (var w2 = ye(this.keys()), O2 = 0; ; ) {
-          var t2 = O2;
-          if (t2 >= w2.length) break;
-          t2 = this.delete;
-          this.delete(w2[O2]), O2 = O2 + 1 | 0;
-        }
-      } finally {
-        je(Ue());
-      }
-    } finally {
-      ie();
-    }
-  }, t = ne.prototype, t.replace = function(t2) {
-    ae();
-    try {
-      for (var mt2 = ((e2) => {
-        if (vt(e2) || ve(e2)) return e2;
-        if (Array.isArray(e2)) return new globalThis.Map(e2);
-        if (qe(e2)) {
-          var n3 = new (Oe())(), r3 = ee().keys(e2), t3 = 0;
-          while (t3 < r3.length) n3.set(r3[t3], e2[r3[t3]]), t3 = t3 + 1 | 0;
-          return n3;
-        }
-        Te(21, e2);
-        return new (Oe())();
-      })(t2), wt2 = new (Oe())(), Rt2 = false, Dt2 = ye(this.data_.keys()), L2 = 0; ; ) {
-        t2 = L2;
-        if (t2 >= Dt2.length) break;
-        var Bt2 = Dt2[L2];
-        if (!mt2.has(Bt2)) {
-          t2 = this.delete;
-          if (this.delete(Bt2)) Rt2 = true;
-          else {
-            t2 = wt2;
-            var r2 = Bt2, n2 = this.data_;
-            t2.set(r2, n2.get(Bt2));
-          }
-        }
-        L2 = L2 + 1 | 0;
-      }
-      var Mt2 = ye(mt2.entries());
-      for (L2 = 0; ; ) {
-        t2 = L2;
-        if (t2 >= Mt2.length) break;
-        var Nt2 = Mt2[L2][0];
-        t2 = this.data_;
-        var It2 = t2.has(Nt2);
-        t2 = this.set, this.set(Nt2, Mt2[L2][1]), t2 = this.data_, t2.has(Nt2) && (t2 = wt2, r2 = Nt2, n2 = this.data_, t2.set(Nt2, n2.get(Nt2)), It2 || (Rt2 = true)), L2 = L2 + 1 | 0;
-      }
-      if (!Rt2) {
-        t2 = +this.data_.size | 0;
-        if (t2 != (+wt2.size | 0)) Ve(this.keysAtom_);
-        else {
-          var Kt2 = this.data_.keys(), Zt2 = wt2.keys(), er2 = Kt2.next(), tr2 = Zt2.next();
-          while (!er2.done) {
-            if (er2.value !== tr2.value) {
-              Ve(this.keysAtom_);
-              break;
-            }
-            er2 = Kt2.next();
-            tr2 = Zt2.next();
-          }
-        }
-      }
-      this.data_ = wt2;
-    } finally {
-      ie();
-    }
-    return this;
-  }, t = ne.prototype, t.toJSON = function() {
-    return ye(this);
-  }, t = ne.prototype, t.toString = function() {
-    return "[object ObservableMap]";
-  }, t = ne.prototype, u = xe().iterator, t[u] = function() {
-    return this.entries();
-  }, t = ne.prototype, se(t, "size", { __proto__: null, enumerable: false, configurable: e, get: function() {
-    be(this.keysAtom_);
-    return this.data_.size;
-  } }), t = ne.prototype, u = xe().toStringTag, se(t, u, { __proto__: null, enumerable: false, configurable: e, get: function() {
-    return "Map";
-  } }), Ge("ObservableMap", ne);
-  var ce = (0, function(x2, b2, c2) {
-    var n2 = this;
-    n2[$] = {};
-    var e2 = "ObservableSet";
-    arguments.length > 2 && c2 !== void 0 && (e2 = c2 + ""), n2.name_ = e2;
-    var t2 = et;
-    arguments.length > 1 && b2 && (t2 = b2), n2.enhancer_ = function(n3, a2, i2) {
-      return t2(n3, a2, e2);
-    }, n2.data_ = new globalThis.Set(), n2.changeListeners_ = void 0, n2.interceptors_ = void 0, n2.dehancer = void 0;
-    var r2;
-    arguments.length > 0 && (r2 = x2), at(function() {
-      var _2 = qt;
-      n2.atom_ = _2(n2.name_), r2 && n2.replace(r2);
-    });
-    return n2;
-  });
-  t = ce.prototype, t.has = function(t2) {
-    be(this.atom_);
-    let r2 = this.data_;
-    return !!r2.has(Nt(this, t2));
-  }, t = ce.prototype, t.add = function(t2) {
-    if (Ee(this)) {
-      t2 = Re(this, { __proto__: null, type: "add", object: this, newValue: t2 });
-      if (!t2) return this;
-      t2 = t2.newValue;
-    }
-    if (!this.has(t2)) {
-      ae();
-      try {
-        var r2 = this.data_, n2 = this.enhancer_;
-        r2.add(n2(t2, void 0)), Ve(this.atom_);
-      } finally {
-        ie();
-      }
-      r2 = false;
-      n2 = Be(this);
-      var a2 = null;
-      n2 && (r2 = true), r2 && (a2 = { __proto__: null, observableKind: "set", debugObjectName: this.name_, type: "add", object: this, newValue: t2 }), n2 && Me(this, a2);
-    }
-    return this;
-  }, t = ce.prototype, t.delete = function(t2) {
-    if (Ee(this) && !Re(this, { __proto__: null, type: "delete", object: this, oldValue: t2 })) return false;
-    if (this.has(t2)) {
-      var n2, a2, r2 = false;
-      n2 = Be(this), a2 = null, n2 && (r2 = true), r2 && (a2 = { __proto__: null, observableKind: "set", debugObjectName: this.name_, type: "delete", object: this, oldValue: t2 }), ae();
-      try {
-        Ve(this.atom_), this.data_.delete(t2);
-      } finally {
-        ie();
-      }
-      n2 && Me(this, a2);
+  };
+  var Pn = (e2, n2, s2, N2) => {
+    var t2 = e2.target_;
+    if (De.call(t2, n2)) {
+      t2 = e2.values_;
+      if (t2.has(n2)) return e2.setObservablePropValue_(n2, s2);
+      if (N2) return N2 = e2.target_, true === Reflect.set(N2, n2, s2);
+      e2.target_[n2] = s2;
       return true;
     }
-    return false;
-  }, t = ce.prototype, t.values = function() {
-    var e2 = this;
-    be(e2.atom_);
-    let r2 = e2.data_.values(), t2 = { __proto__: null, next: function() {
-      var _2 = r2.next();
-      return _2.done ? { __proto__: null, done: true, value: void 0 } : { __proto__: null, done: false, value: Nt(e2, _2.value) };
-    } };
-    t2[xe().toStringTag] = "SetIterator";
-    return Dt(t2);
-  }, t = ce.prototype, t.keys = function() {
-    return this.values();
-  }, t = ce.prototype, t.entries = function() {
-    let t2 = this.values(), e2 = { __proto__: null, next: function() {
-      var p2 = t2.next();
-      if (p2.done) return { __proto__: null, done: true, value: void 0 };
-      var f2 = [];
-      f2.push(p2.value), f2.push(p2.value);
-      return { __proto__: null, done: false, value: f2 };
-    } };
-    e2[xe().toStringTag] = "SetIterator";
-    return Dt(e2);
-  }, t = ce.prototype, t.forEach = function(a2, u2) {
-    var r2 = void 0;
-    arguments.length > 1 && (r2 = u2);
-    var n2 = this.values(), t2 = n2.next();
-    while (!t2.done) a2.call(r2, t2.value, t2.value, this), t2 = n2.next();
-  }, t = ce.prototype, t.replace = function(t2) {
-    var e2 = this;
-    pe(t2) && (t2 = new globalThis.Set(t2)), ae();
-    try {
-      if (Array.isArray(t2)) {
-        e2.clear();
-        for (var T2 = 0; ; ) {
-          var r2 = T2;
-          if (r2 >= t2.length) break;
-          r2 = e2.add;
-          e2.add(t2[T2]), T2 = T2 + 1 | 0;
+    return e2.extend_(n2, { value: s2, enumerable: true, writable: true, configurable: true }, e2.defaultAnnotation_, N2);
+  };
+  var It = /* @__PURE__ */ (function() {
+    return function(n2, L2, h2, A2) {
+      var K = n2.values_, r2 = K.length;
+      L2 > r2 ? L2 = r2 : L2 < 0 && (L2 = r2 + L2 | 0, L2 < 0 && (L2 = 0)), h2 < 0 && (h2 = 0), r2 = r2 - L2 | 0, h2 > r2 || (r2 = h2), A2 == null ? A2 = [] : Array.isArray(A2) || (h2 = Array.prototype, A2 = h2.slice.call(A2));
+      if (je(n2)) {
+        h2 = n2.proxy_, h2 = qe(n2, { object: h2, type: "splice", index: L2, removedCount: r2, added: A2 });
+        if (!h2) return _t;
+        r2 = h2.removedCount | 0, A2 = h2.added;
+      }
+      if (0 != A2.length) {
+        h2 = [];
+        var i2 = A2.length;
+        for (K = 0; K < i2; K++) h2.push(n2.enhancer_(A2[K], void 0));
+      } else {
+        h2 = A2;
+      }
+      K = ((a2, L3, n3, A3) => {
+        var O2 = a2.values_, q2 = A3.length, E2 = +q2, r3 = E2 | 0;
+        if (0 == n3 && L3 == O2.length) {
+          for (a2 = 0; a2 < r3; a2++) L3 = A3[a2], O2.push(L3);
+          return _t;
         }
-      } else _t(t2) ? (e2.clear(), t2.forEach(function(r3) {
-        e2.add(r3);
-      })) : t2 == null || Te(41, t2);
-    } finally {
-      ie();
+        if (r3 < 1e4) {
+          for (a2 = [], a2.push(L3), a2.push(n3), L3 = 0; L3 < A3.length; L3++) n3 = A3[L3], a2.push(n3);
+          return O2.splice.apply(O2, a2);
+        }
+        a2 = L3 + n3 | 0;
+        var i3 = Ye.call(O2, L3, a2);
+        for (r3 = Ye.call(O2, a2, O2.length), a2 = O2.length, O2.length = a2 + A3.length - n3 | 0, a2 = 0; a2 < A3.length; a2++) O2[L3 + a2 | 0] = A3[a2];
+        for (a2 = 0; a2 < r3.length; a2++) O2[L3 + A3.length + a2 | 0] = r3[a2];
+        return i3;
+      })(n2, L2, r2, h2);
+      (0 != r2 || 0 != h2.length) && ((n3, L3, r3, i3) => {
+        var s2, o2, u2, E2 = Te(n3), h3 = null;
+        E2 && (h3 = n3.proxy_, s2 = n3.atom_, o2 = s2.name_, u2 = i3.length, h3 = { observableKind: "array", object: h3, debugObjectName: o2, type: "splice", index: L3, removed: i3, added: r3, removedCount: u2, addedCount: r3.length }), xe(n3.atom_), E2 && Ne(n3, h3);
+      })(n2, L2, h2, K);
+      return n2.dehanceValues_(K);
+    };
+  })();
+  var ye = (U2) => {
+    "function" == typeof Array.prototype[U2] && (ce[U2] = function() {
+      let i2 = this[Z];
+      le(i2.atom_);
+      let t2 = i2.dehanceValues_(i2.values_);
+      return t2[U2].apply(t2, arguments);
+    });
+  };
+  var Re = (U2) => {
+    "function" == typeof Array.prototype[U2] && (ce[U2] = function(S2, l2) {
+      var t2 = this, i2 = t2[Z];
+      le(i2.atom_);
+      var e2, n2 = i2.dehanceValues_(i2.values_);
+      e2 = l2;
+      return n2[U2](function(i3, s2) {
+        let r2 = e2;
+        return S2.call(r2, i3, s2, t2);
+      });
+    });
+  };
+  var Fn = (U2) => {
+    "function" == typeof Array.prototype[U2] && (ce[U2] = function() {
+      var e2 = this;
+      let i2 = e2[Z];
+      le(i2.atom_);
+      let t2 = i2.dehanceValues_(i2.values_), S2 = arguments[0];
+      arguments[0] = function(r2, i3, s2) {
+        return S2(r2, i3, s2, e2);
+      };
+      return t2[U2].apply(t2, arguments);
+    });
+  };
+  var St = (e2, s2) => e2.dehancer !== void 0 ? e2.dehancer(s2) : s2;
+  var Ze = (U2) => {
+    ie.prototype[U2] = function(t2) {
+      var r2 = this.atom_;
+      le(r2);
+      return ("intersection" == U2 || "union" == U2 || "symmetricDifference" == U2 || "isDisjointFrom" == U2) && tt(t2) && !se(t2) && "function" == typeof t2[U2] ? t2[U2](this) : new Set(this)[U2](t2);
+    };
+  };
+  var Ot = (o2, l2) => ({ annotationType_: o2, options_: l2, make_: pn, extend_: sr });
+  var Zt = (o2, l2) => ({ annotationType_: o2, options_: l2, make_: pn, extend_: or });
+  var Mn = (i2, u2, n2, p2, e2) => {
+    var s2 = p2.value;
+    if (u2.options_) {
+      var t2 = u2.options_;
+      p2 = !!t2.bound;
+    } else {
+      p2 = false;
     }
-    return e2;
-  }, t = ce.prototype, t.clear = function() {
-    ae();
+    p2 && (s2 = s2.bind(me(i2)));
+    t2 = ve(n2), u2.options_ ? (p2 = u2.options_, n2 = !!p2.name) : n2 = false, n2 && (n2 = u2.options_, t2 = n2.name + ""), u2.options_ ? (p2 = u2.options_, n2 = !!p2.autoAction) : n2 = false;
+    var r2, o2 = n2;
+    r2 = void 0, n2 = !!((p2 = u2.options_) && p2.bound), n2 && (r2 = me(i2)), e2 ? (u2 = !!i2.isPlainObject_, i2 = false) : (u2 = true, i2 = true);
+    return { value: Le(t2, s2, o2, r2), configurable: u2, enumerable: false, writable: i2 };
+  };
+  var dt = (o2, l2) => ({ annotationType_: o2, options_: l2, make_: ur, extend_: ar });
+  var Gn = (i2, p2, e2, t2) => {
+    var s2 = p2.value;
+    nt(s2) || (s2 = Be(s2)), e2 && (s2 = s2.bind(me(i2)), s2.isMobXFlow = true), t2 ? (p2 = !!i2.isPlainObject_, i2 = false) : (p2 = true, i2 = true);
+    return { value: s2, configurable: p2, enumerable: false, writable: i2 };
+  };
+  var Jt = (d2, u2, f2, s2) => {
+    var i2 = $e(d2)[Z];
+    i2.lazyObservableKeys_ || (i2.lazyObservableKeys_ = /* @__PURE__ */ new Map()), i2.lazyObservableKeys_.set(f2, function() {
+      var h2, G, I2 = Ve, d3 = !!((G = u2.options_) && G.enhancer_);
+      d3 && (d3 = u2.options_, I2 = d3.enhancer_), h2 = ts + ve(f2);
+      return new te(s2, I2, h2, false);
+    });
+    return i2;
+  };
+  var Yn = (b2) => b2.scheduler ? b2.scheduler : b2.delay ? function(S2) {
+    return setTimeout(S2, b2.delay);
+  } : function(S2) {
+    return S2();
+  };
+  var vr = (e2, t2) => !e2 ? t2 : function() {
     try {
+      return t2.apply(this, arguments);
+    } catch (i2) {
+      e2.call(this, i2);
+      return;
+    }
+  };
+  var Zi = (r2, i2, b2) => {
+    b2 = b2 || {};
+    var e2, t2;
+    if ("number" == typeof b2.timeout) {
+      var u2 = new Error("WHEN_TIMEOUT"), s2 = function() {
+        var n3 = e2[Z];
+        !n3.isDisposed && (e2(), b2.onError ? b2.onError(u2) : xt(u2));
+      }, o2 = b2.timeout;
+      t2 = setTimeout(s2, o2);
+    }
+    b2.name || (b2.name = "When");
+    var n2 = Le("When-effect", i2, false, void 0);
+    e2 = Gt(function(i3) {
+      on(false, r2) && (i3.dispose(), !t2 || clearTimeout(t2), n2());
+    }, b2);
+    return e2;
+  };
+  var Bn = (i2, n2, u2) => {
+    true === u2 && (u2 = i2.defaultAnnotation_);
+    if (false !== u2) {
+      if (true !== n2 in i2.target_) {
+        var e2 = u2.annotationType_, t2 = i2.name_ + "." + ve(n2), V = [];
+        V.push(e2), V.push(t2), We(1, V);
+      }
+      for (V = i2.target_; ; ) {
+        e2 = V && V !== Q.prototype;
+        if (!e2) break;
+        if (e2 = Q.getOwnPropertyDescriptor(V, n2)) {
+          e2 = u2.make_(i2, n2, e2, V);
+          if (0 === e2) return;
+          if (1 === e2) break;
+        }
+        V = Q.getPrototypeOf(V);
+      }
+    }
+  };
+  var Xi = (i2, n2, r2) => {
+    if (ke(i2)) {
+      var t2, e2 = true;
+      return Gt(function() {
+        var u2 = i2.get, o2 = i2.get();
+        if (!e2 || r2) {
+          var s2 = Ce(), b2 = i2.name_;
+          n2({ observableKind: "computed", debugObjectName: b2, type: "update", object: i2, newValue: o2, oldValue: t2 }), ze(s2);
+        }
+        e2 = false;
+        t2 = o2;
+      });
+    }
+    r2 && (r2 = i2.name_, n2({ observableKind: "value", debugObjectName: r2, object: i2, type: "update", newValue: i2.value_, oldValue: void 0 }));
+    return Ki(i2, n2);
+  };
+  var Vn = (n2, r2) => {
+    var e2, s2 = r2[1], t2 = s2;
+    r2.length > 2 && "function" == typeof r2[2] ? (e2 = Fe(r2[0], r2[1]), t2 = r2[2]) : e2 = Fe(r2[0]), e2[n2] ? (r2 = e2[n2], r2.add(t2)) : (r2 = e2, r2[n2] = /* @__PURE__ */ new Set(), r2 = e2[n2], r2.add(t2));
+    return function() {
+      var r3 = e2[n2];
+      r3 && (r3.delete(t2), 0 == r3.size && delete e2[n2]);
+    };
+  };
+  var it = (V, e2) => {
+    if (V == null || "object" != typeof V || zn(Date, V) || !Tt(V)) return V;
+    if (ot(V) || ke(V)) return it(V.get(), e2);
+    if (e2.has(V)) return e2.get(V);
+    if (fe(V)) {
+      var K = [];
+      e2.set(V, K);
+      for (var a2 = 0; a2 < V.length; a2++) K[a2] = it(V[a2], e2);
+      return K;
+    }
+    if (se(V)) {
+      for (a2 = /* @__PURE__ */ new Set(), e2.set(V, a2), K = pe(V.values()), V = 0; V < K.length; V++) a2.add(it(K[V], e2));
+      return a2;
+    }
+    if (re(V)) {
+      for (K = /* @__PURE__ */ new Map(), e2.set(V, K), a2 = pe(V.entries()), V = 0; V < a2.length; V++) t = a2[V][0], n = a2[V], K.set(t, it(n[1], e2));
+      return K;
+    }
+    t = {};
+    e2.set(V, t), K = xn(V), a2 = 0;
+    for (; a2 < K.length; a2++) n = Q.prototype, true === n.propertyIsEnumerable.call(V, K[a2]) && (n = K[a2], t[n] = it(V[K[a2]], e2));
+    return t;
+  };
+  var Wn = (e2) => {
+    var R2 = { name: e2.name_ };
+    if (e2.observing_) var t2 = e2.observing_, a2 = t2.length > 0;
+    else {
+      a2 = false;
+    }
+    if (a2) {
+      for (t2 = [], a2 = 0; ; a2++) {
+        if (a2 >= e2.observing_.length) break;
+        t2.push(Wn(e2.observing_[a2]));
+      }
+      R2.dependencies = t2;
+    }
+    return R2;
+  };
+  var Wi = (a2) => {
+    var R2 = { name: a2.name_ };
+    if (((j2) => {
+      var t3;
+      return !!((t3 = j2.observers_) && t3.size);
+    })(a2)) {
+      var e2 = a2.observers_;
+      e2 = pe(e2.values());
+      var t2 = [];
+      for (a2 = 0; a2 < e2.length; a2++) t2.push(Wi(e2[a2]));
+      R2.observers = t2;
+    }
+    return R2;
+  };
+  var Q = Object;
+  var t = Object.prototype;
+  var De = t.hasOwnProperty;
+  var st = Object.is;
+  var n = Array.prototype;
+  var Ye = n.slice;
+  var r = Object.prototype;
+  var Kn = r.isPrototypeOf;
+  var Xn = Object.toString();
+  var Ut = void 0;
+  var Qt = false;
+  var Zn = (0, function() {
+    return this;
+  });
+  var Je = function() {
+  };
+  var u = [];
+  Object.freeze(u);
+  var _t = u;
+  u = {}, Object.freeze(u);
+  var $t = u;
+  var Z = Symbol("mobx administration");
+  var At = function(v2, C2) {
+    return true === st(v2, C2);
+  };
+  var ot;
+  var en;
+  var tn;
+  var nn;
+  var rn;
+  var ht = true;
+  var sn = false;
+  var Ee = [];
+  (() => {
+    Ee.push("mobxGuid"), Ee.push("spyListeners"), Ee.push("enforceActions"), Ee.push("computedRequiresReaction"), Ee.push("reactionRequiresObservable"), Ee.push("observableRequiresReaction"), Ee.push("allowStateReads"), Ee.push("disableErrorBoundaries"), Ee.push("runId"), Ee.push("UNCHANGED");
+  })();
+  var X = (() => {
+    var t2;
+    globalThis.__mobxInstanceCount && (globalThis.__mobxInstanceCount | 0) > 0 && !globalThis.__mobxGlobals && (ht = false), t2 = globalThis.__mobxGlobals, t2 && 7 != (t2.version | 0) && (ht = false);
+    if (!ht) return setTimeout(function() {
+      sn || ne(35);
+    }, 1), qt();
+    else {
+      if (t2) return globalThis.__mobxInstanceCount++, t2.UNCHANGED || (t2.UNCHANGED = {}), t2;
+    }
+    globalThis.__mobxInstanceCount = 1;
+    t2 = qt(), globalThis.__mobxGlobals = t2;
+    return t2;
+  })();
+  var Jn = function() {
+    var c2 = X.pendingReactions;
+    (0 != c2.length || 0 != (X.inBatch | 0) || X.isRunningReactions) && ne(36), sn = true;
+    if (ht) c2 = globalThis, 0 == --c2.__mobxInstanceCount && (c2.__mobxGlobals = void 0), X = qt();
+  };
+  var i = function() {
+    return X;
+  };
+  var s = function() {
+    for (var n2, e2 = qt(), t2 = Q.keys(e2), r2 = t2.length, a2 = 0; a2 < r2; a2++) n2 = t2[a2], +Ee.indexOf(n2) == -1 && (X[n2] = e2[n2]);
+    X.allowStateChanges = !X.enforceActions;
+  };
+  var o = function(e2) {
+    console.warn("[mobx.spy] Is a no-op in production builds");
+    return function() {
+    };
+  };
+  var Qn = function(e2) {
+    e2.dependenciesState_ || e2.onBecomeStale_(), e2.dependenciesState_ = 2;
+  };
+  var _n = function(e2) {
+    e2.dependenciesState_ || (e2.dependenciesState_ = 1, e2.onBecomeStale_());
+  };
+  var pt = void 0;
+  var $n = function(e2) {
+    var c2 = e2.dependenciesState_;
+    1 === c2 ? e2.dependenciesState_ = 2 : c2 || (pt.lowestObserverState_ = 0);
+  };
+  var Ct = (e2) => e2();
+  var er = () => {
+    X.isRunningReactions = true;
+    var a2, r2, n2, i2, e2 = X.pendingReactions, t2 = 0;
+    while (e2.length > 0) {
+      t2++, 100 == t2 && (a2 = "[mobx] cycle in reaction: " + e2[0], console.error(a2), e2.splice(0, e2.length)), n2 = e2.splice(0, e2.length), i2 = n2.length, a2 = 0;
+      for (; a2 < i2; a2++) r2 = n2[a2], r2.runReaction_();
+    }
+    X.isRunningReactions = false;
+  };
+  var a = function(e2) {
+    var o2 = Ce();
+    try {
+      return e2();
+    } finally {
+      ze(o2);
+    }
+  };
+  var on = function(g2, S2) {
+    var c2 = !!g2;
+    g2 = !!X.allowStateChanges, X.allowStateChanges = c2;
+    try {
+      return S2();
+    } finally {
+      X.allowStateChanges = g2;
+    }
+  };
+  var ut = class {
+    constructor(t2) {
+      this.cause = t2;
+    }
+  };
+  de(ut, "name", { value: "CaughtException", configurable: true });
+  ut.prototype.isMobXCaughtException = true;
+  var ge = class {
+    constructor(o2 = "Atom") {
+      o2 = o2 + "", this.name_ = o2, this.observers_ = /* @__PURE__ */ new Set(), this.lastAccessedBy_ = 0, this.lowestObserverState_ = -1, this.flags_ = 0;
+    }
+    onBO() {
+      Sn(this);
+    }
+    onBUO() {
+      On(this);
+    }
+    reportObserved() {
+      return le(this);
+    }
+    reportChanged() {
+      xe(this);
+    }
+    toString() {
+      return this.name_;
+    }
+    get isBeingObserved() {
+      return 0 != (this.flags_ & 1);
+    }
+    set isBeingObserved(s2) {
+      s2 ? this.flags_ |= 1 : this.flags_ &= ~1;
+    }
+    get isPendingUnobservation() {
+      return 0 != (this.flags_ & 2);
+    }
+    set isPendingUnobservation(s2) {
+      s2 ? this.flags_ |= 2 : this.flags_ &= ~2;
+    }
+    get diffValue() {
+      return 0 != (this.flags_ & 4) ? 1 : 0;
+    }
+    set diffValue(s2) {
+      1 == (s2 | 0) ? this.flags_ |= 4 : this.flags_ &= ~4;
+    }
+  };
+  Ge("Atom", ge);
+  var Lt = function(e2, t2 = Je, n2 = Je) {
+    var c2 = e2 !== void 0 ? new ge(e2) : new ge();
+    t2 === Je || (c2.onBOL = /* @__PURE__ */ new Set(), e2 = c2.onBOL, e2.add(t2)), n2 === Je || (c2.onBUOL = /* @__PURE__ */ new Set(), e2 = c2.onBUOL, e2.add(n2));
+    return c2;
+  };
+  var ft = 0;
+  var Dt = 1;
+  var un = { value: "action", configurable: true, writable: false, enumerable: false };
+  var e = Object.getOwnPropertyDescriptor(function() {
+  }, "name");
+  u = e != null && e.configurable;
+  var tr = u;
+  var he = class {
+    constructor(i2 = "Reaction", u2, c2, h2) {
+      var o2 = i2 + "";
+      this.name_ = o2, this.onInvalidate_ = void 0, u2 !== void 0 && (this.onInvalidate_ = u2), c2 && (this.errorHandler_ = c2), h2 !== void 0 && (this.requiresObservable_ = h2), this.observing_ = [], this.newObserving_ = null, this.dependenciesState_ = -1, this.runId_ = 0, this.unboundDepsCount_ = 0, this.flags_ = 0;
+    }
+    onBecomeStale_() {
+      this.schedule_();
+    }
+    schedule_() {
+      if (!this.isScheduled) this.isScheduled = true, X.pendingReactions.push(this), In();
+    }
+    runReaction_() {
+      if (!this.isDisposed) {
+        $(), this.isScheduled = false;
+        var g2 = X.trackingContext;
+        X.trackingContext = this;
+        if (Kt(this)) {
+          this.isTrackPending = true;
+          try {
+            this.onInvalidate_();
+            if (false) {
+            }
+          } catch (t2) {
+            this.reportExceptionInDerivation_(t2);
+          }
+        }
+        X.trackingContext = g2;
+        ee();
+      }
+    }
+    track(R2) {
+      if (!this.isDisposed) {
+        $(), this.isRunning = true;
+        var t2 = X.trackingContext;
+        X.trackingContext = this, R2 = Un(this, R2, void 0), X.trackingContext = t2, this.isRunning = false, this.isTrackPending = false, !this.isDisposed || Xt(this), Et(R2) && this.reportExceptionInDerivation_(R2.cause), ee();
+      }
+    }
+    reportExceptionInDerivation_(t2) {
+      if (this.errorHandler_) {
+        this.errorHandler_(t2, this);
+        return;
+      }
+      !X.disableErrorBoundaries || xt(t2);
+      var a2 = "[mobx] uncaught error in '" + this + "'";
+      X.suppressReactionErrors || console.error(a2, t2);
+      var n2 = X.globalReactionErrorHandlers, r2 = n2.length;
+      for (a2 = 0; a2 < r2; a2++) n2[a2](t2, this);
+    }
+    dispose() {
+      this.isDisposed || (this.isDisposed = true, this.isRunning || ($(), Xt(this), ee()));
+    }
+    getDisposer_(n2) {
+      var t2 = this, e2 = () => {
+        var r2 = t2.dispose;
+        t2.dispose(), n2 != null && "function" == typeof n2.removeEventListener && n2.removeEventListener("abort", e2);
+      };
+      n2 != null && "function" == typeof n2.addEventListener && n2.addEventListener("abort", e2), e2[Z] = t2, true === "dispose" in Symbol && "symbol" == typeof Symbol.dispose && (e2[Symbol.dispose] = e2);
+      return e2;
+    }
+    toString() {
+      return "Reaction[" + this.name_ + "]";
+    }
+    get isDisposed() {
+      return 0 != (this.flags_ & 1);
+    }
+    set isDisposed(s2) {
+      s2 ? this.flags_ |= 1 : this.flags_ &= ~1;
+    }
+    get isScheduled() {
+      return 0 != (this.flags_ & 2);
+    }
+    set isScheduled(s2) {
+      s2 ? this.flags_ |= 2 : this.flags_ &= ~2;
+    }
+    get isTrackPending() {
+      return 0 != (this.flags_ & 4);
+    }
+    set isTrackPending(s2) {
+      s2 ? this.flags_ |= 4 : this.flags_ &= ~4;
+    }
+    get isRunning() {
+      return 0 != (this.flags_ & 8);
+    }
+    set isRunning(s2) {
+      s2 ? this.flags_ |= 8 : this.flags_ &= ~8;
+    }
+    get diffValue() {
+      return 0 != (this.flags_ & 16) ? 1 : 0;
+    }
+    set diffValue(s2) {
+      1 == (s2 | 0) ? this.flags_ |= 16 : this.flags_ &= ~16;
+    }
+  };
+  Ge("Reaction", he);
+  n = function(P) {
+    X.globalReactionErrorHandlers.push(P);
+    return function() {
+      var e2 = X.globalReactionErrorHandlers, l2 = +e2.indexOf(P);
+      l2 >= 0 && X.globalReactionErrorHandlers.splice(l2, 1);
+    };
+  };
+  var ue = class {
+    constructor(l2) {
+      l2.get || ne(31), this.derivation = l2.get;
+      var o2 = l2.name ? l2.name + "" : "ComputedValue";
+      this.name_ = o2, l2.set ? this.setter_ = Le("ComputedValue-setter", l2.set, false, void 0) : this.setter_ = void 0, this.equals_ = At, !l2.equals || (this.equals_ = l2.equals), this.scope_ = l2.context, this.requiresReaction_ = l2.requiresReaction, this.keepAlive_ = !!l2.keepAlive, this.dependenciesState_ = -1, this.observing_ = [], o2 = null, this.newObserving_ = o2, this.observers_ = /* @__PURE__ */ new Set(), this.runId_ = 0, this.lastAccessedBy_ = 0, this.lowestObserverState_ = 0, this.unboundDepsCount_ = 0, this.value_ = new ut(o2), this.flags_ = 0;
+    }
+    onBecomeStale_() {
+      ((j2) => {
+        if (!j2.lowestObserverState_) j2.lowestObserverState_ = 1, j2.observers_.forEach(_n);
+      })(this);
+    }
+    onBO() {
+      Sn(this);
+    }
+    onBUO() {
+      On(this);
+    }
+    computeValue_(t2) {
+      this.isComputing = true;
+      var j2, g2 = false;
+      if (t2) t2 = this.derivation, j2 = Un(this, t2, this.scope_);
+      else {
+        t2 = X.disableErrorBoundaries;
+        if (true === t2) j2 = this.derivation.call(this.scope_);
+        else try {
+          j2 = this.derivation.call(this.scope_);
+        } catch (d2) {
+          j2 = new ut(d2);
+        }
+      }
+      this.isComputing = false;
+      return j2;
+    }
+    trackAndCompute() {
+      var r2 = this.value_, t2 = (this.dependenciesState_ | 0) == -1, n2 = this.computeValue_(true);
+      t2 = t2 || Et(r2) || Et(n2) || true !== this.equals_(r2, n2), t2 && (this.value_ = n2);
+      return t2;
+    }
+    get() {
+      if (this.isComputing) {
+        var t2 = this.name_, n2 = this.derivation, R2 = [];
+        R2.push(t2), R2.push(n2), We(32, R2);
+      }
+      !X.inBatch ? (t2 = this.observers_, R2 = !t2.size) : R2 = false;
+      if (R2 && !this.keepAlive_) Kt(this) && ($(), this.value_ = this.computeValue_(false), ee());
+      else le(this), Kt(this) && (R2 = X.trackingContext, this.keepAlive_ && !R2 && (X.trackingContext = this), !this.trackAndCompute() || ((j2) => {
+        var g2 = j2.lowestObserverState_;
+        if (2 !== g2) j2.lowestObserverState_ = 2, g2 = pt, pt = j2, j2.observers_.forEach($n), pt = g2;
+      })(this), X.trackingContext = R2);
+      R2 = this.value_, Et(R2) && xt(R2.cause);
+      return R2;
+    }
+    get isComputing() {
+      return 0 != (this.flags_ & 1);
+    }
+    set isComputing(s2) {
+      s2 ? this.flags_ |= 1 : this.flags_ &= ~1;
+    }
+    get isRunningSetter() {
+      return 0 != (this.flags_ & 2);
+    }
+    set isRunningSetter(s2) {
+      s2 ? this.flags_ |= 2 : this.flags_ &= ~2;
+    }
+    get isBeingObserved() {
+      return 0 != (this.flags_ & 4);
+    }
+    set isBeingObserved(s2) {
+      s2 ? this.flags_ |= 4 : this.flags_ &= ~4;
+    }
+    get isPendingUnobservation() {
+      return 0 != (this.flags_ & 8);
+    }
+    set isPendingUnobservation(s2) {
+      s2 ? this.flags_ |= 8 : this.flags_ &= ~8;
+    }
+    get diffValue() {
+      return 0 != (this.flags_ & 16) ? 1 : 0;
+    }
+    set diffValue(s2) {
+      1 == (s2 | 0) ? this.flags_ |= 16 : this.flags_ &= ~16;
+    }
+    suspend_() {
+      this.keepAlive_ || (Xt(this), this.value_ = void 0);
+    }
+    warnAboutUntrackedRead_() {
+    }
+    toString() {
+      let t2 = this.name_ + "[", n2 = this.derivation;
+      return t2 + n2.toString() + "]";
+    }
+    valueOf() {
+      return qn(this.get());
+    }
+    [Symbol.toPrimitive]() {
+      return this.valueOf();
+    }
+    set(s2) {
+      if (this.setter_) {
+        !this.isRunningSetter || we(33, this.name_), this.isRunningSetter = true;
+        try {
+          this.setter_.call(this.scope_, s2);
+        } finally {
+          this.isRunningSetter = false;
+        }
+      } else we(34, this.name_);
+    }
+  };
+  Ge("ComputedValue", ue), r = function(e2, t2) {
+    $();
+    try {
+      return e2.apply(t2);
+    } finally {
+      ee();
+    }
+  };
+  var c = function(s2) {
+    return Tt(s2);
+  };
+  var l = function(s2, D2) {
+    if (!oe(s2)) return false;
+    var i2 = s2[Z], e2 = i2.values_;
+    if (e2.has(D2)) return true;
+    i2.lazyComputedKeys_ ? (s2 = i2.lazyComputedKeys_, s2 = !!s2.has(D2)) : s2 = false;
+    if (s2) return true;
+    i2.lazyObservableKeys_ ? (s2 = i2.lazyObservableKeys_, s2 = !!s2.has(D2)) : s2 = false;
+    return s2 ? true : false;
+  };
+  var J = void 0;
+  var mt = void 0;
+  var Qe = void 0;
+  var _e;
+  var gt = void 0;
+  var Ht = void 0;
+  var Be = void 0;
+  var Pt = void 0;
+  var an;
+  var yt;
+  var at = function(B) {
+    return B;
+  };
+  var Ve = function(B, e2, o2) {
+    return Tt(B) ? B : Array.isArray(B) ? o2 ? J.array.call(J, B, { name: o2 }) : J.array.call(J, B) : Ae(B) ? o2 ? J.object.call(J, B, void 0, { name: o2 }) : J.object.call(J, B) : et(B) ? o2 ? J.map.call(J, B, { name: o2 }) : J.map.call(J, B) : tt(B) ? o2 ? J.set.call(J, B, { name: o2 }) : J.set.call(J, B) : "function" == typeof B && !Ke(B) && !nt(B) ? jn(B) ? Be(B) : gt(o2, B) : B;
+  };
+  t = function(B, e2, o2) {
+    return B == null ? B : oe(B) || fe(B) || re(B) || se(B) ? B : Array.isArray(B) ? J.array.call(J, B, { name: o2, deep: false }) : Ae(B) ? J.object.call(J, B, void 0, { name: o2, deep: false }) : et(B) ? J.map.call(J, B, { name: o2, deep: false }) : tt(B) ? J.set.call(J, B, { name: o2, deep: false }) : B;
+  };
+  var d = function(B, e2) {
+    return rt(B, e2, -1, void 0, void 0) ? e2 : B;
+  };
+  var cn = { deep: true, name: void 0, defaultDecorator: void 0 };
+  Object.freeze(cn);
+  var te = class extends ge {
+    constructor(s2, I2, u2 = "ObservableValue", E2, d2) {
+      var o2 = u2 + "";
+      E2;
+      var t2 = At;
+      d2 && (t2 = d2), super(o2), this.enhancer_ = I2, this.name_ = o2, this.equals_ = t2, this.hasUnreportedChange_ = false, this.value_ = I2(s2, void 0, o2);
+    }
+    prepareNewValue_(q2) {
+      if (je(this)) {
+        var h2 = qe(this, { object: this, type: "update", newValue: q2 });
+        if (!h2) return X.UNCHANGED;
+        q2 = h2.newValue;
+      }
+      q2 = this.enhancer_(q2, this.value_, this.name_);
+      return true === this.equals_(this.value_, q2) ? X.UNCHANGED : q2;
+    }
+    setNewValue_(q2) {
+      var t2 = this.value_;
+      this.value_ = q2, xe(this), Te(this) && Ne(this, { type: "update", object: this, newValue: q2, oldValue: t2 });
+    }
+    set(q2) {
+      q2 = this.prepareNewValue_(q2), q2 === X.UNCHANGED || this.setNewValue_(q2);
+    }
+    get() {
+      le(this);
+      return this.dehancer === void 0 ? this.value_ : this.dehancer(this.value_);
+    }
+    raw() {
+      return this.value_;
+    }
+    toJSON() {
+      return this.get();
+    }
+    toString() {
+      let t2 = this.name_ + "[";
+      return t2 + this.value_ + "]";
+    }
+    valueOf() {
+      return qn(this.get());
+    }
+    [Symbol.toPrimitive]() {
+      return this.valueOf();
+    }
+  };
+  ot = Ge("ObservableValue", te), e = { annotationType_: "override", make_: function(i2, n2) {
+    return 0;
+  }, extend_: function() {
+    we(44, this.annotationType_);
+    return false;
+  } };
+  var ln = (0, function(i2, n2, p2, V) {
+    if (p2.get) return Qe.make_.call(Qe, i2, n2, p2, V);
+    if (p2.set) {
+      var e2 = p2.set;
+      Ke(e2) || (e2 = Le(ve(n2), e2, false, void 0));
+      if (V === i2.target_) return i2.defineProperty_(n2, { configurable: true, set: e2 }) == null ? 0 : 2;
+      de(V, n2, { configurable: true, set: e2 });
+      return 2;
+    }
+    if (V !== i2.target_ && "function" == typeof p2.value) {
+      if (jn(p2.value)) {
+        var t2 = Be;
+        if (this.options_) var s2 = this.options_, r2 = !!s2.autoBind;
+        else {
+          r2 = false;
+        }
+        r2 && (t2 = Pt);
+        return t2.make_(i2, n2, p2, V);
+      }
+      t2 = gt;
+      this.options_ ? (s2 = this.options_, r2 = !!s2.autoBind) : r2 = false, r2 && (t2 = Ht);
+      return t2.make_(i2, n2, p2, V);
+    }
+    t2 = J;
+    this.options_ ? (s2 = this.options_, r2 = s2.deep, r2 = false === r2) : r2 = false, r2 && (t2 = mt), "function" == typeof p2.value && this.options_ && this.options_.autoBind && (p2.value = p2.value.bind(me(i2)));
+    return t2.make_(i2, n2, p2, V);
+  });
+  var dn = (0, function(i2, n2, p2, N2) {
+    if (p2.get) return Qe.extend_.call(Qe, i2, n2, p2, N2);
+    if (p2.set) {
+      var e2 = i2.defineProperty_;
+      return i2.defineProperty_(n2, { configurable: true, set: Le(ve(n2), p2.set, false, void 0) }, N2);
+    }
+    var r2;
+    "function" == typeof p2.value && this.options_ && this.options_.autoBind && (p2.value = p2.value.bind(me(i2)));
+    var t2 = J;
+    this.options_ ? (e2 = this.options_, r2 = e2.deep, r2 = false === r2) : r2 = false, r2 && (t2 = mt);
+    return t2.extend_(i2, n2, p2, N2);
+  });
+  an = u = { annotationType_: "true", options_: void 0, make_: ln, extend_: dn };
+  var hn = /* @__PURE__ */ Object.create(null);
+  var ae = class {
+    constructor(n2, s2, u2, l2) {
+      this.target_ = n2, s2 ? this.values_ = s2 : this.values_ = /* @__PURE__ */ new Map(), this.name_ = u2 + "", this.defaultAnnotation_ = an, l2 && (this.defaultAnnotation_ = l2), this.keysAtom_ = new ge("ObservableObject.keys"), this.isPlainObject_ = Ae(this.target_);
+    }
+    materializeLazyComputed_(n2) {
+      if (!!this.lazyComputedKeys_) {
+        var t2 = this.lazyComputedKeys_;
+        if (t2 = t2.get(n2)) {
+          var r2 = this.lazyComputedKeys_;
+          r2.delete(n2), r2 = this.lazyComputedKeys_, 0 == r2.size && (this.lazyComputedKeys_ = void 0), t2 = t2(), r2 = this.values_, r2.set(n2, t2);
+          return t2;
+        }
+      }
+    }
+    materializeLazyObservable_(n2) {
+      if (!!this.lazyObservableKeys_) {
+        var t2 = this.lazyObservableKeys_;
+        if (t2 = t2.get(n2)) {
+          var r2 = this.lazyObservableKeys_;
+          r2.delete(n2), r2 = this.lazyObservableKeys_, 0 == r2.size && (this.lazyObservableKeys_ = void 0), t2 = t2(), r2 = this.values_, r2.set(n2, t2);
+          return t2;
+        }
+      }
+    }
+    getObservablePropValue_(n2) {
+      var t2 = this.values_;
+      t2 = t2.get(n2), t2 || (t2 = this.materializeLazyComputed_(n2), t2 = t2 || this.materializeLazyObservable_(n2));
+      return t2.get();
+    }
+    setObservablePropValue_(n2, q2) {
+      var t2 = this.values_;
+      t2 = t2.get(n2), t2 = t2 || this.materializeLazyComputed_(n2), t2 = t2 || this.materializeLazyObservable_(n2);
+      if (ke(t2)) return t2.set(q2), true;
+      if (je(this)) {
+        var h2 = qe(this, { type: "update", object: me(this), name: n2, newValue: q2 });
+        if (!h2) return null;
+        q2 = h2.newValue;
+      }
+      q2 = t2.prepareNewValue_(q2);
+      if (q2 !== X.UNCHANGED) {
+        var E2 = Te(this);
+        h2 = null;
+        if (E2 || false) h2 = this.name_, i = t2.value_, h2 = { type: "update", observableKind: "object", debugObjectName: h2, object: me(this), oldValue: i, name: n2, newValue: q2 };
+        t2.setNewValue_(q2), E2 && Ne(this, h2);
+      }
+      return true;
+    }
+    get_(n2) {
+      if (X.trackingDerivation) {
+        var t2 = this.target_;
+        t2 = !De.call(t2, n2);
+      } else {
+        t2 = false;
+      }
+      t2 && this.has_(n2);
+      return this.target_[n2];
+    }
+    set_(n2, s2) {
+      return Pn(this, n2, s2, false);
+    }
+    has_(n2) {
+      if (!X.trackingDerivation) return true === n2 in this.target_;
+      this.pendingKeys_ || (this.pendingKeys_ = /* @__PURE__ */ new Map());
+      var t2 = this.pendingKeys_;
+      t2 = t2.get(n2);
+      if (!t2) t2 = te, t2 = new t2(true === n2 in this.target_, at, "ObservableObject.key?", false), this.pendingKeys_.set(n2, t2);
+      return t2.get();
+    }
+    extend_(a2, b2, c2, d2) {
+      var u2 = c2;
+      true === u2 && (u2 = this.defaultAnnotation_);
+      if (false === u2) return this.defineProperty_(a2, b2, d2);
+      var e2 = u2.extend_(this, a2, b2, d2);
+      if (e2) {
+      }
+      return e2;
+    }
+    notifyPropertyAddition_(n2, h2) {
+      var E2 = Te(this);
+      (E2 || false) && (h2 = { type: "add", observableKind: "object", debugObjectName: this.name_, object: me(this), name: n2, newValue: h2 }, E2 && Ne(this, h2)), !this.pendingKeys_ || (h2 = this.pendingKeys_, n2 = h2.get(n2), !n2 || n2.set(true)), xe(this.keysAtom_);
+    }
+    defineProperty_(n2, p2, N2) {
+      N2 = !!N2;
       try {
-        for (var w2 = ye(this.data_.values()), O2 = 0; ; ) {
-          var t2 = O2;
-          if (t2 >= w2.length) break;
-          t2 = this.delete;
-          this.delete(w2[O2]), O2 = O2 + 1 | 0;
+        $();
+        var V = this.delete_(n2);
+        if (!V) return V;
+        if (je(this)) {
+          var t2 = me(this), W = qe(this, { object: t2, name: n2, type: "add", newValue: p2.value });
+          if (!W) return null;
+          p2.value !== W.newValue && (p2 = be({}, p2), p2.value = W.newValue);
+        }
+        if (N2 && (N2 = this.target_, true !== Reflect.defineProperty(N2, n2, p2))) return false;
+        else {
+          de(this.target_, n2, p2);
+        }
+        this.notifyPropertyAddition_(n2, p2.value);
+      } finally {
+        ee();
+      }
+      return true;
+    }
+    defineObservableProperty_(a2, b2, c2, d2) {
+      var Se2 = b2;
+      try {
+        $();
+        var Le2 = this.delete_(a2);
+        if (!Le2) return Le2;
+        if (je(this)) {
+          var Me2 = qe(this, { object: me(this), name: a2, type: "add", newValue: Se2 });
+          if (!Me2) return null;
+          Se2 = Me2.newValue;
+        }
+        var Ge2 = Hn(a2), We2 = true;
+        !X.safeDescriptors || (We2 = !!this.isPlainObject_);
+        var r2 = We2, t2 = Ge2.get, Ke2 = { configurable: r2, enumerable: true, get: t2, set: Ge2.set };
+        if (d2 && (r2 = this.target_, true !== Reflect.defineProperty(r2, a2, Ke2))) return false;
+        else {
+          de(this.target_, a2, Ke2);
+        }
+        r2 = new te(Se2, c2, es, false);
+        this.values_.set(a2, r2), this.notifyPropertyAddition_(a2, r2.value_);
+      } finally {
+        ee();
+      }
+      return true;
+    }
+    defineComputedProperty_(n2, l2, N2) {
+      N2 = !!N2;
+      try {
+        $();
+        var ke2 = this.delete_(n2);
+        if (!ke2) return ke2;
+        if (je(this)) {
+          var xe2 = qe(this, { object: me(this), name: n2, type: "add", newValue: void 0 });
+          if (!xe2) return null;
+        }
+        l2.name || (l2.name = es);
+        l2.context = me(this);
+        var ze2 = Hn(n2), Te2 = true;
+        !X.safeDescriptors || (Te2 = !!this.isPlainObject_);
+        var r2 = ze2.get, Ne2 = { configurable: Te2, enumerable: false, get: r2, set: ze2.set };
+        if (N2 && (N2 = this.target_, true !== Reflect.defineProperty(N2, n2, Ne2))) return false;
+        else {
+          de(this.target_, n2, Ne2);
+        }
+        this.values_.set(n2, new ue(l2));
+        this.notifyPropertyAddition_(n2, void 0);
+      } finally {
+        ee();
+      }
+      return true;
+    }
+    delete_(n2, t2) {
+      var N2 = !!t2;
+      t2 = this.target_;
+      if (!De.call(t2, n2)) return true;
+      if (je(this) && !qe(this, { object: me(this), name: n2, type: "remove" })) return null;
+      try {
+        $();
+        var xt2 = Te(this);
+        t2 = false;
+        var qt2, zt2 = t2, r2 = this.values_, K = r2.get(n2);
+        if (!K && (xt2 || zt2)) {
+          t2 = this.target_;
+          var Et2 = Q.getOwnPropertyDescriptor(t2, n2);
+          Et2 && (qt2 = Et2.value);
+        }
+        if (N2 && (t2 = this.target_, true !== Reflect.deleteProperty(t2, n2))) return false;
+        else {
+          t2 = this.target_, true === Reflect.deleteProperty(t2, n2) || ((e2) => {
+            throw new TypeError(e2);
+          })("Cannot delete property '" + ve(n2) + "'");
+        }
+        t2 = false;
+        t2 && delete this.appliedAnnotations_[n2], K && (t2 = this.values_, t2.delete(n2), !ot(K) || (qt2 = K.value_), Rn(K)), xe(this.keysAtom_), this.pendingKeys_ && (t2 = this.pendingKeys_, Et2 = t2.get(n2), Et2 && (t2 = Et2.set, N2 = Et2, t2.call(N2, true === n2 in this.target_)));
+        if (xt2 || zt2) {
+          t2 = me(this), N2 = this.name_;
+          if (false) {
+          }
+          xt2 && Ne(this, { type: "remove", observableKind: "object", object: t2, debugObjectName: N2, oldValue: qt2, name: n2 });
+          if (false) {
+          }
         }
       } finally {
-        je(Ue());
+        ee();
       }
-    } finally {
-      ie();
+      return true;
     }
-  }, t = ce.prototype, t.toJSON = function() {
-    return ye(this);
-  }, t = ce.prototype, t.toString = function() {
-    return "[object ObservableSet]";
-  }, t = ce.prototype, u = xe().iterator, t[u] = function() {
-    return this.values();
-  }, t = ce.prototype, se(t, "size", { __proto__: null, enumerable: false, configurable: e, get: function() {
-    be(this.atom_);
-    return this.data_.size;
-  } }), t = ce.prototype, u = xe().toStringTag, se(t, u, { __proto__: null, enumerable: false, configurable: e, get: function() {
-    return "Set";
-  } }), ot("intersection"), ot("union"), ot("difference"), ot("symmetricDifference"), ot("isSubsetOf"), ot("isSupersetOf"), ot("isDisjointFrom"), Ge("ObservableSet", ce), et = (0, function(t2, r2, n2) {
-    return zt(t2) ? t2 : Array.isArray(t2) ? n2 ? Y.array.call(Y, t2, { __proto__: null, name: n2 }) : Y.array.call(Y, t2) : qe(t2) ? n2 ? Y.object.call(Y, t2, void 0, { __proto__: null, name: n2 }) : Y.object.call(Y, t2) : vt(t2) ? n2 ? Y.map.call(Y, t2, { __proto__: null, name: n2 }) : Y.map.call(Y, t2) : _t(t2) ? n2 ? Y.set.call(Y, t2, { __proto__: null, name: n2 }) : Y.set.call(Y, t2) : te(t2) && !nt(t2) && !ct(t2) ? Ar(t2) ? Ze(t2) : xt(n2, t2) : t2;
-  }), t = function(t2, r2, n2) {
-    return t2 == null ? t2 : fe(t2) || me(t2) || ve(t2) || pe(t2) ? t2 : Array.isArray(t2) ? Y.array.call(Y, t2, { __proto__: null, name: n2, deep: false }) : qe(t2) ? Y.object.call(Y, t2, void 0, { __proto__: null, name: n2, deep: false }) : vt(t2) ? Y.map.call(Y, t2, { __proto__: null, name: n2, deep: false }) : _t(t2) ? Y.set.call(Y, t2, { __proto__: null, name: n2, deep: false }) : t2;
-  }, u = function(t2, r2) {
-    return pt(t2, r2, -1, void 0, void 0) ? r2 : t2;
+    ownKeys_() {
+      le(this.keysAtom_);
+      let t2 = this.target_;
+      return Reflect.ownKeys(t2);
+    }
+    keys_() {
+      le(this.keysAtom_);
+      let t2 = this.target_;
+      return Q.keys(t2);
+    }
   };
-  var pr = { __proto__: null, deep: e, name: void 0, defaultDecorator: void 0 };
-  ee().freeze(pr);
-  var Vt = (0, function(n2, a2, i2) {
-    return this.extend_(n2, a2, i2, false) == null ? 0 : 1;
+  rn = Ge("ObservableObjectAdministration", ae);
+  var $e = function(d2, l2) {
+    if (De.call(d2, Z)) return d2;
+    var i2;
+    i2 = l2 && l2.name ? l2.name + "" : "ObservableObject", i2 = new ae(d2, /* @__PURE__ */ new Map(), i2, ((l3) => {
+      if (l3) {
+        if (l3.defaultDecorator !== void 0) return l3.defaultDecorator;
+        if (l3.autoBind || false === l3.deep) return { annotationType_: "true", options_: l3, make_: ln, extend_: dn };
+      }
+    })(l2)), de(d2, Z, { enumerable: false, writable: true, configurable: true, value: i2 });
+    return d2;
+  };
+  var He = { has: function(d2, n2) {
+    let t2 = d2[Z];
+    return t2.has_.call(d2[Z], n2);
+  } };
+  He.get = function(d2, n2) {
+    let t2 = d2[Z];
+    return t2.get_.call(d2[Z], n2);
+  }, He.set = function(d2, n2, s2) {
+    if (!Bt(n2)) return false;
+    var R2 = Pn(d2[Z], n2, s2, true);
+    return R2 == null ? true : !!R2;
+  }, He.deleteProperty = function(d2, n2) {
+    if (!Bt(n2)) return false;
+    var e2 = d2[Z], R2 = e2.delete_.call(d2[Z], n2, true);
+    return R2 == null ? true : !!R2;
+  }, He.defineProperty = function(d2, n2, p2) {
+    var e2 = d2[Z], t2 = e2.defineProperty_.call(d2[Z], n2, p2);
+    return t2 == null ? true : !!t2;
+  }, He.ownKeys = function(d2) {
+    let t2 = d2[Z];
+    return t2.ownKeys_.call(d2[Z]);
+  }, He.preventExtensions = function(e2) {
+    ne(13);
+    return false;
+  };
+  var ce = {};
+  var bt = {};
+  bt.get = function(d2, o2) {
+    var i2 = d2[Z];
+    return o2 === Z ? i2 : "length" === o2 ? i2.getArrayLength_() : "string" == typeof o2 && true !== isNaN(o2) ? i2.get_(parseInt(o2)) : De.call(ce, o2) ? ce[o2] : d2[o2];
+  }, bt.set = function(d2, o2, s2) {
+    var i2 = d2[Z];
+    "length" === o2 && i2.setArrayLength_(s2);
+    "symbol" == typeof o2 || true === isNaN(o2) ? d2[o2] = s2 : i2.set_(parseInt(o2), s2);
+    return true;
+  }, bt.preventExtensions = function() {
+    ne(15);
+    return false;
+  };
+  var Oe = class {
+    constructor(s2 = "ObservableArray", I2, a2) {
+      var o2 = s2 + "";
+      this.owned_ = false, a2 !== void 0 && (this.owned_ = !!a2), this.atom_ = new ge(o2), this.values_ = [], this.interceptors_ = void 0, this.changeListeners_ = void 0, this.dehancer = void 0, this.proxy_ = void 0, this.lastKnownLength_ = 0, o2 = "ObservableArray[..]", this.enhancer_ = function(n2, r2, Y) {
+        return I2(n2, r2, o2);
+      };
+    }
+    dehanceValue_(s2) {
+      return this.dehancer !== void 0 ? this.dehancer(s2) : s2;
+    }
+    dehanceValues_(O2) {
+      return this.dehancer !== void 0 && O2.length > 0 ? O2.map(this.dehancer) : O2;
+    }
+    getArrayLength_() {
+      le(this.atom_);
+      let t2 = this.values_;
+      return t2.length;
+    }
+    setArrayLength_(A2) {
+      ("number" != typeof A2 || true === Number.isNaN(A2) || (A2 | 0) < 0) && we(40, A2), A2 = A2 | 0;
+      var n2 = this.values_, t2 = n2.length;
+      if (A2 != t2) A2 > t2 ? (A2 = new Array(A2 - t2 | 0), this.spliceWithArray_(t2, 0, A2)) : this.spliceWithArray_(A2, t2 - A2 | 0);
+    }
+    spliceWithArray_(a2 = 0, b2, c2) {
+      var t2 = this.values_, A2 = t2.length, L2 = a2 | 0;
+      t2 = 1 == arguments.length ? A2 - L2 | 0 : b2 !== void 0 && b2 != null ? b2 | 0 : 0, A2 = void 0, A2 = c2;
+      return It(this, L2, t2, c2);
+    }
+    get_(L2) {
+      le(this.atom_);
+      let t2 = this.dehanceValue_;
+      return this.dehanceValue_(this.values_[L2]);
+    }
+    set_(A2, q2) {
+      A2 |= 0;
+      var O2 = this.values_;
+      if (A2 < O2.length) {
+        var t2 = O2[A2];
+        if (je(this)) {
+          var h2 = this.proxy_;
+          h2 = qe(this, { type: "update", object: h2, index: A2, newValue: q2 });
+          if (!h2) return;
+          q2 = h2.newValue;
+        }
+        q2 = this.enhancer_(q2, t2);
+        q2 === t2 || (O2[A2] = q2, ((e2, L2, q3, t3) => {
+          var n2, r2, E2 = Te(e2), h3 = null;
+          E2 && (h3 = e2.proxy_, n2 = e2.atom_, r2 = n2.name_, h3 = { observableKind: "array", object: h3, type: "update", debugObjectName: r2, index: L2, newValue: q3, oldValue: t3 }), xe(e2.atom_), E2 && Ne(e2, h3);
+        })(this, A2, q2, t2));
+      } else A2++, A2 = new Array(A2 - O2.length), A2[A2.length - 1 | 0] = q2, It(this, O2.length, 0, A2);
+    }
+  };
+  var nr = function(i2, I2, o2, c2) {
+    var e2 = "ObservableArray";
+    o2 !== void 0 && (e2 = o2 + "");
+    var t2 = false;
+    t2 = !!c2;
+    return Xe(function() {
+      var w2 = new Oe(e2, I2, t2), r2 = w2.values_;
+      de(r2, Z, { enumerable: false, writable: false, configurable: true, value: w2 }), r2 = w2.values_, r2 = new Proxy(r2, bt), w2.proxy_ = r2;
+      var n2;
+      i2 && i2.length > 0 && (n2 = w2.spliceWithArray_, w2.spliceWithArray_(0, 0, i2));
+      return r2;
+    });
+  };
+  nn = Ge("ObservableArrayAdministration", Oe), ce.clear = function() {
+    return this.splice(0);
+  }, ce.replace = function(A2) {
+    let i2 = this[Z], t2 = i2.spliceWithArray_, n2 = i2.values_;
+    return i2.spliceWithArray_(0, n2.length, A2);
+  }, ce.toJSON = function() {
+    return this.slice();
+  }, ce.splice = function(a2, g2) {
+    var i2 = this[Z];
+    if (0 == arguments.length) return [];
+    if (1 == arguments.length) return i2.spliceWithArray_(a2);
+    if (2 == arguments.length) return i2.spliceWithArray_(a2, g2);
+    var e2 = Ye.call(arguments, 2, arguments.length);
+    return i2.spliceWithArray_(a2, g2, e2);
+  }, ce.spliceWithArray = function() {
+    let t2 = this[Z];
+    return t2.spliceWithArray_.apply(this[Z], arguments);
+  }, ce.push = function() {
+    let i2 = this[Z], t2 = i2.values_;
+    It(i2, t2.length, 0, arguments);
+    return i2.values_.length;
+  }, ce.pop = function() {
+    var n2 = this[Z], r2 = n2.values_, t2 = r2.length - 1 | 0;
+    t2 < 0 && (t2 = 0);
+    return this.splice(t2, 1)[0];
+  }, ce.shift = function() {
+    return this.splice(0, 1)[0];
+  }, ce.unshift = function() {
+    let i2 = this[Z];
+    It(i2, 0, 0, arguments);
+    return i2.values_.length;
+  }, ce.reverse = function() {
+    return !X.trackingDerivation || we(37, "reverse"), this.replace(this.slice().reverse()), this;
+  }, ce.sort = function() {
+    !X.trackingDerivation || we(37, "sort");
+    var t2 = this.slice();
+    t2.sort.apply(t2, arguments), this.replace(t2);
+    return this;
+  }, ce.remove = function(s2) {
+    var i2 = this[Z];
+    s2 = +i2.dehanceValues_(i2.values_).indexOf(s2);
+    return s2 > -1 ? (this.splice(s2, 1), true) : false;
+  }, ye("at"), ye("concat"), ye("flat"), ye("includes"), ye("indexOf"), ye("join"), ye("lastIndexOf"), ye("slice"), ye("toString"), ye("toLocaleString"), ye("toSorted"), ye("toSpliced"), ye("with"), Re("every"), Re("filter"), Re("find"), Re("findIndex"), Re("findLast"), Re("findLastIndex"), Re("flatMap"), Re("forEach"), Re("map"), Re("some"), Re("toReversed"), Fn("reduce"), Fn("reduceRight");
+  var rr = {};
+  var _ = class {
+    constructor(t2, o2, n2 = "ObservableMap") {
+      var e2 = this;
+      e2[Z] = rr, e2.enhancer_ = Ve, o2 && (e2.enhancer_ = o2), o2 = n2 + "", e2.name_ = o2, e2.interceptors_ = void 0, e2.changeListeners_ = void 0, e2.dehancer = void 0, Xe(function() {
+        e2.keysAtom_ = Lt("ObservableMap.keys()"), e2.data_ = /* @__PURE__ */ new Map(), e2.hasMap_ = /* @__PURE__ */ new Map(), !t2 || e2.merge(t2);
+      });
+    }
+    has_(n2) {
+      let t2 = this.data_;
+      return !!t2.has(n2);
+    }
+    has(n2) {
+      var e2 = this;
+      if (!X.trackingDerivation) return e2.has_(n2);
+      var t2 = e2.hasMap_;
+      t2 = t2.get(n2);
+      if (!t2) t2 = te, t2 = new t2(e2.has_(n2), at, "ObservableMap.key?", false), e2.hasMap_.set(n2, t2), t2.onBUOL = /* @__PURE__ */ new Set(), t2.onBUOL.add(function() {
+        e2.hasMap_.delete(n2);
+      });
+      return t2.get();
+    }
+    set(n2, s2) {
+      var h2 = this.data_, t2 = !!h2.has(n2);
+      if (je(this)) {
+        h2 = t2 ? "update" : "add", h2 = qe(this, { type: h2, object: this, newValue: s2, name: n2 });
+        if (!h2) return this;
+        s2 = h2.newValue;
+      }
+      t2 ? this.updateValue_(n2, s2) : this.addValue_(n2, s2);
+      return this;
+    }
+    updateValue_(n2, q2) {
+      var t2 = this.data_;
+      t2 = t2.get(n2), q2 = t2.prepareNewValue_(q2);
+      if (q2 !== X.UNCHANGED) {
+        var r2, E2 = Te(this), h2 = null;
+        E2 && (h2 = this.name_, r2 = t2.value_, h2 = { observableKind: "map", debugObjectName: h2, type: "update", object: this, oldValue: r2, name: n2, newValue: q2 }), t2.setNewValue_(q2), E2 && Ne(this, h2);
+      }
+    }
+    addValue_(n2, q2) {
+      $();
+      try {
+        var C2 = "ObservableMap.key", L2 = new te(q2, this.enhancer_, C2, false);
+        this.data_.set(n2, L2), q2 = L2.value_;
+        var z2 = this.hasMap_, D2 = z2.get(n2);
+        !D2 || D2.setNewValue_.call(D2, true), xe(this.keysAtom_);
+      } finally {
+        ee();
+      }
+      z2 = false;
+      var E2 = Te(this), h2 = null;
+      E2 && (z2 = true), z2 && (z2 = this.name_, h2 = { observableKind: "map", debugObjectName: z2, type: "add", object: this, name: n2, newValue: q2 }), E2 && Ne(this, h2);
+    }
+    delete(n2) {
+      if (je(this) && !qe(this, { type: "delete", object: this, name: n2 })) return false;
+      var z2 = this.data_;
+      if (z2.has(n2)) {
+        z2 = false;
+        var E2 = Te(this), h2 = null;
+        E2 && (z2 = true);
+        if (z2) z2 = this.name_, h2 = this.data_.get(n2).value_, h2 = { observableKind: "map", debugObjectName: z2, type: "delete", object: this, oldValue: h2, name: n2 };
+        $();
+        try {
+          xe(this.keysAtom_), z2 = this.hasMap_;
+          var H2 = z2.get(n2);
+          !H2 || H2.setNewValue_.call(H2, false), z2 = this.data_;
+          var P = z2.get(n2);
+          P.setNewValue_.call(P, void 0), z2 = this.data_, z2.delete(n2);
+        } finally {
+          ee();
+        }
+        E2 && Ne(this, h2);
+        return true;
+      }
+      return false;
+    }
+    get(n2) {
+      return this.has(n2) ? (n2 = this.data_.get(n2), St(this, n2.get())) : St(this, void 0);
+    }
+    getOrInsert(n2, s2) {
+      this.has(n2) || this.set(n2, s2);
+      return this.get(n2);
+    }
+    getOrInsertComputed(n2, t2) {
+      this.has(n2) || this.set(n2, t2(n2));
+      return this.get(n2);
+    }
+    keys() {
+      le(this.keysAtom_);
+      let t2 = this.data_;
+      return t2.keys();
+    }
+    values() {
+      var e2 = this;
+      let n2 = e2.keys(), t2 = { next: function() {
+        var l2 = n2.next();
+        return l2.done ? { done: true, value: void 0 } : { done: false, value: e2.get(l2.value) };
+      } };
+      t2[Symbol.toStringTag] = "MapIterator";
+      return zt(t2);
+    }
+    entries() {
+      var e2 = this;
+      let n2 = e2.keys(), t2 = { next: function() {
+        var f2 = n2.next();
+        if (f2.done) return { done: true, value: void 0 };
+        var Y = [], t3 = f2.value;
+        Y.push(t3), Y.push(e2.get(f2.value));
+        return { done: false, value: Y };
+      } };
+      t2[Symbol.toStringTag] = "MapIterator";
+      return zt(t2);
+    }
+    forEach(S2, t2) {
+      var r2 = this.entries(), n2 = r2.next();
+      while (!n2.done) {
+        var i2 = n2.value[1];
+        S2.call(t2, i2, n2.value[0], this), n2 = i2 = r2.next();
+      }
+    }
+    merge(t2) {
+      var e2 = this;
+      re(t2) && (t2 = new Map(t2)), $();
+      try {
+        if (Ae(t2)) {
+          var as = lr(t2), cs = 0;
+          for (; ; cs++) {
+            var n2 = cs;
+            if (n2 >= as.length) break;
+            n2 = e2.set;
+            var r2 = as[cs];
+            e2.set(r2, t2[as[cs]]);
+            var a2 = as, l2 = as, h2 = as;
+          }
+        } else if (Array.isArray(t2)) for (var ls = 0; ; ls++) {
+          n2 = ls;
+          if (n2 >= t2.length) break;
+          n2 = e2.set, r2 = t2[ls][0];
+          var i2 = t2[ls];
+          e2.set(r2, i2[1]);
+        }
+        else et(t2) ? (Q.getPrototypeOf(Q.getPrototypeOf(Q.getPrototypeOf(t2))) == null || we(19, t2), t2.forEach(function(i3, r3) {
+          e2.set(r3, i3);
+        })) : t2 == null || we(20, t2);
+      } finally {
+        ee();
+      }
+      return e2;
+    }
+    clear() {
+      $();
+      try {
+        var z2 = Ce();
+        try {
+          for (var j2 = pe(this.keys()), q2 = 0; ; q2++) {
+            if (q2 >= j2.length) break;
+            this.delete(j2[q2]);
+          }
+        } finally {
+          ze(z2);
+        }
+      } finally {
+        ee();
+      }
+    }
+    replace(O2) {
+      $();
+      try {
+        var Jt2 = ((e2) => {
+          if (et(e2) || re(e2)) return e2;
+          if (Array.isArray(e2)) return new Map(e2);
+          if (Ae(e2)) {
+            for (var r2, i2, n2 = /* @__PURE__ */ new Map(), t3 = Q.keys(e2), a2 = 0; a2 < t3.length; a2++) r2 = t3[a2], i2 = e2[t3[a2]], n2.set(r2, i2);
+            return n2;
+          }
+          we(21, e2);
+          return /* @__PURE__ */ new Map();
+        })(O2), zn2 = /* @__PURE__ */ new Map(), jn2 = false;
+        O2 = this.data_;
+        for (var qn2 = pe(O2.keys()), En2 = 0; ; En2++) {
+          O2 = En2;
+          if (O2 >= qn2.length) break;
+          var Tn2 = qn2[En2];
+          if (!Jt2.has(Tn2)) if (this.delete(Tn2)) jn2 = true;
+          else {
+            O2 = zn2;
+            var t2 = Tn2;
+            O2.set(t2, this.data_.get(Tn2));
+          }
+        }
+        qn2 = pe(Jt2.entries());
+        for (En2 = 0; ; En2++) {
+          O2 = En2;
+          if (O2 >= qn2.length) break;
+          var Rn2 = qn2[En2][0], In2 = qn2[En2][1], Sn2 = !!this.data_.has(Rn2);
+          this.set(Rn2, In2), this.data_.has(Rn2) && (O2 = zn2, t2 = Rn2, O2.set(t2, this.data_.get(Rn2)), Sn2 || (jn2 = true));
+        }
+        if (!jn2) {
+          O2 = this.data_, t2 = O2.size;
+          if (t2 != zn2.size) xe(this.keysAtom_);
+          else {
+            O2 = this.data_;
+            var On2 = O2.keys(), Un2 = zn2.keys(), An2 = On2.next(), Cn2 = Un2.next();
+            while (!An2.done) {
+              O2 = An2.value;
+              if (O2 !== Cn2.value) {
+                xe(this.keysAtom_);
+                break;
+              }
+              An2 = On2.next();
+              Cn2 = Un2.next();
+            }
+          }
+        }
+        this.data_ = zn2;
+      } finally {
+        ee();
+      }
+      return this;
+    }
+    toJSON() {
+      return pe(this);
+    }
+    toString() {
+      return "[object ObservableMap]";
+    }
+    get size() {
+      le(this.keysAtom_);
+      let t2 = this.data_;
+      return t2.size;
+    }
+    get [Symbol.toStringTag]() {
+      return "Map";
+    }
+    [Symbol.iterator]() {
+      return this.entries();
+    }
+  };
+  h = Symbol.toStringTag, en = Ge("ObservableMap", _), ir = {};
+  var ie = class {
+    constructor(r2, i2, s2) {
+      var n2 = this;
+      n2[Z] = ir;
+      var e2 = "ObservableSet";
+      s2 === void 0 || (e2 = s2 + ""), n2.name_ = e2;
+      var t2 = Ve;
+      i2 && (t2 = i2), n2.enhancer_ = function(a2, n3, Y) {
+        return t2(a2, n3, e2);
+      }, n2.data_ = /* @__PURE__ */ new Set(), n2.changeListeners_ = void 0, n2.interceptors_ = void 0, n2.dehancer = void 0, Xe(function() {
+        n2.atom_ = Lt(n2.name_), !r2 || n2.replace(r2);
+      });
+    }
+    has(s2) {
+      le(this.atom_);
+      return !!this.data_.has(St(this, s2));
+    }
+    add(s2) {
+      if (je(this)) {
+        var z2 = qe(this, { type: "add", object: this, newValue: s2 });
+        if (!z2) return this;
+        s2 = z2.newValue;
+      }
+      if (!this.has(s2)) {
+        $();
+        try {
+          z2 = this.data_, z2.add(this.enhancer_(s2, void 0)), xe(this.atom_);
+        } finally {
+          ee();
+        }
+        z2 = false;
+        var E2 = Te(this), h2 = null;
+        E2 && (z2 = true), z2 && (z2 = this.name_, h2 = { observableKind: "set", debugObjectName: z2, type: "add", object: this, newValue: s2 }), E2 && Ne(this, h2);
+      }
+      return this;
+    }
+    delete(s2) {
+      if (je(this) && !qe(this, { type: "delete", object: this, oldValue: s2 })) return false;
+      if (this.has(s2)) {
+        var z2 = false, E2, h2;
+        E2 = Te(this), h2 = null, E2 && (z2 = true), z2 && (z2 = this.name_, h2 = { observableKind: "set", debugObjectName: z2, type: "delete", object: this, oldValue: s2 }), $();
+        try {
+          xe(this.atom_), z2 = this.data_, z2.delete(s2);
+        } finally {
+          ee();
+        }
+        E2 && Ne(this, h2);
+        return true;
+      }
+      return false;
+    }
+    values() {
+      var e2 = this;
+      le(e2.atom_);
+      let t2 = e2.data_, O2 = t2.values();
+      t2 = { next: function() {
+        var c2 = O2.next();
+        return c2.done ? { done: true, value: void 0 } : { done: false, value: St(e2, c2.value) };
+      } }, t2[Symbol.toStringTag] = "SetIterator";
+      return zt(t2);
+    }
+    keys() {
+      return this.values();
+    }
+    entries() {
+      let n2 = this.values(), t2 = { next: function() {
+        var h2 = n2.next();
+        if (h2.done) return { done: true, value: void 0 };
+        var Y = [], e2 = h2.value;
+        Y.push(e2), Y.push(h2.value);
+        return { done: false, value: Y };
+      } };
+      t2[Symbol.toStringTag] = "SetIterator";
+      return zt(t2);
+    }
+    forEach(S2, t2) {
+      var r2 = this.values(), n2 = r2.next();
+      while (!n2.done) {
+        S2.call(t2, n2.value, n2.value, this);
+        var i2 = r2.next();
+        n2 = i2;
+      }
+    }
+    replace(t2) {
+      var e2 = this;
+      se(t2) && (t2 = new Set(t2)), $();
+      try {
+        if (Array.isArray(t2)) {
+          e2.clear();
+          for (var R2 = 0; ; R2++) {
+            if (R2 >= t2.length) break;
+            e2.add(t2[R2]);
+          }
+        } else tt(t2) ? (e2.clear(), t2.forEach(function(s2) {
+          e2.add(s2);
+        })) : t2 == null || we(41, t2);
+      } finally {
+        ee();
+      }
+      return e2;
+    }
+    clear() {
+      $();
+      try {
+        var x2 = Ce();
+        try {
+          for (var t2 = this.data_, z2 = pe(t2.values()), j2 = 0; ; j2++) {
+            if (j2 >= z2.length) break;
+            this.delete(z2[j2]);
+          }
+        } finally {
+          ze(x2);
+        }
+      } finally {
+        ee();
+      }
+    }
+    toJSON() {
+      return pe(this);
+    }
+    toString() {
+      return "[object ObservableSet]";
+    }
+    get size() {
+      le(this.atom_);
+      let t2 = this.data_;
+      return t2.size;
+    }
+    get [Symbol.toStringTag]() {
+      return "Set";
+    }
+    [Symbol.iterator]() {
+      return this.values();
+    }
+  };
+  Ze("intersection"), Ze("union"), Ze("difference"), Ze("symmetricDifference"), Ze("isSubsetOf"), Ze("isSupersetOf"), Ze("isDisjointFrom"), tn = Ge("ObservableSet", ie);
+  var pn = (0, function(i2, n2, p2) {
+    return this.extend_(i2, n2, p2, false) == null ? 0 : 1;
   });
-  var cn = (0, function(r2, a2, i2, t2) {
-    var n2 = et;
-    this.options_ && this.options_.enhancer_ && (n2 = this.options_.enhancer_);
-    return r2.defineObservableProperty_(a2, i2.value, n2, t2);
+  var sr = (0, function(i2, n2, p2, N2) {
+    var t2, I2 = Ve, r2 = !!((t2 = this.options_) && t2.enhancer_);
+    r2 && (r2 = this.options_, I2 = r2.enhancer_);
+    return i2.defineObservableProperty_(n2, p2.value, I2, N2);
   });
-  var Gt = (0, function(r2, a2, n2, t2) {
-    var e2 = Ce({}, this.options_);
-    e2.get = n2.get, e2.set = n2.set;
-    return r2.defineComputedProperty_(a2, e2, t2);
+  var or = (0, function(i2, n2, p2, N2) {
+    var r2 = be({}, this.options_);
+    r2.get = p2.get, r2.set = p2.set;
+    return i2.defineComputedProperty_(n2, r2, N2);
   });
-  var pn = (0, function(r2, n2, a2, i2) {
-    if (this.options_ && this.options_.bound) return this.extend_(r2, n2, a2, false) == null ? 0 : 1;
-    if (i2 === r2.target_) return this.extend_(r2, n2, a2, false) == null ? 0 : 2;
-    if (nt(a2.value)) return 1;
-    se(i2, n2, Ur(r2, this, n2, a2, false));
+  var ur = (0, function(i2, n2, p2, V) {
+    var t2, r2 = !!((t2 = this.options_) && t2.bound);
+    if (r2) return this.extend_(i2, n2, p2, false) == null ? 0 : 1;
+    if (V === i2.target_) return this.extend_(i2, n2, p2, false) == null ? 0 : 2;
+    if (Ke(p2.value)) return 1;
+    de(V, n2, Mn(i2, this, n2, p2, false));
     return 2;
   });
-  var fn = (0, function(r2, a2, o2, v2) {
-    return r2.defineProperty_(a2, Ur(r2, this, a2, o2, !!J.safeDescriptors), v2);
+  var ar = (0, function(i2, n2, o2, d2) {
+    let t2 = i2.defineProperty_;
+    return i2.defineProperty_(n2, Mn(i2, this, n2, o2, !!X.safeDescriptors), d2);
   });
-  var bt = (0, function() {
-    var e2 = arguments[0], r2 = arguments[1], t2 = arguments[2];
-    if ("accessor" == t2.kind + "") {
-      t2 = t2.name;
+  var fn = function(u2, e2, H2) {
+    var f2 = H2.name;
+    nt(e2) || (e2 = Be(e2));
+    var n2, t2 = !!((n2 = u2.options_) && n2.bound);
+    t2 && H2.addInitializer(function() {
+      let t3 = this[f2];
+      t3 = t3.bind(this), t3.isMobXFlow = true, this[f2] = t3;
+    });
+    return e2;
+  };
+  var mn = (0, function(i2, n2, p2, V) {
+    if (V === i2.target_) return this.extend_(i2, n2, p2, false) == null ? 0 : 2;
+    var t2, r2 = !!((t2 = this.options_) && t2.bound);
+    r2 ? (r2 = i2.target_, r2 = !De.call(r2, n2) || !nt(i2.target_[n2])) : r2 = false;
+    if (r2 && this.extend_(i2, n2, p2, false) == null) return 0;
+    if (nt(p2.value)) return 1;
+    de(V, n2, Gn(i2, p2, false, false));
+    return 2;
+  });
+  var gn = (0, function(a2, b2, c2, d2) {
+    var n2, e2, t2 = !!((n2 = this.options_) && n2.bound);
+    e2 = a2.defineProperty_, b2;
+    return a2.defineProperty_(b2, Gn(a2, c2, t2, !!X.safeDescriptors), d2);
+  });
+  yt = function(d2, n2, s2, u2) {
+    var e2, t2;
+    e2 = s2, t2 = u2;
+    var r2 = Q.getOwnPropertyDescriptors(n2);
+    Xe(function() {
+      for (var A2, U2, i2 = $e(d2, t2)[Z], L2 = Reflect.ownKeys(r2), a2 = 0; a2 < L2.length; a2++) A2 = L2[a2], U2 = e2 ? true === A2 in e2 ? e2[A2] : true : true, i2.extend_(A2, r2[A2], U2);
+    });
+    return d2;
+  };
+  var ct = function(u2, e2, H2) {
+    if ("accessor" == H2.kind + "") {
+      var f2 = H2.name;
       return { get: function() {
-        var a2 = this[$];
-        a2 = a2 || nr(this, e2, t2, r2.get.call(this));
-        return a2.getObservablePropValue_(t2);
-      }, set: function(n2) {
-        var a2 = this[$];
-        a2 = a2 || nr(this, e2, t2, n2);
-        return a2.setObservablePropValue_(t2, n2);
-      }, init: function(n2) {
-        nr(this, e2, t2, n2);
-        return n2;
+        var i2 = this[Z];
+        i2 = i2 || Jt(this, u2, f2, e2.get.call(this));
+        return i2.getObservablePropValue_(f2);
+      }, set: function(s2) {
+        var i2 = this[Z];
+        i2 = i2 || Jt(this, u2, f2, s2);
+        return i2.setObservablePropValue_(f2, s2);
+      }, init: function(s2) {
+        Jt(this, u2, f2, s2);
+        return s2;
       } };
     }
-  });
-  var Ft = (0, function(i2, t2, r2) {
-    var e2, n2 = r2.name, a2 = (0, function(g2, f2) {
-      f2;
-      var y2 = Ce({}, i2.options_);
-      y2.get = t2, y2.context = g2, y2.name || (y2.name = "ObservableObject." + Ae(n2));
-      return new oe(y2);
+  };
+  var Ft = Ot("observable", void 0);
+  u = Ot("observable.ref", { enhancer_: at }), t = Ot("observable.shallow", { enhancer_: t }), d = Ot("observable.struct", { enhancer_: d }), J = be(function(s2, e2, n2) {
+    return e2 && "string" == typeof e2.kind ? ct(Ft, s2, e2) : Tt(s2) ? s2 : Ae(s2) ? J.object.call(J, s2, e2, n2) : Array.isArray(s2) ? J.array.call(J, s2, e2) : et(s2) ? J.map.call(J, s2, e2) : tt(s2) ? J.set.call(J, s2, e2) : "object" == typeof s2 && s2 != null ? s2 : J.box.call(J, s2, e2);
+  }, Ft), J.box = function(s2, l2) {
+    let t2 = Rt(l2);
+    return new te(s2, Nt(t2), t2.name, true, t2.equals);
+  }, J.array = function(e2, l2) {
+    let t2 = Rt(l2);
+    return nr(e2, Nt(t2), t2.name);
+  }, J.map = function(e2, l2) {
+    let t2 = Rt(l2);
+    return new _(e2, Nt(t2), t2.name);
+  }, J.set = function(e2, l2) {
+    let t2 = Rt(l2);
+    return new ie(e2, Nt(t2), t2.name);
+  }, J.object = function(e2, n2, l2) {
+    return Xe(function() {
+      var d2 = {};
+      d2 = $e(d2, l2);
+      var b2 = d2[Z];
+      b2.proxy_ || (b2.proxy_ = new Proxy(d2, He)), d2 = b2.proxy_;
+      return yt(d2, e2, n2);
     });
-    r2.addInitializer(function() {
-      var T2 = this, j2 = lt(T2)[$], i3 = j2.values_.get(n2);
-      re(i3, "isMobXComputedValue") && i3.derivation !== t2 && j2.values_.delete(n2), j2.lazyComputedKeys_ || (j2.lazyComputedKeys_ = new (Oe())()), j2.lazyComputedKeys_.set(n2, function() {
-        return a2(T2, j2);
+  }, mt = Se(u, ct), h = Se(t, ct);
+  var p = Se(Ft, ct);
+  d = Se(d, ct);
+  var Mt = function(u2, t2, H2) {
+    var e2, f2 = H2.name, n2 = function(d2, i2) {
+      var l2 = be({}, u2.options_);
+      l2.get = t2, l2.context = d2, l2.name || (l2.name = ts + ve(f2));
+      return new ue(l2);
+    };
+    H2.addInitializer(function() {
+      var e3 = this, i2 = $e(e3)[Z], r2 = i2.values_;
+      r2 = r2.get(f2);
+      var E2;
+      ke(r2) && r2.derivation !== t2 && (E2 = i2.values_, E2.delete(f2)), i2.lazyComputedKeys_ || (i2.lazyComputedKeys_ = /* @__PURE__ */ new Map()), i2.lazyComputedKeys_.set(f2, function() {
+        return n2(e3, i2);
       });
     });
     return function() {
-      var R2, i3 = this[$], o2 = i3.values_.get(n2);
-      if (re(o2, "isMobXComputedValue") && o2.derivation !== t2) {
-        e2 = e2 || new globalThis.WeakMap(), R2 = e2.get(this), R2 = R2 || a2(this, i3), e2.set(this, R2);
-        return R2.get();
-      }
-      return i3.getObservablePropValue_(n2);
+      var i2 = this[Z], s2 = i2.values_;
+      s2 = s2.get(f2);
+      var R2;
+      return ke(s2) && s2.derivation !== t2 ? (!e2 && (e2 = /* @__PURE__ */ new WeakMap()), R2 = e2.get(this), R2 || (R2 = n2(this, i2), e2.set(this, R2)), R2.get()) : i2.getObservablePropValue_(f2);
     };
+  };
+  var yn = Zt("computed", void 0);
+  u = Zt("computed.struct", { equals: function(v2, C2) {
+    return rt(v2, C2, -1, void 0, void 0);
+  } }), Qe = be(function(e2, t2) {
+    if (t2 && "string" == typeof t2.kind) return Mt(yn, e2, t2);
+    if (Ae(e2)) return Se(Zt("computed", e2), Mt);
+    var b2 = {};
+    Ae(t2) && (b2 = be({}, t2)), b2.get = e2, b2.name || (b2.name = e2.name);
+    return new ue(b2);
+  }, yn);
+  var f = Se(u, Mt);
+  t = (0, function(k2) {
+    var w2 = k2.name + "";
+    "" == w2 && (w2 = ns);
+    return Ln(w2, false, k2, this, void 0);
   });
-  var jt = (0, function() {
-    var r2 = arguments[0], n2 = arguments[1], e2 = arguments[2], t2 = e2.name, a2 = (0, function(n3) {
-      var O2, a3 = Ae(t2);
-      r2.options_ && r2.options_.name && (a3 = r2.options_.name + ""), O2 = r2.options_ && r2.options_.autoAction;
-      return Je(a3, n3, O2, void 0);
-    });
-    if ("field" == e2.kind + "") return function(n3) {
-      nt(n3) || (n3 = a2(n3)), r2.options_ && r2.options_.bound && (n3 = n3.bind(this), n3.isMobxAction = true);
+  var vt = function(u2, e2, H2) {
+    var f2 = H2.name, r2 = function(t3) {
+      var w2 = ve(f2);
+      if (u2.options_) var e3 = u2.options_, m2 = !!e3.name;
+      else {
+        m2 = false;
+      }
+      m2 && (m2 = u2.options_, w2 = m2.name + "");
+      m2 = !!((e3 = u2.options_) && e3.autoAction);
+      return Le(w2, t3, m2, void 0);
+    };
+    if ("field" == H2.kind + "") return function(n3) {
+      Ke(n3) || (n3 = r2(n3));
+      var h2, e3 = !!((h2 = u2.options_) && h2.bound);
+      e3 && (n3 = n3.bind(this), n3.isMobxAction = true);
       return n3;
     };
-    if ("method" == e2.kind + "") {
-      nt(n2) || (n2 = a2(n2)), r2.options_ && r2.options_.bound && (a2 = e2.addInitializer, e2.addInitializer(function() {
-        let r3 = this[t2].bind(this);
-        r3.isMobxAction = true, this[t2] = r3;
-      }));
-      return n2;
-    }
-    a2 = Ae(t2);
-    e2 = [], e2.push(r2.annotationType_), e2.push(a2), e2.push(e2.kind), rt(43, e2);
-  });
-  var fr = (0, function() {
-    var r2 = arguments[0], e2 = arguments[1], t2 = arguments[2], n2 = t2.name;
-    ct(e2) || (e2 = Ze(e2)), r2.options_ && r2.options_.bound && t2.addInitializer(function() {
-      let r3 = this[n2].bind(this);
-      r3.isMobXFlow = true, this[n2] = r3;
-    });
-    return e2;
-  });
-  var hr = (0, function(r2, n2, a2, i2) {
-    if (i2 === r2.target_) return this.extend_(r2, n2, a2, false) == null ? 0 : 2;
-    var t2;
-    this.options_ && this.options_.bound ? (t2 = r2.target_, t2 = !Ke.call(t2, n2) || !ct(r2.target_[n2])) : t2 = false;
-    if (t2 && this.extend_(r2, n2, a2, false) == null) return 0;
-    if (ct(a2.value)) return 1;
-    se(i2, n2, Wr(r2, a2, false, false));
-    return 2;
-  });
-  var dr = (0, function() {
-    var a2, i2, r2 = arguments[0];
-    i2 = this.options_ && this.options_.bound, arguments[1], a2 = arguments[2], a2 = Wr(r2, a2, i2, !!J.safeDescriptors);
-    return r2.defineProperty_(arguments[1], a2, arguments[3]);
-  });
-  var Jt = Kt("observable", void 0);
-  var l = Kt("observable.ref", { __proto__: null, enhancer_: dt });
-  t = Kt("observable.shallow", { __proto__: null, enhancer_: t }), u = Kt("observable.struct", { __proto__: null, enhancer_: u });
-  var br = { annotationType_: "computed", options_: void 0, make_: Vt, extend_: Gt };
-  var p = { annotationType_: "computed.struct", options_: { __proto__: null, equals: function(t2, r2) {
-    return pt(t2, r2, -1, void 0, void 0);
-  } }, make_: Vt, extend_: Gt };
-  var gr = wt("action", void 0);
-  var v = wt("action.bound", { __proto__: null, bound: e });
-  var yr = wt("autoAction", { __proto__: null, autoAction: e });
-  var _ = wt("autoAction.bound", { __proto__: null, autoAction: e, bound: e });
-  Y = Ce(function(l2, i2, u2) {
-    var e2 = void 0, r2 = void 0;
-    arguments.length > 1 && (e2 = i2), arguments.length > 2 && (r2 = u2);
-    return e2 && "string" == typeof e2.kind ? bt(Jt, l2, e2) : zt(l2) ? l2 : qe(l2) ? Y.object.call(Y, l2, e2, r2) : Array.isArray(l2) ? Y.array.call(Y, l2, e2) : vt(l2) ? Y.map.call(Y, l2, e2) : _t(l2) ? Y.set.call(Y, l2, e2) : "object" == typeof l2 && l2 != null ? l2 : Y.box.call(Y, l2, e2);
-  }, Jt), Y.box = function(_2, s2) {
-    var e2 = $e(void 0);
-    arguments.length > 1 && (e2 = $e(s2));
-    var r2 = void 0;
-    arguments.length > 0 && (r2 = _2);
-    var a2 = e2.name;
-    return new ue(r2, It(e2), a2, true, e2.equals);
-  }, Y.array = function(v2, o2) {
-    var e2 = $e(void 0);
-    arguments.length > 1 && (e2 = $e(o2));
-    var r2 = void 0;
-    arguments.length > 0 && (r2 = v2);
-    return ln(r2, It(e2), e2.name);
-  }, Y.map = function(v2, o2) {
-    var e2 = $e(void 0);
-    arguments.length > 1 && (e2 = $e(o2));
-    var r2 = void 0;
-    arguments.length > 0 && (r2 = v2);
-    return new ne(r2, It(e2), e2.name);
-  }, Y.set = function(v2, o2) {
-    var e2 = $e(void 0);
-    arguments.length > 1 && (e2 = $e(o2));
-    var r2 = void 0;
-    arguments.length > 0 && (r2 = v2);
-    return new ce(r2, It(e2), e2.name);
-  }, Y.object = function(r2, o2, l2) {
-    var e2, t2;
-    arguments.length > 1 && (e2 = o2), arguments.length > 2 && (t2 = l2);
-    return at(function() {
-      var n2 = {}, i2 = t2;
-      n2 = lt(n2, i2);
-      var y2 = n2[$];
-      y2.proxy_ || (y2.proxy_ = new globalThis.Proxy(n2, Tt[0])), y2 = y2.proxy_;
-      return Ct(y2, r2, e2);
-    });
-  }, kt = Ie(l, bt), l = Ie(t, bt);
-  var c = Ie(Jt, bt);
-  u = Ie(u, bt), ut = Ce(function(r2, i2) {
-    var e2 = void 0;
-    arguments.length > 1 && (e2 = i2);
-    if (e2 && "string" == typeof e2.kind) return Ft(br, r2, e2);
-    if (qe(r2)) return Ie({ annotationType_: "computed", options_: r2, make_: Vt, extend_: Gt }, Ft);
-    var t2 = {};
-    qe(e2) && (t2 = Ce({}, e2)), t2.get = r2, t2.name || (t2.name = r2.name);
-    return new oe(t2);
-  }, br), p = Ie(p, Ft), Ye = Ce(function(t2, o2) {
-    var n2 = void 0;
-    arguments.length > 1 && (n2 = o2);
-    if (n2 && "string" == typeof n2.kind) {
-      var r2 = gr;
-      return jt(r2, t2, n2);
-    }
-    if (te(t2)) {
-      r2 = t2.name + "", "" == r2 && (r2 = "<unnamed action>");
-      return Je(r2, t2, false, void 0);
-    }
-    if (te(n2)) return Je(t2 + "", n2, false, void 0);
-    if (Zt(t2)) return Ie(wt("action", { __proto__: null, name: t2, autoAction: false }), jt);
-  }, gr), xt = Ce(function(t2, o2) {
-    var n2 = void 0;
-    arguments.length > 1 && (n2 = o2);
-    if (n2 && "string" == typeof n2.kind) {
-      var r2 = gr;
-      e && (r2 = yr);
-      return jt(r2, t2, n2);
-    }
-    if (te(t2)) {
-      r2 = t2.name + "", "" == r2 && (r2 = "<unnamed action>");
-      return Je(r2, t2, e, void 0);
-    }
-    if (te(n2)) return Je(t2 + "", n2, e, void 0);
-    if (Zt(t2)) return Ie(wt(e ? "autoAction" : "action", { __proto__: null, name: t2, autoAction: e }), jt);
-  }, yr), v = Ie(v, jt), Wt = Ie(_, jt), t = (0, function(r2) {
-    var t2 = r2.name + "";
-    "" == t2 && (t2 = "<unnamed action>");
-    return Mr(t2, false, r2, this, void 0);
-  }), Ct = (0, function(r2, a2, s2, v2) {
-    var e2, t2;
-    arguments.length > 2 && (e2 = s2), arguments.length > 3 && (t2 = v2);
-    var n2 = ee().getOwnPropertyDescriptors(a2);
-    at(function() {
-      var D2, s3, i2, a3 = lt(r2, t2)[$], o2 = Pe().ownKeys(n2), R2 = 0;
-      while (R2 < o2.length) D2 = o2[R2], i2 = e2 ? Z(D2 in e2) ? e2[D2] : true : true, s3 = a3.extend_, a3.extend_(D2, n2[D2], i2), R2 = R2 + 1 | 0;
-    });
-    return r2;
-  });
-  var $t = (0, function(i2, c2) {
-    var r2, o2, s2, u2, n2, a2 = ir;
-    arguments.length > 1 && c2 && (a2 = c2), n2 = a2.name ? a2.name + "" : "Autorun", o2 = !a2.scheduler && !a2.delay;
-    var e2;
-    r2 = () => {
-      i2(e2);
-    };
-    if (o2) o2 = _e, s2 = function() {
-      this.track(r2);
-    }, u2 = a2.onError, e2 = new o2(n2, s2, u2, a2.requiresObservable);
-    else {
-      o2 = Hr(a2);
-      var t2 = false;
-      u2 = function() {
-        var n3 = this;
-        t2 = t2 || true, o2(() => {
-          t2 = false, n3.isDisposed || n3.track(r2);
-        });
-      }, e2 = new _e(n2, u2, a2.onError, a2.requiresObservable);
-    }
-    n2 = a2.signal && a2.signal.aborted;
-    n2 || e2.schedule_();
-    return e2.getDisposer_.call(e2, a2.signal);
-  });
-  _ = (0, function() {
-    var s2, _2, u2, c2, p2, h2, l2 = arguments[0], v2 = arguments[1], e2 = ir;
-    arguments.length > 2 && arguments[2] && (e2 = arguments[2]), s2 = e2.name ? e2.name + "" : "Reaction";
-    var o2 = Xt;
-    !e2.equals || (o2 = e2.equals), _2 = Ye, v2 = _2(s2, jn(e2.onError, v2));
-    var n2, t2, r2 = true, a2 = false;
-    _2 = () => {
-      var j2 = !!J.allowStateChanges;
-      J.allowStateChanges = false;
-      var C2;
-      try {
-        C2 = l2(t2);
-      } finally {
-        J.allowStateChanges = j2;
+    if ("method" == H2.kind + "") {
+      Ke(e2) || (e2 = r2(e2));
+      if (u2.options_) {
+        var t2 = u2.options_;
+        r2 = !!t2.bound;
+      } else {
+        r2 = false;
       }
-      a2 = r2 || !Z(o2(n2, C2));
-      n2 = C2;
-    }, u2 = !e2.scheduler && !e2.delay;
-    var i2 = false;
-    c2 = Hr(e2), p2 = () => {
-      i2 = false;
-      if (!t2.isDisposed) {
-        var u3 = n2;
-        a2 = false;
-        var l3 = t2.track;
-        l3.call(t2, _2), r2 && e2.fireImmediately ? v2(n2, u3, t2) : !r2 && a2 && v2(n2, u3, t2), r2 = false;
-      }
-    }, h2 = () => {
-      r2 || u2 ? p2() : (i2 = i2 || true, c2(p2));
-    }, t2 = new _e(s2, h2, e2.onError, e2.requiresObservable), s2 = e2.signal && e2.signal.aborted, s2 = s2 || t2.schedule_, s2.call(t2);
-    return t2.getDisposer_.call(t2, e2.signal);
-  });
-  var f = (0, function(r2, f2, d2) {
-    var e2;
-    if (1 == arguments.length || arguments.length > 1 && f2 && "object" == typeof f2) {
-      e2 = void 0, arguments.length > 1 && (e2 = f2);
-      return ((e3, t2) => {
-        var r3, n2;
-        if (t2 && t2.signal && t2.signal.aborted) {
-          e3 = globalThis.Promise, e3 = e3.reject(new globalThis.Error("WHEN_ABORTED")), e3.cancel = function() {
-            return null;
-          };
-          return e3;
-        }
-        n2 = { cancel: void 0, abort: void 0 };
-        r3 = globalThis.Promise, r3 = new r3(function(s2, i2) {
-          var o2 = Ce({}, t2);
-          o2.onError = i2, o2 = Gr(e3, s2, o2), n2.cancel = function() {
-            o2(), i2(new globalThis.Error("WHEN_CANCELLED"));
-          }, n2.abort = function() {
-            o2(), i2(new globalThis.Error("WHEN_ABORTED"));
-          };
-          var a2;
-          t2 && t2.signal && te(t2.signal.addEventListener) && (a2 = t2.signal, a2.addEventListener("abort", n2.abort));
-        }), t2 && t2.signal && te(t2.signal.removeEventListener) && (r3 = r3.finally(function() {
-          let r4 = t2.signal;
-          r4.removeEventListener("abort", n2.abort);
-        })), r3.cancel = n2.cancel;
-        return r3;
-      })(r2, e2);
+      r2 && H2.addInitializer(function() {
+        let t3 = this[f2];
+        t3 = t3.bind(this), t3.isMobxAction = true, this[f2] = t3;
+      });
+      return e2;
     }
-    return Gr(r2, f2, d2);
-  });
-  var h = (0, function(t2) {
-    true === t2.isolateGlobalState && un();
-    if (t2.enforceActions !== void 0) {
-      var e2 = t2.enforceActions;
-      "always" === e2 ? (J.enforceActions = "always", J.allowStateChanges = false) : "observed" === e2 ? (J.enforceActions = true, J.allowStateChanges = false) : (J.enforceActions = false, J.allowStateChanges = true);
+    e2 = u2.annotationType_;
+    t2 = ve(f2);
+    var n2 = H2.kind;
+    r2 = [], r2.push(e2), r2.push(t2), r2.push(n2), We(43, r2);
+  };
+  var bn = dt("action", void 0);
+  u = dt("action.bound", { bound: true });
+  var vn = dt("autoAction", { autoAction: true });
+  var m = dt("autoAction.bound", { autoAction: true, bound: true });
+  _e = be(function(t2, n2) {
+    if (n2 && "string" == typeof n2.kind) {
+      var w2 = bn;
+      return vt(w2, t2, n2);
     }
-    Z("computedRequiresReaction" in t2) && (e2 = J, e2.computedRequiresReaction = !!t2.computedRequiresReaction);
-    Z("reactionRequiresObservable" in t2) && (e2 = J, e2.reactionRequiresObservable = !!t2.reactionRequiresObservable), Z("observableRequiresReaction" in t2) && (e2 = J, e2.observableRequiresReaction = !!t2.observableRequiresReaction), Z("disableErrorBoundaries" in t2) && (e2 = J, e2.disableErrorBoundaries = !!t2.disableErrorBoundaries), Z("safeDescriptors" in t2) && (e2 = J, e2.safeDescriptors = !!t2.safeDescriptors), e2 = J, e2.allowStateReads = !J.observableRequiresReaction, !t2.reactionScheduler || (e2 = t2.reactionScheduler, t2 = Ut, Ut = (r2) => e2(() => t2(r2)));
-  });
-  var d = (0, function(r2) {
-    return zt(r2);
-  });
-  var b = (0, function() {
-    var e2 = arguments[0], t2 = arguments[1];
-    if (!fe(e2)) return false;
-    e2 = e2[$];
-    return e2.values_.has(t2) ? true : e2.lazyComputedKeys_ && e2.lazyComputedKeys_.has(t2) ? true : e2.lazyObservableKeys_ && e2.lazyObservableKeys_.has(t2) ? true : false;
-  });
-  var We = (0, function() {
-    return this.message = "FLOW_CANCELLED", this.name = "FlowCancellationError", this;
-  });
-  var g = We.prototype;
-  var y = globalThis.Error.prototype;
-  ee().setPrototypeOf(g, y), g = We.prototype, g.constructor = We, se(We, "name", { __proto__: null, value: "FlowCancellationError", configurable: e }), g = We.prototype, g.toString = function() {
-    return "Error: " + this.message;
-  }, g = (0, function(t2) {
-    return t2 == null ? false : Z(en.call(We.prototype, t2));
-  });
-  var Qt = 0;
-  Ze = Ce(function(n2, s2) {
-    var t2, a2;
-    if (arguments.length > 1 && s2 && "string" == typeof s2.kind) {
-      t2 = fr, a2 = Ze;
-      return t2(a2, n2, s2);
+    if ("function" == typeof t2) return w2 = t2.name + "", "" == w2 && (w2 = ns), Le(w2, t2, false, void 0);
+    if ("function" == typeof n2) return Le(t2 + "", n2, false, void 0);
+    if (Bt(t2)) return w2 = "action", Se(dt(w2, { name: t2, autoAction: false }), vt);
+  }, bn), gt = be(function(t2, n2) {
+    if (n2 && "string" == typeof n2.kind) {
+      var w2 = vn;
+      return vt(w2, t2, n2);
     }
-    var e2 = n2.name + "";
+    if ("function" == typeof t2) return w2 = t2.name + "", "" == w2 && (w2 = ns), Le(w2, t2, true, void 0);
+    if ("function" == typeof n2) return Le(t2 + "", n2, true, void 0);
+    if (Bt(t2)) return w2 = "autoAction", Se(dt(w2, { name: t2, autoAction: true }), vt);
+  }, vn);
+  var g = Se(u, vt);
+  Ht = Se(m, vt);
+  var Pe = class extends Error {
+    constructor() {
+      super(), this.message = "FLOW_CANCELLED", this.name = "FlowCancellationError";
+    }
+    toString() {
+      return "Error: " + this.message;
+    }
+  };
+  de(Pe, "name", { value: "FlowCancellationError", configurable: true });
+  u = Pe.prototype, m = function(e2) {
+    return zn(Pe, e2);
+  };
+  var y = function(t2, H2) {
+    if (H2 && "string" == typeof H2.kind) return fn(Be, t2, H2);
+    var e2 = t2.name + "";
     "" == e2 && (e2 = "flow");
-    t2 = (0, function() {
-      Qt = Qt + 1 | 0;
-      var r2, Z2, u2 = e2, i2 = Ye(u2, n2).apply(this, arguments), U = { rejector: void 0, pending: void 0, stepId: 0 }, t3 = (0, function(o3) {
-        U.pending = void 0;
+    var K = (0, function() {
+      var K2, r2, rs, u2 = e2, i2 = _e(u2, t2).apply(this, arguments), W = { rejector: void 0, pending: void 0, stepId: 0 };
+      K2 = function(B) {
+        W.pending = void 0;
         try {
-          var D2 = Ye, P2 = e2, R2 = D2(P2, i2.next).call(i2, o3);
-          Z2(R2);
-        } catch (D3) {
-          U.rejector(D3);
+          var U2 = e2, C2 = _e(U2, i2.next).call(i2, B);
+          rs(C2);
+        } catch (D2) {
+          W.rejector(D2);
         }
-      });
-      r2 = (0, function(o3) {
-        U.pending = void 0;
+      }, r2 = function(r3) {
+        W.pending = void 0;
         try {
-          var D2 = Ye, P2 = e2, R2 = D2(P2, i2.throw).call(i2, o3);
-          Z2(R2);
-        } catch (D3) {
-          U.rejector(D3);
+          var C2 = e2, D2 = _e(C2, i2.throw).call(i2, r3);
+          rs(D2);
+        } catch (H3) {
+          W.rejector(H3);
         }
-      }), Z2 = (0, function(i3) {
-        if (te(i3.then)) {
-          i3.then(Z2, U.rejector);
+      }, rs = function(j2) {
+        if ("function" == typeof j2.then) {
+          j2.then(rs, W.rejector);
           return;
         }
-        if (i3.done) {
-          U.resolve(i3.value);
+        if (j2.done) {
+          W.resolve(j2.value);
           return;
         }
-        var A2 = globalThis.Promise;
-        U.pending = A2.resolve(i3.value), U.pending.then(t3, r2);
+        W.pending = Promise.resolve(j2.value);
+        W.pending.then(K2, r2);
+      };
+      var s2 = new Promise(function(r3, i3) {
+        W.resolve = r3, W.rejector = i3, K2(void 0);
       });
-      var o2 = globalThis.Promise;
-      o2 = new o2(function(a3, i3) {
-        U.resolve = a3, U.rejector = i3, t3(void 0);
-      }), u2 = e2, o2.cancel = Ye(u2, function() {
+      u2 = e2, s2.cancel = _e(u2, function() {
+        var P;
         try {
-          var r3, M2;
-          U.pending && te(U.pending.cancel) && (r3 = U.pending.cancel, r3.call(U.pending));
-          var P2 = i2.return(void 0);
-          M2 = globalThis.Promise;
-          var B2 = M2.resolve(P2.value);
-          B2.then(st, st), te(B2.cancel) && (M2 = B2.cancel, M2.call(B2)), M2 = U.rejector, M2(new We());
-        } catch (M3) {
-          U.rejector(M3);
+          if (W.pending) var n2 = W.pending, t3 = "function" == typeof n2.cancel;
+          else {
+            t3 = false;
+          }
+          t3 && (t3 = W.pending, t3.cancel.call(W.pending)), H2 = i2.return(void 0), P = Promise.resolve(H2.value);
+          P.then(Je, Je), "function" == typeof P.cancel && P.cancel.call(P), W.rejector(new Pe());
+        } catch (F) {
+          W.rejector(F);
         }
       });
-      return o2;
-    }), t2.isMobXFlow = true;
-    return t2;
-  }, { annotationType_: "flow", options_: void 0, make_: hr, extend_: dr }), Ht = Ie({ annotationType_: "flow.bound", options_: { __proto__: null, bound: e }, make_: hr, extend_: dr }, fr), y = { annotationType_: "override", make_: function(r2, n2) {
-    r2, n2;
-    return 0;
-  }, extend_: function() {
-    Te(44, this.annotationType_);
-    return false;
-  } };
-  var m = globalThis.Symbol;
-  var Yt = m("mobx-keys");
-  m = (0, function(t2, n2, o2) {
-    var e2;
-    arguments.length > 2 && (e2 = o2), at(function() {
-      var O2 = lt(t2, e2)[$], S2 = Pe().ownKeys(n2), w2 = 0;
-      while (w2 < S2.length) Fr(O2, S2[w2], n2[S2[w2]]), w2 = w2 + 1 | 0;
+      return s2;
     });
-    return t2;
-  });
-  var w = (0, function(r2, o2, l2) {
-    var e2, t2;
-    arguments.length > 1 && (e2 = o2), arguments.length > 2 && (t2 = l2);
-    if (qe(r2)) return Ct(r2, r2, e2, t2);
-    at(function() {
-      var s2 = lt(r2, t2)[$];
-      if (!Z(Yt in r2)) {
-        var a2 = ee().getPrototypeOf(r2), ve2 = new globalThis.Set(), i2 = Pe().ownKeys(r2), o3 = Pe().ownKeys(a2), n2 = 0;
-        while (n2 < i2.length) ve2.add(i2[n2]), n2 = n2 + 1 | 0;
-        n2 = 0;
-        while (n2 < o3.length) ve2.add(o3[n2]), n2 = n2 + 1 | 0;
-        ve2.delete("constructor"), ve2.delete($), se(a2, Yt, { __proto__: null, enumerable: false, writable: true, configurable: true, value: ve2 });
+    K.isMobXFlow = true;
+    return K;
+  };
+  u = { annotationType_: "flow", options_: void 0, make_: mn, extend_: gn }, Be = be(y, u), u = { annotationType_: "flow.bound", options_: { bound: true }, make_: mn, extend_: gn }, Pt = Se(u, fn), u = function(R2) {
+    return R2;
+  }, y = function(k2) {
+    return nt(k2);
+  };
+  var Gt = function(n2, b2) {
+    var o2 = $t;
+    b2 = b2 || o2, o2 = b2.name ? b2.name + "" : "Autorun";
+    var e2, r2 = !b2.scheduler && !b2.delay, i2 = () => {
+      n2(e2);
+    };
+    if (r2) {
+      var g2 = e2;
+      e2 = new he(o2, function() {
+        this.track(i2);
+      }, b2.onError, b2.requiresObservable);
+    } else {
+      r2 = Yn(b2);
+      var t2 = false, s2 = he;
+      g2 = e2, e2 = new s2(o2, function() {
+        var h2 = this;
+        !t2 && (t2 = true, r2(() => {
+          t2 = false, h2.isDisposed || h2.track(i2);
+        }));
+      }, b2.onError, b2.requiresObservable);
+    }
+    o2 = !!((s2 = b2.signal) && s2.aborted);
+    o2 || e2.schedule_(), o2 = e2.getDisposer_;
+    return o2.call(e2, b2.signal);
+  };
+  var b = function(a2, c2, l2) {
+    var e2 = $t;
+    l2 && (e2 = l2);
+    var u2 = e2.name ? e2.name + "" : "Reaction", o2 = At;
+    !e2.equals || (o2 = e2.equals);
+    var r2, t2, d2 = Le(u2, vr(e2.onError, c2), false, void 0), n2 = true, i2 = false, h2 = () => {
+      var R2 = !!X.allowStateChanges;
+      X.allowStateChanges = false;
+      var T2;
+      try {
+        T2 = a2(t2);
+      } finally {
+        X.allowStateChanges = R2;
       }
-      r2[Yt].forEach(function(n3) {
-        var f2;
-        f2 = e2 && Z(n3 in e2) ? e2[n3] : true, Fr(s2, n3, f2);
+      i2 = n2 || true !== o2(r2, T2);
+      r2 = T2;
+    };
+    c2 = !e2.scheduler && !e2.delay;
+    var s2 = false, p2 = Yn(e2), f2 = () => {
+      s2 = false;
+      if (!t2.isDisposed) {
+        var u3 = r2;
+        t2.track.call(t2, h2), n2 && e2.fireImmediately ? d2(r2, u3, t2) : !n2 && false, n2 = false;
+      }
+    }, g2 = () => {
+      if (n2 || c2) f2();
+      else !s2 && (s2 = true, p2(f2));
+    }, y2 = e2.onError;
+    var as = n2;
+    t2 = new he(u2, g2, y2, e2.requiresObservable), u2 = !!((l2 = e2.signal) && l2.aborted), u2 || (u2 = t2.schedule_, u2.call(t2)), u2 = t2.getDisposer_;
+    return u2.call(t2, e2.signal);
+  };
+  var v = function(a2, c2, d2) {
+    var b2;
+    return 1 == arguments.length || c2 && "object" == typeof c2 ? (b2 = void 0, b2 = c2, ((e2, b3) => {
+      var T2;
+      if (b3 && b3.signal && b3.signal.aborted) return e2 = Promise.reject(new Error("WHEN_ABORTED")), e2.cancel = function() {
+        return null;
+      }, e2;
+      T2 = { cancel: void 0, abort: void 0 };
+      var K = new Promise(function(s2, r2) {
+        var i2 = be({}, b3);
+        i2.onError = r2, i2 = Zi(e2, s2, i2), T2.cancel = function() {
+          i2(), r2(new Error("WHEN_CANCELLED"));
+        }, T2.abort = function() {
+          i2(), r2(new Error("WHEN_ABORTED"));
+        }, b3 && b3.signal && "function" == typeof b3.signal.addEventListener && b3.signal.addEventListener("abort", T2.abort);
+      });
+      b3 && b3.signal && "function" == typeof b3.signal.removeEventListener && (K = K.finally(function() {
+        b3.signal.removeEventListener("abort", T2.abort);
+      })), K.cancel = T2.cancel;
+      return K;
+    })(a2, b2)) : Zi(a2, c2, d2);
+  };
+  var w = function(l2) {
+    var t2 = l2.isolateGlobalState;
+    true === t2 && Jn(), l2.enforceActions === void 0 || (t2 = l2.enforceActions, "always" === t2 ? (X.enforceActions = "always", X.allowStateChanges = false) : "observed" === t2 ? (X.enforceActions = true, X.allowStateChanges = false) : (X.enforceActions = false, X.allowStateChanges = true)), true === "computedRequiresReaction" in l2 && (t2 = X, t2.computedRequiresReaction = !!l2.computedRequiresReaction), true === "reactionRequiresObservable" in l2 && (t2 = X, t2.reactionRequiresObservable = !!l2.reactionRequiresObservable), true === "observableRequiresReaction" in l2 && (t2 = X, t2.observableRequiresReaction = !!l2.observableRequiresReaction), true === "disableErrorBoundaries" in l2 && (t2 = X, t2.disableErrorBoundaries = !!l2.disableErrorBoundaries), true === "safeDescriptors" in l2 && (t2 = X, t2.safeDescriptors = !!l2.safeDescriptors), t2 = X, t2.allowStateReads = !X.observableRequiresReaction;
+    if (l2.reactionScheduler) {
+      t2 = l2.reactionScheduler;
+      var e2 = Ct;
+      Ct = (o2) => t2(() => e2(o2));
+    }
+  };
+  var Yt = Symbol("mobx-keys");
+  var k = function(d2, e2, l2) {
+    Xe(function() {
+      for (var j2, i2 = $e(d2, l2)[Z], t2 = Reflect.ownKeys(e2), z2 = 0; z2 < t2.length; z2++) j2 = t2[z2], Bn(i2, j2, e2[t2[z2]]);
+    });
+    return d2;
+  };
+  var x = function(d2, e2, l2) {
+    if (Ae(d2)) return yt(d2, d2, e2, l2);
+    Xe(function() {
+      var i2 = $e(d2, l2)[Z];
+      if (true !== Yt in d2) {
+        for (var s2, t2 = Q.getPrototypeOf(d2), os = /* @__PURE__ */ new Set(), n2 = Reflect.ownKeys(d2), r2 = Reflect.ownKeys(t2), a2 = 0; a2 < n2.length; a2++) s2 = n2[a2], os.add(s2);
+        for (a2 = 0; a2 < r2.length; a2++) n2 = r2[a2], os.add(n2);
+        os.delete("constructor"), os.delete(Z), de(t2, Yt, { enumerable: false, writable: true, configurable: true, value: os });
+      }
+      d2[Yt].forEach(function(n3) {
+        var u2 = e2 && true === n3 in e2 ? e2[n3] : true;
+        Bn(i2, n3, u2);
       });
     });
-    return r2;
-  });
-  var Et = (0, function(t2) {
-    if (fe(t2)) {
-      var e2 = t2[$].keys_;
-      return e2.call(t2[$]);
+    return d2;
+  };
+  var wt = function(y2) {
+    if (oe(y2)) {
+      var a2 = y2[Z];
+      return a2.keys_.call(y2[Z]);
     }
-    if (ve(t2) || pe(t2)) return ye(t2.keys());
-    if (me(t2)) {
-      var r2 = [];
-      e2 = 0;
-      while (e2 < Q(t2.length)) r2.push(e2), e2 = e2 + 1 | 0;
-      return r2;
+    if (re(y2) || se(y2)) return pe(y2.keys());
+    if (fe(y2)) {
+      var e2 = [];
+      for (a2 = 0; a2 < y2.length; a2++) e2.push(a2);
+      return e2;
     }
-    le(5);
-  });
-  var O = (0, function(t2) {
-    if (fe(t2)) {
-      var a2, n2 = Et(t2), r2 = [], e2 = 0;
-      while (e2 < n2.length) r2.push(t2[n2[e2]]), e2 = e2 + 1 | 0;
-      return r2;
+    ne(5);
+  };
+  var z = function(y2) {
+    if (oe(y2)) {
+      for (var n2, t2 = wt(y2), e2 = [], a2 = 0; a2 < t2.length; a2++) n2 = y2[t2[a2]], e2.push(n2);
+      return e2;
     }
-    if (ve(t2)) {
-      n2 = Et(t2), r2 = [], e2 = 0;
-      while (e2 < n2.length) a2 = t2.get, r2.push(t2.get(n2[e2])), e2 = e2 + 1 | 0;
-      return r2;
+    if (re(y2)) {
+      for (t2 = wt(y2), e2 = [], a2 = 0; a2 < t2.length; a2++) e2.push(y2.get(t2[a2]));
+      return e2;
     }
-    if (pe(t2)) return ye(t2.values());
-    if (me(t2)) return t2.slice();
-    le(6);
-  });
-  var S = (0, function(t2) {
-    if (fe(t2) || ve(t2)) {
-      var r2, i2, n2 = Et(t2), a2 = [], e2 = 0;
-      while (e2 < n2.length) r2 = [], r2.push(n2[e2]), ve(t2) ? (i2 = t2.get, r2.push(t2.get(n2[e2]))) : r2.push(t2[n2[e2]]), a2.push(r2), e2 = e2 + 1 | 0;
-      return a2;
-    }
-    if (pe(t2)) return ye(t2.entries());
-    if (me(t2)) {
-      n2 = [], e2 = 0;
-      while (e2 < Q(t2.length)) r2 = [], r2.push(e2), r2.push(t2[e2]), n2.push(r2), e2 = e2 + 1 | 0;
+    if (se(y2)) return pe(y2.values());
+    if (fe(y2)) return y2.slice();
+    ne(6);
+  };
+  var j = function(y2) {
+    if (oe(y2) || re(y2)) {
+      for (var e2, r2, t2 = wt(y2), n2 = [], a2 = 0; a2 < t2.length; a2++) e2 = [], r2 = t2[a2], e2.push(r2), re(y2) ? e2.push(y2.get(t2[a2])) : (r2 = y2[t2[a2]], e2.push(r2)), n2.push(e2);
       return n2;
     }
-    le(7);
-  });
-  var mr = (0, function(e2, r2, o2) {
-    var n2 = void 0;
-    arguments.length > 2 && (n2 = o2);
-    if (2 == arguments.length && !pe(e2)) {
-      ae();
+    if (se(y2)) return pe(y2.entries());
+    if (fe(y2)) {
+      for (t2 = [], a2 = 0; a2 < y2.length; a2++) e2 = [], e2.push(a2), e2.push(y2[a2]), t2.push(e2);
+      return t2;
+    }
+    ne(7);
+  };
+  var wn = function(b2, e2, g2) {
+    var n2 = e2, s2 = g2;
+    if (2 == arguments.length && !se(b2)) {
+      $();
       try {
-        for (var G2 = ee().keys(r2), Oe2 = 0; ; ) {
-          var t2 = Oe2;
-          if (t2 >= G2.length) break;
-          t2 = mr;
-          n2 = G2[Oe2], t2(e2, n2, r2[G2[Oe2]]), Oe2 = Oe2 + 1 | 0;
+        for (var Te2 = Q.keys(n2), Ne2 = 0; ; Ne2++) {
+          var r2 = Ne2;
+          if (r2 >= Te2.length) break;
+          r2 = wn, s2 = Te2[Ne2], r2(b2, s2, n2[Te2[Ne2]]);
+          var o2 = Te2, a2 = Te2, c2 = Ne2, l2 = Te2, d2 = Ne2, f2 = Ne2;
         }
       } finally {
-        ie();
+        ee();
       }
       return;
     }
-    fe(e2) ? (t2 = e2[$].set_, t2.call(e2[$], r2, n2)) : ve(e2) ? e2.set(r2, n2) : pe(e2) ? e2.add(r2) : me(e2) ? (ae(), Q(r2) >= Q(e2.length) && (e2.length = Q(r2) + 1 | 0), e2[r2] = n2, ie()) : le(8);
-  });
-  var A = (0, function(e2, t2) {
-    if (fe(e2)) {
-      var r2 = e2[$].delete_;
-      r2.call(e2[$], t2);
-    } else ve(e2) || pe(e2) ? e2.delete(t2) : me(e2) ? e2.splice(t2, 1) : le(9);
-  });
-  var wr = (0, function() {
-    var e2 = arguments[0], t2 = arguments[1];
-    if (fe(e2)) return e2[$].has_.call(e2[$], t2);
-    if (ve(e2) || pe(e2)) return e2.has(t2);
-    if (me(e2)) {
-      Q(t2) >= 0 ? (t2 = Q(t2), e2 = t2 < Q(e2.length)) : e2 = false;
-      return e2;
+    oe(b2) ? (r2 = b2[Z], r2.set_.call(b2[Z], n2, s2)) : re(b2) ? b2.set(n2, s2) : se(b2) ? b2.add(n2) : fe(b2) ? ($(), r2 = n2 | 0, r2 >= b2.length && (b2.length = (n2 | 0) + 1 | 0), b2[n2] = s2, ee()) : ne(8);
+  };
+  var q = function(y2, n2) {
+    if (oe(y2)) {
+      var t2 = y2[Z];
+      t2.delete_.call(y2[Z], n2);
+    } else re(y2) || se(y2) ? y2.delete(n2) : fe(y2) ? y2.splice(n2, 1) : ne(9);
+  };
+  var kn = function(y2, n2) {
+    if (oe(y2)) {
+      var t2 = y2[Z];
+      return t2.has_.call(y2[Z], n2);
     }
-    le(10);
+    if (re(y2) || se(y2)) return y2.has(n2);
+    if (fe(y2)) return (n2 | 0) >= 0 ? (t2 = n2 | 0, t2 = t2 < y2.length) : t2 = false, t2;
+    ne(10);
     return false;
-  });
-  var k = (0, function(e2, t2) {
-    if (!!wr(e2, t2)) {
-      if (fe(e2)) return e2[$].get_.call(e2[$], t2);
-      if (ve(e2)) return e2.get(t2);
-      if (me(e2)) return e2[t2];
-      le(11);
+  };
+  var E = function(y2, n2) {
+    if (!!kn(y2, n2)) {
+      if (oe(y2)) return y2[Z].get_.call(y2[Z], n2);
+      if (re(y2)) return y2.get(n2);
+      if (fe(y2)) return y2[n2];
+      ne(11);
     }
-  });
-  var Or = (0, function(t2) {
-    if (fe(t2)) return t2[$].ownKeys_.call(t2[$]);
-    le(38);
-  });
-  var x = (0, function(a2, n2, l2) {
-    if (fe(a2)) return a2[$].defineProperty_.call(a2[$], n2, l2);
-    le(39);
-  });
-  var He = (0, function() {
-    var e2 = arguments[0], r2 = void 0;
-    arguments.length > 1 && (r2 = arguments[1]);
-    if ("object" == typeof e2 && e2 != null) {
-      if (me(e2)) {
-        r2 === void 0 || le(23);
-        return e2[$].atom_;
+  };
+  var xn = function(y2) {
+    if (oe(y2)) return y2[Z].ownKeys_.call(y2[Z]);
+    ne(38);
+  };
+  var T = function(y2, n2, p2) {
+    if (oe(y2)) return y2[Z].defineProperty_.call(y2[Z], n2, p2);
+    ne(39);
+  };
+  var Fe = function(m2, D2) {
+    if ("object" == typeof m2 && m2 != null) {
+      if (fe(m2)) {
+        D2 === void 0 || ne(23);
+        var t2 = m2[Z];
+        return t2.atom_;
       }
-      if (pe(e2)) return e2.atom_;
-      if (ve(e2)) {
-        if (r2 === void 0) return e2.keysAtom_;
-        var t2 = e2.data_.get(r2);
-        t2 = t2 || e2.hasMap_.get(r2), !t2 && (e2 = [], e2.push(r2), e2.push(e2.name_), rt(25, e2));
-        return t2;
-      }
-      if (r2 && !e2[$]) {
-        if (e2[r2] === void 0) {
+      if (se(m2)) return m2.atom_;
+      if (re(m2)) {
+        if (D2 === void 0) return m2.keysAtom_;
+        t2 = m2.data_, t2 = t2.get(D2), t2 || (t2 = m2.hasMap_, t2 = t2.get(D2));
+        if (!t2) {
+          var e2 = m2.name_, i2 = [];
+          i2.push(D2), i2.push(e2), We(25, i2);
         }
-      }
-      if (fe(e2)) {
-        r2 || le(26), e2 = e2[$], t2 = e2.values_.get(r2), t2 = t2 || e2.materializeLazyComputed_(r2), t2 = t2 || e2.materializeLazyObservable_(r2), t2 || (n = e2.name_, e2 = [], e2.push(r2), e2.push(n), rt(27, e2));
         return t2;
       }
-      if (re(e2, "isMobXAtom") || re(e2, "isMobXComputedValue") || re(e2, "isMobXReaction")) return e2;
+      if (D2 && !m2[Z] && m2[D2] === void 0) {
+      }
+      if (oe(m2)) return D2 || ne(26), i2 = m2[Z], t2 = i2.values_, t2 = t2.get(D2), t2 = t2 || i2.materializeLazyComputed_(D2), t2 = t2 || i2.materializeLazyObservable_(D2), t2 || (e2 = i2.name_, m2 = [], m2.push(D2), m2.push(e2), We(27, m2)), t2;
+      if (Vt(m2) || ke(m2) || jt(m2)) return m2;
     } else {
-      if (te(e2) && re(e2[$], "isMobXReaction")) return e2[$];
+      if ("function" == typeof m2 && jt(m2[Z])) return m2[Z];
     }
-    Te(28, e2);
-  });
-  var Xe = (0, function(e2, v2) {
-    e2 || le(29);
-    if (arguments.length > 1 && v2 !== void 0) {
-      var r2 = Xe, n2 = He;
-      return Xe(He(e2, v2));
+    we(28, m2);
+  };
+  var Ue = function(m2, D2) {
+    m2 || ne(29);
+    if (D2 !== void 0) return Ue(Fe(m2, D2));
+    if (Vt(m2) || ke(m2) || jt(m2) || re(m2) || se(m2)) return m2;
+    if (m2[Z]) return m2[Z];
+    we(24, m2);
+  };
+  var N = function(m2, D2) {
+    if (D2 !== void 0) var t2 = Fe(m2, D2);
+    else if (Ke(m2)) return m2.name;
+    else {
+      t2 = oe(m2) || re(m2) || se(m2) ? Ue(m2) : Fe(m2);
     }
-    if (re(e2, "isMobXAtom") || re(e2, "isMobXComputedValue") || re(e2, "isMobXReaction") || ve(e2) || pe(e2)) return e2;
-    if (e2[$]) return e2[$];
-    Te(24, e2);
-  });
-  var C = (0, function(b2, i2) {
-    if (arguments.length > 1 && i2 !== void 0) {
-      var e2 = He;
-      e2 = e2(b2, i2);
-    } else {
-      if (nt(b2)) return b2.name;
-      else fe(b2) || ve(b2) || pe(b2) ? (e2 = Xe, e2 = e2(b2)) : (e2 = He, e2 = e2(b2));
+    return t2.name_;
+  };
+  var R = function(a2, b2, c2, d2) {
+    var m2 = a2;
+    if (arguments.length > 2 && "function" == typeof c2) {
+      var i2 = d2;
+      m2 = Ue(m2, b2);
+      return Xi(m2, c2, i2);
     }
-    return e2.name_;
-  });
-  var T = (0, function() {
-    var e2, t2, n2, a2, r2 = arguments[0];
-    if (arguments.length > 2 && te(arguments[2])) {
-      n2 = arguments.length > 3 && arguments[3], e2 = Xe, e2 = e2(r2, arguments[1]);
-      return Jr(e2, arguments[2], n2);
+    var t2 = arguments.length > 2 && c2;
+    i2 = Ue(m2);
+    if (fe(m2)) {
+      if (t2) {
+        var r2 = i2.values_;
+        r2 = Ye.call(r2), m2 = i2.proxy_, t2 = i2.atom_, b2({ observableKind: "array", object: m2, debugObjectName: t2.name_, type: "splice", index: 0, added: r2, addedCount: r2.length, removed: [], removedCount: 0 });
+      }
+      i2 = Ki(i2, b2);
+      return i2;
     }
-    n2 = arguments.length > 2 && arguments[2];
-    t2 = arguments[1], e2 = Xe(r2);
-    if (me(r2)) {
-      n2 && (r2 = e2.values_, r2 = Qe.call(r2), n2 = e2.proxy_, a2 = e2.atom_.name_, t2({ __proto__: null, observableKind: "array", object: n2, debugObjectName: a2, type: "splice", index: 0, added: r2, addedCount: r2.length, removed: [], removedCount: 0 })), e2 = mt(e2, t2);
-      return e2;
+    if (re(m2)) return i2 = Ki(i2, b2), i2;
+    if (se(m2)) return i2 = Ki(i2, b2), i2;
+    if (oe(m2)) return i2 = Ki(i2, b2), i2;
+    i2 = Xi(i2, b2, t2);
+    return i2;
+  };
+  var I = function(m2, s2, n2) {
+    if (arguments.length > 2 && "function" == typeof n2) {
+      var t2 = Ue(m2, s2);
+      return Dn(t2, n2);
     }
-    if (ve(r2)) {
-      e2 = mt(e2, t2);
-      return e2;
-    }
-    if (pe(r2)) {
-      e2 = mt(e2, t2);
-      return e2;
-    }
-    if (fe(r2)) {
-      e2 = mt(e2, t2);
-      return e2;
-    }
-    e2 = Jr(e2, t2, n2);
-    return e2;
-  });
-  var V = (0, function(r2, s2, i2) {
-    var e2;
-    if (arguments.length > 2 && te(i2)) {
-      e2 = Xe, e2 = e2(r2, s2);
-      return zr(e2, i2);
-    }
-    e2 = Xe(r2);
-    return zr(e2, s2);
-  });
-  var j = (0, function() {
-    return $r("onBOL", arguments);
-  });
-  var E = (0, function() {
-    return $r("onBUOL", arguments);
-  });
-  var R = (0, function(e2) {
-    return ft(e2, new (Oe())());
-  });
-  var D = (0, function(r2, n2) {
-    let e2 = He;
-    return Qr(He(r2, n2));
-  });
-  var P = (0, function(r2, n2) {
-    let e2 = He;
-    return Yr(He(r2, n2));
-  });
-  var B = (0, function(t2) {
-    return re(t2, "isMobXComputedValue");
-  });
-  var M = (0, function() {
-    if (!fe(arguments[0])) return false;
-    var e2 = arguments[0];
-    e2 = e2[$];
-    if (e2.lazyComputedKeys_) {
-      var r2 = e2.lazyComputedKeys_;
-      r2 = r2.has(arguments[1]);
-    } else {
-      r2 = false;
-    }
-    if (r2) return true;
-    if (!e2.values_.has(arguments[1])) return false;
-    e2 = e2.values_;
-    return re(e2.get(arguments[1]), "isMobXComputedValue");
-  });
-  var N = (0, function(t2, c2, f2) {
-    var e2, n2, a2 = void 0;
-    ve(t2) || me(t2) || re(t2, "isMobXObservableValue") || pe(t2) ? (e2 = Xe(t2), a2 = c2) : fe(t2) && (n2 = Xe, e2 = n2(t2, c2), a2 = f2), e2.dehancer = a2;
+    t2 = Ue(m2);
+    return Dn(t2, s2);
+  };
+  var S = function() {
+    return Vn("onBOL", arguments);
+  };
+  var O = function() {
+    return Vn("onBUOL", arguments);
+  };
+  var U = function(t2) {
+    return it(t2, /* @__PURE__ */ new Map());
+  };
+  var A = function(m2, D2) {
+    return Wn(Fe(m2, D2));
+  };
+  var C = function(m2, D2) {
+    return Wi(Fe(m2, D2));
+  };
+  var L = function(s2) {
+    return ke(s2);
+  };
+  var D = function(s2, D2) {
+    if (!oe(s2)) return false;
+    var i2 = s2[Z];
+    i2.lazyComputedKeys_ ? (s2 = i2.lazyComputedKeys_, s2 = !!s2.has(D2)) : s2 = false;
+    if (s2) return true;
+    s2 = i2.values_;
+    if (!s2.has(D2)) return false;
+    s2 = i2.values_;
+    return ke(s2.get(D2));
+  };
+  var H = function(a2, b2, c2) {
+    var e2, P = void 0;
+    re(a2) || fe(a2) || ot(a2) || se(a2) ? (e2 = Ue(a2), P = b2) : oe(a2) && (e2 = Ue(a2, b2), P = c2), e2.dehancer = P;
     return function() {
       e2.dehancer = void 0;
     };
-  });
-  var z = (0, function(t2) {
-    return t2;
-  });
-  var I = (0, function(t2) {
-    return ct(t2);
-  });
-  var Mn = t;
-  var Nn = (e2) => {
-    J.allowStateReads = e2;
   };
-  var zn = (e2) => {
-    let t2 = !!J.allowStateReads;
-    J.allowStateReads = e2;
-    return t2;
+  var jr = t;
+  var qr = (g2) => {
+    X.allowStateReads = g2;
   };
-  var Xn = (e2, t2) => tt(e2, t2);
-  var qn = (e2, t2) => e2 === t2;
-  var Un = (e2, t2) => pt(e2, t2, 1, void 0, void 0);
-  var Wn = (e2, t2) => pt(e2, t2, -1, void 0, void 0);
-  var va = i;
-  var ha = (e2) => re(e2, "isMobXObservableValue");
-  var ga = () => J.trackingDerivation != null;
+  var Er = (e2) => {
+    let g2 = !!X.allowStateReads;
+    X.allowStateReads = e2;
+    return g2;
+  };
+  var Ir = (v2, C2) => true === st(v2, C2);
+  var Sr = (v2, C2) => v2 === C2;
+  var Or = (v2, C2) => rt(v2, C2, 1, void 0, void 0);
+  var Ur = (v2, C2) => rt(v2, C2, -1, void 0, void 0);
+  var _r = i;
+  var ti = H;
+  var ri = (F) => !!ot(F);
+  var oi = () => X.trackingDerivation != null;
   return __toCommonJS(mobx_esm_exports);
 })();
 typeof module!=="undefined"&&module.exports&&(module.exports=mobx);
