@@ -318,7 +318,7 @@ var _ = (r2) => {
   } else {
     t2 = r2.observers_, !t2.size && e.inBatch && Pt(r2);
   }
-  return false;
+  return t2;
 };
 var o = () => {
   var r2 = --e.inBatch;

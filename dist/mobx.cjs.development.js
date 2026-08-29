@@ -677,13 +677,17 @@ var $m11$trackDerivedFunction;
           v60 = derivation.dependenciesState_;
           if (2 === v60) return $m11$untrackedEnd(v25), $m8$globalState.allowStateReads = v81, true;
         }
-        v82 = v82 + 1;
+        v60 = derivation.dependenciesState_;
+        if (2 === v60) return $m11$untrackedEnd(v25), $m8$globalState.allowStateReads = v81, true;
       }
       $m11$changeDependenciesStateTo0(derivation);
       $m11$untrackedEnd(v25);
       $m8$globalState.allowStateReads = v81;
       return false;
     }
+    $m11$changeDependenciesStateTo0(derivation);
+    $m11$untrackedEnd(v25);
+    $m8$globalState.allowStateReads = v81;
     return false;
   };
   $m11$trackDerivedFunction = function(derivation, f, context) {
@@ -869,6 +873,9 @@ function $m18$interceptChange(interceptable, change) {
     var interceptors = $m3$arraySliceFn.call(interceptorsSrc);
     var n = interceptors.length;
     var i = 0;
+    var v112 = interceptorsSrc;
+    var v13 = interceptors;
+    var v45 = $m3$arraySliceFn;
     while (i < n) {
       change = interceptors[i](change);
       if (change) {
@@ -879,6 +886,7 @@ function $m18$interceptChange(interceptable, change) {
       }
       v33 && $m4$die(14);
       if (!change) break;
+      var v39 = i;
       i = i + 1 | 0;
     }
     return change;
@@ -1381,6 +1389,8 @@ function $m48$whenEffect(predicate, effect, opts) {
     var v19 = function() {
       var v6 = disposer[$m2$$mobx];
       if (!v6.isDisposed) {
+        var v4 = disposer;
+        var v5 = $m2$$mobx;
         disposer();
         if (opts.onError) {
           opts.onError(v70);
@@ -2095,6 +2105,7 @@ v215.dispose = function() {
 v221 = $m15$Reaction.prototype;
 v221.getDisposer_ = function(abortSignal) {
   var self = this;
+  var v4 = dispose;
   var dispose = function() {
     var v5 = self.dispose;
     self.dispose();
@@ -2187,6 +2198,7 @@ v262.computeValue_ = function(track) {
     if (true === v22) {
       res = this.derivation.call(this.scope_);
     } else {
+      var v20 = $m8$globalState;
       try {
         res = this.derivation.call(this.scope_);
       } catch (v39) {
@@ -3416,6 +3428,9 @@ v832.merge = function(other) {
           v48 = v80$2[i$2][0];
           v51 = v80$2[i$2];
           self.set(v48, v51[1]);
+          var v45 = i$2;
+          var v50 = i$2;
+          var v55 = i$2;
           i$2 = i$2 + 1 | 0;
         }
       } else {
@@ -3462,6 +3477,7 @@ v844.replace = function(values$2) {
     var v9 = this.data_;
     var existingKeys = $m3$arrayFrom(v9.keys());
     var i = 0;
+    var v185 = Map;
     for (; ; ) {
       var v14 = i;
       if (v14 >= existingKeys.length) {
@@ -3477,10 +3493,12 @@ v844.replace = function(values$2) {
           v33.set(v34, this.data_.get(key));
         }
       }
+      var v41 = i;
       i = i + 1 | 0;
     }
     var entries$2 = $m3$arrayFrom(replacementMap.entries());
     i = 0;
+    var v44 = replacementMap;
     for (; ; ) {
       var v49 = i;
       if (v49 >= entries$2.length) {
@@ -3496,6 +3514,7 @@ v844.replace = function(values$2) {
         v802.set(v81, this.data_.get(key$2));
         keyExisted || (keysReportChangedCalled = true);
       }
+      var v91 = i;
       i = i + 1 | 0;
     }
     if (!keysReportChangedCalled) {
@@ -3509,7 +3528,12 @@ v844.replace = function(values$2) {
         var iter2 = orderedData.keys();
         var next1 = iter1.next();
         var next2 = iter2.next();
+        var v100 = orderedData;
+        var v112 = orderedData;
+        var v115 = iter1;
+        var v118 = iter2;
         while (!next1.done) {
+          var v121 = next1;
           var v128 = next1.value;
           if (!(v128 === next2.value)) {
             $m10$reportChanged(this.keysAtom_);
@@ -4531,6 +4555,7 @@ var $m51$set = function(v4, v7, v15) {
     try {
       var ks = $m3$objectCtor.keys(v7);
       var i = 0;
+      var v131 = $m3$objectCtor;
       for (; ; ) {
         v29 = i;
         if (v29 >= ks.length) {
@@ -4539,6 +4564,13 @@ var $m51$set = function(v4, v7, v15) {
         v33 = $m51$set;
         v38 = ks[i];
         v33(v4, v38, v7[ks[i]]);
+        var v30 = ks;
+        var v36 = ks;
+        var v37 = i;
+        var v40 = ks;
+        var v41 = i;
+        var v45 = i;
+        var v121 = void 0;
         i = i + 1 | 0;
       }
     } finally {
