@@ -1,0 +1,2 @@
+import { intercept } from "../api/intercept.lil";
+export { intercept };

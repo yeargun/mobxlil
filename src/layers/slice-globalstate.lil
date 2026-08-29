@@ -1,0 +1,2 @@
+import { globalState, getGlobalState, resetGlobalState, isolateGlobalState, getNextId } from "../core/globalstate.lil";
+export { globalState, getGlobalState, resetGlobalState, isolateGlobalState, getNextId };

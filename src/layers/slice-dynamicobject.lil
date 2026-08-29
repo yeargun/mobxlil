@@ -1,0 +1,2 @@
+import { asDynamicObservableObject } from "../types/dynamicobject.lil";
+export { asDynamicObservableObject };

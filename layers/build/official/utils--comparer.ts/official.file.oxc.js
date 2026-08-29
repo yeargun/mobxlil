@@ -1,0 +1,1 @@
+import{deepEqual as e}from"../internal";function t(e,t){return e===t}function n(t,n){return e(t,n)}function r(t,n){return e(t,n,1)}const i=Object.is;export{i as compareDefault,t as compareIdentity,r as compareShallow,n as compareStructural};

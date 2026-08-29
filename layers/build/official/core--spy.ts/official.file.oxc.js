@@ -1,0 +1,1 @@
+import"../internal";function e(){return!1}function t(e){}function n(e){}function r(e){}function i(e){return console.warn(`[mobx.spy] Is a no-op in production builds`),function(){}}export{e as isSpyEnabled,i as spy,t as spyReport,r as spyReportEnd,n as spyReportStart};

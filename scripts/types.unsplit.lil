@@ -1,0 +1,3906 @@
+import { DEV } from "./dev-flag.lil";
+import {
+  gObject,
+  gArray,
+  gMap,
+  gSet,
+  gWeakMap,
+  gSymbol,
+  gError,
+  gPromise,
+  undef,
+  isUndef,
+  isNullish,
+  isFn,
+  isStr,
+  isNum,
+  isObj,
+  isArr,
+  isStringish,
+  yes,
+  objectIs,
+  protoIsPrototypeOf,
+  toInt,
+  toStr,
+  len,
+  sizeOf,
+  call0,
+  call1,
+  call2,
+  apply,
+  invoke0,
+  invoke1,
+  invoke2,
+  construct0,
+  construct1,
+  construct2,
+  construct3,
+  newMap,
+  newSet,
+  arrayFrom,
+  slice,
+  slice2,
+  push,
+  indexOf,
+  splice1,
+  setAdd,
+  setHas,
+  setDelete,
+  mapHas,
+  mapGet,
+  mapSet,
+  mapDelete,
+  ownKeys as reflectOwnKeys,
+  objectKeys,
+  getDescriptor,
+  getDescriptors,
+  defineProperty,
+  getPrototypeOf,
+  setPrototypeOf,
+  hasOwn,
+  inOp,
+  assign,
+  assign3,
+  addHiddenProp,
+  addHiddenFinalProp,
+  defineGetter,
+  stringifyKey,
+  toPrimitive,
+  getPlainObjectKeys,
+  makeIterable,
+  isPlainObject,
+  isES6Map,
+  isES6Set,
+  isPlainES6Map,
+  isGenerator,
+  isExtensible,
+  wellKnown,
+  newProxy,
+  reflectSet,
+  reflectDefine,
+  reflectDelete,
+  unaryPlus,
+  setTimeoutHost,
+  clearTimeoutHost,
+  bind,
+  fnName,
+  makeError,
+  throwErr,
+  throwTypeError,
+  noop,
+  dateCtor,
+  createInstanceofPredicate,
+  isSym,
+  parseIntHost,
+  hostIsNaN,
+  numberIsNaN
+} from "./host.lil";
+import {
+  $mobx,
+  EMPTY_ARRAY,
+  EMPTY_OBJECT,
+  ACTION,
+  ACTION_BOUND,
+  AUTOACTION,
+  AUTOACTION_BOUND,
+  OBSERVABLE,
+  OBSERVABLE_REF,
+  OBSERVABLE_SHALLOW,
+  OBSERVABLE_STRUCT,
+  COMPUTED,
+  COMPUTED_STRUCT,
+  FLOW,
+  UPDATE,
+  ADD,
+  DELETE,
+  SPLICE,
+  REMOVE,
+  CREATE,
+  MAKE_CANCEL,
+  MAKE_BREAK,
+  MAKE_CONTINUE,
+  MAX_SPLICE_SIZE,
+  globalState,
+  getNextId,
+  die,
+  die1,
+  die2,
+  die3,
+  compareDefault,
+  compareIdentity,
+  defaultEquals,
+  isAtom,
+  isComputedValue,
+  isReaction,
+  isObservableValue,
+  isObservableMap,
+  isObservableSet,
+  isObservableArray,
+  isObservableObject,
+  isAction,
+  isFlow,
+  isSpyEnabled,
+  spyReport,
+  spyReportStart,
+  spyReportEnd,
+  spyReportEnd0,
+  startBatch,
+  endBatch,
+  reportObserved,
+  reportChanged,
+  propagateChanged,
+  untrackedStart,
+  untrackedEnd,
+  untracked,
+  allowStateReadsStart,
+  allowStateReadsEnd,
+  allowStateChangesStart,
+  allowStateChangesEnd,
+  allowStateChanges,
+  checkIfStateModificationsAreAllowed,
+  isComputingDerivation,
+  Atom,
+  createAtom,
+  createAction,
+  executeAction,
+  _startAction,
+  _endAction,
+  Reaction,
+  onReactionError,
+  ComputedValue,
+  isolateGlobalState,
+  getGlobalState,
+  resetGlobalState,
+  hasInterceptors,
+  registerInterceptor,
+  interceptChange,
+  hasListeners,
+  registerListener,
+  notifyListeners,
+  initObservable,
+  hasObservers,
+  isAnnotation,
+  assert20223DecoratorType,
+  createDecoratorAnnotation,
+  setReactionScheduler,
+  spy,
+  isObservableValuePred,
+  isObservableMapPred,
+  isObservableSetPred,
+  isObservableArrayAdmPred,
+  isObservableObjectAdmPred
+} from "./kernel.lil";
+
+export JsValue observable = undef();
+export JsValue observableRef = undef();
+export JsValue observableShallow = undef();
+export JsValue observableDeep = undef();
+export JsValue observableStruct = undef();
+export JsValue computed = undef();
+export JsValue computedStruct = undef();
+export JsValue action = undef();
+export JsValue autoAction = undef();
+export JsValue actionBound = undef();
+export JsValue autoActionBound = undef();
+export JsValue flow = undef();
+export JsValue flowBound = undef();
+export JsValue autoAnnotation = undef();
+export JsValue extendObservable = undef();
+
+JsValue deepEnhancerFn = undef();
+JsValue shallowEnhancerFn = undef();
+JsValue referenceEnhancerFn = undef();
+JsValue refStructEnhancerFn = undef();
+
+referenceEnhancerFn = JS.method1((JsValue _s, JsValue v) => {
+  return v;
+});
+
+export bool compareStructural(JsValue a, JsValue b) {
+  return deepEqual(a, b, -1);
+}
+
+export bool compareShallow(JsValue a, JsValue b) {
+  return deepEqual(a, b, 1);
+}
+
+bool eq(JsValue a, JsValue b, int depth, JsValue aStack, JsValue bStack) {
+  if (JS.strictEqual(a, b)) {
+    return !JS.strictEqual(a, 0) || JS.strictEqual(1.0 / JS.number(a), 1.0 / JS.number(b));
+  }
+  if (JS.isNullish(a) || JS.isNullish(b)) {
+    return false;
+  }
+  if (!JS.strictEqual(a, a)) {
+    return !JS.strictEqual(b, b);
+  }
+  string type = JS.typeOf(a);
+  if (type != "function" && type != "object" && JS.typeOf(b) != "object") {
+    return false;
+  }
+  string className = toStr(JS.call(gObject()["prototype"]["toString"], a));
+  if (className != toStr(JS.call(gObject()["prototype"]["toString"], b))) {
+    return false;
+  }
+  if (className == "[object RegExp]" || className == "[object String]") {
+    return ("" + a) == ("" + b);
+  }
+  if (className == "[object Number]") {
+    JsValue pa = unaryPlus(a);
+    JsValue pb = unaryPlus(b);
+    if (!objectIs(pa, pa)) {
+      return !objectIs(pb, pb);
+    }
+    if (JS.strictEqual(pa, 0)) {
+      return objectIs(1.0 / JS.number(pa), 1.0 / JS.number(pb));
+    }
+    return JS.strictEqual(pa, pb);
+  }
+  if (className == "[object Date]" || className == "[object Boolean]") {
+    return JS.strictEqual(unaryPlus(a), unaryPlus(b));
+  }
+  if (className == "[object Symbol]") {
+    return JS.strictEqual(JS.call(gSymbol()["valueOf"], a), JS.call(gSymbol()["valueOf"], b));
+  }
+  if (className == "[object Map]" || className == "[object Set]") {
+    if (depth >= 0) {
+      depth = depth + 1;
+    }
+  }
+  a = unwrapEq(a);
+  b = unwrapEq(b);
+  bool areArrays = className == "[object Array]";
+  if (!areArrays) {
+    if (JS.typeOf(a) != "object" || JS.typeOf(b) != "object") {
+      return false;
+    }
+    JsValue aCtor = a["constructor"];
+    JsValue bCtor = b["constructor"];
+    if (!JS.strictEqual(aCtor, bCtor) && !(isFn(aCtor) && protoInstance(aCtor, aCtor) && isFn(bCtor) && protoInstance(bCtor, bCtor)) && inOp("constructor", a) && inOp("constructor", b)) {
+      return false;
+    }
+  }
+  if (depth == 0) {
+    return false;
+  } else if (depth < 0) {
+    depth = -1;
+  }
+  if (isUndef(aStack)) {
+    aStack = JS.array();
+    bStack = JS.array();
+  }
+  int length = len(aStack);
+  while (length > 0) {
+    length = length - 1;
+    if (JS.strictEqual(aStack[length], a)) {
+      return JS.strictEqual(bStack[length], b);
+    }
+  }
+  push(aStack, a);
+  push(bStack, b);
+  if (areArrays) {
+    length = len(a);
+    if (length != len(b)) {
+      return false;
+    }
+    while (length > 0) {
+      length = length - 1;
+      if (!eq(a[length], b[length], depth - 1, aStack, bStack)) {
+        return false;
+      }
+    }
+  } else {
+    JsValue keys = objectKeys(a);
+    length = len(keys);
+    if (len(objectKeys(b)) != length) {
+      return false;
+    }
+    int i = 0;
+    while (i < length) {
+      JsValue key = keys[i];
+      if (!(hasOwn(b, key) && eq(a[key], b[key], depth - 1, aStack, bStack))) {
+        return false;
+      }
+      i = i + 1;
+    }
+  }
+  popArr(aStack);
+  popArr(bStack);
+  return true;
+}
+
+bool protoInstance(JsValue ctor, JsValue value) {
+  if (!ctor.truthy()) {
+    return false;
+  }
+  JsValue protoOf = ctor["isPrototypeOf"];
+  if (isFn(protoOf)) {
+    return yes(JS.call(protoOf, ctor, value));
+  }
+  return inOp("constructor", value) && yes(value["constructor"] == ctor);
+}
+
+JsValue unwrapEq(JsValue a) {
+  if (isObservableArray(a)) {
+    return JS.invoke(a, "slice");
+  }
+  if (isES6Map(a) || isObservableMap(a)) {
+    return arrayFrom(JS.invoke(a, "entries"));
+  }
+  if (isES6Set(a) || isObservableSet(a)) {
+    return arrayFrom(JS.invoke(a, "entries"));
+  }
+  return a;
+}
+
+void popArr(JsValue arr) {
+  JS.invoke(arr, "pop");
+}
+
+export bool deepEqual(JsValue a, JsValue b, int depth) {
+  return eq(a, b, depth, undef(), undef());
+}
+
+export JsValue ObservableValue = JS.methodRest((JsValue self, JsValue args) => {
+  JsValue value = args[0];
+  JsValue enhancer = args[1];
+  string name = "ObservableValue";
+  if (len(args) > 2 && !isUndef(args[2])) {
+    name = toStr(args[2]);
+  } else if (DEV) {
+    name = "ObservableValue@" + getNextId();
+  }
+  bool notifySpy = true;
+  if (len(args) > 3) {
+    notifySpy = args[3].truthy();
+  }
+  JsValue equals_ = defaultEquals;
+  if (len(args) > 4 && args[4].truthy()) {
+    equals_ = args[4];
+  }
+  JS.call(Atom, self, name);
+  self["enhancer_"] = enhancer;
+  self["name_"] = name;
+  self["equals_"] = equals_;
+  self["hasUnreportedChange_"] = false;
+  self["value_"] = JS.call(enhancer, undef(), value, undef(), name);
+  if (DEV && notifySpy && isSpyEnabled()) {
+    spyReport(JS.object("type", CREATE, "object", self, "observableKind", "value", "debugObjectName", self["name_"], "newValue", "" + self["value_"]));
+  }
+  return self;
+});
+setPrototypeOf(ObservableValue["prototype"], Atom["prototype"]);
+ObservableValue["prototype"]["constructor"] = ObservableValue;
+
+ObservableValue["prototype"]["prepareNewValue_"] = JS.method1((JsValue self, JsValue newValue) => {
+  if (DEV) {
+    checkIfStateModificationsAreAllowed(self);
+  }
+  if (hasInterceptors(self)) {
+    JsValue change = interceptChange(self, JS.object("object", self, "type", UPDATE, "newValue", newValue));
+    if (!change.truthy()) {
+      return globalState["UNCHANGED"];
+    }
+    newValue = change["newValue"];
+  }
+  newValue = JS.call(self["enhancer_"], self, newValue, self["value_"], self["name_"]);
+  if (yes(call2(self["equals_"], self, self["value_"], newValue))) {
+    return globalState["UNCHANGED"];
+  }
+  return newValue;
+});
+ObservableValue["prototype"]["setNewValue_"] = JS.method1((JsValue self, JsValue newValue) => {
+  JsValue oldValue = self["value_"];
+  self["value_"] = newValue;
+  reportChanged(self);
+  if (hasListeners(self)) {
+    notifyListeners(self, JS.object("type", UPDATE, "object", self, "newValue", newValue, "oldValue", oldValue));
+  }
+  return undef();
+});
+ObservableValue["prototype"]["set"] = JS.method1((JsValue self, JsValue newValue) => {
+  newValue = invoke1(self, "prepareNewValue_", newValue);
+  if (!JS.strictEqual(newValue, globalState["UNCHANGED"])) {
+    bool notifySpy = DEV && isSpyEnabled();
+    if (DEV && notifySpy) {
+      spyReportStart(JS.object("type", UPDATE, "object", self, "observableKind", "value", "debugObjectName", self["name_"], "newValue", newValue, "oldValue", self["value_"]));
+    }
+    invoke1(self, "setNewValue_", newValue);
+    if (DEV && notifySpy) {
+      spyReportEnd0();
+    }
+  }
+  return undef();
+});
+ObservableValue["prototype"]["get"] = JS.method0((JsValue self) => {
+  reportObserved(self);
+  if (isUndef(self["dehancer"])) {
+    return self["value_"];
+  }
+  return call1(self["dehancer"], undef(), self["value_"]);
+});
+ObservableValue["prototype"]["raw"] = JS.method0((JsValue self) => {
+  return self["value_"];
+});
+ObservableValue["prototype"]["toJSON"] = JS.method0((JsValue self) => {
+  return call0(self["get"], self);
+});
+ObservableValue["prototype"]["toString"] = JS.method0((JsValue self) => {
+  return toStr(self["name_"]) + "[" + toStr(self["value_"]) + "]";
+});
+ObservableValue["prototype"]["valueOf"] = JS.method0((JsValue self) => {
+  return toPrimitive(call0(self["get"], self));
+});
+ObservableValue["prototype"][wellKnown("toPrimitive")] = JS.method0((JsValue self) => {
+  return call0(self["valueOf"], self);
+});
+
+isObservableValuePred = createInstanceofPredicate("ObservableValue", ObservableValue);
+
+JsValue admProxyOrTarget(JsValue self) {
+  if (self["proxy_"].truthy()) {
+    return self["proxy_"];
+  }
+  return self["target_"];
+}
+
+export bool isBoxedObservable(JsValue x) {
+  return isObservableValue(x);
+}
+
+JsValue descriptorCache = JS.invoke(gObject(), "create", null);
+
+JsValue getCachedObservablePropDescriptor(JsValue key) {
+  JsValue cached = descriptorCache[key];
+  if (cached.truthy()) {
+    return cached;
+  }
+  JsValue desc = JS.object();
+  desc["get"] = JS.method0((JsValue self) => {
+    return invoke1(self[$mobx], "getObservablePropValue_", key);
+  });
+  desc["set"] = JS.method1((JsValue self, JsValue value) => {
+    return invoke2(self[$mobx], "setObservablePropValue_", key, value);
+  });
+  descriptorCache[key] = desc;
+  return desc;
+}
+
+export void recordAnnotationApplied(JsValue adm, JsValue annotation, JsValue key) {
+  if (DEV) {
+    adm["appliedAnnotations_"][key] = annotation;
+  }
+}
+
+export bool isOverride(JsValue annotation) {
+  return toStr(annotation["annotationType_"]) == "override";
+}
+
+export void assertAnnotable(JsValue adm, JsValue annotation, JsValue key) {
+  if (DEV && !isAnnotation(annotation)) {
+    die("Cannot annotate '" + toStr(adm["name_"]) + "." + stringifyKey(key) + "': Invalid annotation.");
+  }
+  if (DEV && !isOverride(annotation) && hasOwn(adm["appliedAnnotations_"], key)) {
+    die("Cannot apply '" + toStr(annotation["annotationType_"]) + "' to '" + toStr(adm["name_"]) + "." + stringifyKey(key) + "':\nThe field is already annotated with '" + toStr(adm["appliedAnnotations_"][key]["annotationType_"]) + "'.\nRe-annotating fields is not allowed.\nUse 'override' annotation for methods overridden by subclass.");
+  }
+}
+
+export JsValue ObservableObjectAdministration = JS.methodRest((JsValue self, JsValue args) => {
+  self["target_"] = args[0];
+  if (len(args) > 1 && args[1].truthy()) {
+    self["values_"] = args[1];
+  } else {
+    self["values_"] = newMap();
+  }
+  self["name_"] = toStr(args[2]);
+  self["defaultAnnotation_"] = autoAnnotation;
+  if (len(args) > 3 && args[3].truthy()) {
+    self["defaultAnnotation_"] = args[3];
+  }
+  string keysName = "ObservableObject.keys";
+  if (DEV) {
+    keysName = toStr(self["name_"]) + ".keys";
+  }
+  self["keysAtom_"] = construct1(Atom, keysName);
+  self["isPlainObject_"] = isPlainObject(self["target_"]);
+  if (DEV && !isAnnotation(self["defaultAnnotation_"])) {
+    die("defaultAnnotation must be valid annotation");
+  }
+  if (DEV) {
+    self["appliedAnnotations_"] = JS.object();
+  }
+  return self;
+});
+
+ObservableObjectAdministration["prototype"]["materializeLazyComputed_"] = JS.method1((JsValue self, JsValue key) => {
+  if (!self["lazyComputedKeys_"].truthy()) {
+    return undef();
+  }
+  JsValue factory = mapGet(self["lazyComputedKeys_"], key);
+  if (!factory.truthy()) {
+    return undef();
+  }
+  mapDelete(self["lazyComputedKeys_"], key);
+  if (sizeOf(self["lazyComputedKeys_"]) == 0) {
+    self["lazyComputedKeys_"] = undef();
+  }
+  JsValue computedVal = call0(factory, undef());
+  mapSet(self["values_"], key, computedVal);
+  return computedVal;
+});
+ObservableObjectAdministration["prototype"]["materializeLazyObservable_"] = JS.method1((JsValue self, JsValue key) => {
+  if (!self["lazyObservableKeys_"].truthy()) {
+    return undef();
+  }
+  JsValue factory = mapGet(self["lazyObservableKeys_"], key);
+  if (!factory.truthy()) {
+    return undef();
+  }
+  mapDelete(self["lazyObservableKeys_"], key);
+  if (sizeOf(self["lazyObservableKeys_"]) == 0) {
+    self["lazyObservableKeys_"] = undef();
+  }
+  JsValue obs = call0(factory, undef());
+  mapSet(self["values_"], key, obs);
+  return obs;
+});
+ObservableObjectAdministration["prototype"]["getObservablePropValue_"] = JS.method1((JsValue self, JsValue key) => {
+  JsValue observableNode = mapGet(self["values_"], key);
+  if (!observableNode.truthy()) {
+    observableNode = call1(self["materializeLazyComputed_"], self, key);
+    if (!observableNode.truthy()) {
+      observableNode = call1(self["materializeLazyObservable_"], self, key);
+    }
+  }
+  return invoke0(observableNode, "get");
+});
+ObservableObjectAdministration["prototype"]["setObservablePropValue_"] = JS.method2((JsValue self, JsValue key, JsValue newValue) => {
+  JsValue observableNode = mapGet(self["values_"], key);
+  if (!observableNode.truthy()) {
+    observableNode = call1(self["materializeLazyComputed_"], self, key);
+  }
+  if (!observableNode.truthy()) {
+    observableNode = call1(self["materializeLazyObservable_"], self, key);
+  }
+  if (isComputedValue(observableNode)) {
+    call1(observableNode["set"], observableNode, newValue);
+    return true;
+  }
+  if (hasInterceptors(self)) {
+    JsValue change = interceptChange(self, JS.object("type", UPDATE, "object", admProxyOrTarget(self), "name", key, "newValue", newValue));
+    if (!change.truthy()) {
+      return null;
+    }
+    newValue = change["newValue"];
+  }
+  newValue = invoke1(observableNode, "prepareNewValue_", newValue);
+  if (!JS.strictEqual(newValue, globalState["UNCHANGED"])) {
+    bool notify = hasListeners(self);
+    bool notifySpy = DEV && isSpyEnabled();
+    JsValue change = null;
+    if (notify || notifySpy) {
+      change = JS.object("type", UPDATE, "observableKind", "object", "debugObjectName", self["name_"], "object", admProxyOrTarget(self), "oldValue", observableNode["value_"], "name", key, "newValue", newValue);
+    }
+    if (DEV && notifySpy) {
+      spyReportStart(change);
+    }
+    invoke1(observableNode, "setNewValue_", newValue);
+    if (notify) {
+      notifyListeners(self, change);
+    }
+    if (DEV && notifySpy) {
+      spyReportEnd0();
+    }
+  }
+  return true;
+});
+ObservableObjectAdministration["prototype"]["get_"] = JS.method1((JsValue self, JsValue key) => {
+  if (globalState["trackingDerivation"].truthy() && !hasOwn(self["target_"], key)) {
+    invoke1(self, "has_", key);
+  }
+  return self["target_"][key];
+});
+
+JsValue setObjectValue(JsValue self, JsValue key, JsValue value, bool proxyTrap) {
+  if (hasOwn(self["target_"], key)) {
+    if (mapHas(self["values_"], key)) {
+      return invoke2(self, "setObservablePropValue_", key, value);
+    }
+    if (proxyTrap) {
+      return reflectSet(self["target_"], key, value);
+    }
+    self["target_"][key] = value;
+    return true;
+  }
+  return JS.call(self["extend_"], self, key, JS.object("value", value, "enumerable", true, "writable", true, "configurable", true), self["defaultAnnotation_"], proxyTrap);
+}
+
+ObservableObjectAdministration["prototype"]["set_"] = JS.method2((JsValue self, JsValue key, JsValue value) => {
+  return setObjectValue(self, key, value, false);
+});
+
+ObservableObjectAdministration["prototype"]["has_"] = JS.method1((JsValue self, JsValue key) => {
+  if (!globalState["trackingDerivation"].truthy()) {
+    return inOp(key, self["target_"]);
+  }
+  if (!self["pendingKeys_"].truthy()) {
+    self["pendingKeys_"] = newMap();
+  }
+  JsValue entry = mapGet(self["pendingKeys_"], key);
+  if (!entry.truthy()) {
+    string pendingName = "ObservableObject.key?";
+    if (DEV) {
+      pendingName = toStr(self["name_"]) + "." + stringifyKey(key) + "?";
+    }
+    entry = JS.construct(ObservableValue, inOp(key, self["target_"]), referenceEnhancerFn, pendingName, false);
+    mapSet(self["pendingKeys_"], key, entry);
+  }
+  return call0(entry["get"], entry);
+});
+
+ObservableObjectAdministration["prototype"]["extend_"] = JS.methodRest((JsValue self, JsValue args) => {
+  JsValue key = args[0];
+  JsValue descriptor = args[1];
+  JsValue annotation = args[2];
+  JsValue proxyTrap = false;
+  if (len(args) > 3) {
+    proxyTrap = args[3];
+  }
+  if (JS.strictEqual(annotation, true)) {
+    annotation = self["defaultAnnotation_"];
+  }
+  if (JS.strictEqual(annotation, false)) {
+    return JS.call(self["defineProperty_"], self, key, descriptor, proxyTrap);
+  }
+  assertAnnotable(self, annotation, key);
+  JsValue outcome = JS.call(annotation["extend_"], annotation, self, key, descriptor, proxyTrap);
+  if (outcome.truthy()) {
+    recordAnnotationApplied(self, annotation, key);
+  }
+  return outcome;
+});
+
+ObservableObjectAdministration["prototype"]["notifyPropertyAddition_"] = JS.method2((JsValue self, JsValue key, JsValue value) => {
+  bool notify = hasListeners(self);
+  bool notifySpy = DEV && isSpyEnabled();
+  if (notify || notifySpy) {
+    JsValue change = JS.object("type", ADD, "observableKind", "object", "debugObjectName", self["name_"], "object", admProxyOrTarget(self), "name", key, "newValue", value);
+    if (DEV && notifySpy) {
+      spyReportStart(change);
+    }
+    if (notify) {
+      notifyListeners(self, change);
+    }
+    if (DEV && notifySpy) {
+      spyReportEnd0();
+    }
+  }
+  if (self["pendingKeys_"].truthy()) {
+    JsValue pending = mapGet(self["pendingKeys_"], key);
+    if (pending.truthy()) {
+      call1(pending["set"], pending, true);
+    }
+  }
+  reportChanged(self["keysAtom_"]);
+  return undef();
+});
+
+ObservableObjectAdministration["prototype"]["defineProperty_"] = JS.method3((JsValue self, JsValue key, JsValue descriptor, JsValue proxyTrapArg) => {
+  bool proxyTrap = proxyTrapArg.truthy();
+  if (DEV) {
+    checkIfStateModificationsAreAllowed(self["keysAtom_"]);
+  }
+  try {
+    startBatch();
+    JsValue deleteOutcome = call1(self["delete_"], self, key);
+    if (!deleteOutcome.truthy()) {
+      return deleteOutcome;
+    }
+    if (hasInterceptors(self)) {
+      JsValue change = interceptChange(self, JS.object("object", admProxyOrTarget(self), "name", key, "type", ADD, "newValue", descriptor["value"]));
+      if (!change.truthy()) {
+        return null;
+      }
+      if (!JS.strictEqual(descriptor["value"], change["newValue"])) {
+        descriptor = assign(JS.object(), descriptor);
+        descriptor["value"] = change["newValue"];
+      }
+    }
+    if (proxyTrap) {
+      if (!reflectDefine(self["target_"], key, descriptor)) {
+        return false;
+      }
+    } else {
+      defineProperty(self["target_"], key, descriptor);
+    }
+    call2(self["notifyPropertyAddition_"], self, key, descriptor["value"]);
+  } finally {
+    endBatch();
+  }
+  return true;
+});
+
+ObservableObjectAdministration["prototype"]["defineObservableProperty_"] = JS.methodRest((JsValue self, JsValue args) => {
+  JsValue key = args[0];
+  JsValue value = args[1];
+  JsValue enhancer = args[2];
+  bool proxyTrap = false;
+  if (len(args) > 3) {
+    proxyTrap = args[3].truthy();
+  }
+  if (DEV) {
+    checkIfStateModificationsAreAllowed(self["keysAtom_"]);
+  }
+  try {
+    startBatch();
+    JsValue deleteOutcome = call1(self["delete_"], self, key);
+    if (!deleteOutcome.truthy()) {
+      return deleteOutcome;
+    }
+    if (hasInterceptors(self)) {
+      JsValue change = interceptChange(self, JS.object("object", admProxyOrTarget(self), "name", key, "type", ADD, "newValue", value));
+      if (!change.truthy()) {
+        return null;
+      }
+      value = change["newValue"];
+    }
+    JsValue cachedDescriptor = getCachedObservablePropDescriptor(key);
+    bool configurable = true;
+    if (globalState["safeDescriptors"].truthy()) {
+      configurable = self["isPlainObject_"].truthy();
+    }
+    JsValue descriptor = JS.object("configurable", configurable, "enumerable", true, "get", cachedDescriptor["get"], "set", cachedDescriptor["set"]);
+    if (proxyTrap) {
+      if (!reflectDefine(self["target_"], key, descriptor)) {
+        return false;
+      }
+    } else {
+      defineProperty(self["target_"], key, descriptor);
+    }
+    string obsName = "ObservableObject.key";
+    if (DEV) {
+      obsName = toStr(self["name_"]) + "." + stringifyKey(key);
+    }
+    JsValue observableNode = JS.construct(ObservableValue, value, enhancer, obsName, false);
+    mapSet(self["values_"], key, observableNode);
+    call2(self["notifyPropertyAddition_"], self, key, observableNode["value_"]);
+  } finally {
+    endBatch();
+  }
+  return true;
+});
+
+ObservableObjectAdministration["prototype"]["defineComputedProperty_"] = JS.method3((JsValue self, JsValue key, JsValue options, JsValue proxyTrapArg) => {
+  bool proxyTrap = proxyTrapArg.truthy();
+  if (DEV) {
+    checkIfStateModificationsAreAllowed(self["keysAtom_"]);
+  }
+  try {
+    startBatch();
+    JsValue deleteOutcome = call1(self["delete_"], self, key);
+    if (!deleteOutcome.truthy()) {
+      return deleteOutcome;
+    }
+    if (hasInterceptors(self)) {
+      JsValue change = interceptChange(self, JS.object("object", admProxyOrTarget(self), "name", key, "type", ADD, "newValue", undef()));
+      if (!change.truthy()) {
+        return null;
+      }
+    }
+    if (!options["name"].truthy()) {
+      if (DEV) {
+        options["name"] = toStr(self["name_"]) + "." + stringifyKey(key);
+      } else {
+        options["name"] = "ObservableObject.key";
+      }
+    }
+    options["context"] = admProxyOrTarget(self);
+    JsValue cachedDescriptor = getCachedObservablePropDescriptor(key);
+    bool configurable = true;
+    if (globalState["safeDescriptors"].truthy()) {
+      configurable = self["isPlainObject_"].truthy();
+    }
+    JsValue descriptor = JS.object("configurable", configurable, "enumerable", false, "get", cachedDescriptor["get"], "set", cachedDescriptor["set"]);
+    if (proxyTrap) {
+      if (!reflectDefine(self["target_"], key, descriptor)) {
+        return false;
+      }
+    } else {
+      defineProperty(self["target_"], key, descriptor);
+    }
+    mapSet(self["values_"], key, construct1(ComputedValue, options));
+    call2(self["notifyPropertyAddition_"], self, key, undef());
+  } finally {
+    endBatch();
+  }
+  return true;
+});
+
+ObservableObjectAdministration["prototype"]["delete_"] = JS.method2((JsValue self, JsValue key, JsValue proxyTrapArg) => {
+  bool proxyTrap = proxyTrapArg.truthy();
+  if (DEV) {
+    checkIfStateModificationsAreAllowed(self["keysAtom_"]);
+  }
+  if (!hasOwn(self["target_"], key)) {
+    return true;
+  }
+  if (hasInterceptors(self)) {
+    JsValue change = interceptChange(self, JS.object("object", admProxyOrTarget(self), "name", key, "type", REMOVE));
+    if (!change.truthy()) {
+      return null;
+    }
+  }
+  try {
+    startBatch();
+    bool notify = hasListeners(self);
+    bool notifySpy = DEV && isSpyEnabled();
+    JsValue observableNode = mapGet(self["values_"], key);
+    JsValue value = undef();
+    if (!observableNode.truthy() && (notify || notifySpy)) {
+      JsValue desc = getDescriptor(self["target_"], key);
+      if (desc.truthy()) {
+        value = desc["value"];
+      }
+    }
+    if (proxyTrap) {
+      if (!reflectDelete(self["target_"], key)) {
+        return false;
+      }
+    } else {
+      if (!reflectDelete(self["target_"], key)) {
+        throwTypeError("Cannot delete property '" + stringifyKey(key) + "'");
+      }
+    }
+    if (DEV && self["appliedAnnotations_"].truthy()) {
+      JS.delete(self["appliedAnnotations_"], key);
+    }
+    if (observableNode.truthy()) {
+      mapDelete(self["values_"], key);
+      if (isObservableValue(observableNode)) {
+        value = observableNode["value_"];
+      }
+      propagateChanged(observableNode);
+    }
+    reportChanged(self["keysAtom_"]);
+    if (self["pendingKeys_"].truthy()) {
+      JsValue pending = mapGet(self["pendingKeys_"], key);
+      if (pending.truthy()) {
+        call1(pending["set"], pending, inOp(key, self["target_"]));
+      }
+    }
+    if (notify || notifySpy) {
+      JsValue change = JS.object("type", REMOVE, "observableKind", "object", "object", admProxyOrTarget(self), "debugObjectName", self["name_"], "oldValue", value, "name", key);
+      if (DEV && notifySpy) {
+        spyReportStart(change);
+      }
+      if (notify) {
+        notifyListeners(self, change);
+      }
+      if (DEV && notifySpy) {
+        spyReportEnd0();
+      }
+    }
+  } finally {
+    endBatch();
+  }
+  return true;
+});
+
+ObservableObjectAdministration["prototype"]["ownKeys_"] = JS.method0((JsValue self) => {
+  reportObserved(self["keysAtom_"]);
+  return reflectOwnKeys(self["target_"]);
+});
+ObservableObjectAdministration["prototype"]["keys_"] = JS.method0((JsValue self) => {
+  reportObserved(self["keysAtom_"]);
+  return objectKeys(self["target_"]);
+});
+
+isObservableObjectAdmPred = createInstanceofPredicate("ObservableObjectAdministration", ObservableObjectAdministration);
+
+JsValue getAnnotationFromOptions(JsValue options) {
+  if (!options.truthy()) {
+    return undef();
+  }
+  if (!isUndef(options["defaultDecorator"])) {
+    return options["defaultDecorator"];
+  }
+  if (options["autoBind"].truthy() || JS.strictEqual(options["deep"], false)) {
+    return createAutoAnnotation(options);
+  }
+  return undef();
+}
+
+export JsValue asObservableObject = JS.method2((JsValue _s, JsValue target, JsValue options) => {
+  if (DEV && options.truthy() && isObservableObject(target)) {
+    die("Options can't be provided for already observable objects.");
+  }
+  if (hasOwn(target, $mobx)) {
+    if (DEV && !isObservableObject(target)) {
+      die("Cannot convert '" + toStr(target["name_"]) + "' into observable object:\nThe target is already observable of different type.\nExtending builtins is not supported.");
+    }
+    return target;
+  }
+  if (DEV && !isExtensible(target)) {
+    die("Cannot make the designated object observable; it is not extensible");
+  }
+  string name = "ObservableObject";
+  if (options.truthy() && options["name"].truthy()) {
+    name = toStr(options["name"]);
+  } else if (DEV) {
+    if (isPlainObject(target)) {
+      name = "ObservableObject@" + getNextId();
+    } else {
+      name = toStr(target["constructor"]["name"]) + "@" + getNextId();
+    }
+  }
+  JsValue adm = JS.construct(ObservableObjectAdministration, target, newMap(), name, getAnnotationFromOptions(options));
+  addHiddenProp(target, $mobx, adm);
+  return target;
+});
+
+JsValue objectProxyTraps = JS.object();
+objectProxyTraps["has"] = JS.method2((JsValue _s, JsValue target, JsValue key) => {
+  return call1(target[$mobx]["has_"], target[$mobx], key);
+});
+objectProxyTraps["get"] = JS.method2((JsValue _s, JsValue target, JsValue key) => {
+  return call1(target[$mobx]["get_"], target[$mobx], key);
+});
+objectProxyTraps["set"] = JS.method3((JsValue _s, JsValue target, JsValue key, JsValue value) => {
+  if (!isStringish(key)) {
+    return false;
+  }
+  JsValue result = setObjectValue(target[$mobx], key, value, true);
+  if (JS.isNullish(result)) {
+    return true;
+  }
+  return result.truthy();
+});
+objectProxyTraps["deleteProperty"] = JS.method2((JsValue _s, JsValue target, JsValue key) => {
+  if (!isStringish(key)) {
+    return false;
+  }
+  JsValue result = JS.call(target[$mobx]["delete_"], target[$mobx], key, true);
+  if (JS.isNullish(result)) {
+    return true;
+  }
+  return result.truthy();
+});
+objectProxyTraps["defineProperty"] = JS.method3((JsValue _s, JsValue target, JsValue key, JsValue descriptor) => {
+  JsValue result = call2(target[$mobx]["defineProperty_"], target[$mobx], key, descriptor);
+  if (JS.isNullish(result)) {
+    return true;
+  }
+  return result.truthy();
+});
+objectProxyTraps["ownKeys"] = JS.method1((JsValue _s, JsValue target) => {
+  return call0(target[$mobx]["ownKeys_"], target[$mobx]);
+});
+objectProxyTraps["preventExtensions"] = JS.method1((JsValue _s, JsValue _t) => {
+  die(13);
+  return false;
+});
+
+export JsValue asDynamicObservableObject(JsValue target, JsValue options) {
+  target = JS.call(asObservableObject, undef(), target, options);
+  JsValue adm = target[$mobx];
+  if (!adm["proxy_"].truthy()) {
+    adm["proxy_"] = newProxy(target, objectProxyTraps);
+  }
+  return adm["proxy_"];
+}
+
+JsValue autoAnnotationMake = JS.methodRest((JsValue self, JsValue args) => {
+  JsValue adm = args[0];
+  JsValue key = args[1];
+  JsValue descriptor = args[2];
+  JsValue source = args[3];
+  if (descriptor["get"].truthy()) {
+    return JS.call(computed["make_"], computed, adm, key, descriptor, source);
+  }
+  if (descriptor["set"].truthy()) {
+    JsValue setter = descriptor["set"];
+    if (!isAction(setter)) {
+      setter = createAction(stringifyKey(key), setter, false, undef());
+    }
+    if (JS.strictEqual(source, adm["target_"])) {
+      JsValue outcome = call2(adm["defineProperty_"], adm, key, JS.object("configurable", true, "set", setter));
+      if (JS.isNullish(outcome)) {
+        return MAKE_CANCEL;
+      }
+      return MAKE_CONTINUE;
+    }
+    defineProperty(source, key, JS.object("configurable", true, "set", setter));
+    return MAKE_CONTINUE;
+  }
+  if (!JS.strictEqual(source, adm["target_"]) && isFn(descriptor["value"])) {
+    if (isGenerator(descriptor["value"])) {
+      JsValue flowAnn = flow;
+      if (self["options_"].truthy() && self["options_"]["autoBind"].truthy()) {
+        flowAnn = flowBound;
+      }
+      return JS.call(flowAnn["make_"], flowAnn, adm, key, descriptor, source);
+    }
+    JsValue actionAnn = autoAction;
+    if (self["options_"].truthy() && self["options_"]["autoBind"].truthy()) {
+      actionAnn = autoActionBound;
+    }
+    return JS.call(actionAnn["make_"], actionAnn, adm, key, descriptor, source);
+  }
+  JsValue observableAnn = observable;
+  if (self["options_"].truthy() && JS.strictEqual(self["options_"]["deep"], false)) {
+    observableAnn = observableRef;
+  }
+  if (isFn(descriptor["value"]) && self["options_"].truthy() && self["options_"]["autoBind"].truthy()) {
+    descriptor["value"] = bind(descriptor["value"], admProxyOrTarget(adm));
+  }
+  return JS.call(observableAnn["make_"], observableAnn, adm, key, descriptor, source);
+});
+
+JsValue autoAnnotationExtend = JS.methodRest((JsValue self, JsValue args) => {
+  JsValue adm = args[0];
+  JsValue key = args[1];
+  JsValue descriptor = args[2];
+  JsValue proxyTrap = args[3];
+  if (descriptor["get"].truthy()) {
+    return JS.call(computed["extend_"], computed, adm, key, descriptor, proxyTrap);
+  }
+  if (descriptor["set"].truthy()) {
+    return JS.call(adm["defineProperty_"], adm, key, JS.object("configurable", true, "set", createAction(stringifyKey(key), descriptor["set"], false, undef())), proxyTrap);
+  }
+  if (isFn(descriptor["value"]) && self["options_"].truthy() && self["options_"]["autoBind"].truthy()) {
+    descriptor["value"] = bind(descriptor["value"], admProxyOrTarget(adm));
+  }
+  JsValue observableAnn = observable;
+  if (self["options_"].truthy() && JS.strictEqual(self["options_"]["deep"], false)) {
+    observableAnn = observableRef;
+  }
+  return JS.call(observableAnn["extend_"], observableAnn, adm, key, descriptor, proxyTrap);
+});
+
+export JsValue createAutoAnnotation(JsValue options) {
+  JsValue annotation = JS.object();
+  annotation["annotationType_"] = "true";
+  annotation["options_"] = options;
+  annotation["make_"] = autoAnnotationMake;
+  annotation["extend_"] = autoAnnotationExtend;
+  return annotation;
+}
+
+autoAnnotation = createAutoAnnotation(undef());
+
+JsValue arrayExtensions = JS.object();
+
+JsValue arrayTraps = JS.object();
+arrayTraps["get"] = JS.method2((JsValue _s, JsValue target, JsValue name) => {
+    JsValue adm = target[$mobx];
+    if (JS.strictEqual(name, $mobx)) {
+      return adm;
+    }
+    if (JS.strictEqual(name, "length")) {
+      return call0(adm["getArrayLength_"], adm);
+    }
+    if (isStr(name) && !hostIsNaN(name)) {
+      return call1(adm["get_"], adm, parseIntHost(name));
+    }
+    if (hasOwn(arrayExtensions, name)) {
+      return arrayExtensions[name];
+    }
+    return target[name];
+});
+arrayTraps["set"] = JS.method3((JsValue _s, JsValue target, JsValue name, JsValue value) => {
+    JsValue adm = target[$mobx];
+    if (JS.strictEqual(name, "length")) {
+      call1(adm["setArrayLength_"], adm, value);
+    }
+    if (isSym(name) || hostIsNaN(name)) {
+      target[name] = value;
+    } else {
+      JS.call(adm["set_"], adm, parseIntHost(name), value);
+    }
+    return true;
+});
+arrayTraps["preventExtensions"] = JS.method0((JsValue _s) => {
+    die(15);
+    return false;
+});
+
+export JsValue ObservableArrayAdministration = JS.methodRest((JsValue self, JsValue args) => {
+  string name = "ObservableArray";
+  if (len(args) > 0 && !isUndef(args[0])) {
+    name = toStr(args[0]);
+  } else if (DEV) {
+    name = "ObservableArray@" + getNextId();
+  }
+  JsValue enhancer = args[1];
+  self["owned_"] = false;
+  if (len(args) > 2) {
+    self["owned_"] = args[2].truthy();
+  }
+  self["atom_"] = construct1(Atom, name);
+  self["values_"] = JS.array();
+  self["interceptors_"] = undef();
+  self["changeListeners_"] = undef();
+  self["dehancer"] = undef();
+  self["proxy_"] = undef();
+  self["lastKnownLength_"] = 0;
+  string enhName = "ObservableArray[..]";
+  if (DEV) {
+    enhName = name + "[..]";
+  }
+  self["enhancer_"] = JS.method3((JsValue _s, JsValue newV, JsValue oldV, JsValue _n) => {
+    return JS.call(enhancer, undef(), newV, oldV, enhName);
+  });
+  return self;
+});
+
+ObservableArrayAdministration["prototype"]["dehanceValue_"] = JS.method1((JsValue self, JsValue value) => {
+  if (!isUndef(self["dehancer"])) {
+    return call1(self["dehancer"], undef(), value);
+  }
+  return value;
+});
+ObservableArrayAdministration["prototype"]["dehanceValues_"] = JS.method1((JsValue self, JsValue values) => {
+  if (!isUndef(self["dehancer"]) && len(values) > 0) {
+    return JS.invoke(values, "map", self["dehancer"]);
+  }
+  return values;
+});
+ObservableArrayAdministration["prototype"]["getArrayLength_"] = JS.method0((JsValue self) => {
+  reportObserved(self["atom_"]);
+  return self["values_"]["length"];
+});
+ObservableArrayAdministration["prototype"]["setArrayLength_"] = JS.method1((JsValue self, JsValue newLengthVal) => {
+  if (!isNum(newLengthVal) || numberIsNaN(newLengthVal) || toInt(newLengthVal) < 0) {
+    die1(40, newLengthVal);
+  }
+  int newLength = toInt(newLengthVal);
+  int currentLength = len(self["values_"]);
+  if (newLength == currentLength) {
+    return undef();
+  }
+  if (newLength > currentLength) {
+    JsValue newItems = JS.construct(gArray(), newLength - currentLength);
+    JS.call(self["spliceWithArray_"], self, currentLength, 0, newItems);
+  } else {
+    JS.call(self["spliceWithArray_"], self, newLength, currentLength - newLength);
+  }
+  return undef();
+});
+JsValue spliceWithArrayImpl(JsValue self, int index, int deleteCount, JsValue newItems) {
+  if (DEV) {
+    checkIfStateModificationsAreAllowed(self["atom_"]);
+  }
+  int length = len(self["values_"]);
+  if (index > length) {
+    index = length;
+  } else if (index < 0) {
+    int next = length + index;
+    if (next < 0) {
+      next = 0;
+    }
+    index = next;
+  }
+  if (deleteCount < 0) {
+    deleteCount = 0;
+  }
+  int maxDel = length - index;
+  if (deleteCount > maxDel) {
+    deleteCount = maxDel;
+  }
+  if (isUndef(newItems) || JS.isNullish(newItems)) {
+    newItems = JS.array();
+  } else if (!isArr(newItems)) {
+    newItems = JS.call(gArray()["prototype"]["slice"], newItems);
+  }
+  if (hasInterceptors(self)) {
+    JsValue change = interceptChange(self, JS.object("object", self["proxy_"], "type", SPLICE, "index", index, "removedCount", deleteCount, "added", newItems));
+    if (!change.truthy()) {
+      return EMPTY_ARRAY;
+    }
+    deleteCount = toInt(change["removedCount"]);
+    newItems = change["added"];
+  }
+  if (len(newItems) != 0) {
+    JsValue enhanced = JS.array();
+    int ni = 0;
+    int nlen = len(newItems);
+    while (ni < nlen) {
+      push(enhanced, JS.call(self["enhancer_"], undef(), newItems[ni], undef()));
+      ni = ni + 1;
+    }
+    newItems = enhanced;
+  }
+  JsValue res = callSpliceItems(self, index, deleteCount, newItems);
+  if (deleteCount != 0 || len(newItems) != 0) {
+    callNotifySplice(self, index, newItems, res);
+  }
+  return call1(self["dehanceValues_"], self, res);
+}
+
+ObservableArrayAdministration["prototype"]["spliceWithArray_"] = JS.methodRest((JsValue self, JsValue args) => {
+  int length = len(self["values_"]);
+  int index = 0;
+  if (len(args) > 0 && !isUndef(args[0])) {
+    index = toInt(args[0]);
+  }
+  int deleteCount = 0;
+  if (len(args) == 1) {
+    deleteCount = length - index;
+  } else if (len(args) > 1 && !isUndef(args[1]) && !JS.isNullish(args[1])) {
+    deleteCount = toInt(args[1]);
+  }
+  JsValue newItems = undef();
+  if (len(args) > 2) {
+    newItems = args[2];
+  }
+  return spliceWithArrayImpl(self, index, deleteCount, newItems);
+});
+ObservableArrayAdministration["prototype"]["get_"] = JS.method1((JsValue self, JsValue index) => {
+  reportObserved(self["atom_"]);
+  return call1(self["dehanceValue_"], self, self["values_"][index]);
+});
+ObservableArrayAdministration["prototype"]["set_"] = JS.method2((JsValue self, JsValue indexVal, JsValue newValue) => {
+  int index = toInt(indexVal);
+  JsValue values = self["values_"];
+  if (index < len(values)) {
+    if (DEV) {
+      checkIfStateModificationsAreAllowed(self["atom_"]);
+    }
+    JsValue oldValue = values[index];
+    if (hasInterceptors(self)) {
+      JsValue change = interceptChange(self, JS.object("type", UPDATE, "object", self["proxy_"], "index", index, "newValue", newValue));
+      if (!change.truthy()) {
+        return undef();
+      }
+      newValue = change["newValue"];
+    }
+    newValue = JS.call(self["enhancer_"], undef(), newValue, oldValue);
+    if (!JS.strictEqual(newValue, oldValue)) {
+      values[index] = newValue;
+      callNotifyUpdate(self, index, newValue, oldValue);
+    }
+  } else {
+    JsValue newItems = JS.construct(gArray(), index + 1 - len(values));
+    newItems[len(newItems) - 1] = newValue;
+    spliceWithArrayImpl(self, len(values), 0, newItems);
+  }
+  return undef();
+});
+
+JsValue callSpliceItems(JsValue self, int index, int deleteCount, JsValue newItems) {
+  JsValue values = self["values_"];
+  int nAdd = len(newItems);
+  if (deleteCount == 0 && index == len(values)) {
+    int i = 0;
+    while (i < nAdd) {
+      push(values, newItems[i]);
+      i = i + 1;
+    }
+    return EMPTY_ARRAY;
+  }
+  if (nAdd < MAX_SPLICE_SIZE) {
+    JsValue callArgs = JS.array();
+    push(callArgs, index);
+    push(callArgs, deleteCount);
+    int i = 0;
+    while (i < len(newItems)) {
+      push(callArgs, newItems[i]);
+      i = i + 1;
+    }
+    return apply(values["splice"], values, callArgs);
+  }
+  JsValue res = slice2(values, index, index + deleteCount);
+  JsValue oldItems = slice2(values, index + deleteCount, len(values));
+  values["length"] = len(values) + len(newItems) - deleteCount;
+  int i = 0;
+  while (i < len(newItems)) {
+    values[index + i] = newItems[i];
+    i = i + 1;
+  }
+  i = 0;
+  while (i < len(oldItems)) {
+    values[index + len(newItems) + i] = oldItems[i];
+    i = i + 1;
+  }
+  return res;
+}
+
+void callNotifyUpdate(JsValue self, int index, JsValue newValue, JsValue oldValue) {
+  bool notifySpy = DEV && !self["owned_"].truthy() && isSpyEnabled();
+  bool notify = hasListeners(self);
+  JsValue change = null;
+  if (notify || notifySpy) {
+    change = JS.object("observableKind", "array", "object", self["proxy_"], "type", UPDATE, "debugObjectName", self["atom_"]["name_"], "index", index, "newValue", newValue, "oldValue", oldValue);
+  }
+  if (DEV && notifySpy) {
+    spyReportStart(change);
+  }
+  reportChanged(self["atom_"]);
+  if (notify) {
+    notifyListeners(self, change);
+  }
+  if (DEV && notifySpy) {
+    spyReportEnd0();
+  }
+}
+
+void callNotifySplice(JsValue self, int index, JsValue added, JsValue removed) {
+  bool notifySpy = DEV && !self["owned_"].truthy() && isSpyEnabled();
+  bool notify = hasListeners(self);
+  JsValue change = null;
+  if (notify || notifySpy) {
+    change = JS.object("observableKind", "array", "object", self["proxy_"], "debugObjectName", self["atom_"]["name_"], "type", SPLICE, "index", index, "removed", removed, "added", added, "removedCount", len(removed), "addedCount", len(added));
+  }
+  if (DEV && notifySpy) {
+    spyReportStart(change);
+  }
+  reportChanged(self["atom_"]);
+  if (notify) {
+    notifyListeners(self, change);
+  }
+  if (DEV && notifySpy) {
+    spyReportEnd0();
+  }
+}
+
+export JsValue createObservableArray = JS.methodRest((JsValue _s, JsValue args) => {
+  JsValue initialValues = args[0];
+  JsValue enhancer = args[1];
+  string name = "ObservableArray";
+  if (len(args) > 2 && !isUndef(args[2])) {
+    name = toStr(args[2]);
+  } else if (DEV) {
+    name = "ObservableArray@" + getNextId();
+  }
+  bool owned = false;
+  if (len(args) > 3) {
+    owned = args[3].truthy();
+  }
+  return initObservable(JS.method0((JsValue __s) => {
+    JsValue adm = JS.construct(ObservableArrayAdministration, name, enhancer, owned);
+    addHiddenFinalProp(adm["values_"], $mobx, adm);
+    JsValue proxy = newProxy(adm["values_"], arrayTraps);
+    adm["proxy_"] = proxy;
+    if (initialValues.truthy() && len(initialValues) > 0) {
+      JS.call(adm["spliceWithArray_"], adm, 0, 0, initialValues);
+    }
+    return proxy;
+  }));
+});
+
+isObservableArrayAdmPred = createInstanceofPredicate("ObservableArrayAdministration", ObservableArrayAdministration);
+
+arrayExtensions["clear"] = JS.method0((JsValue self) => {
+  return JS.invoke(self, "splice", 0);
+});
+arrayExtensions["replace"] = JS.method1((JsValue self, JsValue newItems) => {
+  JsValue adm = self[$mobx];
+  return JS.call(adm["spliceWithArray_"], adm, 0, len(adm["values_"]), newItems);
+});
+arrayExtensions["toJSON"] = JS.method0((JsValue self) => {
+  return JS.invoke(self, "slice");
+});
+arrayExtensions["splice"] = JS.methodRest((JsValue self, JsValue args) => {
+  JsValue adm = self[$mobx];
+  if (len(args) == 0) {
+    return JS.array();
+  }
+  if (len(args) == 1) {
+    return call1(adm["spliceWithArray_"], adm, args[0]);
+  }
+  if (len(args) == 2) {
+    return JS.call(adm["spliceWithArray_"], adm, args[0], args[1]);
+  }
+  JsValue newItems = slice2(args, 2, len(args));
+  return JS.call(adm["spliceWithArray_"], adm, args[0], args[1], newItems);
+});
+arrayExtensions["spliceWithArray"] = JS.methodRest((JsValue self, JsValue args) => {
+  return apply(self[$mobx]["spliceWithArray_"], self[$mobx], args);
+});
+arrayExtensions["push"] = JS.methodRest((JsValue self, JsValue args) => {
+  JsValue adm = self[$mobx];
+  spliceWithArrayImpl(adm, len(adm["values_"]), 0, args);
+  return adm["values_"]["length"];
+});
+arrayExtensions["pop"] = JS.method0((JsValue self) => {
+  int last = len(self[$mobx]["values_"]) - 1;
+  if (last < 0) {
+    last = 0;
+  }
+  return JS.invoke(self, "splice", last, 1)[0];
+});
+arrayExtensions["shift"] = JS.method0((JsValue self) => {
+  return JS.invoke(self, "splice", 0, 1)[0];
+});
+arrayExtensions["unshift"] = JS.methodRest((JsValue self, JsValue args) => {
+  JsValue adm = self[$mobx];
+  spliceWithArrayImpl(adm, 0, 0, args);
+  return adm["values_"]["length"];
+});
+arrayExtensions["reverse"] = JS.method0((JsValue self) => {
+  if (globalState["trackingDerivation"].truthy()) {
+    die1(37, "reverse");
+  }
+  JS.invoke(self, "replace", JS.invoke(JS.invoke(self, "slice"), "reverse"));
+  return self;
+});
+arrayExtensions["sort"] = JS.methodRest((JsValue self, JsValue args) => {
+  if (globalState["trackingDerivation"].truthy()) {
+    die1(37, "sort");
+  }
+  JsValue copy = JS.invoke(self, "slice");
+  apply(copy["sort"], copy, args);
+  JS.invoke(self, "replace", copy);
+  return self;
+});
+arrayExtensions["remove"] = JS.method1((JsValue self, JsValue value) => {
+  JsValue adm = self[$mobx];
+  int idx = indexOf(call1(adm["dehanceValues_"], adm, adm["values_"]), value);
+  if (idx > -1) {
+    JS.invoke(self, "splice", idx, 1);
+    return true;
+  }
+  return false;
+});
+
+void addSimpleArrayExt(string funcName) {
+  if (isFn(gArray()["prototype"][funcName])) {
+    arrayExtensions[funcName] = JS.methodRest((JsValue self, JsValue args) => {
+      JsValue adm = self[$mobx];
+      reportObserved(adm["atom_"]);
+      JsValue dehanced = call1(adm["dehanceValues_"], adm, adm["values_"]);
+      return apply(dehanced[funcName], dehanced, args);
+    });
+  }
+}
+
+void addMapLikeArrayExt(string funcName) {
+  if (isFn(gArray()["prototype"][funcName])) {
+    arrayExtensions[funcName] = JS.methodRest((JsValue self, JsValue args) => {
+      JsValue adm = self[$mobx];
+      reportObserved(adm["atom_"]);
+      JsValue dehanced = call1(adm["dehanceValues_"], adm, adm["values_"]);
+      JsValue callback = args[0];
+      JsValue thisArg = undef();
+      if (len(args) > 1) {
+        thisArg = args[1];
+      }
+      return JS.invoke(dehanced, funcName, JS.methodRest((JsValue _s, JsValue cargs) => {
+        return JS.call(callback, thisArg, cargs[0], cargs[1], self);
+      }));
+    });
+  }
+}
+
+addSimpleArrayExt("at");
+addSimpleArrayExt("concat");
+addSimpleArrayExt("flat");
+addSimpleArrayExt("includes");
+addSimpleArrayExt("indexOf");
+addSimpleArrayExt("join");
+addSimpleArrayExt("lastIndexOf");
+addSimpleArrayExt("slice");
+addSimpleArrayExt("toString");
+addSimpleArrayExt("toLocaleString");
+addSimpleArrayExt("toSorted");
+addSimpleArrayExt("toSpliced");
+addSimpleArrayExt("with");
+addMapLikeArrayExt("every");
+addMapLikeArrayExt("filter");
+addMapLikeArrayExt("find");
+addMapLikeArrayExt("findIndex");
+addMapLikeArrayExt("findLast");
+addMapLikeArrayExt("findLastIndex");
+addMapLikeArrayExt("flatMap");
+addMapLikeArrayExt("forEach");
+addMapLikeArrayExt("map");
+addMapLikeArrayExt("some");
+addMapLikeArrayExt("toReversed");
+
+void addReduceLikeArrayExt(string funcName) {
+  if (isFn(gArray()["prototype"][funcName])) {
+    arrayExtensions[funcName] = JS.methodRest((JsValue self, JsValue args) => {
+      JsValue adm = self[$mobx];
+      reportObserved(adm["atom_"]);
+      JsValue dehanced = call1(adm["dehanceValues_"], adm, adm["values_"]);
+      JsValue callback = args[0];
+      args[0] = JS.methodRest((JsValue _c, JsValue cargs) => {
+        return JS.call(callback, undef(), cargs[0], cargs[1], cargs[2], self);
+      });
+      return apply(dehanced[funcName], dehanced, args);
+    });
+  }
+}
+
+addReduceLikeArrayExt("reduce");
+addReduceLikeArrayExt("reduceRight");
+
+JsValue ObservableMapMarker = JS.object();
+JsValue ObservableSetMarker = JS.object();
+
+export JsValue ObservableMap = JS.method3((JsValue self, JsValue initialData, JsValue enhancerArg, JsValue nameArg) => {
+  self[$mobx] = ObservableMapMarker;
+  self["enhancer_"] = deepEnhancerFn;
+  if (enhancerArg.truthy()) {
+    self["enhancer_"] = enhancerArg;
+  }
+  string name = "ObservableMap";
+  if (!isUndef(nameArg)) {
+    name = toStr(nameArg);
+  } else if (DEV) {
+    name = "ObservableMap@" + getNextId();
+  }
+  self["name_"] = name;
+  self["interceptors_"] = undef();
+  self["changeListeners_"] = undef();
+  self["dehancer"] = undef();
+  initObservable(JS.method0((JsValue _s) => {
+    string keysName = "ObservableMap.keys()";
+    if (DEV) {
+      keysName = toStr(self["name_"]) + ".keys()";
+    }
+    self["keysAtom_"] = JS.call(createAtom, undef(), keysName);
+    self["data_"] = newMap();
+    self["hasMap_"] = newMap();
+    if (initialData.truthy()) {
+      call1(self["merge"], self, initialData);
+    }
+    return undef();
+  }));
+  return self;
+});
+
+ObservableMap["prototype"]["has_"] = JS.method1((JsValue self, JsValue key) => {
+  return mapHas(self["data_"], key);
+});
+ObservableMap["prototype"]["has"] = JS.method1((JsValue self, JsValue key) => {
+  if (!globalState["trackingDerivation"].truthy()) {
+    return call1(self["has_"], self, key);
+  }
+  JsValue entry = mapGet(self["hasMap_"], key);
+  if (!entry.truthy()) {
+    string n = "ObservableMap.key?";
+    if (DEV) {
+      n = toStr(self["name_"]) + "." + stringifyKey(key) + "?";
+    }
+    entry = JS.construct(ObservableValue, call1(self["has_"], self, key), referenceEnhancerFn, n, false);
+    mapSet(self["hasMap_"], key, entry);
+    entry["onBUOL"] = newSet();
+    setAdd(entry["onBUOL"], JS.method0((JsValue _s) => {
+      mapDelete(self["hasMap_"], key);
+      return undef();
+    }));
+  }
+  return call0(entry["get"], entry);
+});
+ObservableMap["prototype"]["set"] = JS.method2((JsValue self, JsValue key, JsValue value) => {
+  bool hasKey = mapHas(self["data_"], key);
+  if (hasInterceptors(self)) {
+    string typ = ADD;
+    if (hasKey) {
+      typ = UPDATE;
+    }
+    JsValue change = interceptChange(self, JS.object("type", typ, "object", self, "newValue", value, "name", key));
+    if (!change.truthy()) {
+      return self;
+    }
+    value = change["newValue"];
+  }
+  if (hasKey) {
+    call2(self["updateValue_"], self, key, value);
+  } else {
+    call2(self["addValue_"], self, key, value);
+  }
+  return self;
+});
+ObservableMap["prototype"]["updateValue_"] = JS.method2((JsValue self, JsValue key, JsValue newValue) => {
+  JsValue observableNode = mapGet(self["data_"], key);
+  newValue = call1(observableNode["prepareNewValue_"], observableNode, newValue);
+  if (!JS.strictEqual(newValue, globalState["UNCHANGED"])) {
+    bool notifySpy = DEV && isSpyEnabled();
+    bool notify = hasListeners(self);
+    JsValue change = null;
+    if (notify || notifySpy) {
+      change = JS.object("observableKind", "map", "debugObjectName", self["name_"], "type", UPDATE, "object", self, "oldValue", observableNode["value_"], "name", key, "newValue", newValue);
+    }
+    if (DEV && notifySpy) {
+      spyReportStart(change);
+    }
+    call1(observableNode["setNewValue_"], observableNode, newValue);
+    if (notify) {
+      notifyListeners(self, change);
+    }
+    if (DEV && notifySpy) {
+      spyReportEnd0();
+    }
+  }
+  return undef();
+});
+ObservableMap["prototype"]["addValue_"] = JS.method2((JsValue self, JsValue key, JsValue newValue) => {
+  if (DEV) {
+    checkIfStateModificationsAreAllowed(self["keysAtom_"]);
+  }
+  startBatch();
+  try {
+    string n = "ObservableMap.key";
+    if (DEV) {
+      n = toStr(self["name_"]) + "." + stringifyKey(key);
+    }
+    JsValue observableNode = JS.construct(ObservableValue, newValue, self["enhancer_"], n, false);
+    mapSet(self["data_"], key, observableNode);
+    newValue = observableNode["value_"];
+    JsValue hasEntry = mapGet(self["hasMap_"], key);
+    if (hasEntry.truthy()) {
+      call1(hasEntry["setNewValue_"], hasEntry, true);
+    }
+    reportChanged(self["keysAtom_"]);
+  } finally {
+    endBatch();
+  }
+  bool notifySpy = DEV && isSpyEnabled();
+  bool notify = hasListeners(self);
+  JsValue change = null;
+  if (notify || notifySpy) {
+    change = JS.object("observableKind", "map", "debugObjectName", self["name_"], "type", ADD, "object", self, "name", key, "newValue", newValue);
+  }
+  if (DEV && notifySpy) {
+    spyReportStart(change);
+  }
+  if (notify) {
+    notifyListeners(self, change);
+  }
+  if (DEV && notifySpy) {
+    spyReportEnd0();
+  }
+  return undef();
+});
+ObservableMap["prototype"]["delete"] = JS.method1((JsValue self, JsValue key) => {
+  if (DEV) {
+    checkIfStateModificationsAreAllowed(self["keysAtom_"]);
+  }
+  if (hasInterceptors(self)) {
+    JsValue change = interceptChange(self, JS.object("type", DELETE, "object", self, "name", key));
+    if (!change.truthy()) {
+      return false;
+    }
+  }
+  if (mapHas(self["data_"], key)) {
+    bool notifySpy = DEV && isSpyEnabled();
+    bool notify = hasListeners(self);
+    JsValue change = null;
+    if (notify || notifySpy) {
+      change = JS.object("observableKind", "map", "debugObjectName", self["name_"], "type", DELETE, "object", self, "oldValue", mapGet(self["data_"], key)["value_"], "name", key);
+    }
+    if (DEV && notifySpy) {
+      spyReportStart(change);
+    }
+    startBatch();
+    try {
+      reportChanged(self["keysAtom_"]);
+      JsValue hasEntry = mapGet(self["hasMap_"], key);
+      if (hasEntry.truthy()) {
+        call1(hasEntry["setNewValue_"], hasEntry, false);
+      }
+      JsValue observableNode = mapGet(self["data_"], key);
+      call1(observableNode["setNewValue_"], observableNode, undef());
+      mapDelete(self["data_"], key);
+    } finally {
+      endBatch();
+    }
+    if (notify) {
+      notifyListeners(self, change);
+    }
+    if (DEV && notifySpy) {
+      spyReportEnd0();
+    }
+    return true;
+  }
+  return false;
+});
+ObservableMap["prototype"]["get"] = JS.method1((JsValue self, JsValue key) => {
+  if (call1(self["has"], self, key).truthy()) {
+    JsValue boxed = mapGet(self["data_"], key);
+    return dehanceMap(self, call0(boxed["get"], boxed));
+  }
+  return dehanceMap(self, undef());
+});
+ObservableMap["prototype"]["getOrInsert"] = JS.method2((JsValue self, JsValue key, JsValue value) => {
+  if (!call1(self["has"], self, key).truthy()) {
+    JS.call(self["set"], self, key, value);
+  }
+  return call1(self["get"], self, key);
+});
+ObservableMap["prototype"]["getOrInsertComputed"] = JS.method2((JsValue self, JsValue key, JsValue compute) => {
+  if (!call1(self["has"], self, key).truthy()) {
+    JS.call(self["set"], self, key, call1(compute, undef(), key));
+  }
+  return call1(self["get"], self, key);
+});
+ObservableMap["prototype"]["keys"] = JS.method0((JsValue self) => {
+  reportObserved(self["keysAtom_"]);
+  return JS.invoke(self["data_"], "keys");
+});
+ObservableMap["prototype"]["values"] = JS.method0((JsValue self) => {
+  JsValue keys = call0(self["keys"], self);
+  JsValue iterator = JS.object();
+  iterator["next"] = JS.method0((JsValue _n) => {
+      JsValue step = JS.invoke(keys, "next");
+      if (step["done"].truthy()) {
+        return JS.object("done", true, "value", undef());
+      }
+      return JS.object("done", false, "value", call1(self["get"], self, step["value"]));
+  });
+  iterator[wellKnown("toStringTag")] = "MapIterator";
+  return makeIterable(iterator);
+});
+ObservableMap["prototype"]["entries"] = JS.method0((JsValue self) => {
+  JsValue keys = call0(self["keys"], self);
+  JsValue iterator = JS.object();
+  iterator["next"] = JS.method0((JsValue _n) => {
+      JsValue step = JS.invoke(keys, "next");
+      if (step["done"].truthy()) {
+        return JS.object("done", true, "value", undef());
+      }
+      JsValue pair = JS.array();
+      push(pair, step["value"]);
+      push(pair, call1(self["get"], self, step["value"]));
+      return JS.object("done", false, "value", pair);
+  });
+  iterator[wellKnown("toStringTag")] = "MapIterator";
+  return makeIterable(iterator);
+});
+ObservableMap["prototype"]["forEach"] = JS.method2((JsValue self, JsValue callback, JsValue thisArg) => {
+  JsValue iter = call0(self["entries"], self);
+  JsValue step = JS.invoke(iter, "next");
+  while (!step["done"].truthy()) {
+    JS.call(callback, thisArg, step["value"][1], step["value"][0], self);
+    step = JS.invoke(iter, "next");
+  }
+  return undef();
+});
+ObservableMap["prototype"]["merge"] = JS.method1((JsValue self, JsValue other) => {
+  if (isObservableMap(other)) {
+    other = JS.construct(gMap(), other);
+  }
+  startBatch();
+  try {
+    if (isPlainObject(other)) {
+      JsValue keys = getPlainObjectKeys(other);
+      int i = 0;
+      while (i < len(keys)) {
+        JS.call(self["set"], self, keys[i], other[keys[i]]);
+        i = i + 1;
+      }
+    } else if (isArr(other)) {
+      int i = 0;
+      while (i < len(other)) {
+        JS.call(self["set"], self, other[i][0], other[i][1]);
+        i = i + 1;
+      }
+    } else if (isES6Map(other)) {
+      if (!isPlainES6Map(other)) {
+        die1(19, other);
+      }
+      JS.invoke(other, "forEach", JS.methodRest((JsValue _f, JsValue fargs) => {
+        JS.call(self["set"], self, fargs[1], fargs[0]);
+        return undef();
+      }));
+    } else if (!JS.isNullish(other)) {
+      die1(20, other);
+    }
+  } finally {
+    endBatch();
+  }
+  return self;
+});
+ObservableMap["prototype"]["clear"] = JS.method0((JsValue self) => {
+  startBatch();
+  try {
+    JsValue prev = untrackedStart();
+    try {
+      JsValue keys = arrayFrom(call0(self["keys"], self));
+      int i = 0;
+      while (i < len(keys)) {
+        call1(self["delete"], self, keys[i]);
+        i = i + 1;
+      }
+    } finally {
+      untrackedEnd(prev);
+    }
+  } finally {
+    endBatch();
+  }
+  return undef();
+});
+JsValue convertToMap(JsValue dataStructure) {
+  if (isES6Map(dataStructure) || isObservableMap(dataStructure)) {
+    return dataStructure;
+  }
+  if (isArr(dataStructure)) {
+    return JS.construct(gMap(), dataStructure);
+  }
+  if (isPlainObject(dataStructure)) {
+    JsValue mapped = newMap();
+    JsValue keys = objectKeys(dataStructure);
+    int i = 0;
+    while (i < len(keys)) {
+      mapSet(mapped, keys[i], dataStructure[keys[i]]);
+      i = i + 1;
+    }
+    return mapped;
+  }
+  die1(21, dataStructure);
+  return newMap();
+}
+
+ObservableMap["prototype"]["replace"] = JS.method1((JsValue self, JsValue values) => {
+  startBatch();
+  try {
+    JsValue replacementMap = convertToMap(values);
+    JsValue orderedData = newMap();
+    bool keysReportChangedCalled = false;
+    JsValue existingKeys = arrayFrom(JS.invoke(self["data_"], "keys"));
+    int i = 0;
+    while (i < len(existingKeys)) {
+      JsValue key = existingKeys[i];
+      if (!mapHas(replacementMap, key)) {
+        if (call1(self["delete"], self, key).truthy()) {
+          keysReportChangedCalled = true;
+        } else {
+          mapSet(orderedData, key, mapGet(self["data_"], key));
+        }
+      }
+      i = i + 1;
+    }
+    JsValue entries = arrayFrom(JS.invoke(replacementMap, "entries"));
+    i = 0;
+    while (i < len(entries)) {
+      JsValue key = entries[i][0];
+      JsValue value = entries[i][1];
+      bool keyExisted = mapHas(self["data_"], key);
+      JS.call(self["set"], self, key, value);
+      if (mapHas(self["data_"], key)) {
+        mapSet(orderedData, key, mapGet(self["data_"], key));
+        if (!keyExisted) {
+          keysReportChangedCalled = true;
+        }
+      }
+      i = i + 1;
+    }
+    if (!keysReportChangedCalled) {
+      if (sizeOf(self["data_"]) != sizeOf(orderedData)) {
+        reportChanged(self["keysAtom_"]);
+      } else {
+        JsValue iter1 = JS.invoke(self["data_"], "keys");
+        JsValue iter2 = JS.invoke(orderedData, "keys");
+        JsValue next1 = JS.invoke(iter1, "next");
+        JsValue next2 = JS.invoke(iter2, "next");
+        while (!next1["done"].truthy()) {
+          if (!JS.strictEqual(next1["value"], next2["value"])) {
+            reportChanged(self["keysAtom_"]);
+            break;
+          }
+          next1 = JS.invoke(iter1, "next");
+          next2 = JS.invoke(iter2, "next");
+        }
+      }
+    }
+    self["data_"] = orderedData;
+  } finally {
+    endBatch();
+  }
+  return self;
+});
+ObservableMap["prototype"]["toJSON"] = JS.method0((JsValue self) => {
+  return arrayFrom(self);
+});
+ObservableMap["prototype"]["toString"] = JS.method0((JsValue self) => {
+  return "[object ObservableMap]";
+});
+ObservableMap["prototype"][wellKnown("iterator")] = JS.method0((JsValue self) => {
+  return call0(self["entries"], self);
+});
+defineGetter(ObservableMap["prototype"], "size", JS.method0((JsValue self) => {
+  reportObserved(self["keysAtom_"]);
+  return self["data_"]["size"];
+}));
+defineGetter(ObservableMap["prototype"], wellKnown("toStringTag"), JS.method0((JsValue _s) => {
+  return "Map";
+}));
+isObservableMapPred = createInstanceofPredicate("ObservableMap", ObservableMap);
+
+JsValue dehanceMap(JsValue self, JsValue value) {
+  if (!isUndef(self["dehancer"])) {
+    return call1(self["dehancer"], undef(), value);
+  }
+  return value;
+}
+
+export JsValue ObservableSet = JS.method3((JsValue self, JsValue initialData, JsValue enhancerArg, JsValue nameArg) => {
+  self[$mobx] = ObservableSetMarker;
+  string name = "ObservableSet";
+  if (!isUndef(nameArg)) {
+    name = toStr(nameArg);
+  } else if (DEV) {
+    name = "ObservableSet@" + getNextId();
+  }
+  self["name_"] = name;
+  JsValue enhancer = deepEnhancerFn;
+  if (enhancerArg.truthy()) {
+    enhancer = enhancerArg;
+  }
+  self["enhancer_"] = JS.method3((JsValue _s, JsValue newV, JsValue oldV, JsValue _n) => {
+    return JS.call(enhancer, undef(), newV, oldV, name);
+  });
+  self["data_"] = newSet();
+  self["changeListeners_"] = undef();
+  self["interceptors_"] = undef();
+  self["dehancer"] = undef();
+  initObservable(JS.method0((JsValue _s) => {
+    self["atom_"] = JS.call(createAtom, undef(), self["name_"]);
+    if (initialData.truthy()) {
+      call1(self["replace"], self, initialData);
+    }
+    return undef();
+  }));
+  return self;
+});
+ObservableSet["prototype"]["has"] = JS.method1((JsValue self, JsValue value) => {
+  reportObserved(self["atom_"]);
+  return setHas(self["data_"], dehanceMap(self, value));
+});
+ObservableSet["prototype"]["add"] = JS.method1((JsValue self, JsValue value) => {
+  if (DEV) {
+    checkIfStateModificationsAreAllowed(self["atom_"]);
+  }
+  if (hasInterceptors(self)) {
+    JsValue change = interceptChange(self, JS.object("type", ADD, "object", self, "newValue", value));
+    if (!change.truthy()) {
+      return self;
+    }
+    value = change["newValue"];
+  }
+  if (!call1(self["has"], self, value).truthy()) {
+    startBatch();
+    try {
+      setAdd(self["data_"], JS.call(self["enhancer_"], undef(), value, undef()));
+      reportChanged(self["atom_"]);
+    } finally {
+      endBatch();
+    }
+    bool notifySpy = DEV && isSpyEnabled();
+    bool notify = hasListeners(self);
+    JsValue change = null;
+    if (notify || notifySpy) {
+      change = JS.object("observableKind", "set", "debugObjectName", self["name_"], "type", ADD, "object", self, "newValue", value);
+    }
+    if (DEV && notifySpy) {
+      spyReportStart(change);
+    }
+    if (notify) {
+      notifyListeners(self, change);
+    }
+    if (DEV && notifySpy) {
+      spyReportEnd0();
+    }
+  }
+  return self;
+});
+ObservableSet["prototype"]["delete"] = JS.method1((JsValue self, JsValue value) => {
+  if (hasInterceptors(self)) {
+    JsValue change = interceptChange(self, JS.object("type", DELETE, "object", self, "oldValue", value));
+    if (!change.truthy()) {
+      return false;
+    }
+  }
+  if (call1(self["has"], self, value).truthy()) {
+    bool notifySpy = DEV && isSpyEnabled();
+    bool notify = hasListeners(self);
+    JsValue change = null;
+    if (notify || notifySpy) {
+      change = JS.object("observableKind", "set", "debugObjectName", self["name_"], "type", DELETE, "object", self, "oldValue", value);
+    }
+    if (DEV && notifySpy) {
+      spyReportStart(change);
+    }
+    startBatch();
+    try {
+      reportChanged(self["atom_"]);
+      setDelete(self["data_"], value);
+    } finally {
+      endBatch();
+    }
+    if (notify) {
+      notifyListeners(self, change);
+    }
+    if (DEV && notifySpy) {
+      spyReportEnd0();
+    }
+    return true;
+  }
+  return false;
+});
+ObservableSet["prototype"]["values"] = JS.method0((JsValue self) => {
+  reportObserved(self["atom_"]);
+  JsValue values = JS.invoke(self["data_"], "values");
+  JsValue iterator = JS.object();
+  iterator["next"] = JS.method0((JsValue _n) => {
+      JsValue step = JS.invoke(values, "next");
+      if (step["done"].truthy()) {
+        return JS.object("done", true, "value", undef());
+      }
+      return JS.object("done", false, "value", dehanceMap(self, step["value"]));
+  });
+  iterator[wellKnown("toStringTag")] = "SetIterator";
+  return makeIterable(iterator);
+});
+ObservableSet["prototype"]["keys"] = JS.method0((JsValue self) => {
+  return call0(self["values"], self);
+});
+ObservableSet["prototype"]["entries"] = JS.method0((JsValue self) => {
+  JsValue values = call0(self["values"], self);
+  JsValue iterator = JS.object();
+  iterator["next"] = JS.method0((JsValue _n) => {
+      JsValue step = JS.invoke(values, "next");
+      if (step["done"].truthy()) {
+        return JS.object("done", true, "value", undef());
+      }
+      JsValue pair = JS.array();
+      push(pair, step["value"]);
+      push(pair, step["value"]);
+      return JS.object("done", false, "value", pair);
+  });
+  iterator[wellKnown("toStringTag")] = "SetIterator";
+  return makeIterable(iterator);
+});
+ObservableSet["prototype"]["forEach"] = JS.method2((JsValue self, JsValue callback, JsValue thisArg) => {
+  JsValue iter = call0(self["values"], self);
+  JsValue step = JS.invoke(iter, "next");
+  while (!step["done"].truthy()) {
+    JS.call(callback, thisArg, step["value"], step["value"], self);
+    step = JS.invoke(iter, "next");
+  }
+  return undef();
+});
+ObservableSet["prototype"]["replace"] = JS.method1((JsValue self, JsValue other) => {
+  if (isObservableSet(other)) {
+    other = JS.construct(gSet(), other);
+  }
+  startBatch();
+  try {
+    if (isArr(other)) {
+      call0(self["clear"], self);
+      int i = 0;
+      while (i < len(other)) {
+        call1(self["add"], self, other[i]);
+        i = i + 1;
+      }
+    } else if (isES6Set(other)) {
+      call0(self["clear"], self);
+      JS.invoke(other, "forEach", JS.method1((JsValue _f, JsValue value) => {
+        call1(self["add"], self, value);
+        return undef();
+      }));
+    } else if (!JS.isNullish(other)) {
+      die1(41, other);
+    }
+  } finally {
+    endBatch();
+  }
+  return self;
+});
+ObservableSet["prototype"]["clear"] = JS.method0((JsValue self) => {
+  startBatch();
+  try {
+    JsValue prev = untrackedStart();
+    try {
+      JsValue vals = arrayFrom(JS.invoke(self["data_"], "values"));
+      int i = 0;
+      while (i < len(vals)) {
+        call1(self["delete"], self, vals[i]);
+        i = i + 1;
+      }
+    } finally {
+      untrackedEnd(prev);
+    }
+  } finally {
+    endBatch();
+  }
+  return undef();
+});
+ObservableSet["prototype"]["toJSON"] = JS.method0((JsValue self) => {
+  return arrayFrom(self);
+});
+ObservableSet["prototype"]["toString"] = JS.method0((JsValue self) => {
+  return "[object ObservableSet]";
+});
+ObservableSet["prototype"][wellKnown("iterator")] = JS.method0((JsValue self) => {
+  return call0(self["values"], self);
+});
+defineGetter(ObservableSet["prototype"], "size", JS.method0((JsValue self) => {
+  reportObserved(self["atom_"]);
+  return self["data_"]["size"];
+}));
+defineGetter(ObservableSet["prototype"], wellKnown("toStringTag"), JS.method0((JsValue _s) => {
+  return "Set";
+}));
+
+void addSetAlgebra(string funcName) {
+  ObservableSet["prototype"][funcName] = JS.method1((JsValue self, JsValue other) => {
+    reportObserved(self["atom_"]);
+    if ((funcName == "intersection" || funcName == "union" || funcName == "symmetricDifference" || funcName == "isDisjointFrom") && isES6Set(other) && !isObservableSet(other) && isFn(other[funcName])) {
+      return JS.call(other[funcName], other, self);
+    }
+    return JS.invoke(JS.construct(gSet(), self), funcName, other);
+  });
+}
+
+addSetAlgebra("intersection");
+addSetAlgebra("union");
+addSetAlgebra("difference");
+addSetAlgebra("symmetricDifference");
+addSetAlgebra("isSubsetOf");
+addSetAlgebra("isSupersetOf");
+addSetAlgebra("isDisjointFrom");
+isObservableSetPred = createInstanceofPredicate("ObservableSet", ObservableSet);
+
+deepEnhancerFn = JS.method3((JsValue _s, JsValue v, JsValue _old, JsValue name) => {
+  if (isObservableValueCheck(v)) {
+    return v;
+  }
+  if (isArr(v)) {
+    if (name.truthy()) {
+      return JS.call(observable["array"], observable, v, JS.object("name", name));
+    }
+    return JS.call(observable["array"], observable, v);
+  }
+  if (isPlainObject(v)) {
+    if (name.truthy()) {
+      return JS.call(observable["object"], observable, v, undef(), JS.object("name", name));
+    }
+    return JS.call(observable["object"], observable, v);
+  }
+  if (isES6Map(v)) {
+    if (name.truthy()) {
+      return JS.call(observable["map"], observable, v, JS.object("name", name));
+    }
+    return JS.call(observable["map"], observable, v);
+  }
+  if (isES6Set(v)) {
+    if (name.truthy()) {
+      return JS.call(observable["set"], observable, v, JS.object("name", name));
+    }
+    return JS.call(observable["set"], observable, v);
+  }
+  if (isFn(v) && !isAction(v) && !isFlow(v)) {
+    if (isGenerator(v)) {
+      return JS.call(flow, undef(), v);
+    }
+    return JS.call(autoAction, undef(), name, v);
+  }
+  return v;
+});
+
+shallowEnhancerFn = JS.method3((JsValue _s, JsValue v, JsValue _old, JsValue name) => {
+  if (JS.isNullish(v)) {
+    return v;
+  }
+  if (isObservableObject(v) || isObservableArray(v) || isObservableMap(v) || isObservableSet(v)) {
+    return v;
+  }
+  if (isArr(v)) {
+    return JS.call(observable["array"], observable, v, JS.object("name", name, "deep", false));
+  }
+  if (isPlainObject(v)) {
+    return JS.call(observable["object"], observable, v, undef(), JS.object("name", name, "deep", false));
+  }
+  if (isES6Map(v)) {
+    return JS.call(observable["map"], observable, v, JS.object("name", name, "deep", false));
+  }
+  if (isES6Set(v)) {
+    return JS.call(observable["set"], observable, v, JS.object("name", name, "deep", false));
+  }
+  if (DEV) {
+    die("The shallow modifier / decorator can only used in combination with arrays, objects, maps and sets");
+  }
+  return v;
+});
+
+refStructEnhancerFn = JS.method2((JsValue _s, JsValue v, JsValue oldValue) => {
+  if (DEV && isObservableValueCheck(v)) {
+    die("observable.struct should not be used with observable values");
+  }
+  if (deepEqual(v, oldValue, -1)) {
+    return oldValue;
+  }
+  return v;
+});
+
+bool isObservableValueCheck(JsValue value) {
+  if (!value.truthy()) {
+    return false;
+  }
+  return isObservableObject(value) || value[$mobx].truthy() || isAtom(value) || isReaction(value) || isComputedValue(value);
+}
+
+JsValue getEnhancerFromOptions(JsValue options) {
+  if (JS.strictEqual(options["deep"], true)) {
+    return deepEnhancerFn;
+  }
+  if (JS.strictEqual(options["deep"], false)) {
+    return referenceEnhancerFn;
+  }
+  if (options["defaultDecorator"].truthy() && options["defaultDecorator"]["options_"].truthy() && options["defaultDecorator"]["options_"]["enhancer_"].truthy()) {
+    return options["defaultDecorator"]["options_"]["enhancer_"];
+  }
+  return deepEnhancerFn;
+}
+
+JsValue defaultCreateObservableOptions = JS.object("deep", true, "name", undef(), "defaultDecorator", undef());
+JS.invoke(gObject(), "freeze", defaultCreateObservableOptions);
+
+JsValue asCreateObservableOptions(JsValue thing) {
+  if (thing.truthy()) {
+    return thing;
+  }
+  return defaultCreateObservableOptions;
+}
+
+JsValue annotationOwnMake = JS.method3((JsValue self, JsValue adm, JsValue key, JsValue descriptor) => {
+  JsValue outcome = JS.call(self["extend_"], self, adm, key, descriptor, false);
+  if (JS.isNullish(outcome)) {
+    return MAKE_CANCEL;
+  }
+  return MAKE_BREAK;
+});
+
+JsValue observableAnnotationExtend = JS.methodRest((JsValue self, JsValue args) => {
+  JsValue adm = args[0];
+  JsValue key = args[1];
+  JsValue descriptor = args[2];
+  JsValue proxyTrap = args[3];
+  if (DEV && !inOp("value", descriptor)) {
+    die("Cannot apply '" + toStr(self["annotationType_"]) + "' to '" + toStr(adm["name_"]) + "." + stringifyKey(key) + "':\n'" + toStr(self["annotationType_"]) + "' cannot be used on getter/setter properties");
+  }
+  JsValue enhancer = deepEnhancerFn;
+  if (self["options_"].truthy() && self["options_"]["enhancer_"].truthy()) {
+    enhancer = self["options_"]["enhancer_"];
+  }
+  return JS.call(adm["defineObservableProperty_"], adm, key, descriptor["value"], enhancer, proxyTrap);
+});
+
+export JsValue createObservableAnnotation(string name, JsValue options) {
+  JsValue annotation = JS.object();
+  annotation["annotationType_"] = name;
+  annotation["options_"] = options;
+  annotation["make_"] = annotationOwnMake;
+  annotation["extend_"] = observableAnnotationExtend;
+  return annotation;
+}
+
+JsValue computedAnnotationExtend = JS.methodRest((JsValue self, JsValue args) => {
+  JsValue adm = args[0];
+  JsValue key = args[1];
+  JsValue descriptor = args[2];
+  JsValue proxyTrap = args[3];
+  if (DEV && !descriptor["get"].truthy()) {
+    die("Cannot apply '" + toStr(self["annotationType_"]) + "' to '" + toStr(adm["name_"]) + "." + stringifyKey(key) + "':\n'" + toStr(self["annotationType_"]) + "' can only be used on getter(+setter) properties.");
+  }
+  JsValue opts = assign(JS.object(), self["options_"]);
+  opts["get"] = descriptor["get"];
+  opts["set"] = descriptor["set"];
+  return JS.call(adm["defineComputedProperty_"], adm, key, opts, proxyTrap);
+});
+
+export JsValue createComputedAnnotation(string name, JsValue options) {
+  JsValue annotation = JS.object();
+  annotation["annotationType_"] = name;
+  annotation["options_"] = options;
+  annotation["make_"] = annotationOwnMake;
+  annotation["extend_"] = computedAnnotationExtend;
+  return annotation;
+}
+
+JsValue createActionDescriptor(JsValue adm, JsValue annotation, JsValue key, JsValue descriptor, bool safeDescriptors) {
+  if (DEV && !isFn(descriptor["value"])) {
+    die("Cannot apply '" + toStr(annotation["annotationType_"]) + "' to '" + toStr(adm["name_"]) + "." + stringifyKey(key) + "':\n'" + toStr(annotation["annotationType_"]) + "' can only be used on properties with a function value.");
+  }
+  JsValue value = descriptor["value"];
+  if (annotation["options_"].truthy() && annotation["options_"]["bound"].truthy()) {
+    value = bind(value, admProxyOrTarget(adm));
+  }
+  string actionName = stringifyKey(key);
+  if (annotation["options_"].truthy() && annotation["options_"]["name"].truthy()) {
+    actionName = toStr(annotation["options_"]["name"]);
+  }
+  bool autoFlag = false;
+  if (annotation["options_"].truthy() && annotation["options_"]["autoAction"].truthy()) {
+    autoFlag = true;
+  }
+  JsValue boundRef = undef();
+  if (annotation["options_"].truthy() && annotation["options_"]["bound"].truthy()) {
+    boundRef = admProxyOrTarget(adm);
+  }
+  bool configurable = true;
+  bool writable = true;
+  if (safeDescriptors) {
+    configurable = adm["isPlainObject_"].truthy();
+    writable = false;
+  }
+  return JS.object("value", createAction(actionName, value, autoFlag, boundRef), "configurable", configurable, "enumerable", false, "writable", writable);
+}
+
+JsValue actionAnnotationMake = JS.methodRest((JsValue self, JsValue args) => {
+  JsValue adm = args[0];
+  JsValue key = args[1];
+  JsValue descriptor = args[2];
+  JsValue source = args[3];
+  if (self["options_"].truthy() && self["options_"]["bound"].truthy()) {
+    JsValue outcome = JS.call(self["extend_"], self, adm, key, descriptor, false);
+    if (JS.isNullish(outcome)) {
+      return MAKE_CANCEL;
+    }
+    return MAKE_BREAK;
+  }
+  if (JS.strictEqual(source, adm["target_"])) {
+    JsValue outcome = JS.call(self["extend_"], self, adm, key, descriptor, false);
+    if (JS.isNullish(outcome)) {
+      return MAKE_CANCEL;
+    }
+    return MAKE_CONTINUE;
+  }
+  if (isAction(descriptor["value"])) {
+    return MAKE_BREAK;
+  }
+  defineProperty(source, key, createActionDescriptor(adm, self, key, descriptor, false));
+  return MAKE_CONTINUE;
+});
+
+JsValue actionAnnotationExtend = JS.methodRest((JsValue self, JsValue args) => {
+  JsValue adm = args[0];
+  return JS.call(adm["defineProperty_"], adm, args[1], createActionDescriptor(adm, self, args[1], args[2], globalState["safeDescriptors"].truthy()), args[3]);
+});
+
+export JsValue createActionAnnotation(string name, JsValue options) {
+  JsValue annotation = JS.object();
+  annotation["annotationType_"] = name;
+  annotation["options_"] = options;
+  annotation["make_"] = actionAnnotationMake;
+  annotation["extend_"] = actionAnnotationExtend;
+  return annotation;
+}
+
+JsValue registerLazyObservable(JsValue target, JsValue annotation, JsValue keyName, JsValue value) {
+  JsValue adm = JS.call(asObservableObject, undef(), target)[$mobx];
+  if (!adm["lazyObservableKeys_"].truthy()) {
+    adm["lazyObservableKeys_"] = newMap();
+  }
+  mapSet(adm["lazyObservableKeys_"], keyName, JS.method0((JsValue _f) => {
+    JsValue enhancer = deepEnhancerFn;
+    if (annotation["options_"].truthy() && annotation["options_"]["enhancer_"].truthy()) {
+      enhancer = annotation["options_"]["enhancer_"];
+    }
+    string n = "ObservableObject." + stringifyKey(keyName);
+    if (DEV) {
+      n = toStr(adm["name_"]) + "." + stringifyKey(keyName);
+    }
+    return JS.construct(ObservableValue, value, enhancer, n, false);
+  }));
+  return adm;
+}
+
+JsValue decorateObservable20223_ = JS.method3((JsValue _s, JsValue annotation, JsValue desc, JsValue context) => {
+  if (DEV) {
+    if (toStr(context["kind"]) == "field") {
+      die("Please use `@observable accessor " + stringifyKey(context["name"]) + "` instead of `@observable " + stringifyKey(context["name"]) + "`");
+    }
+    JsValue kinds = JS.array();
+    push(kinds, "accessor");
+    assert20223DecoratorType(context, kinds);
+  }
+  if (toStr(context["kind"]) != "accessor") {
+    return undef();
+  }
+  JsValue keyName = context["name"];
+  JsValue result = JS.object();
+  result["get"] = JS.method0((JsValue self) => {
+    JsValue adm = self[$mobx];
+    if (!adm.truthy()) {
+      adm = registerLazyObservable(self, annotation, keyName, call0(desc["get"], self));
+    }
+    return call1(adm["getObservablePropValue_"], adm, keyName);
+  });
+  result["set"] = JS.method1((JsValue self, JsValue value) => {
+    JsValue adm = self[$mobx];
+    if (!adm.truthy()) {
+      adm = registerLazyObservable(self, annotation, keyName, value);
+    }
+    return call2(adm["setObservablePropValue_"], adm, keyName, value);
+  });
+  result["init"] = JS.method1((JsValue self, JsValue value) => {
+    registerLazyObservable(self, annotation, keyName, value);
+    return value;
+  });
+  return result;
+});
+
+JsValue decorateComputed20223_ = JS.method3((JsValue _s, JsValue annotation, JsValue getter, JsValue context) => {
+  if (DEV) {
+    JsValue kinds = JS.array();
+    push(kinds, "getter");
+    assert20223DecoratorType(context, kinds);
+  }
+  JsValue keyName = context["name"];
+  JsValue computedValues = undef();
+  JsValue createComputedValue = JS.method2((JsValue _c, JsValue target, JsValue adm) => {
+    JsValue options = assign(JS.object(), annotation["options_"]);
+    options["get"] = getter;
+    options["context"] = target;
+    if (!options["name"].truthy()) {
+      if (DEV) {
+        options["name"] = toStr(adm["name_"]) + "." + stringifyKey(keyName);
+      } else {
+        options["name"] = "ObservableObject." + stringifyKey(keyName);
+      }
+    }
+    return construct1(ComputedValue, options);
+  });
+  call1(context["addInitializer"], context, JS.method0((JsValue self) => {
+    JsValue adm = JS.call(asObservableObject, undef(), self)[$mobx];
+    JsValue existing = mapGet(adm["values_"], keyName);
+    if (isComputedValue(existing) && !JS.strictEqual(existing["derivation"], getter)) {
+      mapDelete(adm["values_"], keyName);
+    }
+    if (!adm["lazyComputedKeys_"].truthy()) {
+      adm["lazyComputedKeys_"] = newMap();
+    }
+    mapSet(adm["lazyComputedKeys_"], keyName, JS.method0((JsValue _f) => {
+      return JS.call(createComputedValue, undef(), self, adm);
+    }));
+    return undef();
+  }));
+  return JS.method0((JsValue self) => {
+    JsValue adm = self[$mobx];
+    JsValue existing = mapGet(adm["values_"], keyName);
+    if (isComputedValue(existing) && !JS.strictEqual(existing["derivation"], getter)) {
+      if (!computedValues.truthy()) {
+        computedValues = JS.construct(gWeakMap());
+      }
+      JsValue cached = JS.invoke(computedValues, "get", self);
+      if (!cached.truthy()) {
+        cached = JS.call(createComputedValue, undef(), self, adm);
+        JS.invoke(computedValues, "set", self, cached);
+      }
+      return call0(cached["get"], cached);
+    }
+    return call1(adm["getObservablePropValue_"], adm, keyName);
+  });
+});
+
+JsValue decorateAction20223_ = JS.method3((JsValue _s, JsValue annotation, JsValue mthd, JsValue context) => {
+  if (DEV) {
+    JsValue kinds = JS.array();
+    push(kinds, "method");
+    push(kinds, "field");
+    assert20223DecoratorType(context, kinds);
+  }
+  JsValue keyName = context["name"];
+  JsValue wrap = JS.method1((JsValue _w, JsValue m) => {
+    string n = stringifyKey(keyName);
+    if (annotation["options_"].truthy() && annotation["options_"]["name"].truthy()) {
+      n = toStr(annotation["options_"]["name"]);
+    }
+    bool autoFlag = false;
+    if (annotation["options_"].truthy() && annotation["options_"]["autoAction"].truthy()) {
+      autoFlag = true;
+    }
+    return createAction(n, m, autoFlag, undef());
+  });
+  if (toStr(context["kind"]) == "field") {
+    return JS.method1((JsValue self, JsValue initMthd) => {
+      JsValue out = initMthd;
+      if (!isAction(out)) {
+        out = call1(wrap, undef(), out);
+      }
+      if (annotation["options_"].truthy() && annotation["options_"]["bound"].truthy()) {
+        out = bind(out, self);
+        out["isMobxAction"] = true;
+      }
+      return out;
+    });
+  }
+  if (toStr(context["kind"]) == "method") {
+    if (!isAction(mthd)) {
+      mthd = call1(wrap, undef(), mthd);
+    }
+    if (annotation["options_"].truthy() && annotation["options_"]["bound"].truthy()) {
+      call1(context["addInitializer"], context, JS.method0((JsValue self) => {
+        JsValue boundFn = bind(self[keyName], self);
+        boundFn["isMobxAction"] = true;
+        self[keyName] = boundFn;
+        return undef();
+      }));
+    }
+    return mthd;
+  }
+  die3(43, annotation["annotationType_"], stringifyKey(keyName), context["kind"]);
+  return undef();
+});
+
+JsValue decorateFlow20223_ = JS.method3((JsValue _s, JsValue annotation, JsValue mthd, JsValue context) => {
+  if (DEV) {
+    JsValue kinds = JS.array();
+    push(kinds, "method");
+    assert20223DecoratorType(context, kinds);
+  }
+  JsValue keyName = context["name"];
+  if (!isFlow(mthd)) {
+    mthd = JS.call(flow, undef(), mthd);
+  }
+  if (annotation["options_"].truthy() && annotation["options_"]["bound"].truthy()) {
+    call1(context["addInitializer"], context, JS.method0((JsValue self) => {
+      JsValue boundFn = bind(self[keyName], self);
+      boundFn["isMobXFlow"] = true;
+      self[keyName] = boundFn;
+      return undef();
+    }));
+  }
+  return mthd;
+});
+
+JsValue createFlowDescriptor(JsValue adm, JsValue annotation, JsValue key, JsValue descriptor, bool bound, bool safeDescriptors) {
+  JsValue value = descriptor["value"];
+  if (!isFlow(value)) {
+    value = JS.call(flow, undef(), value);
+  }
+  if (bound) {
+    value = bind(value, admProxyOrTarget(adm));
+    value["isMobXFlow"] = true;
+  }
+  bool configurable = true;
+  bool writable = true;
+  if (safeDescriptors) {
+    configurable = adm["isPlainObject_"].truthy();
+    writable = false;
+  }
+  return JS.object("value", value, "configurable", configurable, "enumerable", false, "writable", writable);
+}
+
+JsValue flowAnnotationMake = JS.methodRest((JsValue self, JsValue args) => {
+  JsValue adm = args[0];
+  JsValue key = args[1];
+  JsValue descriptor = args[2];
+  JsValue source = args[3];
+  if (JS.strictEqual(source, adm["target_"])) {
+    JsValue outcome = JS.call(self["extend_"], self, adm, key, descriptor, false);
+    if (JS.isNullish(outcome)) {
+      return MAKE_CANCEL;
+    }
+    return MAKE_CONTINUE;
+  }
+  if (self["options_"].truthy() && self["options_"]["bound"].truthy() && (!hasOwn(adm["target_"], key) || !isFlow(adm["target_"][key]))) {
+    JsValue outcome = JS.call(self["extend_"], self, adm, key, descriptor, false);
+    if (JS.isNullish(outcome)) {
+      return MAKE_CANCEL;
+    }
+  }
+  if (isFlow(descriptor["value"])) {
+    return MAKE_BREAK;
+  }
+  defineProperty(source, key, createFlowDescriptor(adm, self, key, descriptor, false, false));
+  return MAKE_CONTINUE;
+});
+
+JsValue flowAnnotationExtend = JS.methodRest((JsValue self, JsValue args) => {
+  JsValue adm = args[0];
+  bool boundFlag = false;
+  if (self["options_"].truthy() && self["options_"]["bound"].truthy()) {
+    boundFlag = true;
+  }
+  return JS.call(adm["defineProperty_"], adm, args[1], createFlowDescriptor(adm, self, args[1], args[2], boundFlag, globalState["safeDescriptors"].truthy()), args[3]);
+});
+
+JsValue createFlowAnnotation(string name, JsValue options) {
+  JsValue annotation = JS.object();
+  annotation["annotationType_"] = name;
+  annotation["options_"] = options;
+  annotation["make_"] = flowAnnotationMake;
+  annotation["extend_"] = flowAnnotationExtend;
+  return annotation;
+}
+
+JsValue observableAnnotation = createObservableAnnotation(OBSERVABLE, undef());
+JsValue observableRefAnnotation = createObservableAnnotation(OBSERVABLE_REF, JS.object("enhancer_", referenceEnhancerFn));
+JsValue observableShallowAnnotation = createObservableAnnotation(OBSERVABLE_SHALLOW, JS.object("enhancer_", shallowEnhancerFn));
+JsValue observableStructAnnotation = createObservableAnnotation(OBSERVABLE_STRUCT, JS.object("enhancer_", refStructEnhancerFn));
+JsValue computedAnnotation = createComputedAnnotation(COMPUTED, undef());
+JsValue computedStructAnnotation = createComputedAnnotation(COMPUTED_STRUCT, JS.object("equals", JS.method2((JsValue _s, JsValue a, JsValue b) => {
+  return compareStructural(a, b);
+})));
+JsValue actionAnnotation = createActionAnnotation(ACTION, undef());
+JsValue actionBoundAnnotation = createActionAnnotation(ACTION_BOUND, JS.object("bound", true));
+JsValue autoActionAnnotation = createActionAnnotation(AUTOACTION, JS.object("autoAction", true));
+JsValue autoActionBoundAnnotation = createActionAnnotation(AUTOACTION_BOUND, JS.object("autoAction", true, "bound", true));
+
+JsValue createObservable(JsValue v, JsValue arg2, JsValue arg3) {
+  if (arg2.truthy() && isStr(arg2["kind"])) {
+    return JS.call(decorateObservable20223_, undef(), observableAnnotation, v, arg2);
+  }
+  if (isObservableValueCheck(v)) {
+    return v;
+  }
+  if (isPlainObject(v)) {
+    return JS.call(observable["object"], observable, v, arg2, arg3);
+  }
+  if (isArr(v)) {
+    return JS.call(observable["array"], observable, v, arg2);
+  }
+  if (isES6Map(v)) {
+    return JS.call(observable["map"], observable, v, arg2);
+  }
+  if (isES6Set(v)) {
+    return JS.call(observable["set"], observable, v, arg2);
+  }
+  if (JS.typeOf(v) == "object" && !JS.isNullish(v)) {
+    return v;
+  }
+  return JS.call(observable["box"], observable, v, arg2);
+}
+
+observable = assign(JS.method3((JsValue _s, JsValue value, JsValue arg2, JsValue arg3) => {
+  return createObservable(value, arg2, arg3);
+}), observableAnnotation);
+observable["box"] = JS.method2((JsValue _s, JsValue value, JsValue options) => {
+  JsValue o = asCreateObservableOptions(options);
+  return JS.construct(ObservableValue, value, getEnhancerFromOptions(o), o["name"], true, o["equals"]);
+});
+observable["array"] = JS.method2((JsValue _s, JsValue initial, JsValue options) => {
+  JsValue o = asCreateObservableOptions(options);
+  return JS.call(createObservableArray, undef(), initial, getEnhancerFromOptions(o), o["name"]);
+});
+observable["map"] = JS.method2((JsValue _s, JsValue initial, JsValue options) => {
+  JsValue o = asCreateObservableOptions(options);
+  return JS.construct(ObservableMap, initial, getEnhancerFromOptions(o), o["name"]);
+});
+observable["set"] = JS.method2((JsValue _s, JsValue initial, JsValue options) => {
+  JsValue o = asCreateObservableOptions(options);
+  return JS.construct(ObservableSet, initial, getEnhancerFromOptions(o), o["name"]);
+});
+observable["object"] = JS.method3((JsValue _s, JsValue props, JsValue annotations, JsValue options) => {
+  return initObservable(JS.method0((JsValue __s) => {
+    return JS.call(extendObservable, undef(), asDynamicObservableObject(JS.object(), options), props, annotations);
+  }));
+});
+observableRef = createDecoratorAnnotation(observableRefAnnotation, decorateObservable20223_);
+observableShallow = createDecoratorAnnotation(observableShallowAnnotation, decorateObservable20223_);
+observableDeep = createDecoratorAnnotation(observableAnnotation, decorateObservable20223_);
+observableStruct = createDecoratorAnnotation(observableStructAnnotation, decorateObservable20223_);
+
+computed = assign(JS.method2((JsValue _s, JsValue arg1, JsValue arg2) => {
+  if (arg2.truthy() && isStr(arg2["kind"])) {
+    return JS.call(decorateComputed20223_, undef(), computedAnnotation, arg1, arg2);
+  }
+  if (isPlainObject(arg1)) {
+    return createDecoratorAnnotation(createComputedAnnotation(COMPUTED, arg1), decorateComputed20223_);
+  }
+  if (DEV && !isFn(arg1)) {
+    die("First argument to `computed` should be an expression.");
+  }
+  if (DEV && isFn(arg2)) {
+    die("A setter as second argument is no longer supported, use `{ set: fn }` option instead");
+  }
+  JsValue opts = JS.object();
+  if (isPlainObject(arg2)) {
+    opts = assign(JS.object(), arg2);
+  }
+  opts["get"] = arg1;
+  if (!opts["name"].truthy()) {
+    opts["name"] = fnName(arg1);
+  }
+  return construct1(ComputedValue, opts);
+}), computedAnnotation);
+computedStruct = createDecoratorAnnotation(computedStructAnnotation, decorateComputed20223_);
+
+JsValue createActionFactory(bool asAuto) {
+  return JS.method2((JsValue _s, JsValue arg1, JsValue arg2) => {
+    if (arg2.truthy() && isStr(arg2["kind"])) {
+      JsValue ann = actionAnnotation;
+      if (asAuto) {
+        ann = autoActionAnnotation;
+      }
+      return JS.call(decorateAction20223_, undef(), ann, arg1, arg2);
+    }
+    if (isFn(arg1)) {
+      string n = toStr(fnName(arg1));
+      if (n == "") {
+        n = "<unnamed action>";
+      }
+      return createAction(n, arg1, asAuto, undef());
+    }
+    if (isFn(arg2)) {
+      return createAction(toStr(arg1), arg2, asAuto, undef());
+    }
+    if (isStringish(arg1)) {
+      string kind = ACTION;
+      if (asAuto) {
+        kind = AUTOACTION;
+      }
+      return createDecoratorAnnotation(createActionAnnotation(kind, JS.object("name", arg1, "autoAction", asAuto)), decorateAction20223_);
+    }
+    if (DEV) {
+      die("Invalid arguments for `action`");
+    }
+    return undef();
+  });
+}
+
+action = assign(createActionFactory(false), actionAnnotation);
+autoAction = assign(createActionFactory(true), autoActionAnnotation);
+actionBound = createDecoratorAnnotation(actionBoundAnnotation, decorateAction20223_);
+autoActionBound = createDecoratorAnnotation(autoActionBoundAnnotation, decorateAction20223_);
+
+export JsValue runInAction = JS.method1((JsValue self, JsValue fn) => {
+  string n = toStr(fnName(fn));
+  if (n == "") {
+    n = "<unnamed action>";
+  }
+  return executeAction(n, false, fn, self, undef());
+});
+
+extendObservable = JS.methodRest((JsValue _s, JsValue args) => {
+  JsValue target = args[0];
+  JsValue properties = args[1];
+  JsValue annotations = undef();
+  JsValue options = undef();
+  if (len(args) > 2) {
+    annotations = args[2];
+  }
+  if (len(args) > 3) {
+    options = args[3];
+  }
+  if (DEV) {
+    if (len(args) > 4) {
+      die("'extendObservable' expected 2-4 arguments");
+    }
+    if (JS.typeOf(target) != "object") {
+      die("'extendObservable' expects an object as first argument");
+    }
+    if (isObservableMap(target)) {
+      die("'extendObservable' should not be used on maps, use map.merge instead");
+    }
+    if (!isPlainObject(properties)) {
+      die("'extendObservable' only accepts plain objects as second argument");
+    }
+    if (isObservableValueCheck(properties) || isObservableValueCheck(annotations)) {
+      die("Extending an object with another observable (object) is not supported");
+    }
+  }
+  JsValue descriptors = getDescriptors(properties);
+  initObservable(JS.method0((JsValue __s) => {
+    JsValue adm = JS.call(asObservableObject, undef(), target, options)[$mobx];
+    JsValue keys = reflectOwnKeys(descriptors);
+    int i = 0;
+    while (i < len(keys)) {
+      JsValue key = keys[i];
+      JsValue annotation = true;
+      if (annotations.truthy()) {
+        if (inOp(key, annotations)) {
+          annotation = annotations[key];
+        }
+      }
+      JS.call(adm["extend_"], adm, key, descriptors[key], annotation);
+      i = i + 1;
+    }
+    return undef();
+  }));
+  return target;
+});
+
+JsValue createSchedulerFromOptions(JsValue opts) {
+  if (opts["scheduler"].truthy()) {
+    return opts["scheduler"];
+  }
+  if (opts["delay"].truthy()) {
+    return JS.method1((JsValue _s, JsValue callback) => {
+      return setTimeoutHost(callback, opts["delay"]);
+    });
+  }
+  return JS.method1((JsValue _s, JsValue callback) => {
+    return call0(callback, undef());
+  });
+}
+
+export JsValue autorun = JS.method2((JsValue _s, JsValue view, JsValue optsArg) => {
+  JsValue opts = EMPTY_OBJECT;
+  if (optsArg.truthy()) {
+    opts = optsArg;
+  }
+  if (DEV && !isFn(view)) {
+    die("Autorun expects a function as first argument");
+  }
+  if (DEV && isAction(view)) {
+    die("Autorun does not accept actions since actions are untrackable");
+  }
+  string name = "Autorun";
+  if (opts["name"].truthy()) {
+    name = toStr(opts["name"]);
+  } else if (DEV) {
+    name = toStr(fnName(view));
+    if (name == "") {
+      name = "Autorun@" + getNextId();
+    }
+  }
+  bool runSync = !opts["scheduler"].truthy() && !opts["delay"].truthy();
+  JsValue reactionInst = undef();
+  JsValue reactionRunner = () => {
+    call1(view, undef(), reactionInst);
+    return undef();
+  };
+  if (runSync) {
+    reactionInst = JS.construct(Reaction, name, JS.method0((JsValue rself) => {
+      invoke1(rself, "track", reactionRunner);
+      return undef();
+    }), opts["onError"], opts["requiresObservable"]);
+  } else {
+    JsValue scheduler = createSchedulerFromOptions(opts);
+    bool isScheduled = false;
+    reactionInst = JS.construct(Reaction, name, JS.method0((JsValue rself) => {
+      if (!isScheduled) {
+        isScheduled = true;
+        call1(scheduler, undef(), () => {
+          isScheduled = false;
+          if (!rself["isDisposed"].truthy()) {
+            invoke1(rself, "track", reactionRunner);
+          }
+          return undef();
+        });
+      }
+      return undef();
+    }), opts["onError"], opts["requiresObservable"]);
+  }
+  if (!(opts["signal"].truthy() && opts["signal"]["aborted"].truthy())) {
+    invoke0(reactionInst, "schedule_");
+  }
+  return call1(reactionInst["getDisposer_"], reactionInst, opts["signal"]);
+});
+
+JsValue wrapErrorHandler(JsValue errorHandler, JsValue baseFn) {
+  if (!errorHandler.truthy()) {
+    return baseFn;
+  }
+  return JS.methodRest((JsValue self, JsValue args) => {
+    try {
+      return apply(baseFn, self, args);
+    } catch (JsValue e) {
+      call1(errorHandler, self, e);
+      return undef();
+    }
+  });
+}
+
+export JsValue reaction = JS.method3((JsValue _s, JsValue expression, JsValue effect, JsValue optsArg) => {
+  JsValue opts = EMPTY_OBJECT;
+  if (optsArg.truthy()) {
+    opts = optsArg;
+  }
+  string name = "Reaction";
+  if (opts["name"].truthy()) {
+    name = toStr(opts["name"]);
+  } else if (DEV) {
+    name = "Reaction@" + getNextId();
+  }
+  JsValue equalsFn = defaultEquals;
+  if (opts["equals"].truthy()) {
+    equalsFn = opts["equals"];
+  }
+  JsValue effectAction = JS.call(action, undef(), name, wrapErrorHandler(opts["onError"], effect));
+  JsValue currentValue = undef();
+  JsValue firstTimeFlag = true;
+  JsValue changedFlag = false;
+  JsValue r = undef();
+  JsValue exprTrack = () => {
+    bool prevAllow = allowStateChangesStart(false);
+    JsValue nextValue = undef();
+    try {
+      nextValue = call1(expression, undef(), r);
+    } finally {
+      allowStateChangesEnd(prevAllow);
+    }
+    if (firstTimeFlag.truthy()) {
+      changedFlag = true;
+    } else {
+      changedFlag = !yes(call2(equalsFn, undef(), currentValue, nextValue));
+    }
+    currentValue = nextValue;
+    return undef();
+  };
+  bool runSync = !opts["scheduler"].truthy() && !opts["delay"].truthy();
+  bool isScheduled = false;
+  JsValue scheduler = createSchedulerFromOptions(opts);
+  JsValue reactionRunner = () => {
+    isScheduled = false;
+    if (r["isDisposed"].truthy()) {
+      return undef();
+    }
+    JsValue oldValue = currentValue;
+    changedFlag = false;
+    call1(r["track"], r, exprTrack);
+    if (firstTimeFlag.truthy() && opts["fireImmediately"].truthy()) {
+      JS.call(effectAction, undef(), currentValue, oldValue, r);
+    } else if (!firstTimeFlag.truthy() && changedFlag.truthy()) {
+      JS.call(effectAction, undef(), currentValue, oldValue, r);
+    }
+    firstTimeFlag = false;
+    return undef();
+  };
+  r = JS.construct(Reaction, name, () => {
+    if (firstTimeFlag.truthy() || runSync) {
+      call0(reactionRunner, undef());
+    } else if (!isScheduled) {
+      isScheduled = true;
+      call1(scheduler, undef(), reactionRunner);
+    }
+    return undef();
+  }, opts["onError"], opts["requiresObservable"]);
+  if (!(opts["signal"].truthy() && opts["signal"]["aborted"].truthy())) {
+    call0(r["schedule_"], r);
+  }
+  return call1(r["getDisposer_"], r, opts["signal"]);
+});
+
+export JsValue when = JS.methodRest((JsValue _s, JsValue args) => {
+  JsValue predicate = args[0];
+  if (len(args) == 1 || (len(args) > 1 && args[1].truthy() && JS.typeOf(args[1]) == "object")) {
+    JsValue opts = undef();
+    if (len(args) > 1) {
+      opts = args[1];
+    }
+    return whenPromise(predicate, opts);
+  }
+  return whenEffect(predicate, args[1], args[2]);
+});
+
+JsValue whenEffect(JsValue predicate, JsValue effect, JsValue opts) {
+  if (!opts.truthy()) {
+    opts = JS.object();
+  }
+  JsValue disposer = undef();
+  JsValue timeoutHandle = undef();
+  if (isNum(opts["timeout"])) {
+    JsValue timeoutError = makeError("WHEN_TIMEOUT");
+    timeoutHandle = setTimeoutHost(JS.method0((JsValue _t) => {
+      if (!disposer[$mobx]["isDisposed"].truthy()) {
+        call0(disposer, undef());
+        if (opts["onError"].truthy()) {
+          call1(opts["onError"], undef(), timeoutError);
+        } else {
+          throwErr(timeoutError);
+        }
+      }
+      return undef();
+    }), opts["timeout"]);
+  }
+  if (!opts["name"].truthy()) {
+    if (DEV) {
+      opts["name"] = "When@" + getNextId();
+    } else {
+      opts["name"] = "When";
+    }
+  }
+  JsValue effectAction = createAction("When-effect", effect, false, undef());
+  if (DEV) {
+    effectAction = createAction(toStr(opts["name"]) + "-effect", effect, false, undef());
+  }
+  disposer = JS.call(autorun, undef(), JS.method1((JsValue _s, JsValue r) => {
+    JsValue cond = JS.call(allowStateChanges, undef(), false, predicate);
+    if (cond.truthy()) {
+      call0(r["dispose"], r);
+      if (timeoutHandle.truthy()) {
+        clearTimeoutHost(timeoutHandle);
+      }
+      call0(effectAction, undef());
+    }
+    return undef();
+  }), opts);
+  return disposer;
+}
+
+JsValue whenPromise(JsValue predicate, JsValue opts) {
+  if (DEV && opts.truthy() && opts["onError"].truthy()) {
+    die("the options 'onError' and 'promise' cannot be combined");
+  }
+  if (opts.truthy() && opts["signal"].truthy() && opts["signal"]["aborted"].truthy()) {
+    JsValue rejected = JS.invoke(gPromise(), "reject", makeError("WHEN_ABORTED"));
+    rejected["cancel"] = JS.method0((JsValue _c) => {
+      return null;
+    });
+    return rejected;
+  }
+  JsValue slot = JS.object();
+  slot["cancel"] = undef();
+  slot["abort"] = undef();
+  JsValue res = JS.construct(gPromise(), JS.methodRest((JsValue _s, JsValue pargs) => {
+    JsValue resolve = pargs[0];
+    JsValue reject = pargs[1];
+    JsValue wrapped = assign(JS.object(), opts);
+    wrapped["onError"] = reject;
+    JsValue disposer = whenEffect(predicate, resolve, wrapped);
+    slot["cancel"] = JS.method0((JsValue _c) => {
+      call0(disposer, undef());
+      call1(reject, undef(), makeError("WHEN_CANCELLED"));
+      return undef();
+    });
+    slot["abort"] = JS.method0((JsValue _a) => {
+      call0(disposer, undef());
+      call1(reject, undef(), makeError("WHEN_ABORTED"));
+      return undef();
+    });
+    if (opts.truthy() && opts["signal"].truthy() && isFn(opts["signal"]["addEventListener"])) {
+      JS.invoke(opts["signal"], "addEventListener", "abort", slot["abort"]);
+    }
+    return undef();
+  }));
+  if (opts.truthy() && opts["signal"].truthy() && isFn(opts["signal"]["removeEventListener"])) {
+    res = JS.invoke(res, "finally", JS.method0((JsValue _f) => {
+      JS.invoke(opts["signal"], "removeEventListener", "abort", slot["abort"]);
+      return undef();
+    }));
+  }
+  res["cancel"] = slot["cancel"];
+  return res;
+}
+
+export JsValue configure = JS.method1((JsValue _s, JsValue options) => {
+  if (JS.strictEqual(options["isolateGlobalState"], true)) {
+    call0(isolateGlobalState, undef());
+  }
+  if (!isUndef(options["enforceActions"])) {
+    JsValue ea = options["enforceActions"];
+    if (JS.strictEqual(ea, "always")) {
+      globalState["enforceActions"] = "always";
+      globalState["allowStateChanges"] = false;
+    } else if (JS.strictEqual(ea, "observed")) {
+      globalState["enforceActions"] = true;
+      globalState["allowStateChanges"] = false;
+    } else {
+      globalState["enforceActions"] = false;
+      globalState["allowStateChanges"] = true;
+    }
+  }
+  if (inOp("computedRequiresReaction", options)) {
+    globalState["computedRequiresReaction"] = options["computedRequiresReaction"].truthy();
+  }
+  if (inOp("reactionRequiresObservable", options)) {
+    globalState["reactionRequiresObservable"] = options["reactionRequiresObservable"].truthy();
+  }
+  if (inOp("observableRequiresReaction", options)) {
+    globalState["observableRequiresReaction"] = options["observableRequiresReaction"].truthy();
+  }
+  if (inOp("disableErrorBoundaries", options)) {
+    globalState["disableErrorBoundaries"] = options["disableErrorBoundaries"].truthy();
+  }
+  if (inOp("safeDescriptors", options)) {
+    globalState["safeDescriptors"] = options["safeDescriptors"].truthy();
+  }
+  globalState["allowStateReads"] = !globalState["observableRequiresReaction"].truthy();
+  if (options["reactionScheduler"].truthy()) {
+    setReactionScheduler(options["reactionScheduler"]);
+  }
+  return undef();
+});
+
+export JsValue isObservable = JS.method1((JsValue _s, JsValue value) => {
+  return isObservableValueCheck(value);
+});
+
+export JsValue isObservableProp = JS.method2((JsValue _s, JsValue value, JsValue property) => {
+  if (DEV && !isStringish(property)) {
+    die("expected a property name as second argument");
+  }
+  if (!isObservableObject(value)) {
+    return false;
+  }
+  JsValue adm = value[$mobx];
+  if (mapHas(adm["values_"], property)) {
+    return true;
+  }
+  if (adm["lazyComputedKeys_"].truthy() && mapHas(adm["lazyComputedKeys_"], property)) {
+    return true;
+  }
+  if (adm["lazyObservableKeys_"].truthy() && mapHas(adm["lazyObservableKeys_"], property)) {
+    return true;
+  }
+  return false;
+});
+
+export JsValue FlowCancellationError = JS.method0((JsValue self) => {
+  self["message"] = "FLOW_CANCELLED";
+  self["name"] = "FlowCancellationError";
+  return self;
+});
+setPrototypeOf(FlowCancellationError["prototype"], gError()["prototype"]);
+FlowCancellationError["prototype"]["constructor"] = FlowCancellationError;
+defineProperty(FlowCancellationError, "name", JS.object("value", "FlowCancellationError", "configurable", true));
+FlowCancellationError["prototype"]["toString"] = JS.method0((JsValue self) => {
+  return "Error: " + toStr(self["message"]);
+});
+
+export JsValue isFlowCancellationError = JS.method1((JsValue _s, JsValue error) => {
+  return protoIsPrototypeOf(FlowCancellationError, error);
+});
+
+int localGeneratorId = 0;
+
+flow = assign(JS.method2((JsValue _s, JsValue genFn, JsValue context) => {
+  if (context.truthy() && isStr(context["kind"])) {
+    return JS.call(decorateFlow20223_, undef(), flow, genFn, context);
+  }
+  string name = toStr(fnName(genFn));
+  if (name == "") {
+    if (DEV) {
+      name = "<unnamed flow>";
+    } else {
+      name = "flow";
+    }
+  }
+  JsValue res = JS.methodRest((JsValue ctx, JsValue genArgs) => {
+    int runId = 0;
+    if (DEV) {
+      localGeneratorId = localGeneratorId + 1;
+      runId = localGeneratorId;
+    }
+    string initName = name;
+    if (DEV) {
+      initName = name + " - runid: " + toStr(runId) + " - init";
+    }
+    JsValue gen = apply(JS.call(action, undef(), initName, genFn), ctx, genArgs);
+    JsValue slot = JS.object();
+    slot["rejector"] = undef();
+    slot["pending"] = undef();
+    slot["stepId"] = 0;
+    JsValue onFulfilled = undef();
+    JsValue onRejected = undef();
+    JsValue nextStep = undef();
+    onFulfilled = JS.method1((JsValue _f, JsValue v) => {
+      slot["pending"] = undef();
+      try {
+        string stepName = name;
+        if (DEV) {
+          int stepId = toInt(slot["stepId"]);
+          slot["stepId"] = stepId + 1;
+          stepName = name + " - runid: " + toStr(runId) + " - yield " + toStr(stepId);
+        }
+        JsValue ret = call1(JS.call(action, undef(), stepName, gen["next"]), gen, v);
+        call1(nextStep, undef(), ret);
+      } catch (JsValue e) {
+        call1(slot["rejector"], undef(), e);
+      }
+      return undef();
+    });
+    onRejected = JS.method1((JsValue _r, JsValue err) => {
+      slot["pending"] = undef();
+      try {
+        string stepName = name;
+        if (DEV) {
+          int stepId = toInt(slot["stepId"]);
+          slot["stepId"] = stepId + 1;
+          stepName = name + " - runid: " + toStr(runId) + " - yield " + toStr(stepId);
+        }
+        JsValue ret = call1(JS.call(action, undef(), stepName, gen["throw"]), gen, err);
+        call1(nextStep, undef(), ret);
+      } catch (JsValue e) {
+        call1(slot["rejector"], undef(), e);
+      }
+      return undef();
+    });
+    nextStep = JS.method1((JsValue _n, JsValue ret) => {
+      if (isFn(ret["then"])) {
+        JS.invoke(ret, "then", nextStep, slot["rejector"]);
+        return undef();
+      }
+      if (ret["done"].truthy()) {
+        call1(slot["resolve"], undef(), ret["value"]);
+        return undef();
+      }
+      slot["pending"] = JS.invoke(gPromise(), "resolve", ret["value"]);
+      JS.invoke(slot["pending"], "then", onFulfilled, onRejected);
+      return undef();
+    });
+    JsValue promise = JS.construct(gPromise(), JS.methodRest((JsValue _p, JsValue pargs) => {
+      slot["resolve"] = pargs[0];
+      slot["rejector"] = pargs[1];
+      call1(onFulfilled, undef(), undef());
+      return undef();
+    }));
+    string cancelName = name;
+    if (DEV) {
+      cancelName = name + " - runid: " + toStr(runId) + " - cancel";
+    }
+    promise["cancel"] = JS.call(action, undef(), cancelName, JS.method0((JsValue _c) => {
+      try {
+        if (slot["pending"].truthy() && isFn(slot["pending"]["cancel"])) {
+          call0(slot["pending"]["cancel"], slot["pending"]);
+        }
+        JsValue ret = JS.invoke(gen, "return", undef());
+        JsValue yielded = JS.invoke(gPromise(), "resolve", ret["value"]);
+        JS.invoke(yielded, "then", noop, noop);
+        if (isFn(yielded["cancel"])) {
+          call0(yielded["cancel"], yielded);
+        }
+        call1(slot["rejector"], undef(), construct0(FlowCancellationError));
+      } catch (JsValue e) {
+        call1(slot["rejector"], undef(), e);
+      }
+      return undef();
+    }));
+    return promise;
+  });
+  res["isMobXFlow"] = true;
+  return res;
+}), createFlowAnnotation(FLOW, undef()));
+
+flowBound = createDecoratorAnnotation(createFlowAnnotation("flow.bound", JS.object("bound", true)), decorateFlow20223_);
+
+export JsValue override = JS.object();
+override["annotationType_"] = "override";
+override["make_"] = JS.method2((JsValue self, JsValue adm, JsValue key) => {
+  if (DEV && adm["isPlainObject_"].truthy()) {
+    die("Cannot apply '" + toStr(self["annotationType_"]) + "' to '" + toStr(adm["name_"]) + "." + stringifyKey(key) + "':\n'" + toStr(self["annotationType_"]) + "' cannot be used on plain objects.");
+  }
+  if (DEV && !hasOwn(adm["appliedAnnotations_"], key)) {
+    die("'" + toStr(adm["name_"]) + "." + stringifyKey(key) + "' is annotated with '" + toStr(self["annotationType_"]) + "', but no such annotated member was found on prototype.");
+  }
+  return MAKE_CANCEL;
+});
+override["extend_"] = JS.method0((JsValue self) => {
+  die1(44, self["annotationType_"]);
+  return false;
+});
+
+JsValue keysSymbol = JS.call(gSymbol(), undef(), "mobx-keys");
+
+export JsValue makeObservable = JS.method3((JsValue _s, JsValue target, JsValue annotations, JsValue options) => {
+  initObservable(JS.method0((JsValue __s) => {
+    JsValue adm = JS.call(asObservableObject, undef(), target, options)[$mobx];
+    JsValue keys = reflectOwnKeys(annotations);
+    int i = 0;
+    while (i < len(keys)) {
+      makeAnnotate(adm, keys[i], annotations[keys[i]]);
+      i = i + 1;
+    }
+    return undef();
+  }));
+  return target;
+});
+
+export JsValue makeAutoObservable = JS.method3((JsValue _s, JsValue target, JsValue overrides, JsValue options) => {
+  if (DEV) {
+    JsValue proto = getPrototypeOf(target);
+    if (!isPlainObject(target) && !isPlainObject(proto)) {
+      die("'makeAutoObservable' can only be used for classes that don't have a superclass");
+    }
+    if (isObservableObject(target)) {
+      die("makeAutoObservable can only be used on objects not already made observable");
+    }
+  }
+  if (isPlainObject(target)) {
+    return JS.call(extendObservable, undef(), target, target, overrides, options);
+  }
+  initObservable(JS.method0((JsValue __s) => {
+    JsValue adm = JS.call(asObservableObject, undef(), target, options)[$mobx];
+    if (!inOp(keysSymbol, target)) {
+      JsValue proto = getPrototypeOf(target);
+      JsValue keys = JS.construct(gSet());
+      JsValue own = reflectOwnKeys(target);
+      JsValue pown = reflectOwnKeys(proto);
+      int i = 0;
+      while (i < len(own)) {
+        setAdd(keys, own[i]);
+        i = i + 1;
+      }
+      i = 0;
+      while (i < len(pown)) {
+        setAdd(keys, pown[i]);
+        i = i + 1;
+      }
+      setDelete(keys, "constructor");
+      setDelete(keys, $mobx);
+      addHiddenProp(proto, keysSymbol, keys);
+    }
+    JS.invoke(target[keysSymbol], "forEach", JS.method1((JsValue _f, JsValue key) => {
+      JsValue annotation = true;
+      if (overrides.truthy() && inOp(key, overrides)) {
+        annotation = overrides[key];
+      }
+      makeAnnotate(adm, key, annotation);
+      return undef();
+    }));
+    return undef();
+  }));
+  return target;
+});
+
+void makeAnnotate(JsValue adm, JsValue key, JsValue annotation) {
+  if (JS.strictEqual(annotation, true)) {
+    annotation = adm["defaultAnnotation_"];
+  }
+  if (JS.strictEqual(annotation, false)) {
+    return;
+  }
+  assertAnnotable(adm, annotation, key);
+  if (!inOp(key, adm["target_"])) {
+    die2(1, annotation["annotationType_"], toStr(adm["name_"]) + "." + stringifyKey(key));
+  }
+  JsValue source = adm["target_"];
+  while (source.truthy() && !JS.strictEqual(source, gObject()["prototype"])) {
+    JsValue descriptor = getDescriptor(source, key);
+    if (descriptor.truthy()) {
+      JsValue outcome = JS.call(annotation["make_"], annotation, adm, key, descriptor, source);
+      if (JS.strictEqual(outcome, MAKE_CANCEL)) {
+        return;
+      }
+      if (JS.strictEqual(outcome, MAKE_BREAK)) {
+        break;
+      }
+    }
+    source = getPrototypeOf(source);
+  }
+  recordAnnotationApplied(adm, annotation, key);
+}
+
+export JsValue keys = JS.method1((JsValue _s, JsValue obj) => {
+  if (isObservableObject(obj)) {
+    return call0(obj[$mobx]["keys_"], obj[$mobx]);
+  }
+  if (isObservableMap(obj) || isObservableSet(obj)) {
+    return arrayFrom(JS.invoke(obj, "keys"));
+  }
+  if (isObservableArray(obj)) {
+    JsValue out = JS.array();
+    int i = 0;
+    while (i < toInt(obj["length"])) {
+      push(out, i);
+      i = i + 1;
+    }
+    return out;
+  }
+  die(5);
+  return undef();
+});
+
+export JsValue values = JS.method1((JsValue _s, JsValue obj) => {
+  if (isObservableObject(obj)) {
+    JsValue ks = call1(keys, undef(), obj);
+    JsValue out = JS.array();
+    int i = 0;
+    while (i < len(ks)) {
+      push(out, obj[ks[i]]);
+      i = i + 1;
+    }
+    return out;
+  }
+  if (isObservableMap(obj)) {
+    JsValue ks = call1(keys, undef(), obj);
+    JsValue out = JS.array();
+    int i = 0;
+    while (i < len(ks)) {
+      push(out, call1(obj["get"], obj, ks[i]));
+      i = i + 1;
+    }
+    return out;
+  }
+  if (isObservableSet(obj)) {
+    return arrayFrom(JS.invoke(obj, "values"));
+  }
+  if (isObservableArray(obj)) {
+    return JS.invoke(obj, "slice");
+  }
+  die(6);
+  return undef();
+});
+
+export JsValue entries = JS.method1((JsValue _s, JsValue obj) => {
+  if (isObservableObject(obj) || isObservableMap(obj)) {
+    JsValue ks = call1(keys, undef(), obj);
+    JsValue out = JS.array();
+    int i = 0;
+    while (i < len(ks)) {
+      JsValue pair = JS.array();
+      push(pair, ks[i]);
+      if (isObservableMap(obj)) {
+        push(pair, call1(obj["get"], obj, ks[i]));
+      } else {
+        push(pair, obj[ks[i]]);
+      }
+      push(out, pair);
+      i = i + 1;
+    }
+    return out;
+  }
+  if (isObservableSet(obj)) {
+    return arrayFrom(JS.invoke(obj, "entries"));
+  }
+  if (isObservableArray(obj)) {
+    JsValue out = JS.array();
+    int i = 0;
+    while (i < toInt(obj["length"])) {
+      JsValue pair = JS.array();
+      push(pair, i);
+      push(pair, obj[i]);
+      push(out, pair);
+      i = i + 1;
+    }
+    return out;
+  }
+  die(7);
+  return undef();
+});
+
+export JsValue set = JS.methodRest((JsValue _s, JsValue args) => {
+  JsValue obj = args[0];
+  JsValue key = args[1];
+  JsValue value = undef();
+  if (len(args) > 2) {
+    value = args[2];
+  }
+  if (len(args) == 2 && !isObservableSet(obj)) {
+    startBatch();
+    try {
+      JsValue ks = objectKeys(key);
+      int i = 0;
+      while (i < len(ks)) {
+        JS.call(set, undef(), obj, ks[i], key[ks[i]]);
+        i = i + 1;
+      }
+    } finally {
+      endBatch();
+    }
+    return undef();
+  }
+  if (isObservableObject(obj)) {
+    call2(obj[$mobx]["set_"], obj[$mobx], key, value);
+  } else if (isObservableMap(obj)) {
+    JS.call(obj["set"], obj, key, value);
+  } else if (isObservableSet(obj)) {
+    call1(obj["add"], obj, key);
+  } else if (isObservableArray(obj)) {
+    startBatch();
+    if (toInt(key) >= toInt(obj["length"])) {
+      obj["length"] = toInt(key) + 1;
+    }
+    obj[key] = value;
+    endBatch();
+  } else {
+    die(8);
+  }
+  return undef();
+});
+
+export JsValue remove = JS.method2((JsValue _s, JsValue obj, JsValue key) => {
+  if (isObservableObject(obj)) {
+    call1(obj[$mobx]["delete_"], obj[$mobx], key);
+  } else if (isObservableMap(obj) || isObservableSet(obj)) {
+    call1(obj["delete"], obj, key);
+  } else if (isObservableArray(obj)) {
+    JS.invoke(obj, "splice", key, 1);
+  } else {
+    die(9);
+  }
+  return undef();
+});
+
+export JsValue has = JS.method2((JsValue _s, JsValue obj, JsValue key) => {
+  if (isObservableObject(obj)) {
+    return call1(obj[$mobx]["has_"], obj[$mobx], key);
+  }
+  if (isObservableMap(obj) || isObservableSet(obj)) {
+    return call1(obj["has"], obj, key);
+  }
+  if (isObservableArray(obj)) {
+    return toInt(key) >= 0 && toInt(key) < toInt(obj["length"]);
+  }
+  die(10);
+  return false;
+});
+
+export JsValue get = JS.method2((JsValue _s, JsValue obj, JsValue key) => {
+  if (!call2(has, undef(), obj, key).truthy()) {
+    return undef();
+  }
+  if (isObservableObject(obj)) {
+    return call1(obj[$mobx]["get_"], obj[$mobx], key);
+  }
+  if (isObservableMap(obj)) {
+    return call1(obj["get"], obj, key);
+  }
+  if (isObservableArray(obj)) {
+    return obj[key];
+  }
+  die(11);
+  return undef();
+});
+
+export JsValue ownKeysApi = JS.method1((JsValue _s, JsValue obj) => {
+  if (isObservableObject(obj)) {
+    return call0(obj[$mobx]["ownKeys_"], obj[$mobx]);
+  }
+  die(38);
+  return undef();
+});
+
+export JsValue definePropertyApi = JS.method3((JsValue _s, JsValue obj, JsValue key, JsValue descriptor) => {
+  if (isObservableObject(obj)) {
+    return call2(obj[$mobx]["defineProperty_"], obj[$mobx], key, descriptor);
+  }
+  die(39);
+  return undef();
+});
+
+export JsValue getAtom = JS.method2((JsValue _s, JsValue thing, JsValue property) => {
+  if (JS.typeOf(thing) == "object" && !JS.isNullish(thing)) {
+    if (isObservableArray(thing)) {
+      if (!isUndef(property)) {
+        die(23);
+      }
+      return thing[$mobx]["atom_"];
+    }
+    if (isObservableSet(thing)) {
+      return thing["atom_"];
+    }
+    if (isObservableMap(thing)) {
+      if (isUndef(property)) {
+        return thing["keysAtom_"];
+      }
+      JsValue obs = mapGet(thing["data_"], property);
+      if (!obs.truthy()) {
+        obs = mapGet(thing["hasMap_"], property);
+      }
+      if (!obs.truthy()) {
+        die2(25, property, thing["name_"]);
+      }
+      return obs;
+    }
+    if (property.truthy() && !thing[$mobx].truthy()) {
+      JsValue probed = thing[property];
+      if (isUndef(probed)) {
+        probed = undef();
+      }
+    }
+    if (isObservableObject(thing)) {
+      if (!property.truthy()) {
+        die(26);
+      }
+      JsValue adm = thing[$mobx];
+      JsValue observableNode = mapGet(adm["values_"], property);
+      if (!observableNode.truthy()) {
+        observableNode = call1(adm["materializeLazyComputed_"], adm, property);
+      }
+      if (!observableNode.truthy()) {
+        observableNode = call1(adm["materializeLazyObservable_"], adm, property);
+      }
+      if (!observableNode.truthy()) {
+        die2(27, property, adm["name_"]);
+      }
+      return observableNode;
+    }
+    if (isAtom(thing) || isComputedValue(thing) || isReaction(thing)) {
+      return thing;
+    }
+  } else if (isFn(thing)) {
+    if (isReaction(thing[$mobx])) {
+      return thing[$mobx];
+    }
+  }
+  die1(28, thing);
+  return undef();
+});
+
+export JsValue getAdministration = JS.method2((JsValue _s, JsValue thing, JsValue property) => {
+  if (!thing.truthy()) {
+    die(29);
+  }
+  if (!isUndef(property)) {
+    return JS.call(getAdministration, undef(), JS.call(getAtom, undef(), thing, property));
+  }
+  if (isAtom(thing) || isComputedValue(thing) || isReaction(thing) || isObservableMap(thing) || isObservableSet(thing)) {
+    return thing;
+  }
+  if (thing[$mobx].truthy()) {
+    return thing[$mobx];
+  }
+  die1(24, thing);
+  return undef();
+});
+
+export JsValue getDebugName = JS.method2((JsValue _s, JsValue thing, JsValue property) => {
+  JsValue named = undef();
+  if (!isUndef(property)) {
+    named = JS.call(getAtom, undef(), thing, property);
+  } else if (isAction(thing)) {
+    return thing["name"];
+  } else {
+    bool fromAdmin = isObservableObject(thing) || isObservableMap(thing) || isObservableSet(thing);
+    if (fromAdmin) {
+      named = JS.call(getAdministration, undef(), thing);
+    } else {
+      named = JS.call(getAtom, undef(), thing);
+    }
+  }
+  return named["name_"];
+});
+
+export JsValue observe = JS.methodRest((JsValue _s, JsValue args) => {
+  JsValue thing = args[0];
+  if (len(args) > 2 && isFn(args[2])) {
+    bool fireImmediately = false;
+    if (len(args) > 3) {
+      fireImmediately = args[3].truthy();
+    }
+    return observeValue(JS.call(getAdministration, undef(), thing, args[1]), args[2], fireImmediately);
+  }
+  bool fireImmediately = false;
+  if (len(args) > 2) {
+    fireImmediately = args[2].truthy();
+  }
+  return observeObservable(thing, args[1], fireImmediately);
+});
+
+JsValue observeObservable(JsValue thing, JsValue listener, bool fireImmediately) {
+  JsValue adm = JS.call(getAdministration, undef(), thing);
+  if (isObservableArray(thing)) {
+    if (fireImmediately) {
+      JsValue added = slice(adm["values_"]);
+      call1(listener, undef(), JS.object("observableKind", "array", "object", adm["proxy_"], "debugObjectName", adm["atom_"]["name_"], "type", SPLICE, "index", 0, "added", added, "addedCount", len(added), "removed", JS.array(), "removedCount", 0));
+    }
+    return registerListener(adm, listener);
+  }
+  if (isObservableMap(thing)) {
+    if (DEV && fireImmediately) {
+      die("`observe` doesn't support fireImmediately=true in combination with maps.");
+    }
+    return registerListener(adm, listener);
+  }
+  if (isObservableSet(thing)) {
+    if (DEV && fireImmediately) {
+      die("`observe` doesn't support fireImmediately=true in combination with sets.");
+    }
+    return registerListener(adm, listener);
+  }
+  if (isObservableObject(thing)) {
+    if (DEV && fireImmediately) {
+      die("`observe` doesn't support the fire immediately property for observable objects.");
+    }
+    return registerListener(adm, listener);
+  }
+  return observeValue(adm, listener, fireImmediately);
+}
+
+JsValue observeValue(JsValue adm, JsValue listener, bool fireImmediately) {
+  if (isComputedValue(adm)) {
+    bool firstTime = true;
+    JsValue prevValue = undef();
+    return JS.call(autorun, undef(), JS.method0((JsValue _r) => {
+      JsValue newValue = call0(adm["get"], adm);
+      if (!firstTime || fireImmediately) {
+        JsValue prevU = untrackedStart();
+        call1(listener, undef(), JS.object("observableKind", "computed", "debugObjectName", adm["name_"], "type", UPDATE, "object", adm, "newValue", newValue, "oldValue", prevValue));
+        untrackedEnd(prevU);
+      }
+      firstTime = false;
+      prevValue = newValue;
+      return undef();
+    }));
+  }
+  if (fireImmediately) {
+    call1(listener, undef(), JS.object("observableKind", "value", "debugObjectName", adm["name_"], "object", adm, "type", UPDATE, "newValue", adm["value_"], "oldValue", undef()));
+  }
+  return registerListener(adm, listener);
+}
+
+export JsValue intercept = JS.methodRest((JsValue _s, JsValue args) => {
+  JsValue thing = args[0];
+  if (len(args) > 2 && isFn(args[2])) {
+    return registerInterceptor(JS.call(getAdministration, undef(), thing, args[1]), args[2]);
+  }
+  return registerInterceptor(JS.call(getAdministration, undef(), thing), args[1]);
+});
+
+export JsValue onBecomeObserved = JS.methodRest((JsValue _s, JsValue args) => {
+  return interceptHook("onBOL", args);
+});
+export JsValue onBecomeUnobserved = JS.methodRest((JsValue _s, JsValue args) => {
+  return interceptHook("onBUOL", args);
+});
+
+JsValue interceptHook(string listenersKey, JsValue args) {
+  JsValue atomNode = undef();
+  JsValue cb = args[1];
+  if (len(args) > 2 && isFn(args[2])) {
+    atomNode = JS.call(getAtom, undef(), args[0], args[1]);
+    cb = args[2];
+  } else {
+    atomNode = JS.call(getAtom, undef(), args[0]);
+  }
+  if (atomNode[listenersKey].truthy()) {
+    setAdd(atomNode[listenersKey], cb);
+  } else {
+    atomNode[listenersKey] = newSet();
+    setAdd(atomNode[listenersKey], cb);
+  }
+  return JS.method0((JsValue _d) => {
+    JsValue hookListeners = atomNode[listenersKey];
+    if (hookListeners.truthy()) {
+      setDelete(hookListeners, cb);
+      if (sizeOf(hookListeners) == 0) {
+        JS.delete(atomNode, listenersKey);
+      }
+    }
+    return undef();
+  });
+}
+
+export JsValue toJS = JS.method1((JsValue _s, JsValue source) => {
+  return toJSHelper(source, newMap());
+});
+
+JsValue toJSHelper(JsValue source, JsValue alreadySeen) {
+  if (JS.isNullish(source) || JS.typeOf(source) != "object" || protoIsPrototypeOf(dateCtor(), source) || !isObservableValueCheck(source)) {
+    return source;
+  }
+  if (isObservableValue(source) || isComputedValue(source)) {
+    return toJSHelper(call0(source["get"], source), alreadySeen);
+  }
+  if (mapHas(alreadySeen, source)) {
+    return mapGet(alreadySeen, source);
+  }
+  if (isObservableArray(source)) {
+    JsValue res = JS.array();
+    mapSet(alreadySeen, source, res);
+    int i = 0;
+    while (i < toInt(source["length"])) {
+      res[i] = toJSHelper(source[i], alreadySeen);
+      i = i + 1;
+    }
+    return res;
+  }
+  if (isObservableSet(source)) {
+    JsValue res = newSet();
+    mapSet(alreadySeen, source, res);
+    JsValue vals = arrayFrom(JS.invoke(source, "values"));
+    int i = 0;
+    while (i < len(vals)) {
+      setAdd(res, toJSHelper(vals[i], alreadySeen));
+      i = i + 1;
+    }
+    return res;
+  }
+  if (isObservableMap(source)) {
+    JsValue res = newMap();
+    mapSet(alreadySeen, source, res);
+    JsValue ents = arrayFrom(JS.invoke(source, "entries"));
+    int i = 0;
+    while (i < len(ents)) {
+      mapSet(res, ents[i][0], toJSHelper(ents[i][1], alreadySeen));
+      i = i + 1;
+    }
+    return res;
+  }
+  JsValue res = JS.object();
+  mapSet(alreadySeen, source, res);
+  JsValue ks = call1(ownKeysApi, undef(), source);
+  int i = 0;
+  while (i < len(ks)) {
+    if (yes(JS.call(gObject()["prototype"]["propertyIsEnumerable"], source, ks[i]))) {
+      res[ks[i]] = toJSHelper(source[ks[i]], alreadySeen);
+    }
+    i = i + 1;
+  }
+  return res;
+}
+
+export JsValue getDependencyTree = JS.method2((JsValue _s, JsValue thing, JsValue property) => {
+  return nodeToDependencyTree(JS.call(getAtom, undef(), thing, property));
+});
+export JsValue getObserverTree = JS.method2((JsValue _s, JsValue thing, JsValue property) => {
+  return nodeToObserverTree(JS.call(getAtom, undef(), thing, property));
+});
+
+JsValue nodeToDependencyTree(JsValue node) {
+  JsValue result = JS.object("name", node["name_"]);
+  if (node["observing_"].truthy() && len(node["observing_"]) > 0) {
+    JsValue deps = JS.array();
+    int i = 0;
+    while (i < len(node["observing_"])) {
+      push(deps, nodeToDependencyTree(node["observing_"][i]));
+      i = i + 1;
+    }
+    result["dependencies"] = deps;
+  }
+  return result;
+}
+
+JsValue nodeToObserverTree(JsValue node) {
+  JsValue result = JS.object("name", node["name_"]);
+  if (hasObservers(node)) {
+    JsValue observers = arrayFrom(JS.invoke(node["observers_"], "values"));
+    JsValue trees = JS.array();
+    int i = 0;
+    while (i < len(observers)) {
+      push(trees, nodeToObserverTree(observers[i]));
+      i = i + 1;
+    }
+    result["observers"] = trees;
+  }
+  return result;
+}
+
+export JsValue isComputed = JS.method1((JsValue _s, JsValue value) => {
+  return isComputedValue(value);
+});
+export JsValue isComputedProp = JS.method2((JsValue _s, JsValue value, JsValue property) => {
+  if (DEV && !isStringish(property)) {
+    die("isComputed expected a property name as second argument");
+  }
+  if (!isObservableObject(value)) {
+    return false;
+  }
+  JsValue adm = value[$mobx];
+  if (adm["lazyComputedKeys_"].truthy() && mapHas(adm["lazyComputedKeys_"], property)) {
+    return true;
+  }
+  if (!mapHas(adm["values_"], property)) {
+    return false;
+  }
+  return isComputedValue(mapGet(adm["values_"], property));
+});
+export JsValue interceptReads = JS.methodRest((JsValue _s, JsValue args) => {
+  JsValue thing = args[0];
+  JsValue target = undef();
+  JsValue handler = undef();
+  if (isObservableMap(thing) || isObservableArray(thing) || isObservableValue(thing) || isObservableSet(thing)) {
+    target = JS.call(getAdministration, undef(), thing);
+    handler = args[1];
+  } else if (isObservableObject(thing)) {
+    if (DEV && !isStringish(args[1])) {
+      die("InterceptReads can only be used with a specific property, not with an object in general");
+    }
+    target = JS.call(getAdministration, undef(), thing, args[1]);
+    handler = args[2];
+  } else if (DEV) {
+    die("Expected observable map, object or array as first array");
+  }
+  if (DEV && !isUndef(target["dehancer"])) {
+    die("An intercept reader was already established");
+  }
+  target["dehancer"] = handler;
+  return JS.method0((JsValue _d) => {
+    target["dehancer"] = undef();
+    return undef();
+  });
+});
+export JsValue flowResult = JS.method1((JsValue _s, JsValue result) => {
+  return result;
+});
+export JsValue isFlowApi = JS.method1((JsValue _s, JsValue fn) => {
+  return isFlow(fn);
+});

@@ -1,0 +1,1 @@
+import{getAdministration as e,isFunction as t,registerInterceptor as n}from"../internal";function r(e,n,r){return t(r)?a(e,n,r):i(e,n)}function i(t,r){return n(e(t),r)}function a(t,r,i){return n(e(t,r),i)}export{r as intercept};

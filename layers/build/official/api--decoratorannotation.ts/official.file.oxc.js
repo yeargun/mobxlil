@@ -1,0 +1,1 @@
+import"../errors";import{assign as e}from"../utils/utils";function t(t,n){return e(function(e,r){if(r&&typeof r.kind==`string`)return n(t,e,r)},t)}export{t as createDecoratorAnnotation};

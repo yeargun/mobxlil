@@ -1,0 +1,166 @@
+extern JsValue Object;
+extern JsValue Reflect;
+extern JsValue String;
+
+export JsValue objectPrototype = Object["prototype"];
+export JsValue assign = Object["assign"];
+export JsValue getDescriptor = Object["getOwnPropertyDescriptor"];
+export JsValue defineProperty = Object["defineProperty"];
+export JsValue getOwnPropertyDescriptors = Object["getOwnPropertyDescriptors"];
+export JsValue ownKeys = Reflect["ownKeys"];
+export JsValue EMPTY_ARRAY = JS.invoke(Object, "freeze", JS.array());
+export JsValue EMPTY_OBJECT = JS.invoke(Object, "freeze", JS.object());
+JsValue plainObjectString = JS.invoke(Object, "toString");
+
+export JsValue once(JsValue callback) {
+  bool invoked = false;
+  return JS.methodRest((JsValue self, JsValue args) => {
+    if (invoked) {
+      return JS.undefined();
+    }
+    invoked = true;
+    return JS.invoke(callback, "apply", self, args);
+  });
+}
+
+export void noop() {
+}
+
+export bool isFunction(JsValue fn) {
+  return JS.typeOf(fn) == "function";
+}
+
+export bool isString(JsValue value) {
+  return JS.typeOf(value) == "string";
+}
+
+export bool isStringish(JsValue value) {
+  string t = JS.typeOf(value);
+  if (t == "string" || t == "symbol" || t == "number") {
+    return true;
+  }
+  return false;
+}
+
+export bool isObject(JsValue value) {
+  return !JS.isNullish(value) && JS.typeOf(value) == "object";
+}
+
+export bool hasProp(JsValue target, JsValue prop) {
+  return JS.call(objectPrototype["hasOwnProperty"], target, prop).truthy();
+}
+
+export bool isPlainObject(JsValue value) {
+  if (!isObject(value)) {
+    return false;
+  }
+  JsValue proto = JS.invoke(Object, "getPrototypeOf", value);
+  if (JS.isNullish(proto)) {
+    return true;
+  }
+  if (!hasProp(proto, "constructor")) {
+    return false;
+  }
+  JsValue protoConstructor = proto["constructor"];
+  return isFunction(protoConstructor) && JS.strictEqual(JS.invoke(protoConstructor, "toString"), plainObjectString);
+}
+
+export bool isGenerator(JsValue obj) {
+  if (JS.isNullish(obj)) {
+    return false;
+  }
+  JsValue constructor = obj["constructor"];
+  if (!constructor.truthy()) {
+    return false;
+  }
+  if (JS.strictEqual(constructor["name"], "GeneratorFunction") || JS.strictEqual(constructor["displayName"], "GeneratorFunction")) {
+    return true;
+  }
+  return false;
+}
+
+export void addHiddenProp(JsValue object, JsValue propName, JsValue value) {
+  JS.call(defineProperty, JS.undefined(), object, propName, JS.object(
+    "enumerable", false,
+    "writable", true,
+    "configurable", true,
+    "value", value
+  ));
+}
+
+export void addHiddenFinalProp(JsValue object, JsValue propName, JsValue value) {
+  JS.call(defineProperty, JS.undefined(), object, propName, JS.object(
+    "enumerable", false,
+    "writable", false,
+    "configurable", true,
+    "value", value
+  ));
+}
+
+export JsValue createInstanceofPredicate(string name, JsValue theClass) {
+  string propName = "isMobX" + name;
+  theClass["prototype"][propName] = true;
+  return JS.method1((JsValue _s, JsValue x) => {
+    return isObject(x) && JS.strictEqual(x[propName], true);
+  });
+}
+
+export bool isES6Map(JsValue thing) {
+  return !JS.isNullish(thing) && JS.strictEqual(JS.call(objectPrototype["toString"], thing), "[object Map]");
+}
+
+export bool isPlainES6Map(JsValue thing) {
+  JsValue mapProto = JS.invoke(Object, "getPrototypeOf", thing);
+  JsValue objectProto = JS.invoke(Object, "getPrototypeOf", mapProto);
+  JsValue nullProto = JS.invoke(Object, "getPrototypeOf", objectProto);
+  return JS.strictEqual(nullProto, null);
+}
+
+export bool isES6Set(JsValue thing) {
+  return !JS.isNullish(thing) && JS.strictEqual(JS.call(objectPrototype["toString"], thing), "[object Set]");
+}
+
+export JsValue getPlainObjectKeys(JsValue object) {
+  JsValue keys = JS.invoke(Object, "keys", object);
+  JsValue symbols = JS.invoke(Object, "getOwnPropertySymbols", object);
+  if (JS.strictEqual(symbols["length"], 0)) {
+    return keys;
+  }
+  JsValue kept = JS.invoke(symbols, "filter", JS.method1((JsValue _s, JsValue s) => {
+    return JS.call(objectPrototype["propertyIsEnumerable"], object, s);
+  }));
+  return JS.invoke(keys, "concat", kept);
+}
+
+export string stringifyKey(JsValue key) {
+  string t = JS.typeOf(key);
+  if (t == "string") {
+    return key + "";
+  }
+  if (t == "symbol") {
+    return JS.invoke(key, "toString") + "";
+  }
+  return JS.invoke(JS.construct(String, key), "toString") + "";
+}
+
+export JsValue toPrimitive(JsValue value) {
+  if (JS.strictEqual(value, null)) {
+    return null;
+  }
+  if (JS.typeOf(value) == "object") {
+    return "" + value;
+  }
+  return value;
+}
+
+export bool getFlag(int flags, int mask) {
+  return (flags & mask) != 0;
+}
+
+export int setFlag(int flags, int mask, bool newValue) {
+  if (newValue) {
+    return flags | mask;
+  }
+  int cleared = mask ^ -1;
+  return flags & cleared;
+}

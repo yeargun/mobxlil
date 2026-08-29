@@ -1,0 +1,1 @@
+function i(a){var i=globalThis.Iterator,e={};if(i)e=i.prototype;i=Symbol.iterator,a[i]=f;return Object.assign(Object.create(e),a)}var f=(0,function(){return this});export{i as makeIterable}

@@ -5,6 +5,7 @@
         "moduleResolution": "node",
         "lib": ["ESNext", "DOM"],
         "strict": false,
+        "alwaysStrict": true,
         "noEmit": true,
         "allowJs": true,
         "esModuleInterop": true,

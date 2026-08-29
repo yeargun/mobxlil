@@ -1,0 +1,2 @@
+import { extendObservable } from "../api/extendobservable.lil";
+export { extendObservable };

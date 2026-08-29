@@ -1,0 +1,2 @@
+import { isObservable, isObservableProp } from "../api/isobservable.lil";
+export { isObservable, isObservableProp };

@@ -1,0 +1,2 @@
+import { keys, values, entries, get, set, has, remove } from "../api/object-api.lil";
+export { keys, values, entries, get, set, has, remove };

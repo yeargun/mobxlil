@@ -1,0 +1,2 @@
+import { makeObservable, makeAutoObservable } from "../api/makeobservable.lil";
+export { makeObservable, makeAutoObservable };

@@ -1,0 +1,1 @@
+var a=(0,function($){var e=arguments.slice(1),g=0!==e.length?" "+e.map(String).join(","):"";throw new Error("[MobX] minified error nr: "+$+g+". See mobx.js.org/errors")});export{a as die}

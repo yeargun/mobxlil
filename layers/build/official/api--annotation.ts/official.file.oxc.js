@@ -1,0 +1,1 @@
+import{isFunction as e}from"../internal";var t=(e=>(e[e.Cancel=0]=`Cancel`,e[e.Break=1]=`Break`,e[e.Continue=2]=`Continue`,e))(t||{});function n(t){return t instanceof Object&&typeof t.annotationType_==`string`&&e(t.make_)&&e(t.extend_)}function r(e){return typeof e==`boolean`||n(e)}export{t as MakeResult,n as isAnnotation,r as isAnnotationMapEntry};

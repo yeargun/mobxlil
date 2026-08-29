@@ -1,0 +1,17 @@
+extern JsValue Object;
+extern JsValue Symbol;
+extern JsValue globalThis;
+
+JsValue getSelf = JS.method0((JsValue self) => {
+  return self;
+});
+
+export JsValue makeIterable(JsValue iterator) {
+  JsValue ctor = globalThis["Iterator"];
+  JsValue proto = JS.object();
+  if (ctor.truthy()) {
+    proto = ctor["prototype"];
+  }
+  iterator[Symbol["iterator"]] = getSelf;
+  return JS.invoke(Object, "assign", JS.invoke(Object, "create", proto), iterator);
+}

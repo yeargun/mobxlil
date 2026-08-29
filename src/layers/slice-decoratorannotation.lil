@@ -1,0 +1,2 @@
+import { createDecoratorAnnotation } from "../api/decoratorannotation.lil";
+export { createDecoratorAnnotation };

@@ -1,0 +1,1 @@
+function e(e,t){}export{e as assert20223DecoratorType};

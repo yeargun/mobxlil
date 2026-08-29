@@ -1,0 +1,1 @@
+import{endBatch as e,startBatch as t}from"../internal";function n(n,r=void 0){t();try{return n.apply(r)}finally{e()}}export{n as transaction};

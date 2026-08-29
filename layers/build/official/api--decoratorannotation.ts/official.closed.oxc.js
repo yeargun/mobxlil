@@ -1,0 +1,1 @@
+var e=Object.assign;Object.freeze([]),Object.freeze({}),Object.toString();function t(t,n){return e(function(e,r){if(r&&typeof r.kind==`string`)return n(t,e,r)},t)}export{t as createDecoratorAnnotation};

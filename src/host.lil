@@ -1,60 +1,91 @@
 extern JsValue globalThis;
+extern JsValue objectConstructor();
+extern JsValue Array;
+extern JsValue Map;
+extern JsValue Set;
+extern JsValue WeakMap;
+extern JsValue Proxy;
+extern JsValue Reflect;
+extern JsValue Symbol;
+extern JsValue Error;
+extern JsValue TypeError;
+extern JsValue Promise;
+extern JsValue console;
+extern JsValue Number;
+extern JsValue String;
+extern JsValue Date;
+extern JsValue parseInt;
+extern JsValue isNaN;
+extern JsValue setTimeout;
+extern JsValue clearTimeout;
+extern JsValue queueMicrotask;
+extern float dateNow();
 
-JsValue hasOwnPropertyFn = globalThis["Object"]["prototype"]["hasOwnProperty"];
-JsValue objectIsFn = globalThis["Object"]["is"];
-JsValue arraySliceFn = globalThis["Array"]["prototype"]["slice"];
-JsValue isPrototypeOfFn = globalThis["Object"]["prototype"]["isPrototypeOf"];
+JsValue objectCtor = objectConstructor();
+
+JsValue hasOwnPropertyFn = objectCtor["prototype"]["hasOwnProperty"];
+JsValue objectIsFn = objectCtor["is"];
+JsValue arraySliceFn = Array["prototype"]["slice"];
+JsValue isPrototypeOfFn = objectCtor["prototype"]["isPrototypeOf"];
 
 export JsValue hostGlobal() {
   return globalThis;
 }
 
 export JsValue gObject() {
-  return globalThis["Object"];
+  return objectCtor;
 }
 
 export JsValue gArray() {
-  return globalThis["Array"];
+  return Array;
 }
 
 export JsValue gMap() {
-  return globalThis["Map"];
+  return Map;
 }
 
 export JsValue gSet() {
-  return globalThis["Set"];
+  return Set;
 }
 
 export JsValue gWeakMap() {
-  return globalThis["WeakMap"];
+  return WeakMap;
 }
 
 export JsValue gProxy() {
-  return globalThis["Proxy"];
+  return Proxy;
 }
 
 export JsValue gReflect() {
-  return globalThis["Reflect"];
+  return Reflect;
 }
 
 export JsValue gSymbol() {
-  return globalThis["Symbol"];
+  return Symbol;
 }
 
 export JsValue gError() {
-  return globalThis["Error"];
+  return Error;
 }
 
 export JsValue gTypeError() {
-  return globalThis["TypeError"];
+  return TypeError;
 }
 
 export JsValue gPromise() {
-  return globalThis["Promise"];
+  return Promise;
 }
 
 export JsValue gConsole() {
-  return globalThis["console"];
+  return console;
+}
+
+export JsValue gNumber() {
+  return Number;
+}
+
+export JsValue gString() {
+  return String;
 }
 
 export JsValue undef() {
@@ -305,48 +336,27 @@ export JsValue assign3(JsValue target, JsValue a, JsValue b) {
   return JS.invoke(gObject(), "assign", target, a, b);
 }
 
-export JsValue createNull() {
-  return JS.invoke(gObject(), "create", null);
-}
-
 export JsValue createProto(JsValue proto) {
   return JS.invoke(gObject(), "create", proto);
 }
 
 export void addHiddenProp(JsValue object, JsValue propName, JsValue value) {
-  defineProperty(object, propName, record {
-    enumerable: false,
-    writable: true,
-    configurable: true,
-    value: value
-  });
+  defineProperty(object, propName, JS.object("enumerable", false, "writable", true, "configurable", true, "value", value));
 }
 
 export void addHiddenFinalProp(JsValue object, JsValue propName, JsValue value) {
-  defineProperty(object, propName, record {
-    enumerable: false,
-    writable: false,
-    configurable: true,
-    value: value
-  });
+  defineProperty(object, propName, JS.object("enumerable", false, "writable", false, "configurable", true, "value", value));
 }
 
 export void defineGetter(JsValue object, JsValue propName, JsValue getter) {
-  defineProperty(object, propName, record {
-    enumerable: false,
-    configurable: true,
-    get: getter
-  });
+  defineProperty(object, propName, JS.object("enumerable", false, "configurable", true, "get", getter));
 }
 
 export JsValue createInstanceofPredicate(string name, JsValue theClass) {
   string propName = "isMobX" + name;
   theClass["prototype"][propName] = true;
   return JS.method1((JsValue _self, JsValue x) => {
-    if (!isObj(x) && !isFn(x)) {
-      return false;
-    }
-    return JS.strictEqual(x[propName], true);
+    return isObj(x) && JS.strictEqual(x[propName], true);
   });
 }
 
@@ -359,7 +369,7 @@ export JsValue wellKnown(string name) {
 }
 
 export JsValue now() {
-  return JS.invoke(globalThis["Date"], "now");
+  return dateNow();
 }
 
 export void warn(JsValue message) {
@@ -465,7 +475,7 @@ export string stringifyKey(JsValue key) {
   if (t == "symbol") {
     return toStr(JS.invoke(key, "toString"));
   }
-  return toStr(JS.construct(globalThis["String"], key));
+  return toStr(JS.construct(String, key));
 }
 
 export JsValue toPrimitive(JsValue value) {
@@ -497,18 +507,27 @@ export JsValue getPlainObjectKeys(JsValue object) {
   return out;
 }
 
+JsValue iteratorProtoCached = undef();
+bool iteratorProtoReady = false;
+JsValue getSelf = JS.method0((JsValue self) => {
+  return self;
+});
+
 export JsValue iteratorPrototype() {
-  JsValue iterator = globalThis["Iterator"];
-  if (iterator.truthy()) {
-    return iterator["prototype"];
+  if (!iteratorProtoReady) {
+    iteratorProtoReady = true;
+    JsValue iterator = globalThis["Iterator"];
+    if (iterator.truthy()) {
+      iteratorProtoCached = iterator["prototype"];
+    } else {
+      iteratorProtoCached = JS.object();
+    }
   }
-  return record {};
+  return iteratorProtoCached;
 }
 
 export JsValue makeIterable(JsValue iterator) {
-  iterator[wellKnown("iterator")] = JS.method0((JsValue self) => {
-    return self;
-  });
+  iterator[wellKnown("iterator")] = getSelf;
   return assign(createProto(iteratorPrototype()), iterator);
 }
 
@@ -536,19 +555,19 @@ export JsValue filterArr(JsValue arr, JsValue pred) {
 }
 
 export JsValue setTimeoutHost(JsValue fn, JsValue ms) {
-  return JS.call(globalThis["setTimeout"], undef(), fn, ms);
+  return JS.call(setTimeout, undef(), fn, ms);
 }
 
 export void clearTimeoutHost(JsValue id) {
-  JS.call(globalThis["clearTimeout"], undef(), id);
+  JS.call(clearTimeout, undef(), id);
 }
 
 export JsValue queueMicrotaskHost(JsValue fn) {
-  return JS.call(globalThis["queueMicrotask"], undef(), fn);
+  return JS.call(queueMicrotask, undef(), fn);
 }
 
 export JsValue dateCtor() {
-  return globalThis["Date"];
+  return Date;
 }
 
 export bool isNaNNum(JsValue value) {
@@ -556,7 +575,19 @@ export bool isNaNNum(JsValue value) {
 }
 
 export JsValue unaryPlus(JsValue value) {
-  return JS.call(globalThis["Number"], undef(), value);
+  return JS.call(Number, undef(), value);
+}
+
+export JsValue parseIntHost(JsValue value) {
+  return JS.call(parseInt, undef(), value);
+}
+
+export bool hostIsNaN(JsValue value) {
+  return yes(JS.call(isNaN, undef(), value));
+}
+
+export bool numberIsNaN(JsValue value) {
+  return yes(JS.invoke(Number, "isNaN", value));
 }
 
 export JsValue arrayConcat(JsValue a, JsValue b) {
@@ -600,37 +631,9 @@ export JsValue emptyArrayFrozen() {
 }
 
 export JsValue emptyObjectFrozen() {
-  JsValue obj = record {};
+  JsValue obj = JS.object();
   JS.invoke(gObject(), "freeze", obj);
   return obj;
-}
-
-export JsValue choose(bool cond, JsValue a, JsValue b) {
-  if (cond) {
-    return a;
-  }
-  return b;
-}
-
-export string chooseStr(bool cond, string a, string b) {
-  if (cond) {
-    return a;
-  }
-  return b;
-}
-
-export int chooseInt(bool cond, int a, int b) {
-  if (cond) {
-    return a;
-  }
-  return b;
-}
-
-export bool chooseBool(bool cond, bool a, bool b) {
-  if (cond) {
-    return a;
-  }
-  return b;
 }
 
 export void forEach1(JsValue target, func(JsValue)->void cb) {
@@ -645,12 +648,4 @@ export void forEachMap(JsValue target, func(JsValue, JsValue)->void cb) {
     cb(args[0], args[1]);
     return undef();
   }));
-}
-
-export bool isDevRuntime() {
-  JsValue flag = globalThis["__DEV__"];
-  if (JS.isUndefined(flag)) {
-    return true;
-  }
-  return JS.strictEqual(flag, true);
 }

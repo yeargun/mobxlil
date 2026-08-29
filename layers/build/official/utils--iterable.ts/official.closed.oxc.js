@@ -1,0 +1,1 @@
+var e=Object.assign;Object.freeze([]),Object.freeze({}),Object.toString();var t=globalThis.Iterator?.prototype||{};function n(n){return n[Symbol.iterator]=r,e(Object.create(t),n)}function r(){return this}export{n as makeIterable};

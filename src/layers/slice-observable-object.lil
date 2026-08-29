@@ -1,0 +1,2 @@
+import { ObservableObjectAdministration, asObservableObject } from "../types/observableobject.lil";
+export { ObservableObjectAdministration, asObservableObject };

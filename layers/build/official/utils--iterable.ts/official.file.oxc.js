@@ -1,0 +1,1 @@
+import{assign as e}from"./utils";const t=globalThis.Iterator?.prototype||{};function n(n){return n[Symbol.iterator]=r,e(Object.create(t),n)}function r(){return this}export{n as makeIterable};

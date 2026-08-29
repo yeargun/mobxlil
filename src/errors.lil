@@ -1,0 +1,173 @@
+import { DEV } from "./dev-flag.lil";
+import {
+  isStr,
+  toInt,
+  toStr,
+  stringifyKey,
+  throwErr,
+  makeError,
+  len,
+  gString,
+  push
+} from "./host.lil";
+
+string niceError(JsValue error, JsValue args) {
+  if (isStr(error)) {
+    return toStr(error);
+  }
+  int code = toInt(error);
+  if (code == 0) {
+    return "Invalid value for configuration 'enforceActions', expected 'never', 'always' or 'observed'";
+  }
+  if (code == 1) {
+    return "Cannot apply '" + toStr(args[0]) + "' to '" + stringifyKey(args[1]) + "': Field not found.";
+  }
+  if (code == 5) {
+    return "'keys()' can only be used on observable objects, arrays, sets and maps";
+  }
+  if (code == 6) {
+    return "'values()' can only be used on observable objects, arrays, sets and maps";
+  }
+  if (code == 7) {
+    return "'entries()' can only be used on observable objects, arrays and maps";
+  }
+  if (code == 8) {
+    return "'set()' can only be used on observable objects, arrays and maps";
+  }
+  if (code == 9) {
+    return "'remove()' can only be used on observable objects, arrays and maps";
+  }
+  if (code == 10) {
+    return "'has()' can only be used on observable objects, arrays and maps";
+  }
+  if (code == 11) {
+    return "'get()' can only be used on observable objects, arrays and maps";
+  }
+  if (code == 12) {
+    return "Invalid annotation";
+  }
+  if (code == 13) {
+    return "Dynamic observable objects cannot be frozen. If you're passing observables to 3rd party component/function that calls Object.freeze, pass copy instead: toJS(observable)";
+  }
+  if (code == 14) {
+    return "Intercept handlers should return nothing or a change object";
+  }
+  if (code == 15) {
+    return "Observable arrays cannot be frozen. If you're passing observables to 3rd party component/function that calls Object.freeze, pass copy instead: toJS(observable)";
+  }
+  if (code == 16) {
+    return "Modification exception: the internal structure of an observable array was changed.";
+  }
+  if (code == 19) {
+    return "Cannot initialize from classes that inherit from Map: " + toStr(args[0]["constructor"]["name"]);
+  }
+  if (code == 20) {
+    return "Cannot initialize map from " + toStr(args[0]);
+  }
+  if (code == 21) {
+    return "Cannot convert to map from '" + toStr(args[0]) + "'";
+  }
+  if (code == 23) {
+    return "It is not possible to get index atoms from arrays";
+  }
+  if (code == 24) {
+    return "Cannot obtain administration from " + toStr(args[0]);
+  }
+  if (code == 25) {
+    return "the entry '" + toStr(args[0]) + "' does not exist in the observable map '" + toStr(args[1]) + "'";
+  }
+  if (code == 26) {
+    return "please specify a property";
+  }
+  if (code == 27) {
+    return "no observable property '" + stringifyKey(args[0]) + "' found on the observable object '" + toStr(args[1]) + "'";
+  }
+  if (code == 28) {
+    return "Cannot obtain atom from " + toStr(args[0]);
+  }
+  if (code == 29) {
+    return "Expecting some object";
+  }
+  if (code == 30) {
+    return "invalid action stack. did you forget to finish an action?";
+  }
+  if (code == 31) {
+    return "missing option for computed: get";
+  }
+  if (code == 32) {
+    return "Cycle detected in computation " + toStr(args[0]) + ": " + toStr(args[1]);
+  }
+  if (code == 33) {
+    return "The setter of computed value '" + toStr(args[0]) + "' is trying to update itself. Did you intend to update an _observable_ value, instead of the computed property?";
+  }
+  if (code == 34) {
+    return "[ComputedValue '" + toStr(args[0]) + "'] It is not possible to assign a new value to a computed value.";
+  }
+  if (code == 35) {
+    return "There are multiple, different versions of MobX active. Make sure MobX is loaded only once or use `configure({ isolateGlobalState: true })`";
+  }
+  if (code == 36) {
+    return "isolateGlobalState should be called before MobX is running any reactions";
+  }
+  if (code == 37) {
+    return "[mobx] `observableArray." + toStr(args[0]) + "()` mutates the array in-place, which is not allowed inside a derivation. Use `array.slice()." + toStr(args[0]) + "()` instead";
+  }
+  if (code == 38) {
+    return "'ownKeys()' can only be used on observable objects";
+  }
+  if (code == 39) {
+    return "'defineProperty()' can only be used on observable objects";
+  }
+  if (code == 40) {
+    return "Out of range: " + toStr(args[0]);
+  }
+  if (code == 41) {
+    return "Cannot initialize set from " + toStr(args[0]);
+  }
+  if (code == 42) {
+    return "Invalid index: '" + toStr(args[0]) + "'";
+  }
+  if (code == 43) {
+    return "Cannot apply '" + toStr(args[0]) + "' to '" + toStr(args[1]) + "' (kind: " + toStr(args[2]) + "):\n'" + toStr(args[0]) + "' can only be used on properties with a function value.";
+  }
+  if (code == 44) {
+    return "'" + toStr(args[0]) + "' can only be used with 'makeObservable'";
+  }
+  return toStr(error);
+}
+
+export void dieRest(JsValue error, JsValue args) {
+  if (DEV) {
+    throwErr(makeError("[MobX] " + niceError(error, args)));
+  }
+  string extra = "";
+  if (len(args) > 0) {
+    extra = " " + toStr(JS.invoke(JS.invoke(args, "map", gString()), "join", ","));
+  }
+  throwErr(makeError("[MobX] minified error nr: " + toStr(error) + extra + ". See mobx.js.org/errors"));
+}
+
+export void die(JsValue error) {
+  dieRest(error, JS.array());
+}
+
+export void die1(JsValue error, JsValue a) {
+  JsValue args = JS.array();
+  push(args, a);
+  dieRest(error, args);
+}
+
+export void die2(JsValue error, JsValue a, JsValue b) {
+  JsValue args = JS.array();
+  push(args, a);
+  push(args, b);
+  dieRest(error, args);
+}
+
+export void die3(JsValue error, JsValue a, JsValue b, JsValue c) {
+  JsValue args = JS.array();
+  push(args, a);
+  push(args, b);
+  push(args, c);
+  dieRest(error, args);
+}

@@ -1,0 +1,3 @@
+import { compareIdentity, compareDefault } from "../utils/comparer.lil";
+import { compareStructural, compareShallow } from "../utils/eq.lil";
+export { compareIdentity, compareDefault, compareStructural, compareShallow };

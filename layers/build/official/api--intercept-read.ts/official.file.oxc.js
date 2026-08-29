@@ -1,0 +1,1 @@
+import{getAdministration as e,isObservableArray as t,isObservableMap as n,isObservableObject as r,isObservableValue as i}from"../internal";function a(a,o,s){let c;return n(a)||t(a)||i(a)?c=e(a):r(a)&&(c=e(a,o)),c.dehancer=typeof o==`function`?o:s,()=>{c.dehancer=void 0}}export{a as interceptReads};

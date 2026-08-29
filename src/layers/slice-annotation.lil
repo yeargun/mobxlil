@@ -1,0 +1,2 @@
+import { isAnnotation } from "../api/annotation.lil";
+export { isAnnotation };

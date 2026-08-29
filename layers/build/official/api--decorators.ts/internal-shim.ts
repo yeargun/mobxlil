@@ -1,0 +1,1 @@
+export { die } from "/Users/yeargun/mobxlil/node_modules/mobx/src/errors.ts";

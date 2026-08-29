@@ -1,0 +1,2 @@
+import { override, isOverride } from "../types/overrideannotation.lil";
+export { override, isOverride };

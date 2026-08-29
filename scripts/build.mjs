@@ -34,14 +34,12 @@ function run(cmd, args, opts = {}) {
   }
 }
 
-function compile(dev) {
+function compile(dev, config, out) {
   mkdirSync(resolve(root, "dist"), { recursive: true });
   writeFileSync(
     resolve(root, "src", "dev-flag.lil"),
     `export bool DEV = ${dev ? "true" : "false"};\n`,
   );
-  const out = dev ? "dist/mobx.dev.esm.js" : "dist/mobx.esm.js";
-  const config = dev ? "config/dev.toml" : "lilscript.toml";
   run(compilerPath(), [
     resolve(root, "src", "mobx.lil"),
     "--target",
@@ -106,24 +104,32 @@ function copyDts() {
 const args = process.argv.slice(2);
 const devOnly = args.includes("--dev");
 const prodOnly = args.includes("--prod");
+const minOnly = args.includes("--min");
 
-if (!prodOnly) {
-  compile(true);
+if (!prodOnly && !minOnly) {
+  compile(true, "config/dev.toml", "dist/mobx.dev.esm.js");
   writeCjs("dist/mobx.dev.esm.js", "dist/mobx.cjs.development.js");
   writeUmd("dist/mobx.dev.esm.js", "dist/mobx.umd.development.js");
   copyFileSync(resolve(root, "dist/mobx.dev.esm.js"), resolve(root, "dist/mobx.esm.development.js"));
 }
-if (!devOnly) {
-  compile(false);
+if (!devOnly && !minOnly) {
+  compile(false, "lilscript.toml", "dist/mobx.esm.js");
   writeCjs("dist/mobx.esm.js", "dist/mobx.cjs.production.js");
   writeUmd("dist/mobx.esm.js", "dist/mobx.umd.production.js");
-  writeMinCjs("dist/mobx.esm.js", "dist/mobx.cjs.production.min.js");
-  writeUmd("dist/mobx.esm.js", "dist/mobx.umd.production.min.js");
-  copyFileSync(resolve(root, "dist/mobx.esm.js"), resolve(root, "dist/mobx.esm.production.min.js"));
   writeMjs("dist/mobx.esm.js");
+}
+if (!devOnly && !prodOnly) {
+  compile(false, "config/production.min.toml", "dist/mobx.esm.production.min.js");
+  writeCjs("dist/mobx.esm.production.min.js", "dist/mobx.cjs.production.min.js");
+  writeUmd("dist/mobx.esm.production.min.js", "dist/mobx.umd.production.min.js");
 }
 if (devOnly) {
   writeMjs("dist/mobx.dev.esm.js");
+}
+if (prodOnly && !existsSync(resolve(root, "dist", "mobx.cjs.production.min.js"))) {
+  writeMinCjs("dist/mobx.cjs.production.js", "dist/mobx.cjs.production.min.js");
+  writeUmd("dist/mobx.esm.js", "dist/mobx.umd.production.min.js");
+  copyFileSync(resolve(root, "dist/mobx.esm.js"), resolve(root, "dist/mobx.esm.production.min.js"));
 }
 writeIndexSwitcher();
 copyDts();

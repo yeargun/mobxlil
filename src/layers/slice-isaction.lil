@@ -1,0 +1,2 @@
+import { isAction } from "../core/predicates.lil";
+export { isAction };

@@ -1,0 +1,1 @@
+function e(e,...t){throw Error(`[MobX] minified error nr: ${e}${t.length?` `+t.map(String).join(`,`):``}. See mobx.js.org/errors`)}var t=`override`,n={annotationType_:t,make_:i,extend_:a};function r(e){return e.annotationType_===t}function i(e,t){return 0}function a(t,n,r,i){e(44,this.annotationType_)}export{r as isOverride,n as override};

@@ -1,0 +1,13 @@
+extern JsValue Error;
+extern JsValue String;
+
+export JsValue die = JS.staticRest((JsValue args) => {
+  JsValue error = args[0];
+  JsValue rest = JS.invoke(args, "slice", 1);
+  string extra = "";
+  if (!JS.strictEqual(rest["length"], 0)) {
+    extra = " " + (JS.invoke(JS.invoke(rest, "map", String), "join", ",") + "");
+  }
+  throw JS.construct(Error, "[MobX] minified error nr: " + (error + "") + extra + ". See mobx.js.org/errors");
+  return JS.undefined();
+});

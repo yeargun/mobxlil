@@ -1,0 +1,2 @@
+import { hasInterceptors, registerInterceptor, interceptChange } from "../types/intercept-utils.lil";
+export { hasInterceptors, registerInterceptor, interceptChange };

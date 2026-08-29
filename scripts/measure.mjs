@@ -1,7 +1,7 @@
-import { mkdirSync, writeFileSync, mkdtempSync, rmSync } from "node:fs"
+import { existsSync, mkdirSync, writeFileSync, mkdtempSync, rmSync } from "node:fs"
 import { createRequire } from "node:module"
 import { dirname, join, resolve } from "node:path"
-import { fileURLToPath } from "node:url"
+import { fileURLToPath, pathToFileURL } from "node:url"
 import { spawnSync } from "node:child_process"
 import { tmpdir } from "node:os"
 import { readFileSync } from "node:fs"
@@ -49,6 +49,7 @@ function exportNames(path) {
 const officialProd = resolve(root, "node_modules/mobx/dist/mobx.esm.production.min.js")
 const officialEsmPath = resolve(root, "node_modules/mobx/dist/mobx.esm.js")
 const lilEsm = resolve(root, "dist/mobx.esm.js")
+const lilMin = resolve(root, "dist/mobx.esm.production.min.js")
 const officialEsm = readFileSync(officialEsmPath, "utf8")
 
 const official = exportNames(resolve(root, "node_modules/mobx/dist/index.js"))
@@ -59,6 +60,18 @@ if (missing.length || extra.length) {
     throw new Error(
         `export surface mismatch vs mobx@7.0.0\nmissing: ${missing.join(", ")}\nextra: ${extra.join(", ")}`
     )
+}
+if (existsSync(lilMin)) {
+    const smoke = join(tmpdir(), `mobx-min-smoke-${process.pid}.mjs`)
+    writeFileSync(smoke, readFileSync(lilMin))
+    try {
+        const loaded = await import(pathToFileURL(smoke).href)
+        if (typeof loaded.observable !== "function" || typeof loaded.autorun !== "function") {
+            throw new Error("lilscript production.min failed to load observable/autorun")
+        }
+    } finally {
+        rmSync(smoke, { force: true })
+    }
 }
 
 const historicTerser = await terserMinify(officialEsm, {
@@ -88,10 +101,16 @@ const lanes = [
     },
     {
         name: "lilscript",
-        note: "LilScript production ESM, same 78 exports as mobx@7.0.0",
+        note: "LilScript drop-in ESM (search on, identifier mangle, properties off)",
         fight: true,
         primary: true,
         ...measurePath(lilEsm)
+    },
+    existsSync(lilMin) && {
+        name: "lilscript-production-min",
+        note: "LilScript DEV-stripped size-first ESM (search on, identifier + property mangle)",
+        fightOfficialMin: true,
+        ...measurePath(lilMin)
     },
     {
         name: "vite-esbuild",
@@ -101,8 +120,8 @@ const lanes = [
     },
     {
         name: "official-mobx-esm-production-min",
-        note: "official MobX 7.0.0 production ESM — DEV-stripped at compile, not a Vite lane",
-        diagnostic: true,
+        note: "official MobX 7.0.0 ESM production.min — __DEV__ DCE + Terser *_ property mangle",
+        fightOfficialMin: true,
         ...measurePath(officialProd)
     },
     {
@@ -111,7 +130,7 @@ const lanes = [
         diagnostic: true,
         ...measurePath(officialEsmPath)
     }
-]
+].filter(Boolean)
 
 const report = {
     codec,
@@ -125,17 +144,26 @@ writeFileSync(resolve(root, "reports/compression.json"), JSON.stringify(report, 
 const oxc = lanes.find(lane => lane.name === "vite-oxc")
 const terser = lanes.find(lane => lane.name === "vite-terser")
 const lilLane = lanes.find(lane => lane.name === "lilscript")
+const lilMinLane = lanes.find(lane => lane.name === "lilscript-production-min")
+const officialMin = lanes.find(lane => lane.name === "official-mobx-esm-production-min")
 const summary = [
     `same-code exports: ${official.length}`,
     ...lanes.map(lane =>
-        `${lane.name}: raw=${lane.raw} gzip9=${lane.gzip9} brotli11=${lane.brotli11}${lane.fight ? "" : " (diagnostic)"}`
+        `${lane.name}: raw=${lane.raw} gzip9=${lane.gzip9} brotli11=${lane.brotli11}${lane.fight || lane.fightOfficialMin ? "" : " (diagnostic)"}`
     ),
     `brotli vs vite-oxc ${lilLane.brotli11}/${oxc.brotli11} = ${(lilLane.brotli11 / oxc.brotli11).toFixed(3)}x`,
-    `brotli vs vite-terser ${lilLane.brotli11}/${terser.brotli11} = ${(lilLane.brotli11 / terser.brotli11).toFixed(3)}x`
-].join("\n")
+    `brotli vs vite-terser ${lilLane.brotli11}/${terser.brotli11} = ${(lilLane.brotli11 / terser.brotli11).toFixed(3)}x`,
+    lilMinLane && officialMin
+        ? `brotli vs official production.min ${lilMinLane.brotli11}/${officialMin.brotli11} = ${(lilMinLane.brotli11 / officialMin.brotli11).toFixed(3)}x`
+        : "official production.min lane not compiled"
+].filter(Boolean).join("\n")
 writeFileSync(resolve(root, "reports/compression.txt"), summary + "\n")
 console.log(summary)
 if (lilLane.brotli11 > oxc.brotli11 || lilLane.brotli11 > terser.brotli11) {
     console.error("lilscript Brotli lost to a current Vite lane")
+    process.exit(1)
+}
+if (lilMinLane && officialMin && lilMinLane.brotli11 >= officialMin.brotli11) {
+    console.error("lilscript production.min Brotli did not beat official mobx.esm.production.min.js")
     process.exit(1)
 }

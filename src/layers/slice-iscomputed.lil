@@ -1,0 +1,2 @@
+import { isComputed, isComputedProp } from "../api/iscomputed.lil";
+export { isComputed, isComputedProp };

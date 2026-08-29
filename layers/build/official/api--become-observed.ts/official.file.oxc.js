@@ -1,0 +1,1 @@
+import{getAtom as e,isFunction as t}from"../internal";function n(e,t,n){return i(`onBO`,e,t,n)}function r(e,t,n){return i(`onBUO`,e,t,n)}function i(n,r,i,a){let o=typeof a==`function`?e(r,i):e(r),s=t(a)?a:i,c=`${n}L`;return o[c]?o[c].add(s):o[c]=new Set([s]),function(){let e=o[c];e&&(e.delete(s),e.size===0&&delete o[c])}}export{n as onBecomeObserved,r as onBecomeUnobserved};

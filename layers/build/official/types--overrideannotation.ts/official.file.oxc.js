@@ -1,0 +1,1 @@
+import{die as e,MakeResult as t}from"../internal";const n=`override`,r={annotationType_:n,make_:a,extend_:o};function i(e){return e.annotationType_===n}function a(e,n){return t.Cancel}function o(t,n,r,i){e(44,this.annotationType_)}export{i as isOverride,r as override};

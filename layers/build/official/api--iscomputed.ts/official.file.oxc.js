@@ -1,0 +1,1 @@
+import{$mobx as e,getAtom as t,isComputedValue as n,isObservableObject as r}from"../internal";function i(i,a){if(a===void 0)return n(i);if(r(i)===!1)return!1;let o=i[e];if(o.lazyComputedKeys_?.has(a))return!0;if(!o.values_.has(a))return!1;let s=t(i,a);return n(s)}function a(e){return i(e)}function o(e,t){return i(e,t)}export{i as _isComputed,a as isComputed,o as isComputedProp};

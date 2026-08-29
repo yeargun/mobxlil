@@ -1,0 +1,2 @@
+import { isFn, isStr, isObj, isArr, len, toStr, defineProperty, assign, makeIterable, createInstanceofPredicate } from "../host.lil";
+export { isFn, isStr, isObj, isArr, len, toStr, defineProperty, assign, makeIterable, createInstanceofPredicate };

@@ -1,0 +1,2 @@
+import { deepEqual } from "../utils/eq.lil";
+export { deepEqual };

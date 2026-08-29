@@ -1,0 +1,2 @@
+import { isSpyEnabled, spyReport, spyReportStart, spyReportEnd, spy } from "../core/spy.lil";
+export { isSpyEnabled, spyReport, spyReportStart, spyReportEnd, spy };

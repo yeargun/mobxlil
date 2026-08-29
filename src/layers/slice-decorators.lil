@@ -1,0 +1,2 @@
+import { assert20223DecoratorType } from "../api/decorators.lil";
+export { assert20223DecoratorType };

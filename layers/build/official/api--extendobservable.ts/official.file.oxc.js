@@ -1,0 +1,1 @@
+import{asObservableObject as e,getOwnPropertyDescriptors as t,$mobx as n,ownKeys as r,initObservable as i}from"../internal";function a(a,o,s,c){let l=t(o);return i(()=>{let t=e(a,c)[n];r(l).forEach(e=>{t.extend_(e,l[e],s&&e in s?s[e]:!0)})}),a}export{a as extendObservable};

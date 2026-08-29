@@ -1,0 +1,1 @@
+function s(s,i){return s===i}export{s as compareIdentity,Object.is as compareDefault}

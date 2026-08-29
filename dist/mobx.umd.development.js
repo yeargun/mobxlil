@@ -148,8 +148,8 @@ var mobx = (() => {
     if (obj == null) return false;
     var v6 = obj.constructor;
     if (!v6) return false;
-    if ("GeneratorFunction" == v6.name) return true;
-    if ("GeneratorFunction" == v6.displayName) return true;
+    if ("GeneratorFunction" == v6.name + "") return true;
+    if ("GeneratorFunction" == v6.displayName + "") return true;
     return false;
   }
   function $m3$isPlainObject(value) {
@@ -169,18 +169,18 @@ var mobx = (() => {
   function $m3$isES6Map(thing) {
     if (thing == null) return false;
     var v6 = $m3$objectCtor.prototype;
-    return "[object Map]" == v6.toString.call(thing);
+    return "[object Map]" == v6.toString.call(thing) + "";
   }
   function $m3$isES6Set(thing) {
     if (thing == null) return false;
     var v6 = $m3$objectCtor.prototype;
-    return "[object Set]" == v6.toString.call(thing);
+    return "[object Set]" == v6.toString.call(thing) + "";
   }
   function $m3$stringifyKey(key) {
     var v2 = typeof key;
-    if ("string" == v2) return key;
-    if ("symbol" == v2) return key.toString();
-    return new String(key);
+    if ("string" == v2) return key + "";
+    if ("symbol" == v2) return key.toString() + "";
+    return new String(key) + "";
   }
   function $m3$toPrimitive(value) {
     if (null === value) return null;
@@ -193,7 +193,6 @@ var mobx = (() => {
     var v49 = $m3$arraySliceFn.call(v42);
     var v53 = v6.length;
     var v39 = 0, v22, v25;
-    var v48 = $m3$arraySliceFn;
     while (v39 < v53) {
       v22 = v6[v39];
       v25 = $m3$objectCtor.prototype;
@@ -204,10 +203,7 @@ var mobx = (() => {
   }
   function $m3$makeIterable(iterator) {
     iterator[Symbol.iterator] = $m3$getSelf;
-    var v4 = $m3$getSelf;
-    var v14 = Symbol;
     if (!$m3$iteratorProtoReady) {
-      var v162 = $m3$iteratorProtoReady;
       $m3$iteratorProtoReady = true;
       var v21 = globalThis.Iterator;
       $m3$iteratorProtoCached = v21 ? v21.prototype : {};
@@ -224,7 +220,7 @@ var mobx = (() => {
     };
   }
   function $m4$niceError(error, args) {
-    if ("string" == typeof error) return error;
+    if ("string" == typeof error) return error + "";
     var v336 = +error | 0;
     if (0 == v336) return "Invalid value for configuration 'enforceActions', expected 'never', 'always' or 'observed'";
     if (1 == v336) {
@@ -285,11 +281,10 @@ var mobx = (() => {
       return v303 + args[2] + "):\n'" + args[0] + "' can only be used on properties with a function value.";
     }
     if (44 == v336) return "'" + args[0] + "' can only be used with 'makeObservable'";
-    return error;
+    return error + "";
   }
   function $m4$dieRest(error, args) {
     $m3$throwErr(new Error("[MobX] " + $m4$niceError(error, args)));
-    var v47 = Error;
     if (args.length > 0) {
       var v24 = " " + args.map(String).join(",");
       var v35 = v24;
@@ -350,7 +345,8 @@ var mobx = (() => {
     $m8$persistentKeys.push("UNCHANGED");
   }
   function $m8$createMobXGlobals() {
-    let v0 = { version: 7, UNCHANGED: {} }, v9 = null;
+    let v0 = { version: 7, UNCHANGED: {} };
+    let v9 = null;
     v0.trackingDerivation = v9;
     v0.trackingContext = v9;
     v0.runId = 0;
@@ -388,8 +384,12 @@ var mobx = (() => {
       $m8$isolateCalled || $m4$die(35);
     }, 1), $m8$createMobXGlobals();
     else {
-      var v35 = $m8$canMergeGlobalState;
-      if (v23) return v69.__mobxInstanceCount = (+v69.__mobxInstanceCount | 0) + 1 | 0, v23.UNCHANGED || (v23.UNCHANGED = {}), v23;
+      if (v23) {
+        var v51 = (+v69.__mobxInstanceCount | 0) + 1 | 0;
+        v69.__mobxInstanceCount = v51;
+        v23.UNCHANGED || (v23.UNCHANGED = {});
+        return v23;
+      }
     }
     v69.__mobxInstanceCount = 1;
     v64 = $m8$createMobXGlobals();
@@ -432,12 +432,6 @@ var mobx = (() => {
     }
     return v12;
   }
-  function $m10$addObserver(observable$2, node) {
-    var v4 = observable$2.observers_;
-    v4.add(node);
-    var v24 = +observable$2.lowestObserverState_ | 0;
-    v24 > (+node.dependenciesState_ | 0) && (observable$2.lowestObserverState_ = node.dependenciesState_);
-  }
   function $m10$queueForUnobservation(observable$2) {
     if (!observable$2.isPendingUnobservation) {
       observable$2.isPendingUnobservation = true;
@@ -462,9 +456,6 @@ var mobx = (() => {
       $m10$runReactions();
       var v15 = $m8$globalState.pendingUnobservations;
       var v55 = 0, v23, v29;
-      var v0 = $m8$globalState;
-      var v6 = $m8$globalState;
-      var v13 = $m8$globalState;
       while (v55 < v15.length) {
         v23 = v15[v55];
         v23.isPendingUnobservation = false;
@@ -477,13 +468,11 @@ var mobx = (() => {
   }
   function $m10$reportObserved(observable$2) {
     var v7 = !$m8$globalState.allowStateReads;
-    var v32 = $m8$globalState;
     v7 && $m8$globalState.observableRequiresReaction && console.warn("[mobx] Observable '" + observable$2.name_ + "' being read outside a reactive context.");
     var v26 = $m8$globalState.trackingDerivation;
     if (!(v26 == null)) {
-      var v24 = $m8$globalState;
-      var v322 = v26.runId_;
-      if (!(v322 === observable$2.lastAccessedBy_)) {
+      var v32 = v26.runId_;
+      if (!(v32 === observable$2.lastAccessedBy_)) {
         observable$2.lastAccessedBy_ = v26.runId_;
         var v99 = +v26.unboundDepsCount_ | 0;
         v26.newObserving_[v99] = observable$2;
@@ -498,7 +487,6 @@ var mobx = (() => {
       }
       return !!observable$2.isBeingObserved;
     } else {
-      v24 = $m8$globalState;
       v802 = observable$2.observers_;
       !v802.size ? (v89 = !!$m8$globalState.inBatch, v90 = v89) : v90 = false;
       v90 && $m10$queueForUnobservation(observable$2);
@@ -586,156 +574,153 @@ var mobx = (() => {
     var v23, v19, v21, v22, v37, v39;
     !$m8$globalState.allowStateChanges && (v8 || "always" === $m8$globalState.enforceActions) && (v39 = $m8$globalState.enforceActions ? "Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: " : "Side effects like changing state are not allowed at this point. Are you trying to modify state from, for example, a computed value or the render function of a React component? You can wrap side effects in 'runInAction' (or decorate functions with 'action') if needed. Tried to modify: ", v37 = "[MobX] " + v39 + atom.name_, console.warn(v37));
   }
-  function $m11$changeDependenciesStateTo0(derivation) {
-    if (0 == (+derivation.dependenciesState_ | 0)) return;
-    derivation.dependenciesState_ = 0;
-    var v12 = derivation.observing_;
-    var v32 = v12.length;
-    var v26 = v32, v20, v23;
-    while (v26 > 0) {
-      v20 = v26 - 1;
-      v23 = v12[v20];
-      v23.lowestObserverState_ = 0;
-      v26 = v20;
-    }
-  }
   function $m11$isCaughtException(e) {
     return $m3$isObj(e) && true === e.isMobXCaughtException;
   }
-  function $m11$shouldCompute(derivation) {
-    var v84 = +derivation.dependenciesState_ | 0;
-    if (0 == v84) return false;
-    if (v84 == a || 2 == v84) return true;
-    if (1 == v84) {
-      var v88 = !!$m8$globalState.allowStateReads;
-      $m8$globalState.allowStateReads = true;
-      var v81 = v88, v15, v162, v25, v28, v37, v42, v60, v82, v93;
-      v25 = $m11$untrackedStart();
-      v28 = derivation.observing_;
-      v93 = v28.length;
-      v82 = 0;
-      var v85 = $m8$globalState;
-      var v89 = $m8$globalState;
-      while (v82 < v93) {
-        v37 = v28[v82];
-        if ($m7$isComputedValue(v37)) {
-          v42 = $m8$globalState.disableErrorBoundaries;
-          if (true === v42) {
-            v37.get();
-          } else {
-            var v40 = $m8$globalState;
-            try {
+  var $m11$shouldCompute;
+  var $m11$trackDerivedFunction;
+  (function() {
+    function $m10$addObserver(observable$2, node) {
+      var v4 = observable$2.observers_;
+      v4.add(node);
+      var v24 = +observable$2.lowestObserverState_ | 0;
+      v24 > (+node.dependenciesState_ | 0) && (observable$2.lowestObserverState_ = node.dependenciesState_);
+    }
+    function $m11$changeDependenciesStateTo0(derivation) {
+      if (0 == (+derivation.dependenciesState_ | 0)) return;
+      derivation.dependenciesState_ = 0;
+      var v12 = derivation.observing_;
+      var v32 = v12.length;
+      var v26 = v32, v20, v23;
+      while (v26 > 0) {
+        v20 = v26 - 1;
+        v23 = v12[v20];
+        v23.lowestObserverState_ = 0;
+        v26 = v20;
+      }
+    }
+    function $m11$warnAboutDerivationWithoutDependencies(derivation) {
+      var v5 = derivation.observing_;
+      if (0 != v5.length) return;
+      if ("boolean" == typeof derivation.requiresObservable_) {
+        var v17 = !!derivation.requiresObservable_;
+        var v32 = v17, v21;
+      } else {
+        v21 = !!$m8$globalState.reactionRequiresObservable;
+        v32 = v21;
+      }
+      v32 && console.warn("[mobx] Derivation '" + derivation.name_ + "' is created/updated without reading any observable value.");
+    }
+    function $m11$bindDependencies(derivation) {
+      var v32 = derivation.observing_;
+      var v6 = derivation.newObserving_;
+      derivation.observing_ = v6;
+      var v125 = +derivation.unboundDepsCount_ | 0;
+      var v118 = 0, v121 = 0, v123 = 0, v22, v43, v51, v52, v71, v74, v92, v95, v117, v119, v1202, v122, v131, v136;
+      while (v123 < v125) {
+        v22 = v6[v123];
+        0 == (+v22.diffValue | 0) ? (v22.diffValue = 1, v121 != v123 && (v6[v121] = v22), v1202 = v121 + 1 | 0) : v1202 = v121;
+        v43 = v22.dependenciesState_;
+        !(v43 === void 0) ? (v51 = (+v43 | 0) > v118, v52 = v51) : v52 = false;
+        v52 ? (v136 = +v43 | 0, v117 = v136) : v117 = v118;
+        v118 = v117;
+        v121 = v1202;
+        v123 = v123 + 1;
+      }
+      v6.length = v121;
+      derivation.newObserving_ = null;
+      v131 = v32.length;
+      v122 = v131;
+      while (v122 > 0) {
+        v71 = v122 - 1;
+        v74 = v32[v71];
+        0 == (+v74.diffValue | 0) && $m10$removeObserver(v74, derivation);
+        v74.diffValue = 0;
+        v122 = v71;
+      }
+      v119 = v121;
+      while (v119 > 0) {
+        v92 = v119 - 1;
+        v95 = v6[v92];
+        1 == (+v95.diffValue | 0) && (v95.diffValue = 0, $m10$addObserver(v95, derivation));
+        v119 = v92;
+      }
+      0 != v118 && (derivation.dependenciesState_ = v118, derivation.onBecomeStale_());
+    }
+    $m11$shouldCompute = function(derivation) {
+      var v84 = +derivation.dependenciesState_ | 0;
+      if (0 == v84) return false;
+      if (v84 == a || 2 == v84) return true;
+      if (1 == v84) {
+        var v88 = !!$m8$globalState.allowStateReads;
+        $m8$globalState.allowStateReads = true;
+        var v81 = v88, v15, v162, v25, v28, v37, v42, v60, v82, v93;
+        v25 = $m11$untrackedStart();
+        v28 = derivation.observing_;
+        v93 = v28.length;
+        v82 = 0;
+        while (v82 < v93) {
+          v37 = v28[v82];
+          if ($m7$isComputedValue(v37)) {
+            v42 = $m8$globalState.disableErrorBoundaries;
+            if (true === v42) {
               v37.get();
-            } catch {
-              $m11$untrackedEnd(v25);
-              $m8$globalState.allowStateReads = v81;
-              return true;
+            } else {
+              try {
+                v37.get();
+              } catch {
+                $m11$untrackedEnd(v25);
+                $m8$globalState.allowStateReads = v81;
+                return true;
+              }
             }
+            v60 = derivation.dependenciesState_;
+            if (2 === v60) return $m11$untrackedEnd(v25), $m8$globalState.allowStateReads = v81, true;
           }
-          v60 = derivation.dependenciesState_;
-          if (2 === v60) return $m11$untrackedEnd(v25), $m8$globalState.allowStateReads = v81, true;
+          v82 = v82 + 1;
         }
-        v82 = v82 + 1;
+        $m11$changeDependenciesStateTo0(derivation);
+        $m11$untrackedEnd(v25);
+        $m8$globalState.allowStateReads = v81;
+        return false;
       }
-      $m11$changeDependenciesStateTo0(derivation);
-      $m11$untrackedEnd(v25);
-      $m8$globalState.allowStateReads = v81;
       return false;
-    }
-    return false;
-  }
-  function $m11$warnAboutDerivationWithoutDependencies(derivation) {
-    var v5 = derivation.observing_;
-    if (0 != v5.length) return;
-    if ("boolean" == typeof derivation.requiresObservable_) {
-      var v17 = !!derivation.requiresObservable_;
-      var v32 = v17, v21;
-    } else {
-      v21 = !!$m8$globalState.reactionRequiresObservable;
-      v32 = v21;
-    }
-    v32 && console.warn("[mobx] Derivation '" + derivation.name_ + "' is created/updated without reading any observable value.");
-  }
-  function $m11$bindDependencies(derivation) {
-    var v32 = derivation.observing_;
-    var v6 = derivation.newObserving_;
-    derivation.observing_ = v6;
-    var v125 = +derivation.unboundDepsCount_ | 0;
-    var v118 = 0, v121 = 0, v123 = 0, v22, v43, v51, v52, v71, v74, v92, v95, v117, v119, v1202, v122, v131, v136;
-    while (v123 < v125) {
-      v22 = v6[v123];
-      0 == (+v22.diffValue | 0) ? (v22.diffValue = 1, v121 != v123 && (v6[v121] = v22), v1202 = v121 + 1 | 0) : v1202 = v121;
-      v43 = v22.dependenciesState_;
-      !(v43 === void 0) ? (v51 = (+v43 | 0) > v118, v52 = v51) : v52 = false;
-      v52 ? (v136 = +v43 | 0, v117 = v136) : v117 = v118;
-      v118 = v117;
-      v121 = v1202;
-      v123 = v123 + 1;
-    }
-    v6.length = v121;
-    derivation.newObserving_ = null;
-    v131 = v32.length;
-    v122 = v131;
-    var v63 = null;
-    while (v122 > 0) {
-      v71 = v122 - 1;
-      v74 = v32[v71];
-      0 == (+v74.diffValue | 0) && $m10$removeObserver(v74, derivation);
-      v74.diffValue = 0;
-      v122 = v71;
-    }
-    v119 = v121;
-    while (v119 > 0) {
-      v92 = v119 - 1;
-      v95 = v6[v92];
-      1 == (+v95.diffValue | 0) && (v95.diffValue = 0, $m10$addObserver(v95, derivation));
-      v119 = v92;
-    }
-    0 != v118 && (derivation.dependenciesState_ = v118, derivation.onBecomeStale_());
-  }
-  function $m11$trackDerivedFunction(derivation, f, context) {
-    var v93 = !!$m8$globalState.allowStateReads;
-    $m8$globalState.allowStateReads = true;
-    var v88 = v93, v18, v32, v41, v45, v56, v68, v89, v100;
-    var v90 = $m8$globalState;
-    var v94 = $m8$globalState;
-    $m11$changeDependenciesStateTo0(derivation);
-    0 != (+derivation.runId_ | 0) ? (v18 = derivation.observing_, v100 = v18.length, v89 = v100) : v89 = 100;
-    derivation.newObserving_ = new Array(v89);
-    derivation.unboundDepsCount_ = 0;
-    v32 = (+$m8$globalState.runId | 0) + 1 | 0;
-    $m8$globalState.runId = v32;
-    derivation.runId_ = v32;
-    v41 = $m8$globalState.trackingDerivation;
-    $m8$globalState.trackingDerivation = derivation;
-    v45 = $m8$globalState;
-    v45.inBatch = (+$m8$globalState.inBatch | 0) + 1 | 0;
-    var result;
-    v56 = $m8$globalState.disableErrorBoundaries;
-    if (true === v56) {
-      result = f.call(context);
-    } else {
-      var v27 = $m8$globalState;
-      var v33 = $m8$globalState;
-      var v39 = $m8$globalState;
-      var v42 = $m8$globalState;
-      var v47 = $m8$globalState;
-      var v54 = $m8$globalState;
-      var v115 = Array;
-      try {
+    };
+    $m11$trackDerivedFunction = function(derivation, f, context) {
+      var v93 = !!$m8$globalState.allowStateReads;
+      $m8$globalState.allowStateReads = true;
+      var v88 = v93, v18, v32, v41, v45, v56, v68, v89, v100;
+      $m11$changeDependenciesStateTo0(derivation);
+      0 != (+derivation.runId_ | 0) ? (v18 = derivation.observing_, v100 = v18.length, v89 = v100) : v89 = 100;
+      derivation.newObserving_ = new Array(v89);
+      derivation.unboundDepsCount_ = 0;
+      v32 = (+$m8$globalState.runId | 0) + 1 | 0;
+      $m8$globalState.runId = v32;
+      derivation.runId_ = v32;
+      v41 = $m8$globalState.trackingDerivation;
+      $m8$globalState.trackingDerivation = derivation;
+      v45 = $m8$globalState;
+      v45.inBatch = (+$m8$globalState.inBatch | 0) + 1 | 0;
+      var result;
+      v56 = $m8$globalState.disableErrorBoundaries;
+      if (true === v56) {
         result = f.call(context);
-      } catch (v65) {
-        result = new $m11$CaughtException(v65);
+      } else {
+        try {
+          result = f.call(context);
+        } catch (v65) {
+          result = new $m11$CaughtException(v65);
+        }
       }
-    }
-    v68 = $m8$globalState;
-    v68.inBatch = (+$m8$globalState.inBatch | 0) - 1 | 0;
-    $m8$globalState.trackingDerivation = v41;
-    $m11$bindDependencies(derivation);
-    $m11$warnAboutDerivationWithoutDependencies(derivation);
-    $m8$globalState.allowStateReads = v88;
-    return result;
-  }
+      v68 = $m8$globalState;
+      v68.inBatch = (+$m8$globalState.inBatch | 0) - 1 | 0;
+      $m8$globalState.trackingDerivation = v41;
+      $m11$bindDependencies(derivation);
+      $m11$warnAboutDerivationWithoutDependencies(derivation);
+      $m8$globalState.allowStateReads = v88;
+      return result;
+    };
+  })();
   function $m11$clearObserving(derivation) {
     var v32 = derivation.observing_;
     derivation.observing_ = [];
@@ -789,10 +774,6 @@ var mobx = (() => {
     $m8$globalState.allowStateReads;
     $m8$globalState.allowStateReads = true;
     v56 = $m14$nextActionId;
-    var v49 = $m8$globalState;
-    var v57 = $m14$nextActionId;
-    var v93 = $m8$globalState;
-    var v97 = $m8$globalState;
     $m14$nextActionId = $m14$nextActionId + 1 | 0;
     v60 = $m14$currentActionId;
     $m14$currentActionId = v56;
@@ -806,8 +787,6 @@ var mobx = (() => {
     runInfo.error_ === void 0 || ($m8$globalState.suppressReactionErrors = true);
     $m8$globalState.allowStateChanges = !!runInfo.prevAllowStateChanges_;
     $m8$globalState.allowStateReads = !!runInfo.prevAllowStateReads_;
-    var v66 = $m8$globalState;
-    var v68 = $m8$globalState;
     $m10$endBatch();
     !runInfo.runAsAction_ || $m11$untrackedEnd(runInfo.prevDerivation_);
     var v46 = !!runInfo.notifySpy_;
@@ -857,7 +836,6 @@ var mobx = (() => {
     var v32 = $m3$arraySliceFn.call(v5);
     var v36 = v32.length;
     var v30 = 0;
-    var v31 = $m3$arraySliceFn;
     while (v30 < v36) {
       v32[v30](change);
       v30 = v30 + 1;
@@ -891,16 +869,7 @@ var mobx = (() => {
       var interceptors = $m3$arraySliceFn.call(interceptorsSrc);
       var n = interceptors.length;
       var i = 0;
-      var v112 = interceptorsSrc;
-      var v13 = interceptors;
-      var v45 = $m3$arraySliceFn;
       while (i < n) {
-        var v162 = i;
-        var v17 = n;
-        var v19 = interceptors;
-        var v20 = i;
-        var v23 = change;
-        var v51 = void 0;
         change = interceptors[i](change);
         if (change) {
           var v32 = !change.type;
@@ -910,7 +879,6 @@ var mobx = (() => {
         }
         v33 && $m4$die(14);
         if (!change) break;
-        var v39 = i;
         i = i + 1 | 0;
       }
       return change;
@@ -993,8 +961,8 @@ var mobx = (() => {
       v39 = typeof a$2;
       if ("function" != v39 && "object" != v39 && "object" != typeof b) return false;
       v57 = $m3$objectCtor.prototype;
-      v338 = v57.toString.call(a$2);
-      if (v338 != $m3$objectCtor.prototype.toString.call(b)) return false;
+      v338 = v57.toString.call(a$2) + "";
+      if (v338 != $m3$objectCtor.prototype.toString.call(b) + "") return false;
       if ("[object RegExp]" == v338 || "[object String]" == v338) return "" + a$2 == "" + b;
       if ("[object Number]" == v338) {
         v343 = Number(a$2);
@@ -1081,13 +1049,15 @@ var mobx = (() => {
   function $m33$getCachedObservablePropDescriptor(key) {
     var v32 = $m33$descriptorCache[key];
     if (v32) return v32;
-    var v7 = { get: function() {
+    var v7 = {};
+    v7.get = function() {
       let v4 = this[$m2$$mobx];
       return v4.getObservablePropValue_(key);
-    }, set: function(value) {
+    };
+    v7.set = function(value) {
       let v5 = this[$m2$$mobx];
       return v5.setObservablePropValue_(key, value);
-    } };
+    };
     $m33$descriptorCache[key] = v7;
     return v7;
   }
@@ -1097,7 +1067,7 @@ var mobx = (() => {
   function $m33$assertAnnotable(adm, annotation, key) {
     var v7 = !$m20$isAnnotation(annotation);
     v7 && $m4$die("Cannot annotate '" + adm.name_ + "." + $m3$stringifyKey(key) + "': Invalid annotation.");
-    var v27 = !("override" == annotation.annotationType_);
+    var v27 = !("override" == annotation.annotationType_ + "");
     if (v27 && $m3$hasOwn(adm.appliedAnnotations_, key)) {
       var v43 = "Cannot apply '" + annotation.annotationType_ + "' to '";
       var v55 = v43 + adm.name_ + "." + $m3$stringifyKey(key) + "':\nThe field is already annotated with '";
@@ -1158,8 +1128,6 @@ var mobx = (() => {
       v145 = v6.length;
       v6.length = (v145 + newItems.length | 0) - deleteCount | 0;
       v119 = 0;
-      var v134 = $m3$arraySliceFn;
-      var v140 = $m3$arraySliceFn;
       while (v119 < newItems.length) {
         v6[index + v119] = newItems[v119];
         v119 = v119 + 1;
@@ -1249,9 +1217,9 @@ var mobx = (() => {
   function $m35$addMapLikeArrayExt(funcName) {
     "function" == typeof Array.prototype[funcName] && ($m35$arrayExtensions[funcName] = function(v20, v28) {
       var self = this;
-      var v5 = self[$m2$$mobx];
-      $m10$reportObserved(v5.atom_);
-      var v37 = v5.dehanceValues_(v5.values_);
+      var v5$2 = self[$m2$$mobx];
+      $m10$reportObserved(v5$2.atom_);
+      var v37 = v5$2.dehanceValues_(v5$2.values_);
       var thisArg;
       arguments.length > 1 && (thisArg = v28);
       return v37[funcName](function(v9, v12) {
@@ -1263,9 +1231,9 @@ var mobx = (() => {
   function $m35$addReduceLikeArrayExt(funcName) {
     "function" == typeof Array.prototype[funcName] && ($m35$arrayExtensions[funcName] = function() {
       var self = this;
-      let v5 = self[$m2$$mobx];
-      $m10$reportObserved(v5.atom_);
-      let v33 = v5.dehanceValues_(v5.values_), v20 = arguments[0];
+      let v5$2 = self[$m2$$mobx];
+      $m10$reportObserved(v5$2.atom_);
+      let v33 = v5$2.dehanceValues_(v5$2.values_), v20 = arguments[0];
       arguments[0] = function(v8, v112, v14) {
         return v20(v8, v112, v14, self);
       };
@@ -1279,8 +1247,6 @@ var mobx = (() => {
       var v45 = /* @__PURE__ */ new Map();
       var v48 = $m3$objectCtor.keys(dataStructure);
       var v41 = 0, v5, v6, v26, v31;
-      var v57 = Map;
-      var v58 = $m3$objectCtor;
       while (v41 < v48.length) {
         v26 = v48[v41];
         v31 = dataStructure[v48[v41]];
@@ -1332,7 +1298,7 @@ var mobx = (() => {
     v55 ? (v143 = v43.bind($m32$admProxyOrTarget(adm)), v130 = v143) : v130 = v43;
     v61 = $m3$stringifyKey(key);
     annotation.options_ ? (v69 = annotation.options_, v72 = !!v69.name, v73 = v72) : v73 = false;
-    v73 ? (v76 = annotation.options_, v1442 = v76.name, v131 = v1442) : v131 = v61;
+    v73 ? (v76 = annotation.options_, v1442 = v76.name + "", v131 = v1442) : v131 = v61;
     annotation.options_ ? (v88 = annotation.options_, v91 = !!v88.autoAction, v92 = v91) : v92 = false;
     v1322 = v92;
     v145 = void 0;
@@ -1407,10 +1373,7 @@ var mobx = (() => {
     };
   }
   function $m48$whenEffect(predicate, effect, opts) {
-    if (!opts) {
-      var v32 = opts;
-      opts = {};
-    }
+    opts = opts || {};
     var disposer;
     var timeoutHandle;
     if ("number" == typeof opts.timeout) {
@@ -1418,10 +1381,13 @@ var mobx = (() => {
       var v19 = function() {
         var v6 = disposer[$m2$$mobx];
         if (!v6.isDisposed) {
-          var v4 = disposer;
-          var v5 = $m2$$mobx;
           disposer();
-          opts.onError ? opts.onError(v70) : $m3$throwErr(v70);
+          if (opts.onError) {
+            opts.onError(v70);
+          } else {
+            var v27 = void 0;
+            $m3$throwErr(v70);
+          }
         }
       };
       var v22 = opts.timeout;
@@ -1435,7 +1401,6 @@ var mobx = (() => {
     effectAction = $m14$createAction(opts.name + "-effect", effect, false, void 0);
     disposer = $m48$autorun(function(r) {
       if ($m11$allowStateChanges(false, predicate)) {
-        var v5 = $m11$allowStateChanges;
         var v25 = void 0;
         r.dispose();
         !timeoutHandle || clearTimeout(timeoutHandle);
@@ -1457,21 +1422,21 @@ var mobx = (() => {
       return null;
     }, v35;
     v41 = { cancel: void 0, abort: void 0 };
-    v54 = new Promise(function(v7, v10) {
+    v54 = new Promise(function(v7, v10$2) {
       var v13 = $m3$assign({}, opts);
-      v13.onError = v10;
-      var v20 = $m48$whenEffect(predicate, v7, v13);
+      v13.onError = v10$2;
+      var v20$2 = $m48$whenEffect(predicate, v7, v13);
       v41.cancel = function() {
-        v20();
-        v10(new Error("WHEN_CANCELLED"));
+        v20$2();
+        v10$2(new Error("WHEN_CANCELLED"));
       };
       v41.abort = function() {
-        v20();
-        v10(new Error("WHEN_ABORTED"));
+        v20$2();
+        v10$2(new Error("WHEN_ABORTED"));
       };
       if (opts) {
-        var v39 = !!opts.signal;
-        var v40 = v39, v44, v48, v612;
+        var v39$2 = !!opts.signal;
+        var v40 = v39$2, v44, v48, v61$2;
       } else {
         v40 = false;
       }
@@ -1503,7 +1468,6 @@ var mobx = (() => {
       }
       v84 = $m3$objectCtor.getOwnPropertyDescriptor(v76, key);
       if (v84) {
-        var v95 = $m3$objectCtor;
         v62 = v75.make_(adm, key, v84, v76);
         if (0 === v62) return;
         if (1 === v62) break;
@@ -1516,7 +1480,6 @@ var mobx = (() => {
   function $m53$observeObservable(thing, listener, fireImmediately) {
     var v6 = $m52$getAdministration(thing);
     if ($m7$isObservableArray(thing)) {
-      var v32 = $m52$getAdministration;
       var v83 = void 0;
       if (fireImmediately) {
         var v12 = v6.values_;
@@ -1544,6 +1507,7 @@ var mobx = (() => {
           var v162 = $m11$untrackedStart();
           var v24 = adm.name_;
           listener({ observableKind: "computed", debugObjectName: v24, type: "update", object: adm, newValue: v40, oldValue: prevValue });
+          var v41 = void 0;
           $m11$untrackedEnd(v162);
         }
         firstTime = false;
@@ -1573,11 +1537,7 @@ var mobx = (() => {
     }
     return function() {
       var v6 = atomNode[listenersKey];
-      if (v6) {
-        var v4 = atomNode;
-        v6.delete(cb);
-        0 == (+v6.size | 0) && delete atomNode[listenersKey];
-      }
+      !v6 || (v6.delete(cb), 0 == (+v6.size | 0) && delete atomNode[listenersKey]);
     };
   }
   function $m56$toJSHelper(source, alreadySeen) {
@@ -1599,7 +1559,6 @@ var mobx = (() => {
       alreadySeen.set(source, v186);
       v75 = $m3$arrayFrom(source.values());
       v167 = 0;
-      var v217 = Set;
       while (v167 < v75.length) {
         v186.add($m56$toJSHelper(v75[v167], alreadySeen));
         v167 = v167 + 1;
@@ -1611,7 +1570,6 @@ var mobx = (() => {
       alreadySeen.set(source, v196);
       v102 = $m3$arrayFrom(source.entries());
       v168 = 0;
-      var v218 = Map;
       while (v168 < v102.length) {
         v1132 = v102[v168][0];
         v116 = v102[v168];
@@ -1624,7 +1582,6 @@ var mobx = (() => {
     alreadySeen.set(source, v1262);
     v202 = $m51$ownKeysApi(source);
     v169 = 0;
-    var v131 = $m51$ownKeysApi;
     var v201 = void 0;
     while (v169 < v202.length) {
       v142 = $m3$objectCtor.prototype;
@@ -1718,14 +1675,7 @@ var mobx = (() => {
     }
     (v14 || $m8$globalState.isRunningReactions) && $m4$die(36);
     $m8$isolateCalled = true;
-    if ($m8$canMergeGlobalState) {
-      var v24 = $m8$canMergeGlobalState;
-      v49 = globalThis;
-      v31 = (+v49.__mobxInstanceCount | 0) - 1 | 0;
-      v49.__mobxInstanceCount = v31;
-      0 == v31 && (v49.__mobxGlobals = void 0);
-      $m8$globalState = $m8$createMobXGlobals();
-    }
+    $m8$canMergeGlobalState && (v49 = globalThis, v31 = (+v49.__mobxInstanceCount | 0) - 1 | 0, v49.__mobxInstanceCount = v31, 0 == v31 && (v49.__mobxGlobals = void 0), $m8$globalState = $m8$createMobXGlobals());
   };
   var v78 = function() {
     return $m8$globalState;
@@ -1735,7 +1685,6 @@ var mobx = (() => {
     var v38 = $m3$objectCtor.keys(v1);
     var v42 = v38.length;
     var v35 = 0, v12, v27;
-    var v48 = $m3$objectCtor;
     while (v35 < v42) {
       v12 = v38[v35];
       (+$m8$persistentKeys.indexOf(v12) | 0) == a && ($m8$globalState[v12] = v1[v12]);
@@ -1754,7 +1703,6 @@ var mobx = (() => {
       var v112 = [];
       var v15 = v6.length;
       var v17 = 0, v22;
-      var v4 = $m8$globalState;
       while (v17 < v15) {
         v6[v17] === listener || (v22 = v6[v17], v112.push(v22));
         v17 = v17 + 1;
@@ -1781,8 +1729,6 @@ var mobx = (() => {
     $m8$globalState.isRunningReactions = true;
     var v5 = $m8$globalState.pendingReactions;
     var v60 = 0, v13, v23, v50, v61, v72, v76;
-    var v0 = $m8$globalState;
-    var v32 = $m8$globalState;
     while (v5.length > 0) {
       v13 = v60 + 1 | 0;
       100 == v13 && (v23 = "Reaction doesn't converge to a stable state after 100 iterations. Probably there is a cycle in the reactive function: " + v5[0], console.error(v23), v5.splice(0, v5.length));
@@ -1823,7 +1769,7 @@ var mobx = (() => {
   v113.isMobXCaughtException = true;
   var $m13$Atom = (0, function(nameArg) {
     if (!(nameArg === void 0)) {
-      var v31 = nameArg;
+      var v31 = nameArg + "";
       var v29 = v31, v112;
     } else {
       v112 = "Atom@" + $m8$getNextId();
@@ -2038,7 +1984,7 @@ var mobx = (() => {
   var $m14$isFunctionNameConfigurable = v180;
   var $m15$Reaction = (0, function(v162, v36, v44, v59) {
     if (arguments.length > 0 && !(v162 === void 0)) {
-      var v94 = v162;
+      var v94 = v162 + "";
       var v88 = v94, v12, v13, v21, v45, v46, v61, v62;
     } else {
       v21 = "Reaction@" + $m8$getNextId();
@@ -2079,8 +2025,6 @@ var mobx = (() => {
       var v12 = $m8$globalState.trackingContext;
       $m8$globalState.trackingContext = this;
       if ($m11$shouldCompute(this)) {
-        var v10 = $m8$globalState;
-        var v13 = $m8$globalState;
         this.isTrackPending = true;
         try {
           this.onInvalidate_();
@@ -2139,7 +2083,6 @@ var mobx = (() => {
     var v71 = $m8$globalState.globalReactionErrorHandlers;
     var v106 = v71.length;
     var v90 = 0;
-    var v69 = $m8$globalState;
     while (v90 < v106) {
       v71[v90](error, this);
       v90 = v90 + 1;
@@ -2152,7 +2095,6 @@ var mobx = (() => {
   v221 = $m15$Reaction.prototype;
   v221.getDisposer_ = function(abortSignal) {
     var self = this;
-    var v4 = dispose;
     var dispose = function() {
       var v5 = self.dispose;
       self.dispose();
@@ -2162,7 +2104,7 @@ var mobx = (() => {
     dispose[$m2$$mobx] = self;
     if (true === "dispose" in Symbol) {
       var v48 = "symbol" == typeof Symbol.dispose;
-      var v31 = v48, v14, v32, v35, v41;
+      var v31 = v48, v14$2, v32, v35, v41;
     } else {
       v31 = false;
     }
@@ -2193,7 +2135,7 @@ var mobx = (() => {
     options.get || $m4$die(31);
     this.derivation = options.get;
     if (options.name) {
-      var v115 = options.name;
+      var v115 = options.name + "";
       var v1132 = v115, v26, v38, v872;
     } else {
       v26 = "ComputedValue@" + $m8$getNextId();
@@ -2245,7 +2187,6 @@ var mobx = (() => {
       if (true === v22) {
         res = this.derivation.call(this.scope_);
       } else {
-        var v20 = $m8$globalState;
         try {
           res = this.derivation.call(this.scope_);
         } catch (v39) {
@@ -2308,7 +2249,6 @@ var mobx = (() => {
   v280 = $m16$ComputedValue.prototype;
   v280.set = $jsMethod1(function(self, value) {
     if (self.setter_) {
-      var v2 = self;
       !self.isRunningSetter || $m4$die1(33, self.name_);
       self.isRunningSetter = true;
       try {
@@ -2444,7 +2384,7 @@ var mobx = (() => {
   $m3$objectCtor.freeze($m27$defaultCreateObservableOptions);
   var $m29$ObservableValue = (0, function(v4, v7, v162, v35, v45) {
     if (arguments.length > 2 && !(v162 === void 0)) {
-      var v110 = v162;
+      var v110 = v162 + "";
       var v102 = v110, v18, v19, v27, v36, v37, v46, v47, v802, v81, v91, v103, v104;
     } else {
       v27 = "ObservableValue@" + $m8$getNextId();
@@ -2460,7 +2400,6 @@ var mobx = (() => {
     this.equals_ = v104;
     this.hasUnreportedChange_ = false;
     this.value_ = v7(v4, void 0, v102);
-    var v51 = $m13$Atom;
     var v119 = void 0;
     v103 && $m9$isSpyEnabled() && (v91 = this.name_, $m9$spyReport({ type: "create", object: this, observableKind: "value", debugObjectName: v91, newValue: "" + this.value_ }));
     return this;
@@ -2496,7 +2435,6 @@ var mobx = (() => {
     var v48 = this.prepareNewValue_(newValue);
     if (!(v48 === $m8$globalState.UNCHANGED)) {
       var v14 = $m9$isSpyEnabled();
-      var v7 = $m8$globalState;
       if (v14) {
         var v29 = this.name_;
         $m9$spyReportStart({ type: "update", object: this, observableKind: "value", debugObjectName: v29, newValue: v48, oldValue: this.value_ });
@@ -2578,7 +2516,10 @@ var mobx = (() => {
     this.options_ ? (v142 = this.options_, v1442 = v142.deep, v146 = false === v1442, v147 = v146) : v147 = false;
     v147 ? (v148 = $m28$observableRef, v187 = v148) : v187 = v134;
     "function" == typeof v10.value ? (v157 = !!this.options_, v158 = v157) : v158 = false;
-    v158 && this.options_.autoBind && (v10.value = v10.value.bind($m32$admProxyOrTarget(v4)));
+    if (v158 && this.options_.autoBind) {
+      var v197 = v10.value.bind($m32$admProxyOrTarget(v4));
+      v10.value = v197;
+    }
     return v187.make_(v4, v7, v10, v13);
   });
   var $m31$autoAnnotationExtend = (0, function(v4, v7, v10, v13) {
@@ -2593,7 +2534,10 @@ var mobx = (() => {
     } else {
       v59 = false;
     }
-    v59 && this.options_.autoBind && (v10.value = v10.value.bind($m32$admProxyOrTarget(v4)));
+    if (v59 && this.options_.autoBind) {
+      var v106 = v10.value.bind($m32$admProxyOrTarget(v4));
+      v10.value = v106;
+    }
     v76 = $m28$observable;
     this.options_ ? (v84 = this.options_, v86 = v84.deep, v88 = false === v86, v89 = v88) : v89 = false;
     v89 ? (v90 = $m28$observableRef, v100 = v90) : v100 = v76;
@@ -2611,7 +2555,7 @@ var mobx = (() => {
       v162 = false;
     }
     v162 ? this.values_ = v14 : this.values_ = /* @__PURE__ */ new Map();
-    this.name_ = v29;
+    this.name_ = v29 + "";
     this.defaultAnnotation_ = $m28$autoAnnotation;
     arguments.length > 3 ? (v42 = !!v41, v43 = v42) : v43 = false;
     v43 && (this.defaultAnnotation_ = v41);
@@ -2619,7 +2563,6 @@ var mobx = (() => {
     this.keysAtom_ = new $m13$Atom(v56);
     this.isPlainObject_ = $m3$isPlainObject(this.target_);
     v74 = !$m20$isAnnotation(this.defaultAnnotation_);
-    var v59 = $m13$Atom;
     v74 && $m4$die("defaultAnnotation must be valid annotation");
     this.appliedAnnotations_ = {};
     return this;
@@ -2693,17 +2636,7 @@ var mobx = (() => {
       v117 = newValue;
     }
     v1262 = v118.prepareNewValue_(v117);
-    if (!(v1262 === $m8$globalState.UNCHANGED)) {
-      v67 = $m17$hasListeners(this);
-      v70 = $m9$isSpyEnabled();
-      v72 = null;
-      var v61 = $m8$globalState;
-      v67 || v70 ? (v84 = this.name_, v872 = $m32$admProxyOrTarget(this), v91 = v118.value_, v96 = { type: "update", observableKind: "object", debugObjectName: v84, object: v872, oldValue: v91, name: key, newValue: v1262 }, v1202 = v96) : v1202 = v72;
-      v70 && $m9$spyReportStart(v1202);
-      v118.setNewValue_(v1262);
-      v67 && $m17$notifyListeners(this, v1202);
-      v70 && $m9$spyReportEnd(void 0);
-    }
+    v1262 === $m8$globalState.UNCHANGED || (v67 = $m17$hasListeners(this), v70 = $m9$isSpyEnabled(), v72 = null, v67 || v70 ? (v84 = this.name_, v872 = $m32$admProxyOrTarget(this), v91 = v118.value_, v96 = { type: "update", observableKind: "object", debugObjectName: v84, object: v872, oldValue: v91, name: key, newValue: v1262 }, v1202 = v96) : v1202 = v72, v70 && $m9$spyReportStart(v1202), v118.setNewValue_(v1262), v67 && $m17$notifyListeners(this, v1202), v70 && $m9$spyReportEnd(void 0));
     return true;
   };
   v488 = $m33$ObservableObjectAdministration.prototype;
@@ -2781,9 +2714,6 @@ var mobx = (() => {
         if (!change) return null;
         var v44 = descriptor.value;
         if (!(v44 === change.newValue)) {
-          var v42 = descriptor;
-          var v45 = change;
-          var v51 = descriptor;
           descriptor = $m3$assign({}, descriptor);
           var v53 = descriptor;
           v53.value = change.newValue;
@@ -2829,8 +2759,6 @@ var mobx = (() => {
       v75 = cachedDescriptor.get;
       var descriptor = { configurable: v69, enumerable: true, get: v75, set: cachedDescriptor.set };
       if (v130) {
-        var v73 = cachedDescriptor;
-        var v77 = cachedDescriptor;
         v84 = this.target_;
         if (!(true === Reflect.defineProperty(v84, v4, descriptor))) return false;
       } else {
@@ -2867,8 +2795,6 @@ var mobx = (() => {
       var v82 = cachedDescriptor.get;
       var descriptor = { configurable: v76, enumerable: false, get: v82, set: cachedDescriptor.set };
       if (v5) {
-        var v802 = cachedDescriptor;
-        var v84 = cachedDescriptor;
         var v91 = this.target_;
         if (!(true === Reflect.defineProperty(v91, key, descriptor))) return false;
       } else {
@@ -2912,13 +2838,7 @@ var mobx = (() => {
       v91 = !!this.appliedAnnotations_;
       v92 = v91;
       v92 && delete this.appliedAnnotations_[key];
-      if (observableNode) {
-        var v982 = observableNode;
-        v102 = this.values_;
-        v102.delete(key);
-        !$m7$isObservableValuePred(observableNode) || (value = observableNode.value_);
-        $m10$propagateChanged(observableNode);
-      }
+      !observableNode || (v102 = this.values_, v102.delete(key), !$m7$isObservableValuePred(observableNode) || (value = observableNode.value_), $m10$propagateChanged(observableNode));
       $m10$reportChanged(this.keysAtom_);
       if (this.pendingKeys_) {
         v122 = this.pendingKeys_;
@@ -2931,7 +2851,6 @@ var mobx = (() => {
         var change$2 = { type: "remove", observableKind: "object", object: v147, debugObjectName: v151, oldValue: value, name: key };
         v159 = notifySpy;
         v160 = v159;
-        var v1532 = value;
         v160 && $m9$spyReportStart(change$2);
         notify && $m17$notifyListeners(this, change$2);
         v169 = notifySpy;
@@ -2961,12 +2880,10 @@ var mobx = (() => {
     v6 && $m7$isObservableObject(target) && $m4$die("Options can't be provided for already observable objects.");
     if ($m3$hasOwn(target, $m2$$mobx)) {
       var v21 = !$m7$isObservableObject(target);
-      var v15 = $m2$$mobx;
       v21 && $m4$die("Cannot convert '" + target.name_ + "' into observable object:\nThe target is already observable of different type.\nExtending builtins is not supported.");
       return target;
     }
     var v37 = !(true === $m3$objectCtor.isExtensible(target));
-    var v101 = $m3$objectCtor;
     v37 && $m4$die("Cannot make the designated object observable; it is not extensible");
     if (options) {
       var v48 = !!options.name;
@@ -2974,7 +2891,7 @@ var mobx = (() => {
     } else {
       v49 = false;
     }
-    v49 ? (v90 = options.name, v84 = v90) : ($m3$isPlainObject(target) ? (v59 = "ObservableObject@" + $m8$getNextId(), v82 = v59) : (v62 = target.constructor, v69 = v62.name + "@" + $m8$getNextId(), v82 = v69), v84 = v82);
+    v49 ? (v90 = options.name + "", v84 = v90) : ($m3$isPlainObject(target) ? (v59 = "ObservableObject@" + $m8$getNextId(), v82 = v59) : (v62 = target.constructor, v69 = v62.name + "@" + $m8$getNextId(), v82 = v69), v84 = v82);
     v76 = new $m33$ObservableObjectAdministration(target, /* @__PURE__ */ new Map(), v84, $m33$getAnnotationFromOptions(options));
     $m3$defineProperty(target, $m2$$mobx, { enumerable: false, writable: true, configurable: true, value: v76 });
     return target;
@@ -3034,17 +2951,17 @@ var mobx = (() => {
     $m4$die(15);
     return false;
   };
-  var $m35$ObservableArrayAdministration = (0, function(v162, v24, v36) {
-    if (arguments.length > 0 && !(v162 === void 0)) {
-      var v802 = v162;
-      var v74 = v802, v12, v13, v21;
+  var $m35$ObservableArrayAdministration = (0, function(v16$2, v24$2, v36) {
+    if (arguments.length > 0 && !(v16$2 === void 0)) {
+      var v80$2 = v16$2 + "";
+      var v74$2 = v80$2, v12, v13$2, v21$2;
     } else {
-      v21 = "ObservableArray@" + $m8$getNextId();
-      v74 = v21;
+      v21$2 = "ObservableArray@" + $m8$getNextId();
+      v74$2 = v21$2;
     }
     this.owned_ = false;
     arguments.length > 2 && (this.owned_ = !!v36);
-    this.atom_ = new $m13$Atom(v74);
+    this.atom_ = new $m13$Atom(v74$2);
     this.values_ = [];
     this.interceptors_ = void 0;
     this.changeListeners_ = void 0;
@@ -3052,9 +2969,9 @@ var mobx = (() => {
     this.proxy_ = void 0;
     this.lastKnownLength_ = 0;
     var enhName = "ObservableArray[..]";
-    enhName = v74 + "[..]";
+    enhName = v74$2 + "[..]";
     this.enhancer_ = function(newV, oldV, _n) {
-      return v24(newV, oldV, enhName);
+      return v24$2(newV, oldV, enhName);
     };
     return this;
   });
@@ -3136,13 +3053,14 @@ var mobx = (() => {
       v89 = Array;
       v64 = v84 + 1 | 0;
       v68 = new v89(v64 - v7.length | 0);
-      v68[v68.length - 1] = newValue;
+      var v73 = v68.length - 1;
+      v68[v73] = newValue;
       $m35$spliceWithArrayImpl(this, v7.length, 0, v68);
     }
   };
-  var $m35$createObservableArray = function(v4, v7, v162, v35) {
+  var $m35$createObservableArray = function(v4, v7, v16$2, v35) {
     var name = "ObservableArray";
-    name = arguments.length > 2 && !(v162 === void 0) ? v162 : "ObservableArray@" + $m8$getNextId();
+    name = arguments.length > 2 && !(v16$2 === void 0) ? v16$2 + "" : "ObservableArray@" + $m8$getNextId();
     var owned = false;
     arguments.length > 3 && (owned = !!v35);
     return $m23$initObservable(function() {
@@ -3257,11 +3175,11 @@ var mobx = (() => {
     self.enhancer_ = $m27$deepEnhancerFn;
     !enhancerArg || (self.enhancer_ = enhancerArg);
     if (!(nameArg === void 0)) {
-      var v46 = nameArg;
-      var v44 = v46, v24;
+      var v46 = nameArg + "";
+      var v44 = v46, v24$2;
     } else {
-      v24 = "ObservableMap@" + $m8$getNextId();
-      v44 = v24;
+      v24$2 = "ObservableMap@" + $m8$getNextId();
+      v44 = v24$2;
     }
     self.name_ = v44;
     self.interceptors_ = void 0;
@@ -3327,7 +3245,6 @@ var mobx = (() => {
     var v75 = v74.prepareNewValue_(newValue);
     if (!(v75 === $m8$globalState.UNCHANGED)) {
       var v22 = $m9$isSpyEnabled();
-      var v15 = $m8$globalState;
       var v25 = $m17$hasListeners(this);
       var v26 = null;
       var v30, v36, v44, v49, v72;
@@ -3347,11 +3264,6 @@ var mobx = (() => {
       n = this.name_ + "." + $m3$stringifyKey(key);
       var observableNode = new $m29$ObservableValue(newValue, this.enhancer_, n, false);
       this.data_.set(key, observableNode);
-      var v20 = $m29$ObservableValue;
-      var v21 = newValue;
-      var v25 = n;
-      var v32 = observableNode;
-      var v34 = observableNode;
       newValue = observableNode.value_;
       var v39 = this.hasMap_;
       var hasEntry = v39.get(key);
@@ -3433,20 +3345,18 @@ var mobx = (() => {
   v814 = $m36$ObservableMap.prototype;
   v814.values = function() {
     var self = this;
-    let v19 = self.keys();
-    let v6 = { next: function() {
+    let v19 = self.keys(), v6$2 = { next: function() {
       var v5 = v19.next();
       if (v5.done) return { done: true, value: void 0 };
       return { done: false, value: self.get(v5.value) };
     } };
-    v6[Symbol.toStringTag] = "MapIterator";
-    return $m3$makeIterable(v6);
+    v6$2[Symbol.toStringTag] = "MapIterator";
+    return $m3$makeIterable(v6$2);
   };
   v820 = $m36$ObservableMap.prototype;
   v820.entries = function() {
     var self = this;
-    let v19 = self.keys();
-    let v6 = { next: function() {
+    let v19 = self.keys(), v6$2 = { next: function() {
       var v5 = v19.next();
       if (v5.done) return { done: true, value: void 0 };
       var v15 = [];
@@ -3455,8 +3365,8 @@ var mobx = (() => {
       v15.push(self.get(v5.value));
       return { done: false, value: v15 };
     } };
-    v6[Symbol.toStringTag] = "MapIterator";
-    return $m3$makeIterable(v6);
+    v6$2[Symbol.toStringTag] = "MapIterator";
+    return $m3$makeIterable(v6$2);
   };
   v826 = $m36$ObservableMap.prototype;
   v826.forEach = function(callback, thisArg) {
@@ -3474,53 +3384,44 @@ var mobx = (() => {
   v832.merge = function(other) {
     var self = this;
     if ($m7$isObservableMap(other)) {
-      var v6 = new Map(other);
-      var v802 = v6, v13, v19, v23, v36, v42, v48, v51;
+      var v6$2 = new Map(other);
+      var v80$2 = v6$2, v13$2, v19, v23, v36, v42, v48, v51;
     } else {
-      v802 = other;
+      v80$2 = other;
     }
     $m10$startBatch();
     try {
-      if ($m3$isPlainObject(v802)) {
-        var keys$2 = $m3$getPlainObjectKeys(v802);
+      if ($m3$isPlainObject(v80$2)) {
+        var keys$2 = $m3$getPlainObjectKeys(v80$2);
         var i = 0;
         for (; ; ) {
-          v13 = i;
-          if (v13 >= keys$2.length) {
+          v13$2 = i;
+          if (v13$2 >= keys$2.length) {
             break;
           }
           v19 = self.set;
           v23 = keys$2[i];
-          self.set(v23, v802[keys$2[i]]);
-          var v14 = keys$2;
-          var v21 = keys$2;
-          var v22 = i;
-          var v25 = keys$2;
-          var v26 = i;
-          var v30 = i;
+          self.set(v23, v80$2[keys$2[i]]);
           i = i + 1 | 0;
         }
       } else {
-        if (Array.isArray(v802)) {
+        if (Array.isArray(v80$2)) {
           var i$2 = 0;
           for (; ; ) {
             v36 = i$2;
-            if (v36 >= v802.length) {
+            if (v36 >= v80$2.length) {
               break;
             }
             v42 = self.set;
-            v48 = v802[i$2][0];
-            v51 = v802[i$2];
+            v48 = v80$2[i$2][0];
+            v51 = v80$2[i$2];
             self.set(v48, v51[1]);
-            var v45 = i$2;
-            var v50 = i$2;
-            var v55 = i$2;
             i$2 = i$2 + 1 | 0;
           }
         } else {
-          $m3$isES6Map(v802) ? ($m3$objectCtor.getPrototypeOf($m3$objectCtor.getPrototypeOf($m3$objectCtor.getPrototypeOf(v802))) == null || $m4$die1(19, v802), v802.forEach(function(v12, v9) {
+          $m3$isES6Map(v80$2) ? ($m3$objectCtor.getPrototypeOf($m3$objectCtor.getPrototypeOf($m3$objectCtor.getPrototypeOf(v80$2))) == null || $m4$die1(19, v80$2), v80$2.forEach(function(v12, v9) {
             self.set(v9, v12);
-          })) : v802 == null || $m4$die1(20, v802);
+          })) : v80$2 == null || $m4$die1(20, v80$2);
         }
       }
     } finally {
@@ -3542,10 +3443,6 @@ var mobx = (() => {
             break;
           }
           this.delete(keys$2[i]);
-          var v112 = keys$2;
-          var v18 = keys$2;
-          var v19 = i;
-          var v22 = i;
           i = i + 1 | 0;
         }
       } finally {
@@ -3565,19 +3462,13 @@ var mobx = (() => {
       var v9 = this.data_;
       var existingKeys = $m3$arrayFrom(v9.keys());
       var i = 0;
-      var v185 = Map;
       for (; ; ) {
         var v14 = i;
         if (v14 >= existingKeys.length) {
           break;
         }
-        var v15 = existingKeys;
         var key = existingKeys[i];
         if (!replacementMap.has(key)) {
-          var v18 = existingKeys;
-          var v19 = i;
-          var v21 = replacementMap;
-          var v22 = key;
           if (this.delete(key)) {
             keysReportChangedCalled = true;
           } else {
@@ -3586,41 +3477,28 @@ var mobx = (() => {
             v33.set(v34, this.data_.get(key));
           }
         }
-        var v41 = i;
         i = i + 1 | 0;
       }
       var entries$2 = $m3$arrayFrom(replacementMap.entries());
       i = 0;
-      var v44 = replacementMap;
       for (; ; ) {
         var v49 = i;
         if (v49 >= entries$2.length) {
           break;
         }
-        var v50 = entries$2;
         var key$2 = entries$2[i][0];
         var value = entries$2[i][1];
         var keyExisted = !!this.data_.has(key$2);
         this.set(key$2, value);
         if (this.data_.has(key$2)) {
-          var v53 = entries$2;
-          var v54 = i;
-          var v58 = entries$2;
-          var v59 = i;
-          var v66 = key$2;
-          var v72 = key$2;
-          var v73 = value;
-          var v782 = key$2;
           var v802 = orderedData;
           var v81 = key$2;
           v802.set(v81, this.data_.get(key$2));
           keyExisted || (keysReportChangedCalled = true);
         }
-        var v91 = i;
         i = i + 1 | 0;
       }
       if (!keysReportChangedCalled) {
-        var v94 = keysReportChangedCalled;
         var v982 = this.data_;
         var v180 = +v982.size | 0;
         if (v180 != (+orderedData.size | 0)) {
@@ -3631,12 +3509,7 @@ var mobx = (() => {
           var iter2 = orderedData.keys();
           var next1 = iter1.next();
           var next2 = iter2.next();
-          var v100 = orderedData;
-          var v112 = orderedData;
-          var v115 = iter1;
-          var v118 = iter2;
           while (!next1.done) {
-            var v121 = next1;
             var v128 = next1.value;
             if (!(v128 === next2.value)) {
               $m10$reportChanged(this.keysAtom_);
@@ -3683,7 +3556,7 @@ var mobx = (() => {
     var self = this;
     self[$m2$$mobx] = $m37$ObservableSetMarker;
     var name = "ObservableSet";
-    name = !(nameArg === void 0) ? nameArg : "ObservableSet@" + $m8$getNextId();
+    name = !(nameArg === void 0) ? nameArg + "" : "ObservableSet@" + $m8$getNextId();
     self.name_ = name;
     var enhancer = $m27$deepEnhancerFn;
     !enhancerArg || (enhancer = enhancerArg);
@@ -3768,9 +3641,8 @@ var mobx = (() => {
   v908.values = function() {
     var self = this;
     $m10$reportObserved(self.atom_);
-    let v7 = self.data_, v9 = v7.values();
-    let v10 = { next: function() {
-      var v5 = v9.next();
+    let v7 = self.data_, v9$2 = v7.values(), v10 = { next: function() {
+      var v5 = v9$2.next();
       if (v5.done) return { done: true, value: void 0 };
       return { done: false, value: $m37$dehanceMap(self, v5.value) };
     } };
@@ -3783,18 +3655,17 @@ var mobx = (() => {
   };
   v920 = $m37$ObservableSet.prototype;
   v920.entries = function() {
-    let v18 = this.values();
-    let v6 = { next: function() {
-      var v4 = v18.next();
+    let v18$2 = this.values(), v6$2 = { next: function() {
+      var v4 = v18$2.next();
       if (v4.done) return { done: true, value: void 0 };
       var v14 = [];
-      var b = v4.value;
-      v14.push(b);
+      var v18 = v4.value;
+      v14.push(v18);
       v14.push(v4.value);
       return { done: false, value: v14 };
     } };
-    v6[Symbol.toStringTag] = "SetIterator";
-    return $m3$makeIterable(v6);
+    v6$2[Symbol.toStringTag] = "SetIterator";
+    return $m3$makeIterable(v6$2);
   };
   v926 = $m37$ObservableSet.prototype;
   v926.forEach = function(callback, thisArg) {
@@ -3811,8 +3682,8 @@ var mobx = (() => {
   v932.replace = function(other) {
     var self = this;
     if ($m7$isObservableSet(other)) {
-      var v6 = new Set(other);
-      var v52 = v6, v162;
+      var v6$2 = new Set(other);
+      var v52 = v6$2, v16$2;
     } else {
       v52 = other;
     }
@@ -3822,13 +3693,11 @@ var mobx = (() => {
         self.clear();
         var i = 0;
         for (; ; ) {
-          v162 = i;
-          if (v162 >= v52.length) {
+          v16$2 = i;
+          if (v16$2 >= v52.length) {
             break;
           }
           self.add(v52[i]);
-          var v25 = i;
-          var v28 = i;
           i = i + 1 | 0;
         }
       } else {
@@ -3856,10 +3725,6 @@ var mobx = (() => {
             break;
           }
           this.delete(vals[i]);
-          var v112 = vals;
-          var v18 = vals;
-          var v19 = i;
-          var v22 = i;
           i = i + 1 | 0;
         }
       } finally {
@@ -3958,21 +3823,21 @@ var mobx = (() => {
     return v4.defineProperty_(v112, $m40$createActionDescriptor(v4, this, v112, v19, !!$m8$globalState.safeDescriptors), v27);
   });
   var $m41$decorateFlow20223_ = function(annotation, mthd, context) {
-    var v5 = [];
-    v5.push("method");
-    $m21$assert20223DecoratorType(context, v5);
-    var v14 = context.name;
+    var v5$2 = [];
+    v5$2.push("method");
+    $m21$assert20223DecoratorType(context, v5$2);
+    var v14$2 = context.name;
     if (!$m7$isFlow(mthd)) {
-      var v21 = $m28$flow(mthd);
-      var v43 = v21, v29, v32, v33;
+      var v21$2 = $m28$flow(mthd);
+      var v43 = v21$2, v29, v32, v33;
     } else {
       v43 = mthd;
     }
     annotation.options_ ? (v29 = annotation.options_, v32 = !!v29.bound, v33 = v32) : v33 = false;
     v33 && context.addInitializer(function() {
-      let v4 = this[v14], v15 = v4.bind(this);
+      let v4 = this[v14$2], v15 = v4.bind(this);
       v15.isMobXFlow = true;
-      this[v14] = v15;
+      this[v14$2] = v15;
     });
     return v43;
   };
@@ -4007,67 +3872,59 @@ var mobx = (() => {
     v25;
     return v4.defineProperty_(v25, $m41$createFlowDescriptor(v4, v33, v44, !!$m8$globalState.safeDescriptors), v42);
   });
-  $m28$extendObservable = function(v4, v7, v162, v23) {
+  $m28$extendObservable = function(v4, v7, v16$2, v23) {
     var annotations;
     var options;
-    arguments.length > 2 && (annotations = v162);
+    arguments.length > 2 && (annotations = v16$2);
     arguments.length > 3 && (options = v23);
     arguments.length > 4 && $m4$die("'extendObservable' expected 2-4 arguments");
     "object" != typeof v4 && $m4$die("'extendObservable' expects an object as first argument");
     $m7$isObservableMap(v4) && $m4$die("'extendObservable' should not be used on maps, use map.merge instead");
     $m3$isPlainObject(v7) || $m4$die("'extendObservable' only accepts plain objects as second argument");
     if ($m25$isObservableValueCheck(v7)) {
-      var v51 = true, v50, v802;
+      var v51 = true, v50, v80$2;
     } else {
       v50 = $m25$isObservableValueCheck(annotations);
       v51 = v50;
     }
     v51 && $m4$die("Extending an object with another observable (object) is not supported");
-    v802 = $m3$objectCtor.getOwnPropertyDescriptors(v7);
+    v80$2 = $m3$objectCtor.getOwnPropertyDescriptors(v7);
     $m23$initObservable(function() {
       var v112 = $m33$asObservableObject(v4, options)[$m2$$mobx];
-      var v512 = Reflect.ownKeys(v802);
+      var v512 = Reflect.ownKeys(v80$2);
       var v45 = 0, v21, v30, v46, v47;
-      var v5 = $m33$asObservableObject;
-      var v8 = options;
-      var v10 = $m2$$mobx;
       var v48 = void 0;
-      var v59 = Reflect;
       while (v45 < v512.length) {
         v21 = v512[v45];
-        if (annotations) {
-          var v232 = annotations;
-          true === v21 in annotations ? (v30 = annotations[v21], v46 = v30) : v46 = true;
-          v47 = v46;
-        } else {
-          v47 = true;
-        }
-        v112.extend_(v21, v802[v21], v47);
+        annotations ? (true === v21 in annotations ? (v30 = annotations[v21], v46 = v30) : v46 = true, v47 = v46) : v47 = true;
+        v112.extend_(v21, v80$2[v21], v47);
         v45 = v45 + 1;
       }
     });
     return v4;
   };
   var $m43$decorateObservable20223_ = function(annotation, desc, context) {
-    if ("field" == context.kind) {
-      var v18 = "Please use `@observable accessor " + $m3$stringifyKey(context.name) + "` instead of `@observable ";
-      $m4$die(v18 + $m3$stringifyKey(context.name) + "`");
+    if ("field" == context.kind + "") {
+      var v18$2 = "Please use `@observable accessor " + $m3$stringifyKey(context.name) + "` instead of `@observable ";
+      $m4$die(v18$2 + $m3$stringifyKey(context.name) + "`");
     }
-    var v27 = [];
-    v27.push("accessor");
-    $m21$assert20223DecoratorType(context, v27);
-    if ("accessor" != context.kind) return;
+    var v27$2 = [];
+    v27$2.push("accessor");
+    $m21$assert20223DecoratorType(context, v27$2);
+    if ("accessor" != context.kind + "") return;
     var v43 = context.name;
-    var v44 = { get: function() {
+    var v44 = {};
+    v44.get = function() {
       var v6 = this[$m2$$mobx];
       if (!v6) {
-        var v182 = $m43$registerLazyObservable(this, annotation, v43, desc.get.call(this));
-        var v25 = v182;
+        var v18 = $m43$registerLazyObservable(this, annotation, v43, desc.get.call(this));
+        var v25 = v18;
       } else {
         v25 = v6;
       }
       return v25.getObservablePropValue_(v43);
-    }, set: function(value) {
+    };
+    v44.set = function(value) {
       var v6 = this[$m2$$mobx];
       if (!v6) {
         var v14 = $m43$registerLazyObservable(this, annotation, v43, value);
@@ -4076,10 +3933,11 @@ var mobx = (() => {
         v22 = v6;
       }
       return v22.setObservablePropValue_(v43, value);
-    }, init: function(value) {
+    };
+    v44.init = function(value) {
       $m43$registerLazyObservable(this, annotation, v43, value);
       return value;
-    } };
+    };
     return v44;
   };
   var $m43$observableAnnotation = $m38$createObservableAnnotation("observable", void 0);
@@ -4122,56 +3980,47 @@ var mobx = (() => {
   v1063 = $m22$createDecoratorAnnotation($m43$observableAnnotation, $m43$decorateObservable20223_);
   v1066 = $m22$createDecoratorAnnotation(v1030, $m43$decorateObservable20223_);
   var $m44$decorateComputed20223_ = function(annotation, getter, context) {
-    var v5 = [];
-    v5.push("getter");
-    $m21$assert20223DecoratorType(context, v5);
-    var v14 = context.name;
+    var v5$2 = [];
+    v5$2.push("getter");
+    $m21$assert20223DecoratorType(context, v5$2);
+    var v14$2 = context.name;
     var computedValues;
     var v20 = function(target, adm) {
       var v10 = $m3$assign({}, annotation.options_);
       v10.get = getter;
       v10.context = target;
-      v10.name || (v10.name = adm.name_ + "." + $m3$stringifyKey(v14));
+      v10.name || (v10.name = adm.name_ + "." + $m3$stringifyKey(v14$2));
       return new $m16$ComputedValue(v10);
     };
     context.addInitializer(function() {
       var self = this;
-      var v9 = $m33$asObservableObject(self)[$m2$$mobx];
-      var v12 = v9.values_;
-      var v51 = v12.get(v14);
+      var v9$2 = $m33$asObservableObject(self)[$m2$$mobx];
+      var v12 = v9$2.values_;
+      var v51 = v12.get(v14$2);
       if ($m7$isComputedValue(v51)) {
-        var v23 = !(v51.derivation === getter);
-        var v24 = v23, v27;
+        var v23$2 = !(v51.derivation === getter);
+        var v24$2 = v23$2, v27$2;
       } else {
-        v24 = false;
+        v24$2 = false;
       }
-      v24 && (v27 = v9.values_, v27.delete(v14));
-      v9.lazyComputedKeys_ || (v9.lazyComputedKeys_ = /* @__PURE__ */ new Map());
-      v9.lazyComputedKeys_.set(v14, function() {
-        return v20(self, v9);
+      v24$2 && (v27$2 = v9$2.values_, v27$2.delete(v14$2));
+      v9$2.lazyComputedKeys_ || (v9$2.lazyComputedKeys_ = /* @__PURE__ */ new Map());
+      v9$2.lazyComputedKeys_.set(v14$2, function() {
+        return v20(self, v9$2);
       });
     });
     return function() {
       var v7 = this[$m2$$mobx];
       var v10 = v7.values_;
-      var v58 = v10.get(v14);
+      var v58 = v10.get(v14$2);
       if ($m7$isComputedValue(v58)) {
         var v21 = !(v58.derivation === getter);
         var v22 = v21, v31, v39, v56;
       } else {
         v22 = false;
       }
-      if (v22) {
-        if (!computedValues) {
-          var v23 = computedValues;
-          var v60 = WeakMap;
-          computedValues = /* @__PURE__ */ new WeakMap();
-        }
-        v31 = computedValues.get(this);
-        !v31 ? (v39 = v20(this, v7), computedValues.set(this, v39), v56 = v39) : v56 = v31;
-        return v56.get();
-      }
-      return v7.getObservablePropValue_(v14);
+      if (v22) return computedValues = computedValues || /* @__PURE__ */ new WeakMap(), v31 = computedValues.get(this), !v31 ? (v39 = v20(this, v7), computedValues.set(this, v39), v56 = v39) : v56 = v31, v56.get();
+      return v7.getObservablePropValue_(v14$2);
     };
   };
   var $m44$computedAnnotation = $m39$createComputedAnnotation("computed", void 0);
@@ -4198,18 +4047,18 @@ var mobx = (() => {
   }, $m44$computedAnnotation);
   v1084 = $m22$createDecoratorAnnotation(v1077, $m44$decorateComputed20223_);
   v1086 = (0, function(fn) {
-    var v18 = fn.name;
+    var v18 = fn.name + "";
     var v15 = "" == v18 ? "<unnamed action>" : v18;
     return $m14$executeAction(v15, false, fn, this, void 0);
   });
   var $m45$decorateAction20223_ = function(annotation, mthd, context) {
-    var v5 = [];
-    v5.push("method");
-    v5.push("field");
-    $m21$assert20223DecoratorType(context, v5);
+    var v5$2 = [];
+    v5$2.push("method");
+    v5$2.push("field");
+    $m21$assert20223DecoratorType(context, v5$2);
     var v17 = context.name;
-    var v21 = function(m) {
-      var v53 = $m3$stringifyKey(v17);
+    var v21$2 = function(m) {
+      var v5 = $m3$stringifyKey(v17);
       if (annotation.options_) {
         var v13 = annotation.options_;
         var v162 = !!v13.name;
@@ -4217,14 +4066,14 @@ var mobx = (() => {
       } else {
         b = false;
       }
-      b ? (v20 = annotation.options_, v45 = v20.name, v43 = v45) : v43 = v53;
+      b ? (v20 = annotation.options_, v45 = v20.name + "", v43 = v45) : v43 = v5;
       annotation.options_ ? (v32 = annotation.options_, v35 = !!v32.autoAction, v36 = v35) : v36 = false;
       v44 = v36;
       return $m14$createAction(v43, m, v44, void 0);
     };
-    if ("field" == context.kind) return function(initMthd) {
+    if ("field" == context.kind + "") return function(initMthd) {
       if (!$m7$isAction(initMthd)) {
-        var v34 = v21(initMthd);
+        var v34 = v21$2(initMthd);
         var v32 = v34, v19, v22, v23, v31, v36;
       } else {
         v32 = initMthd;
@@ -4233,12 +4082,12 @@ var mobx = (() => {
       v23 ? (v36 = v32.bind(this), v36.isMobxAction = true, v31 = v36) : v31 = v32;
       return v31;
     };
-    if ("method" == context.kind) {
+    if ("method" == context.kind + "") {
       if (!$m7$isAction(mthd)) {
-        var v89 = v21(mthd);
-        var v77 = v89, v52, v55, v56, v69, v71, v74, v85;
+        var v89$2 = v21$2(mthd);
+        var v77$2 = v89$2, v52, v55, v56, v69, v71, v74$2, v85$2;
       } else {
-        v77 = mthd;
+        v77$2 = mthd;
       }
       annotation.options_ ? (v52 = annotation.options_, v55 = !!v52.bound, v56 = v55) : v56 = false;
       v56 && context.addInitializer(function() {
@@ -4246,16 +4095,16 @@ var mobx = (() => {
         v15.isMobxAction = true;
         this[v17] = v15;
       });
-      return v77;
+      return v77$2;
     }
     v69 = annotation.annotationType_;
     v71 = $m3$stringifyKey(v17);
-    v74 = context.kind;
-    v85 = [];
-    v85.push(v69);
-    v85.push(v71);
-    v85.push(v74);
-    $m4$dieRest(43, v85);
+    v74$2 = context.kind;
+    v85$2 = [];
+    v85$2.push(v69);
+    v85$2.push(v71);
+    v85$2.push(v74$2);
+    $m4$dieRest(43, v85$2);
   };
   var $m45$actionAnnotation = $m40$createActionAnnotation("action", void 0);
   v1096 = $m40$createActionAnnotation("action.bound", { bound: true });
@@ -4267,8 +4116,8 @@ var mobx = (() => {
       var v61 = v12, v112, v14, v62, v63, v66, v73;
       return $m45$decorateAction20223_(v61, arg1, arg2);
     }
-    if ("function" == typeof arg1) return v73 = arg1.name, v62 = "" == v73 ? "<unnamed action>" : v73, $m14$createAction(v62, arg1, false, void 0);
-    if ("function" == typeof arg2) return $m14$createAction(arg1, arg2, false, void 0);
+    if ("function" == typeof arg1) return v73 = arg1.name + "", v62 = "" == v73 ? "<unnamed action>" : v73, $m14$createAction(v62, arg1, false, void 0);
+    if ("function" == typeof arg2) return $m14$createAction(arg1 + "", arg2, false, void 0);
     if ($m3$isStringish(arg1)) return v63 = "action", $m22$createDecoratorAnnotation($m40$createActionAnnotation(v63, { name: arg1, autoAction: false }), $m45$decorateAction20223_);
     $m4$die("Invalid arguments for `action`");
   }, $m45$actionAnnotation);
@@ -4279,8 +4128,8 @@ var mobx = (() => {
       var v61 = v14, v112, v62, v63, v66, v73;
       return $m45$decorateAction20223_(v61, arg1, arg2);
     }
-    if ("function" == typeof arg1) return v73 = arg1.name, v62 = "" == v73 ? "<unnamed action>" : v73, $m14$createAction(v62, arg1, true, void 0);
-    if ("function" == typeof arg2) return $m14$createAction(arg1, arg2, true, void 0);
+    if ("function" == typeof arg1) return v73 = arg1.name + "", v62 = "" == v73 ? "<unnamed action>" : v73, $m14$createAction(v62, arg1, true, void 0);
+    if ("function" == typeof arg2) return $m14$createAction(arg1 + "", arg2, true, void 0);
     if ($m3$isStringish(arg1)) return v63 = "autoAction", $m22$createDecoratorAnnotation($m40$createActionAnnotation(v63, { name: arg1, autoAction: true }), $m45$decorateAction20223_);
     $m4$die("Invalid arguments for `action`");
   }, $m45$autoActionAnnotation);
@@ -4306,97 +4155,81 @@ var mobx = (() => {
   var $m47$localGeneratorId = 0;
   v1155 = function(genFn, context) {
     if (context && "string" == typeof context.kind) return $m41$decorateFlow20223_($m28$flow, genFn, context);
-    var name = genFn.name;
-    if ("" == name) {
-      var v20 = name;
-      name = "<unnamed flow>";
-    }
+    var name = genFn.name + "";
+    "" == name && (name = "<unnamed flow>");
     var v29 = (0, function() {
       var runId = 0;
-      var v6 = $m47$localGeneratorId;
       $m47$localGeneratorId = $m47$localGeneratorId + 1 | 0;
       runId = $m47$localGeneratorId;
       var v19 = name + " - runid: " + runId + " - init";
       var v92 = $m28$action(v19, genFn).apply(this, arguments);
-      var v28 = { rejector: void 0, pending: void 0, stepId: 0 };
+      var v28$2 = { rejector: void 0, pending: void 0, stepId: 0 };
       var onFulfilled;
       var onRejected;
       var nextStep;
       onFulfilled = function(v) {
-        v28.pending = void 0;
+        v28$2.pending = void 0;
         try {
           var stepName = name;
-          var stepId = +v28.stepId | 0;
-          v28.stepId = stepId + 1 | 0;
+          var stepId = +v28$2.stepId | 0;
+          v28$2.stepId = stepId + 1 | 0;
           stepName = name + " - runid: " + runId + " - yield " + stepId;
           var ret = $m28$action(stepName, v92.next).call(v92, v);
           nextStep(ret);
         } catch (v46) {
-          v28.rejector(v46);
+          v28$2.rejector(v46);
         }
       };
       onRejected = function(err) {
-        v28.pending = void 0;
+        v28$2.pending = void 0;
         try {
           var stepName = name;
-          var stepId = +v28.stepId | 0;
-          v28.stepId = stepId + 1 | 0;
+          var stepId = +v28$2.stepId | 0;
+          v28$2.stepId = stepId + 1 | 0;
           stepName = name + " - runid: " + runId + " - yield " + stepId;
           var ret = $m28$action(stepName, v92.throw).call(v92, err);
           nextStep(ret);
         } catch (v46) {
-          v28.rejector(v46);
+          v28$2.rejector(v46);
         }
       };
-      var v9 = $m47$localGeneratorId;
-      var v12 = name;
-      var v15 = runId;
-      var v202 = $m28$action;
-      var v42 = runId;
-      var v45 = nextStep;
-      var v49 = runId;
-      var v52 = nextStep;
-      var v56 = onFulfilled;
-      var v57 = onRejected;
-      var v58 = nextStep;
-      var v91 = void 0;
       nextStep = function(ret) {
         if ("function" == typeof ret.then) {
-          var v122 = nextStep;
-          ret.then(v122, v28.rejector);
+          var v12 = nextStep;
+          ret.then(v12, v28$2.rejector);
           return;
         }
         if (ret.done) {
-          v28.resolve(ret.value);
+          v28$2.resolve(ret.value);
           return;
         }
-        v28.pending = Promise.resolve(ret.value);
-        var v41 = v28.pending;
+        v28$2.pending = Promise.resolve(ret.value);
+        var v41 = v28$2.pending;
         v41.then(onFulfilled, onRejected);
       };
       var v66 = new Promise(function(v8, v13) {
-        v28.resolve = v8;
-        v28.rejector = v13;
+        v28$2.resolve = v8;
+        v28$2.rejector = v13;
         onFulfilled(void 0);
       });
-      var v76 = name + " - runid: " + runId + " - cancel";
-      v66.cancel = $m28$action(v76, function() {
+      var v76$2 = name + " - runid: " + runId + " - cancel";
+      v66.cancel = $m28$action(v76$2, function() {
         try {
-          if (v28.pending) {
-            var v10 = v28.pending;
+          if (v28$2.pending) {
+            var v10 = v28$2.pending;
             var v67 = "function" == typeof v10.cancel;
             var v14 = v67, v17, v55;
           } else {
             v14 = false;
           }
-          v14 && (v17 = v28.pending, v17.cancel.call(v28.pending));
+          v14 && (v17 = v28$2.pending, v17.cancel.call(v28$2.pending));
           var ret = v92.return(void 0);
           var yielded = Promise.resolve(ret.value);
           yielded.then($m3$noop, $m3$noop);
           "function" == typeof yielded.cancel && yielded.cancel.call(yielded);
-          v28.rejector(new $m47$FlowCancellationError());
+          v28$2.rejector(new $m47$FlowCancellationError());
         } catch (v552) {
-          v28.rejector(v552);
+          v28$2.rejector(v552);
         }
       });
       return v66;
@@ -4415,54 +4248,46 @@ var mobx = (() => {
     return $m7$isFlow(fn);
   };
   var $m48$autorun = function(view, optsArg) {
-    var v32 = $m2$EMPTY_OBJECT;
-    var v111 = optsArg || v32, v112, v18, v40, v51, v52, v56, v71, v73, v94, v97, v982, v105, v106, v1122, v114, v118, v121;
-    v112 = !("function" == typeof view);
-    v112 && $m4$die("Autorun expects a function as first argument");
-    v18 = $m7$isAction(view);
-    v18 && $m4$die("Autorun does not accept actions since actions are untrackable");
-    v111.name ? (v118 = v111.name, v114 = v118) : (v121 = view.name, "" == v121 ? (v40 = "Autorun@" + $m8$getNextId(), v1122 = v40) : v1122 = v121, v114 = v1122);
-    !v111.scheduler ? (v51 = !v111.delay, v52 = v51) : v52 = false;
+    var v3$2 = $m2$EMPTY_OBJECT;
+    var v111$2 = optsArg || v3$2, v11$2, v18$2, v40, v51, v52, v56, v71, v73$2, v94$2, v97$2, v98$2, v105, v106, v112, v114, v118$2, v121;
+    v11$2 = !("function" == typeof view);
+    v11$2 && $m4$die("Autorun expects a function as first argument");
+    v18$2 = $m7$isAction(view);
+    v18$2 && $m4$die("Autorun does not accept actions since actions are untrackable");
+    v111$2.name ? (v118$2 = v111$2.name + "", v114 = v118$2) : (v121 = view.name + "", "" == v121 ? (v40 = "Autorun@" + $m8$getNextId(), v112 = v40) : v112 = v121, v114 = v112);
+    !v111$2.scheduler ? (v51 = !v111$2.delay, v52 = v51) : v52 = false;
     var reactionInst;
     v56 = function() {
       view(reactionInst);
     };
     if (v52) {
-      var v55 = reactionInst;
-      var v58 = $m15$Reaction;
       reactionInst = new $m15$Reaction(v114, function() {
         this.track(v56);
-      }, v111.onError, v111.requiresObservable);
+      }, v111$2.onError, v111$2.requiresObservable);
     } else {
-      v71 = $m48$createSchedulerFromOptions(v111);
+      v71 = $m48$createSchedulerFromOptions(v111$2);
       var isScheduled = false;
-      v73 = $m15$Reaction;
-      v55 = reactionInst;
-      var v77 = isScheduled;
-      reactionInst = new v73(v114, function() {
+      v73$2 = $m15$Reaction;
+      reactionInst = new v73$2(v114, function() {
         var rself = this;
-        if (!isScheduled) {
-          var v4 = isScheduled;
-          isScheduled = true;
-          v71(function() {
-            isScheduled = false;
-            rself.isDisposed || rself.track(v56);
-          });
-        }
-      }, v111.onError, v111.requiresObservable);
+        isScheduled || (isScheduled = true, v71(function() {
+          isScheduled = false;
+          rself.isDisposed || rself.track(v56);
+        }));
+      }, v111$2.onError, v111$2.requiresObservable);
     }
-    v111.signal ? (v94 = v111.signal, v97 = !!v94.aborted, v982 = v97) : v982 = false;
-    v982 || reactionInst.schedule_();
+    v111$2.signal ? (v94$2 = v111$2.signal, v97$2 = !!v94$2.aborted, v98$2 = v97$2) : v98$2 = false;
+    v98$2 || reactionInst.schedule_();
     v105 = reactionInst.getDisposer_;
     v106 = reactionInst;
-    return v105.call(v106, v111.signal);
+    return v105.call(v106, v111$2.signal);
   };
   v1174 = function(expression, effect, optsArg) {
     var opts = $m2$EMPTY_OBJECT;
     !optsArg || (opts = optsArg);
     if (opts.name) {
-      var v116 = opts.name;
-      var v115 = v116, v20, v37, v48, v59, v60, v63, v72, v73, v802, v83, v95, v982, v99, v103, v108, v109;
+      var v116$2 = opts.name + "";
+      var v115 = v116$2, v20, v37, v48, v59, v60$2, v63, v72$2, v73$2, v80$2, v83, v95$2, v98$2, v99$2, v103$2, v108, v109$2;
     } else {
       v20 = "Reaction@" + $m8$getNextId();
       v115 = v20;
@@ -4485,10 +4310,10 @@ var mobx = (() => {
       changedFlag = firstTimeFlag || !(true === equalsFn(currentValue, nextValue));
       currentValue = nextValue;
     };
-    !opts.scheduler ? (v59 = !opts.delay, v60 = v59) : v60 = false;
+    !opts.scheduler ? (v59 = !opts.delay, v60$2 = v59) : v60$2 = false;
     var isScheduled = false;
     v63 = $m48$createSchedulerFromOptions(opts);
-    v72 = function() {
+    v72$2 = function() {
       isScheduled = false;
       if (r.isDisposed) return;
       var v14 = currentValue;
@@ -4504,36 +4329,17 @@ var mobx = (() => {
       v29 ? v37(currentValue, v14, r) : (!firstTimeFlag ? (v41 = !!changedFlag, v42 = v41) : v42 = false, v42 && v37(currentValue, v14, r));
       firstTimeFlag = false;
     };
-    v73 = $m15$Reaction;
-    v802 = function() {
-      if (firstTimeFlag || v60) {
-        v72();
-      } else {
-        if (!isScheduled) {
-          var v13 = isScheduled;
-          isScheduled = true;
-          v63(v72);
-        }
-      }
+    v73$2 = $m15$Reaction;
+    v80$2 = function() {
+      firstTimeFlag || v60$2 ? v72$2() : isScheduled || (isScheduled = true, v63(v72$2));
     };
     v83 = opts.onError;
-    var v62 = opts;
-    var v64 = opts;
-    var v66 = currentValue;
-    var v67 = firstTimeFlag;
-    var v68 = changedFlag;
-    var v69 = r;
-    var v71 = isScheduled;
-    var v75 = firstTimeFlag;
-    var v77 = isScheduled;
-    var v81 = opts;
-    var v84 = opts;
-    r = new v73(v115, v802, v83, opts.requiresObservable);
-    opts.signal ? (v95 = opts.signal, v982 = !!v95.aborted, v99 = v982) : v99 = false;
-    v99 || (v103 = r.schedule_, v103.call(r));
+    r = new v73$2(v115, v80$2, v83, opts.requiresObservable);
+    opts.signal ? (v95$2 = opts.signal, v98$2 = !!v95$2.aborted, v99$2 = v98$2) : v99$2 = false;
+    v99$2 || (v103$2 = r.schedule_, v103$2.call(r));
     v108 = r.getDisposer_;
-    v109 = r;
-    return v108.call(v109, opts.signal);
+    v109$2 = r;
+    return v108.call(v109$2, opts.signal);
   };
   v1176 = function(v4, v36, v46) {
     if (1 == arguments.length) {
@@ -4565,21 +4371,21 @@ var mobx = (() => {
       v63.observableRequiresReaction = !!options.observableRequiresReaction;
     }
     if (true === "disableErrorBoundaries" in options) {
-      var v72 = $m8$globalState;
-      v72.disableErrorBoundaries = !!options.disableErrorBoundaries;
+      var v72$2 = $m8$globalState;
+      v72$2.disableErrorBoundaries = !!options.disableErrorBoundaries;
     }
     if (true === "safeDescriptors" in options) {
       var v81 = $m8$globalState;
       v81.safeDescriptors = !!options.safeDescriptors;
     }
-    var v872 = $m8$globalState;
-    v872.allowStateReads = !$m8$globalState.observableRequiresReaction;
+    var v87$2 = $m8$globalState;
+    v87$2.allowStateReads = !$m8$globalState.observableRequiresReaction;
     if (options.reactionScheduler) {
-      var v100 = options.reactionScheduler;
-      var v116 = $m10$reactionScheduler;
+      var v100$2 = options.reactionScheduler;
+      var v116$2 = $m10$reactionScheduler;
       $m10$reactionScheduler = function(f) {
-        return v100(function() {
-          return v116(f);
+        return v100$2(function() {
+          return v116$2(f);
         });
       };
     }
@@ -4590,10 +4396,7 @@ var mobx = (() => {
       var v10 = $m33$asObservableObject(target, options)[$m2$$mobx];
       var v36 = Reflect.ownKeys(annotations);
       var v32 = 0, v21;
-      var v4 = $m33$asObservableObject;
-      var v9 = $m2$$mobx;
       var v33 = void 0;
-      var v42 = Reflect;
       while (v32 < v36.length) {
         v21 = v36[v32];
         $m50$makeAnnotate(v10, v21, annotations[v36[v32]]);
@@ -4611,38 +4414,31 @@ var mobx = (() => {
     $m23$initObservable(function() {
       var v10 = $m33$asObservableObject(target, options)[$m2$$mobx];
       if (!(true === $m50$keysSymbol in target)) {
-        var v76 = $m3$objectCtor.getPrototypeOf(target);
-        var v18 = /* @__PURE__ */ new Set();
-        var v802 = Reflect.ownKeys(target);
-        var v83 = Reflect.ownKeys(v76);
+        var v76$2 = $m3$objectCtor.getPrototypeOf(target);
+        var v18$3 = /* @__PURE__ */ new Set();
+        var v80$2 = Reflect.ownKeys(target);
+        var v83 = Reflect.ownKeys(v76$2);
         var v70 = 0, v31, v44, v69;
-        var v4 = $m33$asObservableObject;
-        var v9 = $m2$$mobx;
-        var v112 = $m50$keysSymbol;
         var v71 = void 0;
-        var v77 = Set;
-        var v1122 = $m3$objectCtor;
-        var v1132 = Reflect;
-        var v114 = Reflect;
-        while (v70 < v802.length) {
-          v31 = v802[v70];
-          v18.add(v31);
+        while (v70 < v80$2.length) {
+          v31 = v80$2[v70];
+          v18$3.add(v31);
           v70 = v70 + 1;
         }
         v69 = 0;
         while (v69 < v83.length) {
           v44 = v83[v69];
-          v18.add(v44);
+          v18$3.add(v44);
           v69 = v69 + 1;
         }
-        v18.delete("constructor");
-        v18.delete($m2$$mobx);
-        $m3$defineProperty(v76, $m50$keysSymbol, { enumerable: false, writable: true, configurable: true, value: v18 });
+        v18$3.delete("constructor");
+        v18$3.delete($m2$$mobx);
+        $m3$defineProperty(v76$2, $m50$keysSymbol, { enumerable: false, writable: true, configurable: true, value: v18$3 });
       }
       target[$m50$keysSymbol].forEach(function(key) {
         if (overrides && true === key in overrides) {
           var v14 = overrides[key];
-          var v20 = v14, v115, v25;
+          var v20 = v14, v112, v25;
         } else {
           v20 = true;
         }
@@ -4673,7 +4469,6 @@ var mobx = (() => {
       var v68 = $m51$keys(obj);
       var v8 = [];
       var v65 = 0, v19, v31, v66, v76;
-      var v4 = $m51$keys;
       var v67 = void 0;
       while (v65 < v68.length) {
         v19 = obj[v68[v65]];
@@ -4686,7 +4481,6 @@ var mobx = (() => {
       v76 = $m51$keys(obj);
       v31 = [];
       v66 = 0;
-      var v27 = $m51$keys;
       var v75 = void 0;
       while (v66 < v76.length) {
         v31.push(obj.get(v76[v66]));
@@ -4703,7 +4497,6 @@ var mobx = (() => {
       var v88 = $m51$keys(obj);
       var v12 = [];
       var v85 = 0, v6, v7, v18, v22, v41, v58, v66, v86;
-      var v8 = $m51$keys;
       var v872 = void 0;
       while (v85 < v88.length) {
         v18 = [];
@@ -4738,7 +4531,6 @@ var mobx = (() => {
       try {
         var ks = $m3$objectCtor.keys(v7);
         var i = 0;
-        var v131 = $m3$objectCtor;
         for (; ; ) {
           v29 = i;
           if (v29 >= ks.length) {
@@ -4747,13 +4539,6 @@ var mobx = (() => {
           v33 = $m51$set;
           v38 = ks[i];
           v33(v4, v38, v7[ks[i]]);
-          var v30 = ks;
-          var v36 = ks;
-          var v37 = i;
-          var v40 = ks;
-          var v41 = i;
-          var v45 = i;
-          var v121 = void 0;
           i = i + 1 | 0;
         }
       } finally {
@@ -4928,16 +4713,15 @@ var mobx = (() => {
   };
   v1230 = function(v4, v45, v49) {
     var target;
-    var v72 = void 0;
+    var v72$2 = void 0;
     if ($m7$isObservableMap(v4)) {
-      var v12 = true, v112, v162, v19, v20, v36, v59, v69, v70, v76;
+      var v12 = true, v11$2, v16$2, v19, v20, v36, v59, v69, v70, v76$2;
     } else {
-      v112 = $m7$isObservableArray(v4);
-      v12 = v112;
+      v11$2 = $m7$isObservableArray(v4);
+      v12 = v11$2;
     }
-    v12 || $m7$isObservableValuePred(v4) || $m7$isObservableSet(v4) ? (target = $m52$getAdministration(v4), v70 = v45) : ($m7$isObservableObject(v4) ? (v36 = !$m3$isStringish(v45), v36 && $m4$die("InterceptReads can only be used with a specific property, not with an object in general"), target = $m52$getAdministration(v4, v45), v69 = v49) : ($m4$die("Expected observable map, object or array as first array"), v69 = v72), v70 = v69);
+    v12 || $m7$isObservableValuePred(v4) || $m7$isObservableSet(v4) ? (target = $m52$getAdministration(v4), v70 = v45) : ($m7$isObservableObject(v4) ? (v36 = !$m3$isStringish(v45), v36 && $m4$die("InterceptReads can only be used with a specific property, not with an object in general"), target = $m52$getAdministration(v4, v45), v69 = v49) : ($m4$die("Expected observable map, object or array as first array"), v69 = v72$2), v70 = v69);
     v59 = !(target.dehancer === void 0);
-    var v55 = target;
     v59 && $m4$die("An intercept reader was already established");
     target.dehancer = v70;
     return function() {

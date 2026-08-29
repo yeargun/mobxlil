@@ -1,0 +1,2 @@
+import { initObservable } from "../types/type-utils-init.lil";
+export { initObservable };
