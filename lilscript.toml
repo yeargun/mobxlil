@@ -13,14 +13,14 @@ identical_function_folding = true
 
 [javascript]
 priority = "realistic-performance-first"
-optimization_level = 15
+optimization_level = 13
 cost_model = "brotli"
 function_spelling = "arrow"
 public_aggregate_abi = "named"
 assume_pristine_builtins = false
 strip_console = true
 pool_numeric_literals = true
-candidate_search = "production"
+candidate_search = "always"
 candidate_limit = 1536
 candidate_byte_budget = 1048576
 candidate_beam_width = 12

@@ -1,6 +1,6 @@
 {
   "name": "@itslil/mobx",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "description": "MobX 7.0.0 reimplemented in LilScript. Drop-in ESM/CJS/UMD runtime with official types.",
   "keywords": [
     "mobx",

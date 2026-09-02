@@ -345,7 +345,9 @@ function $m8$initPersistentKeys() {
   $m8$persistentKeys.push("UNCHANGED");
 }
 function $m8$createMobXGlobals() {
-  let v0 = { version: 7, UNCHANGED: {} };
+  let v0 = {};
+  v0.version = 7;
+  v0.UNCHANGED = {};
   let v9 = null;
   v0.trackingDerivation = v9;
   v0.trackingContext = v9;
@@ -677,17 +679,13 @@ var $m11$trackDerivedFunction;
           v60 = derivation.dependenciesState_;
           if (2 === v60) return $m11$untrackedEnd(v25), $m8$globalState.allowStateReads = v81, true;
         }
-        v60 = derivation.dependenciesState_;
-        if (2 === v60) return $m11$untrackedEnd(v25), $m8$globalState.allowStateReads = v81, true;
+        v82 = v82 + 1;
       }
       $m11$changeDependenciesStateTo0(derivation);
       $m11$untrackedEnd(v25);
       $m8$globalState.allowStateReads = v81;
       return false;
     }
-    $m11$changeDependenciesStateTo0(derivation);
-    $m11$untrackedEnd(v25);
-    $m8$globalState.allowStateReads = v81;
     return false;
   };
   $m11$trackDerivedFunction = function(derivation, f, context) {
@@ -781,7 +779,15 @@ function $m14$_startAction(actionName, canRunAsDerivation, scope, args) {
   $m14$nextActionId = $m14$nextActionId + 1 | 0;
   v60 = $m14$currentActionId;
   $m14$currentActionId = v56;
-  v62 = { runAsAction_: v38, prevDerivation_: v32, prevAllowStateChanges_: v91, prevAllowStateReads_: v52, notifySpy_: v112, startTime_: v88, actionId_: v56, parentActionId_: v60 };
+  v62 = {};
+  v62.runAsAction_ = v38;
+  v62.prevDerivation_ = v32;
+  v62.prevAllowStateChanges_ = v91;
+  v62.prevAllowStateReads_ = v52;
+  v62.notifySpy_ = v112;
+  v62.startTime_ = v88;
+  v62.actionId_ = v56;
+  v62.parentActionId_ = v60;
   return v62;
 }
 function $m14$_endAction(runInfo) {
@@ -873,9 +879,6 @@ function $m18$interceptChange(interceptable, change) {
     var interceptors = $m3$arraySliceFn.call(interceptorsSrc);
     var n = interceptors.length;
     var i = 0;
-    var v112 = interceptorsSrc;
-    var v13 = interceptors;
-    var v45 = $m3$arraySliceFn;
     while (i < n) {
       change = interceptors[i](change);
       if (change) {
@@ -886,7 +889,6 @@ function $m18$interceptChange(interceptable, change) {
       }
       v33 && $m4$die(14);
       if (!change) break;
-      var v39 = i;
       i = i + 1 | 0;
     }
     return change;
@@ -1099,7 +1101,11 @@ function $m33$getAnnotationFromOptions(options) {
   if (!options) return;
   if (!(options.defaultDecorator === void 0)) return options.defaultDecorator;
   if (options.autoBind || false === options.deep) {
-    var v29 = { annotationType_: "true", options_: options, make_: $m31$autoAnnotationMake, extend_: $m31$autoAnnotationExtend };
+    var v29 = {};
+    v29.annotationType_ = "true";
+    v29.options_ = options;
+    v29.make_ = $m31$autoAnnotationMake;
+    v29.extend_ = $m31$autoAnnotationExtend;
     return v29;
   }
 }
@@ -1282,11 +1288,19 @@ function $m37$addSetAlgebra(funcName) {
   };
 }
 function $m38$createObservableAnnotation(name, options) {
-  let v2 = { annotationType_: name, options_: options, make_: $m38$annotationOwnMake, extend_: $m38$observableAnnotationExtend };
+  let v2 = {};
+  v2.annotationType_ = name;
+  v2.options_ = options;
+  v2.make_ = $m38$annotationOwnMake;
+  v2.extend_ = $m38$observableAnnotationExtend;
   return v2;
 }
 function $m39$createComputedAnnotation(name, options) {
-  let v2 = { annotationType_: name, options_: options, make_: $m38$annotationOwnMake, extend_: $m39$computedAnnotationExtend };
+  let v2 = {};
+  v2.annotationType_ = name;
+  v2.options_ = options;
+  v2.make_ = $m38$annotationOwnMake;
+  v2.extend_ = $m39$computedAnnotationExtend;
   return v2;
 }
 function $m40$createActionDescriptor(adm, annotation, key, descriptor, safeDescriptors) {
@@ -1316,7 +1330,11 @@ function $m40$createActionDescriptor(adm, annotation, key, descriptor, safeDescr
   return { value: $m14$createAction(v131, v130, v1322, v133), configurable: v134, enumerable: false, writable: v135 };
 }
 function $m40$createActionAnnotation(name, options) {
-  let v2 = { annotationType_: name, options_: options, make_: $m40$actionAnnotationMake, extend_: $m40$actionAnnotationExtend };
+  let v2 = {};
+  v2.annotationType_ = name;
+  v2.options_ = options;
+  v2.make_ = $m40$actionAnnotationMake;
+  v2.extend_ = $m40$actionAnnotationExtend;
   return v2;
 }
 function $m41$createFlowDescriptor(adm, descriptor, bound, safeDescriptors) {
@@ -1389,8 +1407,6 @@ function $m48$whenEffect(predicate, effect, opts) {
     var v19 = function() {
       var v6 = disposer[$m2$$mobx];
       if (!v6.isDisposed) {
-        var v4 = disposer;
-        var v5 = $m2$$mobx;
         disposer();
         if (opts.onError) {
           opts.onError(v70);
@@ -1431,7 +1447,9 @@ function $m48$whenPromise(predicate, opts) {
   if (v22 && opts.signal.aborted) return v35 = Promise.reject(new Error("WHEN_ABORTED")), v35.cancel = function() {
     return null;
   }, v35;
-  v41 = { cancel: void 0, abort: void 0 };
+  v41 = {};
+  v41.cancel = void 0;
+  v41.abort = void 0;
   v54 = new Promise(function(v7, v10$2) {
     var v13 = $m3$assign({}, opts);
     v13.onError = v10$2;
@@ -2105,7 +2123,6 @@ v215.dispose = function() {
 v221 = $m15$Reaction.prototype;
 v221.getDisposer_ = function(abortSignal) {
   var self = this;
-  var v4 = dispose;
   var dispose = function() {
     var v5 = self.dispose;
     self.dispose();
@@ -2198,7 +2215,6 @@ v262.computeValue_ = function(track) {
     if (true === v22) {
       res = this.derivation.call(this.scope_);
     } else {
-      var v20 = $m8$globalState;
       try {
         res = this.derivation.call(this.scope_);
       } catch (v39) {
@@ -2484,7 +2500,9 @@ v430[v1373] = function() {
   return this.valueOf();
 };
 $m7$isObservableValuePred = $m3$createInstanceofPredicate("ObservableValue", $m29$ObservableValue);
-v438 = { annotationType_: "override", make_: function(adm, key) {
+v438 = {};
+v438.annotationType_ = "override";
+v438.make_ = function(adm, key) {
   var v8 = !!adm.isPlainObject_;
   if (v8) {
     var v17 = "Cannot apply '" + this.annotationType_ + "' to '";
@@ -2496,10 +2514,11 @@ v438 = { annotationType_: "override", make_: function(adm, key) {
     $m4$die(v59 + this.annotationType_ + "', but no such annotated member was found on prototype.");
   }
   return 0;
-}, extend_: function() {
+};
+v438.extend_ = function() {
   $m4$die1(44, this.annotationType_);
   return false;
-} };
+};
 var $m31$autoAnnotationMake = (0, function(v4, v7, v10, v13) {
   if (v10.get) return $m28$computed.make_.call($m28$computed, v4, v7, v10, v13);
   if (v10.set) {
@@ -2555,7 +2574,11 @@ var $m31$autoAnnotationExtend = (0, function(v4, v7, v10, v13) {
   v89 ? (v90 = $m28$observableRef, v100 = v90) : v100 = v76;
   return v100.extend_(v4, v7, v10, v13);
 });
-v1375 = { annotationType_: "true", options_: void 0, make_: $m31$autoAnnotationMake, extend_: $m31$autoAnnotationExtend };
+v1375 = {};
+v1375.annotationType_ = "true";
+v1375.options_ = void 0;
+v1375.make_ = $m31$autoAnnotationMake;
+v1375.extend_ = $m31$autoAnnotationExtend;
 $m28$autoAnnotation = v1375;
 var $m33$descriptorCache = $m3$objectCtor.create(null);
 var $m33$ObservableObjectAdministration = (0, function(v6, v14, v29, v41) {
@@ -2908,10 +2931,11 @@ var $m33$asObservableObject = function(target, options) {
   $m3$defineProperty(target, $m2$$mobx, { enumerable: false, writable: true, configurable: true, value: v76 });
   return target;
 };
-var $m34$objectProxyTraps = { has: function(target, key) {
+var $m34$objectProxyTraps = {};
+$m34$objectProxyTraps.has = function(target, key) {
   let v5 = target[$m2$$mobx];
   return v5.has_.call(target[$m2$$mobx], key);
-} };
+};
 $m34$objectProxyTraps.get = function(target, key) {
   let v5 = target[$m2$$mobx];
   return v5.get_.call(target[$m2$$mobx], key);
@@ -3357,18 +3381,20 @@ v808.keys = function() {
 v814 = $m36$ObservableMap.prototype;
 v814.values = function() {
   var self = this;
-  let v19 = self.keys(), v6$2 = { next: function() {
+  let v19 = self.keys(), v6$2 = {};
+  v6$2.next = function() {
     var v5 = v19.next();
     if (v5.done) return { done: true, value: void 0 };
     return { done: false, value: self.get(v5.value) };
-  } };
+  };
   v6$2[Symbol.toStringTag] = "MapIterator";
   return $m3$makeIterable(v6$2);
 };
 v820 = $m36$ObservableMap.prototype;
 v820.entries = function() {
   var self = this;
-  let v19 = self.keys(), v6$2 = { next: function() {
+  let v19 = self.keys(), v6$2 = {};
+  v6$2.next = function() {
     var v5 = v19.next();
     if (v5.done) return { done: true, value: void 0 };
     var v15 = [];
@@ -3376,7 +3402,7 @@ v820.entries = function() {
     v15.push(b);
     v15.push(self.get(v5.value));
     return { done: false, value: v15 };
-  } };
+  };
   v6$2[Symbol.toStringTag] = "MapIterator";
   return $m3$makeIterable(v6$2);
 };
@@ -3428,9 +3454,6 @@ v832.merge = function(other) {
           v48 = v80$2[i$2][0];
           v51 = v80$2[i$2];
           self.set(v48, v51[1]);
-          var v45 = i$2;
-          var v50 = i$2;
-          var v55 = i$2;
           i$2 = i$2 + 1 | 0;
         }
       } else {
@@ -3477,7 +3500,6 @@ v844.replace = function(values$2) {
     var v9 = this.data_;
     var existingKeys = $m3$arrayFrom(v9.keys());
     var i = 0;
-    var v185 = Map;
     for (; ; ) {
       var v14 = i;
       if (v14 >= existingKeys.length) {
@@ -3493,12 +3515,10 @@ v844.replace = function(values$2) {
           v33.set(v34, this.data_.get(key));
         }
       }
-      var v41 = i;
       i = i + 1 | 0;
     }
     var entries$2 = $m3$arrayFrom(replacementMap.entries());
     i = 0;
-    var v44 = replacementMap;
     for (; ; ) {
       var v49 = i;
       if (v49 >= entries$2.length) {
@@ -3514,7 +3534,6 @@ v844.replace = function(values$2) {
         v802.set(v81, this.data_.get(key$2));
         keyExisted || (keysReportChangedCalled = true);
       }
-      var v91 = i;
       i = i + 1 | 0;
     }
     if (!keysReportChangedCalled) {
@@ -3528,12 +3547,7 @@ v844.replace = function(values$2) {
         var iter2 = orderedData.keys();
         var next1 = iter1.next();
         var next2 = iter2.next();
-        var v100 = orderedData;
-        var v112 = orderedData;
-        var v115 = iter1;
-        var v118 = iter2;
         while (!next1.done) {
-          var v121 = next1;
           var v128 = next1.value;
           if (!(v128 === next2.value)) {
             $m10$reportChanged(this.keysAtom_);
@@ -3665,11 +3679,12 @@ v908 = $m37$ObservableSet.prototype;
 v908.values = function() {
   var self = this;
   $m10$reportObserved(self.atom_);
-  let v7 = self.data_, v9$2 = v7.values(), v10 = { next: function() {
+  let v7 = self.data_, v9$2 = v7.values(), v10 = {};
+  v10.next = function() {
     var v5 = v9$2.next();
     if (v5.done) return { done: true, value: void 0 };
     return { done: false, value: $m37$dehanceMap(self, v5.value) };
-  } };
+  };
   v10[Symbol.toStringTag] = "SetIterator";
   return $m3$makeIterable(v10);
 };
@@ -3679,7 +3694,8 @@ v914.keys = function() {
 };
 v920 = $m37$ObservableSet.prototype;
 v920.entries = function() {
-  let v18$2 = this.values(), v6$2 = { next: function() {
+  let v18$2 = this.values(), v6$2 = {};
+  v6$2.next = function() {
     var v4 = v18$2.next();
     if (v4.done) return { done: true, value: void 0 };
     var v14 = [];
@@ -3687,7 +3703,7 @@ v920.entries = function() {
     v14.push(v18);
     v14.push(v4.value);
     return { done: false, value: v14 };
-  } };
+  };
   v6$2[Symbol.toStringTag] = "SetIterator";
   return $m3$makeIterable(v6$2);
 };
@@ -4187,7 +4203,10 @@ v1155 = function(genFn, context) {
     runId = $m47$localGeneratorId;
     var v19 = name + " - runid: " + runId + " - init";
     var v92 = $m28$action(v19, genFn).apply(this, arguments);
-    var v28$2 = { rejector: void 0, pending: void 0, stepId: 0 };
+    var v28$2 = {};
+    v28$2.rejector = void 0;
+    v28$2.pending = void 0;
+    v28$2.stepId = 0;
     var onFulfilled;
     var onRejected;
     var nextStep;
@@ -4261,9 +4280,17 @@ v1155 = function(genFn, context) {
   v29.isMobXFlow = true;
   return v29;
 };
-v1404 = { annotationType_: "flow", options_: void 0, make_: $m41$flowAnnotationMake, extend_: $m41$flowAnnotationExtend };
+v1404 = {};
+v1404.annotationType_ = "flow";
+v1404.options_ = void 0;
+v1404.make_ = $m41$flowAnnotationMake;
+v1404.extend_ = $m41$flowAnnotationExtend;
 $m28$flow = $m3$assign(v1155, v1404);
-v1411 = { annotationType_: "flow.bound", options_: { bound: true }, make_: $m41$flowAnnotationMake, extend_: $m41$flowAnnotationExtend };
+v1411 = {};
+v1411.annotationType_ = "flow.bound";
+v1411.options_ = { bound: true };
+v1411.make_ = $m41$flowAnnotationMake;
+v1411.extend_ = $m41$flowAnnotationExtend;
 $m28$flowBound = $m22$createDecoratorAnnotation(v1411, $m41$decorateFlow20223_);
 v1168 = function(result) {
   return result;
@@ -4555,7 +4582,6 @@ var $m51$set = function(v4, v7, v15) {
     try {
       var ks = $m3$objectCtor.keys(v7);
       var i = 0;
-      var v131 = $m3$objectCtor;
       for (; ; ) {
         v29 = i;
         if (v29 >= ks.length) {
@@ -4564,13 +4590,6 @@ var $m51$set = function(v4, v7, v15) {
         v33 = $m51$set;
         v38 = ks[i];
         v33(v4, v38, v7[ks[i]]);
-        var v30 = ks;
-        var v36 = ks;
-        var v37 = i;
-        var v40 = ks;
-        var v41 = i;
-        var v45 = i;
-        var v121 = void 0;
         i = i + 1 | 0;
       }
     } finally {

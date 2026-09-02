@@ -21,860 +21,864 @@ var mobx = (() => {
   // dist/mobx.esm.js
   var mobx_esm_exports = {};
   __export(mobx_esm_exports, {
-    $mobx: () => t,
-    FlowCancellationError: () => G,
-    ObservableMap: () => a,
-    ObservableSet: () => v,
-    Reaction: () => y,
-    _allowStateChanges: () => ft,
-    _allowStateChangesInsideComputed: () => Sa,
-    _allowStateReadsEnd: () => Dr,
-    _allowStateReadsStart: () => Vr,
-    _autoAction: () => Se,
-    _autoActionBound: () => Ge,
-    _endAction: () => qt,
-    _getAdministration: () => M,
-    _getGlobalState: () => xa,
-    _interceptReads: () => ii,
-    _isComputingDerivation: () => Pr,
-    _resetGlobalState: () => Ca,
-    _startAction: () => Tt,
-    action: () => ae,
-    actionBound: () => Ka,
-    autorun: () => Je,
-    compareDefault: () => Ar,
-    compareIdentity: () => Sr,
-    compareShallow: () => zr,
-    compareStructural: () => Nr,
-    computed: () => ne,
-    computedStruct: () => Na,
-    configure: () => Ta,
-    createAtom: () => Ue,
-    defineProperty: () => Xa,
-    entries: () => Ga,
-    extendObservable: () => Ae,
-    flow: () => $,
-    flowBound: () => We,
-    flowResult: () => wa,
-    get: () => Fa,
-    getAtom: () => W,
-    getDebugName: () => Ja,
-    getDependencyTree: () => ti,
-    getObserverTree: () => ri,
-    has: () => Ct,
-    intercept: () => Qa,
-    isAction: () => Z,
-    isBoxedObservable: () => Kr,
-    isComputed: () => ni,
-    isComputedProp: () => ai,
-    isFlow: () => La,
-    isFlowCancellationError: () => za,
-    isObservable: () => Ea,
-    isObservableArray: () => m,
-    isObservableMap: () => l,
-    isObservableObject: () => f,
-    isObservableProp: () => Va,
-    isObservableSet: () => c,
-    keys: () => Ce,
-    makeAutoObservable: () => Ua,
-    makeObservable: () => qa,
-    observable: () => r,
-    observableDeep: () => Ba,
-    observableRef: () => Oe,
-    observableShallow: () => Pa,
-    observableStruct: () => Da,
-    observe: () => $a,
-    onBecomeObserved: () => Ya,
-    onBecomeUnobserved: () => Za,
-    onReactionError: () => Aa,
-    override: () => Oa,
-    ownKeys: () => Rt,
-    reaction: () => Ma,
-    remove: () => Wa,
-    runInAction: () => Sa,
-    set: () => xt,
-    spy: () => Ra,
-    toJS: () => ei,
-    transaction: () => ka,
-    untracked: () => ja,
-    values: () => Ha,
-    when: () => Ia
+    $mobx: () => X,
+    FlowCancellationError: () => Na,
+    ObservableMap: () => _,
+    ObservableSet: () => ea,
+    Reaction: () => ma,
+    _allowStateChanges: () => gc,
+    _allowStateChangesInsideComputed: () => e,
+    _allowStateReadsEnd: () => Ed,
+    _allowStateReadsStart: () => Fd,
+    _autoAction: () => rb,
+    _autoActionBound: () => Nb,
+    _endAction: () => Jc,
+    _getAdministration: () => Ha,
+    _getGlobalState: () => i,
+    _interceptReads: () => P,
+    _isComputingDerivation: () => le,
+    _resetGlobalState: () => j,
+    _startAction: () => Ic,
+    action: () => _a,
+    actionBound: () => t,
+    autorun: () => Rb,
+    compareDefault: () => Jd,
+    compareIdentity: () => Kd,
+    compareShallow: () => Ld,
+    compareStructural: () => Md,
+    computed: () => Za,
+    computedStruct: () => r,
+    configure: () => x,
+    createAtom: () => Lb,
+    defineProperty: () => E,
+    entries: () => B,
+    extendObservable: () => sb,
+    flow: () => Sa,
+    flowBound: () => Ob,
+    flowResult: () => h,
+    get: () => D,
+    getAtom: () => Oa,
+    getDebugName: () => F,
+    getDependencyTree: () => L,
+    getObserverTree: () => ee,
+    has: () => vc,
+    intercept: () => H,
+    isAction: () => Va,
+    isBoxedObservable: () => ie,
+    isComputed: () => T,
+    isComputedProp: () => O,
+    isFlow: () => u,
+    isFlowCancellationError: () => s,
+    isObservable: () => m,
+    isObservableArray: () => oa,
+    isObservableMap: () => da,
+    isObservableObject: () => ga,
+    isObservableProp: () => n,
+    isObservableSet: () => fa,
+    keys: () => vb,
+    makeAutoObservable: () => z,
+    makeObservable: () => y,
+    observable: () => Y,
+    observableDeep: () => q,
+    observableRef: () => qb,
+    observableShallow: () => p,
+    observableStruct: () => o,
+    observe: () => G,
+    onBecomeObserved: () => I,
+    onBecomeUnobserved: () => J,
+    onReactionError: () => f,
+    override: () => d,
+    ownKeys: () => wc,
+    reaction: () => v,
+    remove: () => C,
+    runInAction: () => e,
+    set: () => uc,
+    spy: () => k,
+    toJS: () => K,
+    transaction: () => g,
+    untracked: () => l,
+    values: () => A,
+    when: () => w
   });
-  var Pa;
-  var ya = "ObservableObject.key";
-  var ba = "ObservableObject.";
-  var ma = "<unnamed action>";
-  var Kr = (e2) => !!fe(e2);
-  var ze = (e2) => !!e2 ? e2 : dt;
-  var Lt = (e2) => {
-    !e2.onBUOL || e2.onBUOL.forEach(function(e3) {
-      e3();
-    });
+  var Ye = "ObservableObject.key";
+  var Ze = "ObservableObject.";
+  var _e = "<unnamed action>";
+  var Pa = (a) => a != null && "object" == typeof a;
+  var Tb = (a) => {
+    a = typeof a;
+    return "string" == a || "symbol" == a || "number" == a;
   };
-  var Kt = (e2) => {
-    !e2.onBOL || e2.onBOL.forEach(function(e3) {
-      e3();
-    });
+  var xc = (a, b) => b == null ? false : true === Yc.call(a.prototype, b);
+  var na = (a) => Array.from(a);
+  var la = (a, b, c) => {
+    Z.defineProperty(a, b, c);
   };
-  var R = (e2) => {
-    i(), Nt(e2), o();
+  var sa = (a, b) => Z.assign(a, b);
+  var Qa = (a, b) => {
+    a = "isMobX" + a, b.prototype[a] = true;
+    return function(b2) {
+      return Pa(b2) && true === b2[a];
+    };
   };
-  var c = (e2) => !!ut(e2);
-  var l = (e2) => !!st(e2);
-  var C = (e2) => F(e2) && true === e2.isMobXComputedValue;
-  var Pe = (e2) => F(e2) && true === e2.isMobXCaughtException;
-  var Ve = (e2) => F(e2) && true === e2.isMobXReaction;
-  var Ye = (e2) => F(e2) && true === e2.isMobXAtom;
-  var u = (e2) => {
-    Y(e2, []);
+  var xb = (a) => {
+    throw a;
   };
-  var je = (e2) => {
-    throw e2;
+  var yc = (a) => {
+    if (a == null) return false;
+    var b = a.constructor;
+    return !b ? false : "GeneratorFunction" == b.name + "" ? true : "GeneratorFunction" == b.displayName + "" ? true : false;
   };
-  var g = (e2, r2, t2) => {
-    n.defineProperty(e2, r2, t2);
+  var Ia = (a) => {
+    if (!Pa(a)) return false;
+    var b = Z.getPrototypeOf(a);
+    if (b == null) return true;
+    a = void 0, !La.call(b, "constructor") || (a = b.constructor), a = "function" == typeof a && a.toString() === Zc;
+    return a;
   };
-  var b = (e2) => Array.from(e2);
-  var i = () => {
-    e.inBatch++;
-  };
-  var zt = () => {
-    if (!((e.inBatch | 0) > 0 || e.isRunningReactions)) qe(fr);
-  };
-  var Bt = (e2, r2) => {
-    e2.observers_.delete(r2), r2 = e2.observers_, r2.size || Pt(e2);
-  };
-  var B = (e2, r2) => {
-    var a2 = T(), t2 = e2.changeListeners_;
-    if (!t2) {
-      j(a2);
-      return;
+  var ab = (a) => a == null ? false : "[object Map]" == Z.prototype.toString.call(a) + "";
+  var bb = (a) => a == null ? false : "[object Set]" == Z.prototype.toString.call(a) + "";
+  var ta = (a) => "string" == typeof a ? a : "symbol" == typeof a ? a.toString() : new String(a) + "";
+  var zc = (a) => null === a ? null : "object" == typeof a ? "" + a : a;
+  var yb = (a) => {
+    a[Symbol.iterator] = _c;
+    if (!_b) {
+      _b = true;
+      var b = globalThis.Iterator;
+      Ib = b ? b.prototype : {};
     }
-    t2 = J.call(t2);
-    var n2 = t2.length;
-    for (e2 = 0; e2 < n2; e2++) t2[e2](r2);
-    j(a2);
+    b = Ib;
+    return sa(Z.create(b), a);
   };
-  var V = (e2, r2) => {
-    var i2 = T();
-    try {
-      var a2 = [];
-      !e2.interceptors_ || (a2 = e2.interceptors_);
-      for (var n2 = J.call(a2), o2 = n2.length, t2 = 0; t2 < o2; t2++) {
-        r2 = n2[t2](r2), r2 && !r2.type && u(14);
-        if (!r2) break;
-      }
-      return r2;
-    } finally {
-      j(i2);
-    }
+  var Ac = (a) => {
+    var b = false;
+    return function() {
+      if (!b) return b = true, a.apply(this, arguments);
+    };
   };
-  var Ht = (e2, r2) => {
-    e2.interceptors_ === void 0 && (e2.interceptors_ = []);
-    var t2 = e2.interceptors_;
-    t2.push(r2);
-    return Dt(function() {
-      var e3 = +t2.indexOf(r2);
-      e3 != -1 && t2.splice(e3, 1);
-    });
+  var Ua = (a, b) => {
+    b = b.length > 0 ? " " + b.map(String).join(",") : "", xb(new Error("[MobX] minified error nr: " + a + b + ". See mobx.js.org/errors"));
   };
-  var ge = (e2, r2) => {
-    e2.changeListeners_ === void 0 && (e2.changeListeners_ = []);
-    var t2 = e2.changeListeners_;
-    t2.push(r2);
-    return Dt(function() {
-      var e3 = +t2.indexOf(r2);
-      e3 != -1 && t2.splice(e3, 1);
-    });
+  var ca = (a) => {
+    Ua(a, []);
   };
-  var P = (e2) => {
-    if (e2.changeListeners_ !== void 0) var t2 = e2.changeListeners_, r2 = t2.length > 0;
-    else {
-      r2 = false;
-    }
-    return r2;
+  var ua = (a, b) => {
+    let c = [];
+    c.push(b), Ua(a, c);
   };
-  var E = (e2) => {
-    if (e2.interceptors_ !== void 0) var t2 = e2.interceptors_, r2 = t2.length > 0;
-    else {
-      r2 = false;
-    }
-    return r2;
+  var Ub = (a) => Pa(a) && true === a.isMobXAtom;
+  var va = (a) => Pa(a) && true === a.isMobXComputedValue;
+  var zb = (a) => Pa(a) && true === a.isMobXReaction;
+  var da = (a) => !!bc(a);
+  var fa = (a) => !!cc(a);
+  var oa = (a) => !Pa(a) ? false : !!dc(a[X]);
+  var ga = (a) => !Pa(a) ? false : !!ec(a[X]);
+  var Va = (a) => "function" == typeof a && true === a.isMobxAction;
+  var cb = (a) => a == null ? false : true === a.isMobXFlow;
+  var Ab = () => {
+    let a = {};
+    a.version = 7, a.UNCHANGED = {};
+    let b = null;
+    a.trackingDerivation = b, a.trackingContext = b, a.runId = 0, a.mobxGuid = 0, a.inBatch = 0, a.pendingUnobservations = [], a.pendingReactions = [], a.isRunningReactions = false, a.allowStateChanges = false, a.allowStateReads = true, a.enforceActions = true, a.spyListeners = [], a.globalReactionErrorHandlers = [], a.computedRequiresReaction = false, a.reactionRequiresObservable = false, a.observableRequiresReaction = false, a.disableErrorBoundaries = false, a.suppressReactionErrors = false, a.safeDescriptors = true;
+    return a;
   };
-  var nr = (e2) => {
-    var a2 = { name: e2.name_ };
-    if (e2.observing_) var t2 = e2.observing_, r2 = t2.length > 0;
-    else {
-      r2 = false;
-    }
-    if (r2) {
-      for (t2 = [], r2 = 0; ; r2++) {
-        if (r2 >= e2.observing_.length) break;
-        t2.push(nr(e2.observing_[r2]));
-      }
-      a2.dependencies = t2;
-    }
-    return a2;
+  var Bc = (a) => {
+    if (!a.isPendingUnobservation) a.isPendingUnobservation = true, W.pendingUnobservations.push(a);
   };
-  var ar = (e2) => {
-    var t2 = { name: e2.name_ };
-    if (((e3) => {
-      var r3;
-      return !!((r3 = e3.observers_) && r3.size);
-    })(e2)) {
-      var r2 = e2.observers_;
-      r2 = b(r2.values());
-      var a2 = [];
-      for (e2 = 0; e2 < r2.length; e2++) a2.push(ar(r2[e2]));
-      t2.observers = a2;
-    }
-    return t2;
+  var Cc = (a, b) => {
+    a.observers_.delete(b), b = a.observers_, b.size || Bc(a);
   };
-  var Nt = (e2) => {
-    if (2 !== e2.lowestObserverState_) e2.lowestObserverState_ = 2, e2.observers_.forEach(lr);
+  var $ = () => {
+    W.inBatch++;
   };
-  var Mt = (e2) => {
-    if (0 != (e2.dependenciesState_ | 0)) {
-      e2.dependenciesState_ = 0;
-      var t2 = e2.observing_, r2 = t2.length;
-      while (r2 > 0) r2--, e2 = t2[r2], e2.lowestObserverState_ = 0;
+  var aa = () => {
+    var a = --W.inBatch;
+    if (0 == a) {
+      Ec();
+      for (var c, e2 = W.pendingUnobservations, b = 0; b < e2.length; b++) a = e2[b], a.isPendingUnobservation = false, c = a.observers_, c.size || (!a.isBeingObserved || (a.isBeingObserved = false, a.onBUO()), va(a) && a.suspend_());
+      W.pendingUnobservations = [];
     }
   };
-  var tt = (e2) => {
-    var t2 = e2.observing_;
-    e2.observing_ = [];
-    var r2 = t2.length;
-    while (r2 > 0) r2--, Bt(t2[r2], e2);
-    e2.dependenciesState_ = -1;
-  };
-  var et = (r2) => {
-    var t2 = r2.dependenciesState_ | 0;
-    if (0 == t2) return false;
-    if (t2 == -1 || 2 == t2) return true;
-    if (1 == t2) {
-      t2 = true, t2 = T();
-      for (var a2, i2, o2 = r2.observing_, s2 = o2.length, n2 = 0; n2 < s2; n2++) {
-        a2 = o2[n2];
-        if (C(a2)) {
-          i2 = e.disableErrorBoundaries;
-          if (true === i2) a2.get();
-          else try {
-            a2.get();
-          } catch {
-            j(t2);
-            return true;
-          }
-          a2 = r2.dependenciesState_;
-          if (2 === a2) return j(t2), true;
-        }
-      }
-      Mt(r2);
-      j(t2);
-      return false;
+  var ka = (a) => {
+    var b = W.trackingDerivation;
+    if (b != null) {
+      var c = b.runId_;
+      c === a.lastAccessedBy_ || (a.lastAccessedBy_ = b.runId_, c = b.unboundDepsCount_ | 0, b.newObserving_[c] = a, b.unboundDepsCount_ = c + 1 | 0, !a.isBeingObserved && W.trackingContext && (a.isBeingObserved = true, a.onBO()));
+      return !!a.isBeingObserved;
+    } else {
+      b = a.observers_, !b.size && W.inBatch && Bc(a);
     }
     return false;
   };
-  var It = (r2, t2, a2) => {
-    var i2, n2 = true;
-    Mt(r2), 0 != (r2.runId_ | 0) ? (i2 = r2.observing_, n2 = i2.length) : n2 = 100, r2.newObserving_ = new Array(n2), r2.unboundDepsCount_ = 0, n2 = (e.runId | 0) + 1 | 0, e.runId = n2, r2.runId_ = n2, n2 = e.trackingDerivation, e.trackingDerivation = r2, i2 = e, i2.inBatch = (e.inBatch | 0) + 1 | 0;
-    var o2;
-    i2 = e.disableErrorBoundaries;
-    if (true === i2) o2 = t2.call(a2);
-    else try {
-      o2 = t2.call(a2);
-    } catch (e2) {
-      o2 = new he(e2);
-    }
-    e.inBatch--;
-    e.trackingDerivation = n2, ((e2) => {
-      var s2 = e2.observing_, n3 = e2.newObserving_;
-      e2.observing_ = n3;
-      for (var r3, i3, l2 = e2.unboundDepsCount_ | 0, o3 = 0, a3 = 0, t3 = 0; t3 < l2; t3++) r3 = n3[t3], 0 == (r3.diffValue | 0) && (r3.diffValue = 1, a3 != t3 && (n3[a3] = r3), a3++), i3 = r3.dependenciesState_, i3 !== void 0 && (i3 | 0) > o3 && (o3 = i3 | 0);
-      n3.length = a3, e2.newObserving_ = null, r3 = s2.length;
-      while (r3 > 0) r3--, t3 = s2[r3], 0 == (t3.diffValue | 0) && Bt(t3, e2), t3.diffValue = 0;
-      while (a3 > 0) a3--, r3 = n3[a3], 1 == (r3.diffValue | 0) && (r3.diffValue = 0, ((e3, r4) => {
-        var t4 = e3.observers_;
-        t4.add(r4), t4 = e3.lowestObserverState_ | 0, t4 > (r4.dependenciesState_ | 0) && (e3.lowestObserverState_ = r4.dependenciesState_);
-      })(r3, e2));
-      0 != o3 && (e2.dependenciesState_ = o3, e2.onBecomeStale_());
-    })(r2);
-    return o2;
+  var Dc = (a) => {
+    if (2 !== a.lowestObserverState_) a.lowestObserverState_ = 2, a.observers_.forEach(ad);
   };
-  var T = () => {
-    let r2 = e.trackingDerivation;
-    e.trackingDerivation = null;
-    return r2;
+  var wa = (a) => {
+    $(), Dc(a), aa();
   };
-  var Pr = () => e.trackingDerivation != null;
-  var j = (r2) => {
-    e.trackingDerivation = r2;
+  var Ec = () => {
+    if (!((W.inBatch | 0) > 0 || W.isRunningReactions)) Kb(dd);
   };
-  var _ = (r2) => {
-    var t2 = e.trackingDerivation;
-    if (t2 != null) {
-      var a2 = t2.runId_;
-      a2 === r2.lastAccessedBy_ || (r2.lastAccessedBy_ = t2.runId_, a2 = t2.unboundDepsCount_ | 0, t2.newObserving_[a2] = r2, t2.unboundDepsCount_ = a2 + 1 | 0, !r2.isBeingObserved && e.trackingContext && (r2.isBeingObserved = true, r2.onBO()));
-      return !!r2.isBeingObserved;
-    } else {
-      t2 = r2.observers_, !t2.size && e.inBatch && Pt(r2);
-    }
+  var Fc = (a) => {
+    !a.onBOL || a.onBOL.forEach(function(a2) {
+      a2();
+    });
+  };
+  var Gc = (a) => {
+    !a.onBUOL || a.onBUOL.forEach(function(a2) {
+      a2();
+    });
+  };
+  var Ja = () => {
+    let a = W.trackingDerivation;
+    W.trackingDerivation = null;
+    return a;
+  };
+  var xa = (a) => {
+    W.trackingDerivation = a;
+  };
+  var Bb = (a) => Pa(a) && true === a.isMobXCaughtException;
+  var Wb;
+  var Hc;
+  (function() {
+    let a = (a2) => {
+      if (0 != (a2.dependenciesState_ | 0)) {
+        a2.dependenciesState_ = 0;
+        var c = a2.observing_, b = c.length;
+        while (b > 0) b--, a2 = c[b], a2.lowestObserverState_ = 0;
+      }
+    };
+    Wb = function(b) {
+      var c = b.dependenciesState_ | 0;
+      if (0 == c) return false;
+      if (c == -1 || 2 == c) return true;
+      if (1 == c) {
+        c = true, c = Ja();
+        for (var e2, d2, r2 = b.observing_, i2 = r2.length, t2 = 0; t2 < i2; t2++) {
+          e2 = r2[t2];
+          if (va(e2)) {
+            d2 = W.disableErrorBoundaries;
+            if (true === d2) e2.get();
+            else try {
+              e2.get();
+            } catch {
+              xa(c);
+              return true;
+            }
+            e2 = b.dependenciesState_;
+            if (2 === e2) return xa(c), true;
+          }
+        }
+        a(b);
+        xa(c);
+        return false;
+      }
+      return false;
+    }, Hc = function(b, c, e2) {
+      var d2, t2 = true;
+      a(b), 0 != (b.runId_ | 0) ? (d2 = b.observing_, t2 = d2.length) : t2 = 100, b.newObserving_ = new Array(t2), b.unboundDepsCount_ = 0, t2 = (W.runId | 0) + 1 | 0, W.runId = t2, b.runId_ = t2, t2 = W.trackingDerivation, W.trackingDerivation = b, d2 = W, d2.inBatch = (W.inBatch | 0) + 1 | 0;
+      var r2;
+      d2 = W.disableErrorBoundaries;
+      if (true === d2) r2 = c.call(e2);
+      else try {
+        r2 = c.call(e2);
+      } catch (a2) {
+        r2 = new hb(a2);
+      }
+      W.inBatch--;
+      W.trackingDerivation = t2, ((a2) => {
+        var i2 = a2.observing_, t3 = a2.newObserving_;
+        a2.observing_ = t3;
+        for (var b2, d3, f2 = a2.unboundDepsCount_ | 0, r3 = 0, e3 = 0, c2 = 0; c2 < f2; c2++) b2 = t3[c2], 0 == (b2.diffValue | 0) && (b2.diffValue = 1, e3 != c2 && (t3[e3] = b2), e3++), d3 = b2.dependenciesState_, d3 !== void 0 && (d3 | 0) > r3 && (r3 = d3 | 0);
+        t3.length = e3, a2.newObserving_ = null, b2 = i2.length;
+        while (b2 > 0) b2--, c2 = i2[b2], 0 == (c2.diffValue | 0) && Cc(c2, a2), c2.diffValue = 0;
+        while (e3 > 0) e3--, b2 = t3[e3], 1 == (b2.diffValue | 0) && (b2.diffValue = 0, ((a3, b3) => {
+          var c3 = a3.observers_;
+          c3.add(b3), c3 = a3.lowestObserverState_ | 0, c3 > (b3.dependenciesState_ | 0) && (a3.lowestObserverState_ = b3.dependenciesState_);
+        })(b2, a2));
+        0 != r3 && (a2.dependenciesState_ = r3, a2.onBecomeStale_());
+      })(b);
+      return r2;
+    };
+  })();
+  var Xb = (a) => {
+    var c = a.observing_;
+    a.observing_ = [];
+    var b = c.length;
+    while (b > 0) b--, Cc(c[b], a);
+    a.dependenciesState_ = -1;
+  };
+  var Ka = (a, b, c, e2) => {
+    var t2 = (0, function() {
+      var t3 = e2 == null ? this : e2;
+      return Kc(a, c, b, t3, arguments);
+    });
+    t2.isMobxAction = true, t2.toString = function() {
+      return b.toString();
+    }, ed && (hc.value = a, la(t2, "name", hc));
     return t2;
   };
-  var o = () => {
-    var r2 = --e.inBatch;
-    if (0 == r2) {
-      zt();
-      for (var a2, n2 = e.pendingUnobservations, t2 = 0; t2 < n2.length; t2++) r2 = n2[t2], r2.isPendingUnobservation = false, a2 = r2.observers_, a2.size || (!r2.isBeingObserved || (r2.isBeingObserved = false, r2.onBUO()), C(r2) && r2.suspend_());
-      e.pendingUnobservations = [];
-    }
+  var Ic = (a, b) => {
+    var c = W.trackingDerivation;
+    b = !b || c == null, $();
+    var t2 = !!W.allowStateChanges;
+    b && Ja();
+    var d2 = !!W.allowStateReads, e2 = Mb;
+    Mb++;
+    var r2 = pb;
+    pb = e2, a = {}, a.runAsAction_ = b, a.prevDerivation_ = c, a.prevAllowStateChanges_ = t2, a.prevAllowStateReads_ = d2, a.notifySpy_ = false, a.startTime_ = 0, a.actionId_ = e2, a.parentActionId_ = r2;
+    return a;
   };
-  var Pt = (r2) => {
-    if (!r2.isPendingUnobservation) r2.isPendingUnobservation = true, e.pendingUnobservations.push(r2);
+  var Jc = (a) => {
+    pb != (a.actionId_ | 0) && ca(30), pb = a.parentActionId_ | 0, a.error_ === void 0 || (W.suppressReactionErrors = true), aa(), !a.runAsAction_ || xa(a.prevDerivation_), W.suppressReactionErrors = false;
   };
-  var x = (e2, r2) => {
-    let t2 = [];
-    t2.push(r2), Y(e2, t2);
-  };
-  var Y = (e2, r2) => {
-    r2 = r2.length > 0 ? " " + r2.map(String).join(",") : "", je(new Error("[MobX] minified error nr: " + e2 + r2 + ". See mobx.js.org/errors"));
-  };
-  var A = (e2, r2) => n.assign(e2, r2);
-  var zr = (e2, r2) => le(e2, r2, 1, void 0, void 0);
-  var Nr = (e2, r2) => le(e2, r2, -1, void 0, void 0);
-  var Sr = (e2, r2) => e2 === r2;
-  var Ar = (e2, r2) => true === ce(e2, r2);
-  var Le = (e2, r2) => e2.dehancer !== void 0 ? e2.dehancer(r2) : r2;
-  var qt = (r2) => {
-    we != (r2.actionId_ | 0) && u(30), we = r2.parentActionId_ | 0, r2.error_ === void 0 || (e.suppressReactionErrors = true), o(), !r2.runAsAction_ || j(r2.prevDerivation_), e.suppressReactionErrors = false;
-  };
-  var Tt = (r2, t2) => {
-    var a2 = e.trackingDerivation;
-    t2 = !t2 || a2 == null, i();
-    var o2 = !!e.allowStateChanges;
-    t2 && T();
-    var s2 = !!e.allowStateReads, n2 = He;
-    He++;
-    var l2 = we;
-    we = n2, r2 = { runAsAction_: t2, prevDerivation_: a2, prevAllowStateChanges_: o2, prevAllowStateReads_: s2, notifySpy_: false, startTime_: 0, actionId_: n2, parentActionId_: l2 };
-    return r2;
-  };
-  var De = () => {
-    let e2 = { version: 7, UNCHANGED: {} }, r2 = null;
-    e2.trackingDerivation = r2, e2.trackingContext = r2, e2.runId = 0, e2.mobxGuid = 0, e2.inBatch = 0, e2.pendingUnobservations = [], e2.pendingReactions = [], e2.isRunningReactions = false, e2.allowStateChanges = false, e2.allowStateReads = true, e2.enforceActions = true, e2.spyListeners = [], e2.globalReactionErrorHandlers = [], e2.computedRequiresReaction = false, e2.reactionRequiresObservable = false, e2.observableRequiresReaction = false, e2.disableErrorBoundaries = false, e2.suppressReactionErrors = false, e2.safeDescriptors = true;
-    return e2;
-  };
-  var Dr = (r2) => {
-    e.allowStateReads = r2;
-  };
-  var Vr = (r2) => {
-    let t2 = !!e.allowStateReads;
-    e.allowStateReads = r2;
-    return t2;
-  };
-  var Ee = (e2) => {
-    e2[Symbol.iterator] = sr;
-    if (!at) {
-      at = true;
-      var r2 = globalThis.Iterator;
-      Ie = r2 ? r2.prototype : {};
-    }
-    r2 = Ie;
-    return A(n.create(r2), e2);
-  };
-  var Yt = (e2) => e2.scheduler ? e2.scheduler : e2.delay ? function(r2) {
-    return setTimeout(r2, e2.delay);
-  } : function(e3) {
-    return e3();
-  };
-  var X = (e2, r2) => {
-    e2 = "isMobX" + e2, r2.prototype[e2] = true;
-    return function(r3) {
-      return F(r3) && true === r3[e2];
-    };
-  };
-  var Dt = (e2) => {
-    var r2 = false;
-    return function() {
-      if (!r2) return r2 = true, e2.apply(this, arguments);
-    };
-  };
-  var ee = (e2) => {
-    var r2 = T(), t2 = true;
-    i();
+  var Kc = (a, b, c, e2, t2) => {
+    var d2 = Ic(a, b, e2, t2);
     try {
-      return e2();
+      return c.apply(e2, t2);
+    } catch (a2) {
+      d2.error_ = a2;
+      throw a2;
     } finally {
-      o(), j(r2);
+      Jc(d2);
     }
   };
-  var Ut = (e2, r2, t2, a2, n2) => {
-    var i2 = Tt(e2, r2, a2, n2);
+  var Ba = (a) => {
+    if (a.changeListeners_ !== void 0) var c = a.changeListeners_, b = c.length > 0;
+    else {
+      b = false;
+    }
+    return b;
+  };
+  var lb = (a, b) => {
+    a.changeListeners_ === void 0 && (a.changeListeners_ = []);
+    var c = a.changeListeners_;
+    c.push(b);
+    return Ac(function() {
+      var a2 = +c.indexOf(b);
+      a2 != -1 && c.splice(a2, 1);
+    });
+  };
+  var Ca = (a, b) => {
+    var e2 = Ja(), c = a.changeListeners_;
+    if (!c) {
+      xa(e2);
+      return;
+    }
+    c = Ra.call(c);
+    var t2 = c.length;
+    for (a = 0; a < t2; a++) c[a](b);
+    xa(e2);
+  };
+  var ya = (a) => {
+    if (a.interceptors_ !== void 0) var c = a.interceptors_, b = c.length > 0;
+    else {
+      b = false;
+    }
+    return b;
+  };
+  var Lc = (a, b) => {
+    a.interceptors_ === void 0 && (a.interceptors_ = []);
+    var c = a.interceptors_;
+    c.push(b);
+    return Ac(function() {
+      var a2 = +c.indexOf(b);
+      a2 != -1 && c.splice(a2, 1);
+    });
+  };
+  var za = (a, b) => {
+    var d2 = Ja();
     try {
-      return t2.apply(a2, n2);
-    } catch (e3) {
-      i2.error_ = e3;
-      throw e3;
+      var e2 = [];
+      !a.interceptors_ || (e2 = a.interceptors_);
+      for (var t2 = Ra.call(e2), r2 = t2.length, c = 0; c < r2; c++) {
+        b = t2[c](b), b && !b.type && ca(14);
+        if (!b) break;
+      }
+      return b;
     } finally {
-      qt(i2);
+      xa(d2);
     }
   };
-  var Qt = (e2, r2, t2, a2) => {
-    var n2 = r2.value;
-    ue(n2) || (n2 = $(n2)), t2 && (n2 = n2.bind(w(e2)), n2.isMobXFlow = true), a2 ? (r2 = !!e2.isPlainObject_, e2 = false) : (r2 = true, e2 = true);
-    return { value: n2, configurable: r2, enumerable: false, writable: e2 };
+  var Fa = (a, b) => sa(function(c, e2) {
+    if (e2 && "string" == typeof e2.kind) return b(a, c, e2);
+  }, a);
+  var Wa = (a) => {
+    var b = Ja(), c = true;
+    $();
+    try {
+      return a();
+    } finally {
+      aa(), xa(b);
+    }
   };
-  var $t = (e2, r2, t2, a2, n2) => {
-    var o2 = a2.value;
-    if (r2.options_) {
-      var i2 = r2.options_;
-      a2 = !!i2.bound;
+  var Cb = (a) => !a ? false : ga(a) || a[X] || Ub(a) || zb(a) || va(a);
+  var db = /* @__PURE__ */ (function() {
+    let a = (a2, b2) => {
+      if (!a2) return false;
+      if ("function" == typeof a2.isPrototypeOf) return true === a2.isPrototypeOf(b2);
+      true === "constructor" in b2 ? (a2 = b2.constructor == a2, a2 = true === a2) : a2 = false;
+      return a2;
+    }, b = (a2) => oa(a2) ? a2.slice() : ab(a2) || da(a2) ? na(a2.entries()) : bb(a2) || fa(a2) ? na(a2.entries()) : a2;
+    return function(c, e2, t2, d2, r2) {
+      if (c === e2) return 0 !== c ? c = true : (c = 1 / +c, c = c === 1 / +e2), c;
+      if (c == null || e2 == null) return false;
+      if (c !== c) return e2 !== e2;
+      var i2 = typeof c;
+      if ("function" != i2 && "object" != i2 && "object" != typeof e2) return false;
+      var f2 = Z.prototype;
+      i2 = f2.toString.call(c) + "";
+      if (i2 != Z.prototype.toString.call(e2) + "") return false;
+      if ("[object RegExp]" == i2 || "[object String]" == i2) return "" + c == "" + e2;
+      if ("[object Number]" == i2) {
+        c = Number(c), e2 = Number(e2);
+        return true !== fb(c, c) ? true !== fb(e2, e2) : 0 === c ? (c = 1 / +c, true === fb(c, 1 / +e2)) : c === e2;
+      }
+      if ("[object Date]" == i2 || "[object Boolean]" == i2) return c = Number(c), c === Number(e2);
+      if ("[object Symbol]" == i2) return c = Symbol.valueOf.call(c), c === Symbol.valueOf.call(e2);
+      ("[object Map]" == i2 || "[object Set]" == i2) && t2 >= 0 && (t2 = t2 + 1 | 0), f2 = b(c), c = b(e2);
+      var n2 = "[object Array]" == i2;
+      if (!n2) {
+        if ("object" != typeof f2 || "object" != typeof c) return false;
+        e2 = f2.constructor, i2 = c.constructor;
+        if (e2 !== i2 && !("function" == typeof e2 && a(e2, e2) && "function" == typeof i2 && a(i2, i2)) && true === "constructor" in f2 && true === "constructor" in c) return false;
+      }
+      if (0 == t2) return false;
+      else {
+        t2 < 0 && (t2 = -1);
+      }
+      d2 === void 0 && (d2 = [], r2 = []);
+      for (e2 = d2.length; e2--; ) if (d2[e2] === f2) return r2[e2] === c;
+      d2.push(f2), r2.push(c);
+      if (n2) {
+        e2 = f2.length;
+        if (e2 != c.length) return false;
+        while (e2 > 0) {
+          e2--;
+          if (!db(f2[e2], c[e2], t2 - 1 | 0, d2, r2)) return false;
+        }
+      } else {
+        n2 = Z.keys(f2);
+        var s2 = n2.length;
+        if (Z.keys(c).length != s2) return false;
+        for (i2 = 0; i2 < s2; i2++) {
+          e2 = n2[i2];
+          if (La.call(c, e2)) {
+            var o2 = f2[e2];
+            e2 = c[e2], e2 = db(o2, e2, t2 - 1 | 0, d2, r2);
+          } else {
+            e2 = false;
+          }
+          if (!e2) return false;
+        }
+      }
+      d2.pop();
+      r2.pop();
+      return true;
+    };
+  })();
+  var Db = (a) => {
+    var b = a.deep;
+    if (true === b) return Ta;
+    b = a.deep;
+    if (false === b) return ib;
+    if (a.defaultDecorator) {
+      var c = a.defaultDecorator;
+      b = !!c.options_;
     } else {
-      a2 = false;
+      b = false;
     }
-    a2 && (o2 = o2.bind(w(e2)));
-    i2 = k(t2), r2.options_ ? (a2 = r2.options_, t2 = !!a2.name) : t2 = false, t2 && (t2 = r2.options_, i2 = t2.name + ""), r2.options_ ? (a2 = r2.options_, t2 = !!a2.autoAction) : t2 = false;
-    var s2, l2 = t2;
-    s2 = void 0, t2 = !!((a2 = r2.options_) && a2.bound), t2 && (s2 = w(e2)), n2 ? (r2 = !!e2.isPlainObject_, e2 = false) : (r2 = true, e2 = true);
-    return { value: q(i2, o2, l2, s2), configurable: r2, enumerable: false, writable: e2 };
+    return b && a.defaultDecorator.options_.enhancer_ ? (b = a.defaultDecorator, c = b.options_, c.enhancer_) : Ta;
   };
-  var q = (e2, r2, t2, a2) => {
-    var n2 = (0, function() {
-      var n3 = a2 == null ? this : a2;
-      return Ut(e2, t2, r2, n3, arguments);
-    });
-    n2.isMobxAction = true, n2.toString = function() {
-      return r2.toString();
-    }, hr && (ht.value = e2, g(n2, "name", ht));
-    return n2;
+  var Eb = (a) => !!a ? a : jc;
+  var pa = (a) => a.proxy_ ? a.proxy_ : a.target_;
+  var Mc = (a) => {
+    var b = mc[a];
+    if (b) return b;
+    b = {}, b.get = function() {
+      let b2 = this[X];
+      return b2.getObservablePropValue_(a);
+    }, b.set = function(b2) {
+      let c = this[X];
+      return c.setObservablePropValue_(a, b2);
+    }, mc[a] = b;
+    return b;
   };
-  var Jt = (e2) => {
-    "function" == typeof Array.prototype[e2] && (d[e2] = function() {
-      var a2 = this;
-      let r2 = a2[t];
-      _(r2.atom_);
-      let n2 = r2.dehanceValues_(r2.values_), i2 = arguments[0];
-      arguments[0] = function(e3, r3, t2) {
-        return i2(e3, r3, t2, a2);
-      };
-      return n2[e2].apply(n2, arguments);
-    });
-  };
-  var N = (e2) => {
-    "function" == typeof Array.prototype[e2] && (d[e2] = function(r2, a2) {
-      var i2 = this, n2 = i2[t];
-      _(n2.atom_);
-      var o2, s2 = n2.dehanceValues_(n2.values_);
-      o2 = a2;
-      return s2[e2](function(e3, t2) {
-        return r2.call(o2, e3, t2, i2);
-      });
-    });
-  };
-  var S = (e2) => {
-    if ("function" == typeof Array.prototype[e2]) d[e2] = function() {
-      let r2 = this[t];
-      _(r2.atom_);
-      let a2 = r2.dehanceValues_(r2.values_);
-      return a2[e2].apply(a2, arguments);
-    };
-  };
-  var te = (e2) => {
-    v.prototype[e2] = function(r2) {
-      var t2 = this.atom_;
-      _(t2);
-      return ("intersection" == e2 || "union" == e2 || "symmetricDifference" == e2 || "isDisjointFrom" == e2) && se(r2) && !c(r2) && "function" == typeof r2[e2] ? r2[e2](this) : new Set(this)[e2](r2);
-    };
-  };
-  var Z = (e2) => "function" == typeof e2 && true === e2.isMobxAction;
-  var rr = (e2, r2) => {
-    var t2, n2 = r2[1], a2 = n2;
-    r2.length > 2 && "function" == typeof r2[2] ? (t2 = W(r2[0], r2[1]), a2 = r2[2]) : t2 = W(r2[0]), t2[e2] ? (r2 = t2[e2], r2.add(a2)) : (r2 = t2, r2[e2] = /* @__PURE__ */ new Set(), r2 = t2[e2], r2.add(a2));
-    return function() {
-      var r3 = t2[e2];
-      r3 && (r3.delete(a2), 0 == r3.size && delete t2[e2]);
-    };
-  };
-  var Zt = (e2, r2, a2) => {
-    a2 = a2 || {};
-    var n2, i2;
-    if ("number" == typeof a2.timeout) {
-      var o2 = new Error("WHEN_TIMEOUT"), s2 = a2.timeout;
-      i2 = setTimeout(function() {
-        var e3 = n2[t];
-        if (!e3.isDisposed) n2(), a2.onError ? a2.onError(o2) : je(o2);
-      }, s2);
-    }
-    a2.name || (a2.name = "When");
-    var l2 = q("When-effect", r2, false, void 0);
-    n2 = Je(function(r3) {
-      ft(false, e2) && (r3.dispose(), !i2 || clearTimeout(i2), l2());
-    }, a2);
-    return n2;
-  };
-  var Ft = (e2) => {
-    var r2 = yt[e2];
-    if (r2) return r2;
-    r2 = {}, r2.get = function() {
-      let r3 = this[t];
-      return r3.getObservablePropValue_(e2);
-    }, r2.set = function(r3) {
-      let a2 = this[t];
-      return a2.setObservablePropValue_(e2, r3);
-    }, yt[e2] = r2;
-    return r2;
-  };
-  var Xt = (e2, r2, t2, a2) => {
-    var n2 = e2.target_;
-    if (U.call(n2, r2)) {
-      n2 = e2.values_;
-      if (n2.has(r2)) return e2.setObservablePropValue_(r2, t2);
-      if (a2) return a2 = e2.target_, true === Reflect.set(a2, r2, t2);
-      e2.target_[r2] = t2;
+  var Nc = (a, b, c, e2) => {
+    var t2 = a.target_;
+    if (La.call(t2, b)) {
+      t2 = a.values_;
+      if (t2.has(b)) return a.setObservablePropValue_(b, c);
+      if (e2) return e2 = a.target_, true === Reflect.set(e2, b, c);
+      a.target_[b] = c;
       return true;
     }
-    return e2.extend_(r2, { value: t2, enumerable: true, writable: true, configurable: true }, e2.defaultAnnotation_, a2);
+    return a.extend_(b, { value: c, enumerable: true, writable: true, configurable: true }, a.defaultAnnotation_, e2);
   };
-  var er = (e2, r2, t2) => {
-    true === t2 && (t2 = e2.defaultAnnotation_);
-    if (false !== t2) {
-      if (true !== r2 in e2.target_) {
-        var i2 = t2.annotationType_, o2 = e2.name_ + "." + k(r2), a2 = [];
-        a2.push(i2), a2.push(o2), Y(1, a2);
+  var Fb = /* @__PURE__ */ (function() {
+    return function(a, b, c, e2) {
+      var d2 = a.values_, t2 = d2.length;
+      b > t2 ? b = t2 : b < 0 && (b = t2 + b | 0, b < 0 && (b = 0)), c < 0 && (c = 0), t2 = t2 - b | 0, c > t2 || (t2 = c), e2 == null ? e2 = [] : Array.isArray(e2) || (c = Array.prototype, e2 = c.slice.call(e2));
+      if (ya(a)) {
+        c = a.proxy_, c = za(a, { object: c, type: "splice", index: b, removedCount: t2, added: e2 });
+        if (!c) return $b;
+        t2 = c.removedCount | 0, e2 = c.added;
       }
-      for (a2 = e2.target_; ; ) {
-        i2 = a2 && a2 !== n.prototype;
-        if (!i2) break;
-        if (i2 = n.getOwnPropertyDescriptor(a2, r2)) {
-          i2 = t2.make_(e2, r2, i2, a2);
-          if (0 === i2) return;
-          if (1 === i2) break;
+      if (0 != e2.length) {
+        c = [];
+        var r2 = e2.length;
+        for (d2 = 0; d2 < r2; d2++) c.push(a.enhancer_(e2[d2], void 0));
+      } else {
+        c = e2;
+      }
+      d2 = ((a2, b2, c2, e3) => {
+        var t3 = a2.values_, r3 = e3.length, i2 = +r3, d3 = i2 | 0;
+        if (0 == c2 && b2 == t3.length) {
+          for (a2 = 0; a2 < d3; a2++) b2 = e3[a2], t3.push(b2);
+          return $b;
         }
-        a2 = n.getPrototypeOf(a2);
-      }
-    }
-  };
-  var rt = (e2, r2) => ({ annotationType_: e2, options_: r2, make_: bt, extend_: yr });
-  var Me = (e2, r2) => ({ annotationType_: e2, options_: r2, make_: bt, extend_: gr });
-  var ye = (e2, r2) => ({ annotationType_: e2, options_: r2, make_: br, extend_: mr });
-  var Ne = (e2) => {
-    var r2 = e2.deep;
-    if (true === r2) return Q;
-    r2 = e2.deep;
-    if (false === r2) return pe;
-    if (e2.defaultDecorator) {
-      var t2 = e2.defaultDecorator;
-      r2 = !!t2.options_;
-    } else {
-      r2 = false;
-    }
-    return r2 && e2.defaultDecorator.options_.enhancer_ ? (r2 = e2.defaultDecorator, t2 = r2.options_, t2.enhancer_) : Q;
-  };
-  var nt = (e2, r2, a2, n2) => {
-    var i2 = ie(e2)[t];
-    i2.lazyObservableKeys_ || (i2.lazyObservableKeys_ = /* @__PURE__ */ new Map()), i2.lazyObservableKeys_.set(a2, function() {
-      var t2, i3 = Q, e3 = !!((t2 = r2.options_) && t2.enhancer_);
-      e3 && (e3 = r2.options_, i3 = e3.enhancer_), w = ba + k(a2);
-      return new s(n2, i3, w, false);
+        if (d3 < 1e4) {
+          for (a2 = [], a2.push(b2), a2.push(c2), b2 = 0; b2 < e3.length; b2++) c2 = e3[b2], a2.push(c2);
+          return t3.splice.apply(t3, a2);
+        }
+        a2 = b2 + c2 | 0;
+        var f2 = Ra.call(t3, b2, a2);
+        for (d3 = Ra.call(t3, a2, t3.length), a2 = t3.length, t3.length = a2 + e3.length - c2 | 0, a2 = 0; a2 < e3.length; a2++) t3[b2 + a2 | 0] = e3[a2];
+        for (a2 = 0; a2 < d3.length; a2++) t3[b2 + e3.length + a2 | 0] = d3[a2];
+        return f2;
+      })(a, b, t2, c);
+      (0 != t2 || 0 != c.length) && ((a2, b2, c2, e3) => {
+        var d3, r3, i2, f2 = Ba(a2), t3 = null;
+        f2 && (t3 = a2.proxy_, d3 = a2.atom_, r3 = d3.name_, i2 = e3.length, t3 = { observableKind: "array", object: t3, debugObjectName: r3, type: "splice", index: b2, removed: e3, added: c2, removedCount: i2, addedCount: c2.length }), wa(a2.atom_), f2 && Ca(a2, t3);
+      })(a, b, c, d2);
+      return a.dehanceValues_(d2);
+    };
+  })();
+  var ra = (a) => {
+    "function" == typeof Array.prototype[a] && (ja[a] = function() {
+      let b = this[X];
+      ka(b.atom_);
+      let c = b.dehanceValues_(b.values_);
+      return c[a].apply(c, arguments);
     });
-    return i2;
   };
-  var tr = (e2, r2, t2) => {
-    if (C(e2)) {
-      var a2, n2 = true;
-      return Je(function() {
-        var i2 = e2.get;
-        i2 = e2.get();
-        if (!n2 || t2) {
-          var o2 = T(), s2 = e2.name_;
-          r2({ observableKind: "computed", debugObjectName: s2, type: "update", object: e2, newValue: i2, oldValue: a2 }), j(o2);
+  var Da = (a) => {
+    "function" == typeof Array.prototype[a] && (ja[a] = function(b, c) {
+      var t2 = this, e2 = t2[X];
+      ka(e2.atom_);
+      var d2, r2 = e2.dehanceValues_(e2.values_);
+      d2 = c;
+      return r2[a](function(a2, c2) {
+        return b.call(d2, a2, c2, t2);
+      });
+    });
+  };
+  var Oc = (a) => {
+    "function" == typeof Array.prototype[a] && (ja[a] = function() {
+      var c = this;
+      let b = c[X];
+      ka(b.atom_);
+      let e2 = b.dehanceValues_(b.values_), t2 = arguments[0];
+      arguments[0] = function(a2, b2, e3) {
+        return t2(a2, b2, e3, c);
+      };
+      return e2[a].apply(e2, arguments);
+    });
+  };
+  var Gb = (a, b) => a.dehancer !== void 0 ? a.dehancer(b) : b;
+  var Xa = (a) => {
+    ea.prototype[a] = function(b) {
+      var c = this.atom_;
+      ka(c);
+      return ("intersection" == a || "union" == a || "symmetricDifference" == a || "isDisjointFrom" == a) && bb(b) && !fa(b) && "function" == typeof b[a] ? b[a](this) : new Set(this)[a](b);
+    };
+  };
+  var Hb = (a, b) => {
+    let c = {};
+    c.annotationType_ = a, c.options_ = b, c.make_ = nc, c.extend_ = id;
+    return c;
+  };
+  var Yb = (a, b) => {
+    let c = {};
+    c.annotationType_ = a, c.options_ = b, c.make_ = nc, c.extend_ = jd;
+    return c;
+  };
+  var Pc = (a, b, c, e2, t2) => {
+    var r2 = e2.value;
+    if (b.options_) {
+      var d2 = b.options_;
+      e2 = !!d2.bound;
+    } else {
+      e2 = false;
+    }
+    e2 && (r2 = r2.bind(pa(a)));
+    d2 = ta(c), b.options_ ? (e2 = b.options_, c = !!e2.name) : c = false, c && (c = b.options_, d2 = c.name + ""), b.options_ ? (e2 = b.options_, c = !!e2.autoAction) : c = false;
+    var i2, f2 = c;
+    i2 = void 0, c = !!((e2 = b.options_) && e2.bound), c && (i2 = pa(a)), t2 ? (b = !!a.isPlainObject_, a = false) : (b = true, a = true);
+    return { value: Ka(d2, r2, f2, i2), configurable: b, enumerable: false, writable: a };
+  };
+  var mb = (a, b) => {
+    let c = {};
+    c.annotationType_ = a, c.options_ = b, c.make_ = kd, c.extend_ = ld;
+    return c;
+  };
+  var Qc = (a, b, c, e2) => {
+    var t2 = b.value;
+    cb(t2) || (t2 = Sa(t2)), c && (t2 = t2.bind(pa(a)), t2.isMobXFlow = true), e2 ? (b = !!a.isPlainObject_, a = false) : (b = true, a = true);
+    return { value: t2, configurable: b, enumerable: false, writable: a };
+  };
+  var Zb = (a, b, c, e2) => {
+    var t2 = $a(a)[X];
+    t2.lazyObservableKeys_ || (t2.lazyObservableKeys_ = /* @__PURE__ */ new Map()), t2.lazyObservableKeys_.set(c, function() {
+      var t3, d2 = Ta, a2 = !!((t3 = b.options_) && t3.enhancer_);
+      a2 && (a2 = b.options_, d2 = a2.enhancer_), m = Ze + ta(c);
+      return new ba(e2, d2, m, false);
+    });
+    return t2;
+  };
+  var Rc = (a) => a.scheduler ? a.scheduler : a.delay ? function(b) {
+    return setTimeout(b, a.delay);
+  } : function(a2) {
+    return a2();
+  };
+  var Sc = (a, b, c) => {
+    c = c || {};
+    var e2, t2;
+    if ("number" == typeof c.timeout) {
+      var d2 = new Error("WHEN_TIMEOUT"), r2 = function() {
+        var a2 = e2[X];
+        if (!a2.isDisposed) e2(), c.onError ? c.onError(d2) : xb(d2);
+      }, i2 = c.timeout;
+      t2 = setTimeout(r2, i2);
+    }
+    c.name || (c.name = "When");
+    var f2 = Ka("When-effect", b, false, void 0);
+    e2 = Rb(function(b2) {
+      gc(false, a) && (b2.dispose(), !t2 || clearTimeout(t2), f2());
+    }, c);
+    return e2;
+  };
+  var Tc = (a, b, c) => {
+    true === c && (c = a.defaultAnnotation_);
+    if (false !== c) {
+      if (true !== b in a.target_) {
+        var t2 = c.annotationType_, d2 = a.name_ + "." + ta(b), e2 = [];
+        e2.push(t2), e2.push(d2), Ua(1, e2);
+      }
+      for (e2 = a.target_; ; ) {
+        t2 = e2 && e2 !== Z.prototype;
+        if (!t2) break;
+        if (t2 = Z.getOwnPropertyDescriptor(e2, b)) {
+          t2 = c.make_(a, b, t2, e2);
+          if (0 === t2) return;
+          if (1 === t2) break;
         }
-        n2 = false;
-        a2 = i2;
+        e2 = Z.getPrototypeOf(e2);
+      }
+    }
+  };
+  var Uc = (a, b, c) => {
+    if (va(a)) {
+      var e2, t2 = true;
+      return Rb(function() {
+        var d2 = a.get;
+        d2 = a.get();
+        if (!t2 || c) {
+          var r2 = Ja(), i2 = a.name_;
+          b({ observableKind: "computed", debugObjectName: i2, type: "update", object: a, newValue: d2, oldValue: e2 }), xa(r2);
+        }
+        t2 = false;
+        e2 = d2;
       });
     }
-    t2 && (t2 = e2.name_, r2({ observableKind: "value", debugObjectName: t2, object: e2, type: "update", newValue: e2.value_, oldValue: void 0 }));
-    return ge(e2, r2);
+    c && (c = a.name_, b({ observableKind: "value", debugObjectName: c, object: a, type: "update", newValue: a.value_, oldValue: void 0 }));
+    return lb(a, b);
   };
-  var Ke = (e2, r2, t2, a2) => {
-    var i2 = e2.values_, n2 = i2.length;
-    r2 > n2 ? r2 = n2 : r2 < 0 && (r2 = n2 + r2 | 0, r2 < 0 && (r2 = 0)), t2 < 0 && (t2 = 0), n2 = n2 - r2 | 0, t2 > n2 || (n2 = t2), a2 == null ? a2 = [] : Array.isArray(a2) || (t2 = Array.prototype, a2 = t2.slice.call(a2));
-    if (E(e2)) {
-      t2 = e2.proxy_, t2 = V(e2, { object: t2, type: "splice", index: r2, removedCount: n2, added: a2 });
-      if (!t2) return it;
-      n2 = t2.removedCount | 0, a2 = t2.added;
-    }
-    if (0 != a2.length) {
-      t2 = [];
-      var o2 = a2.length;
-      for (i2 = 0; i2 < o2; i2++) t2.push(e2.enhancer_(a2[i2], void 0));
-    } else {
-      t2 = a2;
-    }
-    i2 = ((e3, r3, t3, a3) => {
-      var n3 = e3.values_, o3 = a3.length, s2 = +o3, i3 = s2 | 0;
-      if (0 == t3 && r3 == n3.length) {
-        for (e3 = 0; e3 < i3; e3++) r3 = a3[e3], n3.push(r3);
-        return it;
-      }
-      if (i3 < 1e4) {
-        for (e3 = [], e3.push(r3), e3.push(t3), r3 = 0; r3 < a3.length; r3++) t3 = a3[r3], e3.push(t3);
-        return n3.splice.apply(n3, e3);
-      }
-      e3 = r3 + t3 | 0;
-      var l2 = J.call(n3, r3, e3);
-      for (i3 = J.call(n3, e3, n3.length), e3 = n3.length, n3.length = e3 + a3.length - t3 | 0, e3 = 0; e3 < a3.length; e3++) n3[r3 + e3 | 0] = a3[e3];
-      for (e3 = 0; e3 < i3.length; e3++) n3[r3 + a3.length + e3 | 0] = i3[e3];
-      return l2;
-    })(e2, r2, n2, t2);
-    (0 != n2 || 0 != t2.length) && ((e3, r3, t3, a3) => {
-      var i3, o3, s2, l2 = P(e3), n3 = null;
-      l2 && (n3 = e3.proxy_, i3 = e3.atom_, o3 = i3.name_, s2 = a3.length, n3 = { observableKind: "array", object: n3, debugObjectName: o3, type: "splice", index: r3, removed: a3, added: t3, removedCount: s2, addedCount: t3.length }), R(e3.atom_), l2 && B(e3, n3);
-    })(e2, r2, t2, i2);
-    return e2.dehanceValues_(i2);
+  var Vc = (a, b) => {
+    var c, t2 = b[1], e2 = t2;
+    b.length > 2 && "function" == typeof b[2] ? (c = Oa(b[0], b[1]), e2 = b[2]) : c = Oa(b[0]), c[a] ? (b = c[a], b.add(e2)) : (b = c, b[a] = /* @__PURE__ */ new Set(), b = c[a], b.add(e2));
+    return function() {
+      var b2 = c[a];
+      b2 && (b2.delete(e2), 0 == b2.size && delete c[a]);
+    };
   };
-  var ve = (e2, r2) => {
-    var i2;
-    if (e2 == null || "object" != typeof e2 || jt(Date, e2) || !Be(e2)) return e2;
-    if (fe(e2) || C(e2)) return ve(e2.get(), r2);
-    if (r2.has(e2)) return r2.get(e2);
-    if (m(e2)) {
-      var a2 = [];
-      r2.set(e2, a2);
-      for (var t2 = 0; t2 < e2.length; t2++) a2[t2] = ve(e2[t2], r2);
-      return a2;
-    }
-    if (c(e2)) {
-      for (t2 = /* @__PURE__ */ new Set(), r2.set(e2, t2), a2 = b(e2.values()), e2 = 0; e2 < a2.length; e2++) t2.add(ve(a2[e2], r2));
-      return t2;
-    }
-    if (l(e2)) {
-      for (a2 = /* @__PURE__ */ new Map(), r2.set(e2, a2), t2 = b(e2.entries()), e2 = 0; e2 < t2.length; e2++) o = t2[e2][0], i2 = t2[e2], a2.set(o, ve(i2[1], r2));
-      return a2;
-    }
-    o = {};
-    r2.set(e2, o), a2 = Rt(e2), t2 = 0;
-    for (; t2 < a2.length; t2++) i2 = n.prototype, true === i2.propertyIsEnumerable.call(e2, a2[t2]) && (i2 = a2[t2], o[i2] = ve(e2[a2[t2]], r2));
-    return o;
-  };
-  var K = (e2, r2) => A(function(t2, a2) {
-    if (a2 && "string" == typeof a2.kind) return r2(e2, t2, a2);
-  }, e2);
-  var k = (e2) => "string" == typeof e2 ? e2 : "symbol" == typeof e2 ? e2.toString() : new String(e2) + "";
-  var Qe = (e2) => {
-    e2 = typeof e2;
-    return "string" == e2 || "symbol" == e2 || "number" == e2;
-  };
-  var F = (e2) => e2 != null && "object" == typeof e2;
-  var Vt = (e2) => null === e2 ? null : "object" == typeof e2 ? "" + e2 : e2;
-  var Be = (e2) => !e2 ? false : f(e2) || e2[t] || Ye(e2) || Ve(e2) || C(e2);
-  var Gt = (e2, r2) => {
-    if (!e2) return false;
-    if ("function" == typeof e2.isPrototypeOf) return true === e2.isPrototypeOf(r2);
-    true === "constructor" in r2 ? (e2 = r2.constructor == e2, e2 = true === e2) : e2 = false;
-    return e2;
-  };
-  var I = (e2) => {
-    if (!F(e2)) return false;
-    var r2 = n.getPrototypeOf(e2);
-    if (r2 == null) return true;
-    e2 = void 0, !U.call(r2, "constructor") || (e2 = r2.constructor), e2 = "function" == typeof e2 && e2.toString() === or;
-    return e2;
-  };
-  var Et = (e2) => {
-    if (e2 == null) return false;
-    var r2 = e2.constructor;
-    return !r2 ? false : "GeneratorFunction" == r2.name + "" ? true : "GeneratorFunction" == r2.displayName + "" ? true : false;
-  };
-  var le = (e2, r2, t2, a2, i2) => {
-    if (e2 === r2) return 0 !== e2 ? e2 = true : (e2 = 1 / +e2, e2 = e2 === 1 / +r2), e2;
-    if (e2 == null || r2 == null) return false;
-    if (e2 !== e2) return r2 !== r2;
-    var o2 = typeof e2;
-    if ("function" != o2 && "object" != o2 && "object" != typeof r2) return false;
-    var s2 = n.prototype;
-    o2 = s2.toString.call(e2) + "";
-    if (o2 != n.prototype.toString.call(r2) + "") return false;
-    if ("[object RegExp]" == o2 || "[object String]" == o2) return "" + e2 == "" + r2;
-    if ("[object Number]" == o2) {
-      e2 = Number(e2), r2 = Number(r2);
-      return true !== ce(e2, e2) ? true !== ce(r2, r2) : 0 === e2 ? (e2 = 1 / +e2, true === ce(e2, 1 / +r2)) : e2 === r2;
-    }
-    if ("[object Date]" == o2 || "[object Boolean]" == o2) return e2 = Number(e2), e2 === Number(r2);
-    if ("[object Symbol]" == o2) return e2 = Symbol.valueOf.call(e2), e2 === Symbol.valueOf.call(r2);
-    ("[object Map]" == o2 || "[object Set]" == o2) && t2 >= 0 && (t2 = t2 + 1 | 0), s2 = Wt(e2), e2 = Wt(r2);
-    var l2 = "[object Array]" == o2;
-    if (!l2) {
-      if ("object" != typeof s2 || "object" != typeof e2) return false;
-      r2 = s2.constructor, o2 = e2.constructor;
-      if (r2 !== o2 && !("function" == typeof r2 && Gt(r2, r2) && "function" == typeof o2 && Gt(o2, o2)) && true === "constructor" in s2 && true === "constructor" in e2) return false;
-    }
-    if (0 == t2) return false;
-    else {
-      t2 < 0 && (t2 = -1);
-    }
-    a2 === void 0 && (a2 = [], i2 = []);
-    for (r2 = a2.length; r2--; ) if (a2[r2] === s2) return i2[r2] === e2;
-    a2.push(s2), i2.push(e2);
-    if (l2) {
-      r2 = s2.length;
-      if (r2 != e2.length) return false;
-      while (r2 > 0) {
-        r2--;
-        if (!le(s2[r2], e2[r2], t2 - 1 | 0, a2, i2)) return false;
-      }
-    } else {
-      l2 = n.keys(s2);
-      var u2 = l2.length;
-      if (n.keys(e2).length != u2) return false;
-      for (o2 = 0; o2 < u2; o2++) {
-        r2 = l2[o2];
-        if (U.call(e2, r2)) {
-          var b2 = s2[r2];
-          r2 = e2[r2], r2 = le(b2, r2, t2 - 1 | 0, a2, i2);
-        } else {
-          r2 = false;
-        }
-        if (!r2) return false;
-      }
-    }
-    a2.pop();
-    i2.pop();
-    return true;
-  };
-  var oe = (e2) => e2 == null ? false : "[object Map]" == n.prototype.toString.call(e2) + "";
-  var se = (e2) => e2 == null ? false : "[object Set]" == n.prototype.toString.call(e2) + "";
-  var ue = (e2) => e2 == null ? false : true === e2.isMobXFlow;
-  var jt = (e2, r2) => r2 == null ? false : true === ir.call(e2.prototype, r2);
-  var f = (e2) => !F(e2) ? false : !!vt(e2[t]);
-  var m = (e2) => !F(e2) ? false : !!lt(e2[t]);
-  var Wt = (e2) => m(e2) ? e2.slice() : oe(e2) || l(e2) ? b(e2.entries()) : se(e2) || c(e2) ? b(e2.entries()) : e2;
-  var w = (e2) => e2.proxy_ ? e2.proxy_ : e2.target_;
-  var n = Object;
-  var Sa = n.prototype;
-  var U = Sa.hasOwnProperty;
-  var ce = n.is;
-  var Aa = Array.prototype;
-  var J = Aa.slice;
-  var ka = n.prototype;
-  var ir = ka.isPrototypeOf;
-  var or = n.toString();
-  var Ie;
-  var at = false;
-  var sr = (0, function() {
-    return this;
-  });
-  var re = function() {
-  };
-  var wa = [];
-  n.freeze(wa);
-  var it = wa;
-  wa = {}, n.freeze(wa);
-  var ot = wa;
-  var t = Symbol("mobx administration");
-  var Te = function(e2, r2) {
-    return true === ce(e2, r2);
-  };
-  var fe;
-  var st;
-  var ut;
-  var lt;
-  var vt;
-  var be = true;
-  var ct = false;
-  var D = [];
-  D.push("mobxGuid"), D.push("spyListeners"), D.push("enforceActions"), D.push("computedRequiresReaction"), D.push("reactionRequiresObservable"), D.push("observableRequiresReaction"), D.push("allowStateReads"), D.push("disableErrorBoundaries"), D.push("runId"), D.push("UNCHANGED");
-  var e = (() => {
-    var e2;
-    globalThis.__mobxInstanceCount && (globalThis.__mobxInstanceCount | 0) > 0 && !globalThis.__mobxGlobals && (be = false), e2 = globalThis.__mobxGlobals, e2 && 7 != (e2.version | 0) && (be = false);
-    if (!be) return setTimeout(function() {
-      ct || u(35);
-    }, 1), De();
-    else if (e2) {
-      var r2 = (globalThis.__mobxInstanceCount | 0) + 1 | 0;
-      globalThis.__mobxInstanceCount = r2, e2.UNCHANGED || (e2.UNCHANGED = {});
+  var eb = (a, b) => {
+    var t2;
+    if (a == null || "object" != typeof a || xc(Date, a) || !Cb(a)) return a;
+    if (gb(a) || va(a)) return eb(a.get(), b);
+    if (b.has(a)) return b.get(a);
+    if (oa(a)) {
+      var e2 = [];
+      b.set(a, e2);
+      for (var c = 0; c < a.length; c++) e2[c] = eb(a[c], b);
       return e2;
     }
-    globalThis.__mobxInstanceCount = 1;
-    e2 = De(), globalThis.__mobxGlobals = e2;
+    if (fa(a)) {
+      for (c = /* @__PURE__ */ new Set(), b.set(a, c), e2 = na(a.values()), a = 0; a < e2.length; a++) c.add(eb(e2[a], b));
+      return c;
+    }
+    if (da(a)) {
+      for (e2 = /* @__PURE__ */ new Map(), b.set(a, e2), c = na(a.entries()), a = 0; a < c.length; a++) d2 = c[a][0], t2 = c[a], e2.set(d2, eb(t2[1], b));
+      return e2;
+    }
+    var d2;
+    for (d2 = {}, b.set(a, d2), e2 = wc(a), c = 0; c < e2.length; c++) t2 = Z.prototype, true === t2.propertyIsEnumerable.call(a, e2[c]) && (t2 = e2[c], d2[t2] = eb(a[e2[c]], b));
+    return d2;
+  };
+  var Wc = (a) => {
+    var e2 = { name: a.name_ };
+    if (a.observing_) var c = a.observing_, b = c.length > 0;
+    else {
+      b = false;
+    }
+    if (b) {
+      for (c = [], b = 0; ; b++) {
+        if (b >= a.observing_.length) break;
+        c.push(Wc(a.observing_[b]));
+      }
+      e2.dependencies = c;
+    }
     return e2;
+  };
+  var Xc = (a) => {
+    var c = { name: a.name_ };
+    if (((a2) => {
+      var b2;
+      return !!((b2 = a2.observers_) && b2.size);
+    })(a)) {
+      var b = a.observers_;
+      b = na(b.values());
+      var e2 = [];
+      for (a = 0; a < b.length; a++) e2.push(Xc(b[a]));
+      c.observers = e2;
+    }
+    return c;
+  };
+  var Z = Object;
+  var e = Object.prototype;
+  var La = e.hasOwnProperty;
+  var fb = Object.is;
+  var f = Array.prototype;
+  var Ra = f.slice;
+  var g = Object.prototype;
+  var Yc = g.isPrototypeOf;
+  var Zc = Object.toString();
+  var Ib = void 0;
+  var _b = false;
+  var _c = (0, function() {
+    return this;
+  });
+  var Ya = function() {
+  };
+  var h = [];
+  Object.freeze(h);
+  var $b = h;
+  h = {}, Object.freeze(h);
+  var ac = h;
+  var X = Symbol("mobx administration");
+  var Jb = function(a, b) {
+    return true === fb(a, b);
+  };
+  var gb;
+  var bc;
+  var cc;
+  var dc;
+  var ec;
+  var nb = true;
+  var fc = false;
+  var Aa = [];
+  Aa.push("mobxGuid"), Aa.push("spyListeners"), Aa.push("enforceActions"), Aa.push("computedRequiresReaction"), Aa.push("reactionRequiresObservable"), Aa.push("observableRequiresReaction"), Aa.push("allowStateReads"), Aa.push("disableErrorBoundaries"), Aa.push("runId"), Aa.push("UNCHANGED");
+  var W = (() => {
+    var a;
+    globalThis.__mobxInstanceCount && (globalThis.__mobxInstanceCount | 0) > 0 && !globalThis.__mobxGlobals && (nb = false), a = globalThis.__mobxGlobals, a && 7 != (a.version | 0) && (nb = false);
+    if (!nb) return setTimeout(function() {
+      fc || ca(35);
+    }, 1), Ab();
+    else if (a) {
+      var b = (globalThis.__mobxInstanceCount | 0) + 1 | 0;
+      globalThis.__mobxInstanceCount = b, a.UNCHANGED || (a.UNCHANGED = {});
+      return a;
+    }
+    globalThis.__mobxInstanceCount = 1;
+    a = Ab(), globalThis.__mobxGlobals = a;
+    return a;
   })();
-  var ur = function() {
-    var r2 = e.pendingReactions;
-    (0 != r2.length || 0 != (e.inBatch | 0) || e.isRunningReactions) && u(36), ct = true;
-    if (be) r2 = globalThis, 0 == --r2.__mobxInstanceCount && (r2.__mobxGlobals = void 0), e = De();
+  var $c = function() {
+    var a = W.pendingReactions;
+    (0 != a.length || 0 != (W.inBatch | 0) || W.isRunningReactions) && ca(36), fc = true;
+    if (nb) a = globalThis, 0 == --a.__mobxInstanceCount && (a.__mobxGlobals = void 0), W = Ab();
   };
-  var xa = function() {
-    return e;
+  var i = function() {
+    return W;
   };
-  var Ca = function() {
-    for (var r2, a2 = De(), i2 = n.keys(a2), o2 = i2.length, t2 = 0; t2 < o2; t2++) r2 = i2[t2], +D.indexOf(r2) == -1 && (e[r2] = a2[r2]);
-    e.allowStateChanges = !e.enforceActions;
+  var j = function() {
+    for (var a, c = Ab(), e2 = Z.keys(c), t2 = e2.length, b = 0; b < t2; b++) a = e2[b], +Aa.indexOf(a) == -1 && (W[a] = c[a]);
+    W.allowStateChanges = !W.enforceActions;
   };
-  var Ra = function(e2) {
+  var k = function(a) {
     console.warn("[mobx.spy] Is a no-op in production builds");
     return function() {
     };
   };
-  var lr = function(e2) {
-    e2.dependenciesState_ || e2.onBecomeStale_(), e2.dependenciesState_ = 2;
+  var ad = function(a) {
+    a.dependenciesState_ || a.onBecomeStale_(), a.dependenciesState_ = 2;
   };
-  var vr = function(e2) {
-    e2.dependenciesState_ || (e2.dependenciesState_ = 1, e2.onBecomeStale_());
+  var bd = function(a) {
+    a.dependenciesState_ || (a.dependenciesState_ = 1, a.onBecomeStale_());
   };
-  var me = void 0;
-  var cr = function(e2) {
-    var r2 = e2.dependenciesState_;
-    1 === r2 ? e2.dependenciesState_ = 2 : r2 || (me.lowestObserverState_ = 0);
+  var ob = void 0;
+  var cd = function(a) {
+    var b = a.dependenciesState_;
+    1 === b ? a.dependenciesState_ = 2 : b || (ob.lowestObserverState_ = 0);
   };
-  var qe = (e2) => e2();
-  var fr = () => {
-    e.isRunningReactions = true;
-    var r2, n2, a2, i2, t2 = e.pendingReactions, o2 = 0;
-    while (t2.length > 0) {
-      o2++, 100 == o2 && (r2 = "[mobx] cycle in reaction: " + t2[0], console.error(r2), t2.splice(0, t2.length)), a2 = t2.splice(0, t2.length), i2 = a2.length, r2 = 0;
-      for (; r2 < i2; r2++) n2 = a2[r2], n2.runReaction_();
+  var Kb = (a) => a();
+  var dd = () => {
+    W.isRunningReactions = true;
+    var a, e2, c, t2, b = W.pendingReactions, d2 = 0;
+    while (b.length > 0) {
+      d2++, 100 == d2 && (a = "[mobx] cycle in reaction: " + b[0], console.error(a), b.splice(0, b.length)), c = b.splice(0, b.length), t2 = c.length, a = 0;
+      for (; a < t2; a++) e2 = c[a], e2.runReaction_();
     }
-    e.isRunningReactions = false;
+    W.isRunningReactions = false;
   };
-  var ja = function(e2) {
-    var r2 = T();
+  var l = function(a) {
+    var b = Ja();
     try {
-      return e2();
+      return a();
     } finally {
-      j(r2);
+      xa(b);
     }
   };
-  var ft = function(r2, t2) {
-    var a2 = !!r2;
-    r2 = !!e.allowStateChanges, e.allowStateChanges = a2;
+  var gc = function(a, b) {
+    var c = !!a;
+    a = !!W.allowStateChanges, W.allowStateChanges = c;
     try {
-      return t2();
+      return b();
     } finally {
-      e.allowStateChanges = r2;
+      W.allowStateChanges = a;
     }
   };
-  var he = class {
-    constructor(e2) {
-      this.cause = e2;
+  var hb = class {
+    constructor(a) {
+      this.cause = a;
     }
   };
-  g(he, "name", { value: "CaughtException", configurable: true });
-  he.prototype.isMobXCaughtException = true;
-  var O = class {
-    constructor(e2 = "Atom") {
-      e2 = e2 + "", this.name_ = e2, this.observers_ = /* @__PURE__ */ new Set(), this.lastAccessedBy_ = 0, this.lowestObserverState_ = -1, this.flags_ = 0;
+  la(hb, "name", { value: "CaughtException", configurable: true });
+  hb.prototype.isMobXCaughtException = true;
+  var qa = class {
+    constructor(a = "Atom") {
+      a = a + "", this.name_ = a, this.observers_ = /* @__PURE__ */ new Set(), this.lastAccessedBy_ = 0, this.lowestObserverState_ = -1, this.flags_ = 0;
     }
     onBO() {
-      Kt(this);
+      Fc(this);
     }
     onBUO() {
-      Lt(this);
+      Gc(this);
     }
     reportObserved() {
-      return _(this);
+      return ka(this);
     }
     reportChanged() {
-      R(this);
+      wa(this);
     }
     toString() {
       return this.name_;
@@ -882,93 +886,94 @@ var mobx = (() => {
     get isBeingObserved() {
       return 0 != (this.flags_ & 1);
     }
-    set isBeingObserved(t2) {
-      t2 ? this.flags_ |= 1 : this.flags_ &= ~1;
+    set isBeingObserved(a) {
+      a ? this.flags_ |= 1 : this.flags_ &= ~1;
     }
     get isPendingUnobservation() {
       return 0 != (this.flags_ & 2);
     }
-    set isPendingUnobservation(t2) {
-      t2 ? this.flags_ |= 2 : this.flags_ &= ~2;
+    set isPendingUnobservation(a) {
+      a ? this.flags_ |= 2 : this.flags_ &= ~2;
     }
     get diffValue() {
       return 0 != (this.flags_ & 4) ? 1 : 0;
     }
-    set diffValue(t2) {
-      1 == (t2 | 0) ? this.flags_ |= 4 : this.flags_ &= ~4;
+    set diffValue(a) {
+      1 == (a | 0) ? this.flags_ |= 4 : this.flags_ &= ~4;
     }
   };
-  X("Atom", O);
-  var Ue = function(e2, r2 = re, t2 = re) {
-    var a2 = e2 !== void 0 ? new O(e2) : new O();
-    r2 === re || (a2.onBOL = /* @__PURE__ */ new Set(), e2 = a2.onBOL, e2.add(r2)), t2 === re || (a2.onBUOL = /* @__PURE__ */ new Set(), e2 = a2.onBUOL, e2.add(t2));
-    return a2;
+  Qa("Atom", qa);
+  h = qa.prototype;
+  var Lb = function(a, b = Ya, c = Ya) {
+    var e2 = a !== void 0 ? new qa(a) : new qa();
+    b === Ya || (e2.onBOL = /* @__PURE__ */ new Set(), a = e2.onBOL, a.add(b)), c === Ya || (e2.onBUOL = /* @__PURE__ */ new Set(), a = e2.onBUOL, a.add(c));
+    return e2;
   };
-  var we = 0;
-  var He = 1;
-  var ht = { value: "action", configurable: true, writable: false, enumerable: false };
-  var Oa = n.getOwnPropertyDescriptor(function() {
+  var pb = 0;
+  var Mb = 1;
+  var hc = { value: "action", configurable: true, writable: false, enumerable: false };
+  var d = Object.getOwnPropertyDescriptor(function() {
   }, "name");
-  wa = Oa != null && Oa.configurable;
-  var hr = wa;
-  var y = class {
-    constructor(e2 = "Reaction", r2, t2, a2) {
-      var n2 = e2 + "";
-      this.name_ = n2, this.onInvalidate_ = void 0, r2 !== void 0 && (this.onInvalidate_ = r2), t2 && (this.errorHandler_ = t2), a2 !== void 0 && (this.requiresObservable_ = a2), this.observing_ = [], this.newObserving_ = null, this.dependenciesState_ = -1, this.runId_ = 0, this.unboundDepsCount_ = 0, this.flags_ = 0;
+  h = d != null && d.configurable;
+  var ed = h;
+  var ma = class {
+    constructor(a = "Reaction", b, c, e2) {
+      var t2 = a + "";
+      this.name_ = t2, this.onInvalidate_ = void 0, b !== void 0 && (this.onInvalidate_ = b), c && (this.errorHandler_ = c), e2 !== void 0 && (this.requiresObservable_ = e2), this.observing_ = [], this.newObserving_ = null, this.dependenciesState_ = -1, this.runId_ = 0, this.unboundDepsCount_ = 0, this.flags_ = 0;
     }
     onBecomeStale_() {
       this.schedule_();
     }
     schedule_() {
-      if (!this.isScheduled) this.isScheduled = true, e.pendingReactions.push(this), zt();
+      if (!this.isScheduled) this.isScheduled = true, W.pendingReactions.push(this), Ec();
     }
     runReaction_() {
       if (!this.isDisposed) {
-        i(), this.isScheduled = false;
-        var r2 = e.trackingContext;
-        e.trackingContext = this;
-        if (et(this)) {
+        $(), this.isScheduled = false;
+        var a = W.trackingContext;
+        W.trackingContext = this;
+        if (Wb(this)) {
           this.isTrackPending = true;
           try {
             this.onInvalidate_();
             if (false) {
             }
-          } catch (e2) {
-            this.reportExceptionInDerivation_(e2);
+          } catch (a2) {
+            this.reportExceptionInDerivation_(a2);
           }
         }
-        e.trackingContext = r2;
-        o();
+        W.trackingContext = a;
+        aa();
       }
     }
-    track(r2) {
+    track(a) {
       if (!this.isDisposed) {
-        i(), this.isRunning = true;
-        var t2 = e.trackingContext;
-        e.trackingContext = this, r2 = It(this, r2, void 0), e.trackingContext = t2, this.isRunning = false, this.isTrackPending = false, !this.isDisposed || tt(this), Pe(r2) && this.reportExceptionInDerivation_(r2.cause), o();
+        $(), this.isRunning = true;
+        var b = W.trackingContext;
+        W.trackingContext = this, a = Hc(this, a, void 0), W.trackingContext = b, this.isRunning = false, this.isTrackPending = false, !this.isDisposed || Xb(this), Bb(a) && this.reportExceptionInDerivation_(a.cause), aa();
       }
     }
-    reportExceptionInDerivation_(r2) {
+    reportExceptionInDerivation_(a) {
       if (this.errorHandler_) {
-        this.errorHandler_(r2, this);
+        this.errorHandler_(a, this);
         return;
       }
-      !e.disableErrorBoundaries || je(r2);
-      var t2 = "[mobx] uncaught error in '" + this + "'";
-      e.suppressReactionErrors || console.error(t2, r2);
-      var a2 = e.globalReactionErrorHandlers, n2 = a2.length;
-      for (t2 = 0; t2 < n2; t2++) a2[t2](r2, this);
+      !W.disableErrorBoundaries || xb(a);
+      var b = "[mobx] uncaught error in '" + this + "'";
+      W.suppressReactionErrors || console.error(b, a);
+      var c = W.globalReactionErrorHandlers, e2 = c.length;
+      for (b = 0; b < e2; b++) c[b](a, this);
     }
     dispose() {
-      this.isDisposed || (this.isDisposed = true, this.isRunning || (i(), tt(this), o()));
+      this.isDisposed || (this.isDisposed = true, this.isRunning || ($(), Xb(this), aa()));
     }
-    getDisposer_(e2) {
-      var a2 = this, r2 = () => {
-        var t2 = a2.dispose;
-        a2.dispose(), e2 != null && "function" == typeof e2.removeEventListener && e2.removeEventListener("abort", r2);
+    getDisposer_(a) {
+      var c = this, b = () => {
+        var e2 = c.dispose;
+        c.dispose(), a != null && "function" == typeof a.removeEventListener && a.removeEventListener("abort", b);
       };
-      e2 != null && "function" == typeof e2.addEventListener && e2.addEventListener("abort", r2), r2[t] = a2, true === "dispose" in Symbol && "symbol" == typeof Symbol.dispose && (r2[Symbol.dispose] = r2);
-      return r2;
+      a != null && "function" == typeof a.addEventListener && a.addEventListener("abort", b), b[X] = c, true === "dispose" in Symbol && "symbol" == typeof Symbol.dispose && (b[Symbol.dispose] = b);
+      return b;
     }
     toString() {
       return "Reaction[" + this.name_ + "]";
@@ -976,219 +981,219 @@ var mobx = (() => {
     get isDisposed() {
       return 0 != (this.flags_ & 1);
     }
-    set isDisposed(t2) {
-      t2 ? this.flags_ |= 1 : this.flags_ &= ~1;
+    set isDisposed(a) {
+      a ? this.flags_ |= 1 : this.flags_ &= ~1;
     }
     get isScheduled() {
       return 0 != (this.flags_ & 2);
     }
-    set isScheduled(t2) {
-      t2 ? this.flags_ |= 2 : this.flags_ &= ~2;
+    set isScheduled(a) {
+      a ? this.flags_ |= 2 : this.flags_ &= ~2;
     }
     get isTrackPending() {
       return 0 != (this.flags_ & 4);
     }
-    set isTrackPending(t2) {
-      t2 ? this.flags_ |= 4 : this.flags_ &= ~4;
+    set isTrackPending(a) {
+      a ? this.flags_ |= 4 : this.flags_ &= ~4;
     }
     get isRunning() {
       return 0 != (this.flags_ & 8);
     }
-    set isRunning(t2) {
-      t2 ? this.flags_ |= 8 : this.flags_ &= ~8;
+    set isRunning(a) {
+      a ? this.flags_ |= 8 : this.flags_ &= ~8;
     }
     get diffValue() {
       return 0 != (this.flags_ & 16) ? 1 : 0;
     }
-    set diffValue(t2) {
-      1 == (t2 | 0) ? this.flags_ |= 16 : this.flags_ &= ~16;
+    set diffValue(a) {
+      1 == (a | 0) ? this.flags_ |= 16 : this.flags_ &= ~16;
     }
   };
-  X("Reaction", y);
-  Aa = function(r2) {
-    e.globalReactionErrorHandlers.push(r2);
+  Qa("Reaction", ma);
+  f = function(a) {
+    W.globalReactionErrorHandlers.push(a);
     return function() {
-      var a2 = e.globalReactionErrorHandlers, t2 = +a2.indexOf(r2);
-      t2 >= 0 && e.globalReactionErrorHandlers.splice(t2, 1);
+      var c = W.globalReactionErrorHandlers, b = +c.indexOf(a);
+      b >= 0 && W.globalReactionErrorHandlers.splice(b, 1);
     };
   };
-  var h = class {
-    constructor(e2) {
-      e2.get || u(31), this.derivation = e2.get;
-      var r2 = e2.name ? e2.name + "" : "ComputedValue";
-      this.name_ = r2, e2.set ? this.setter_ = q("ComputedValue-setter", e2.set, false, void 0) : this.setter_ = void 0, this.equals_ = Te, !e2.equals || (this.equals_ = e2.equals), this.scope_ = e2.context, this.requiresReaction_ = e2.requiresReaction, this.keepAlive_ = !!e2.keepAlive, this.dependenciesState_ = -1, this.observing_ = [], r2 = null, this.newObserving_ = r2, this.observers_ = /* @__PURE__ */ new Set(), this.runId_ = 0, this.lastAccessedBy_ = 0, this.lowestObserverState_ = 0, this.unboundDepsCount_ = 0, this.value_ = new he(r2), this.flags_ = 0;
+  var ha = class {
+    constructor(a) {
+      a.get || ca(31), this.derivation = a.get;
+      var b = a.name ? a.name + "" : "ComputedValue";
+      this.name_ = b, a.set ? this.setter_ = Ka("ComputedValue-setter", a.set, false, void 0) : this.setter_ = void 0, this.equals_ = Jb, !a.equals || (this.equals_ = a.equals), this.scope_ = a.context, this.requiresReaction_ = a.requiresReaction, this.keepAlive_ = !!a.keepAlive, this.dependenciesState_ = -1, this.observing_ = [], b = null, this.newObserving_ = b, this.observers_ = /* @__PURE__ */ new Set(), this.runId_ = 0, this.lastAccessedBy_ = 0, this.lowestObserverState_ = 0, this.unboundDepsCount_ = 0, this.value_ = new hb(b), this.flags_ = 0;
     }
     onBecomeStale_() {
-      ((e2) => {
-        if (!e2.lowestObserverState_) e2.lowestObserverState_ = 1, e2.observers_.forEach(vr);
+      ((a) => {
+        if (!a.lowestObserverState_) a.lowestObserverState_ = 1, a.observers_.forEach(bd);
       })(this);
     }
     onBO() {
-      Kt(this);
+      Fc(this);
     }
     onBUO() {
-      Lt(this);
+      Gc(this);
     }
-    computeValue_(r2) {
+    computeValue_(a) {
       this.isComputing = true;
-      var t2, a2 = false;
-      if (r2) r2 = this.derivation, t2 = It(this, r2, this.scope_);
+      var b, c = false;
+      if (a) a = this.derivation, b = Hc(this, a, this.scope_);
       else {
-        r2 = e.disableErrorBoundaries;
-        if (true === r2) t2 = this.derivation.call(this.scope_);
+        a = W.disableErrorBoundaries;
+        if (true === a) b = this.derivation.call(this.scope_);
         else try {
-          t2 = this.derivation.call(this.scope_);
-        } catch (e2) {
-          t2 = new he(e2);
+          b = this.derivation.call(this.scope_);
+        } catch (a2) {
+          b = new hb(a2);
         }
       }
       this.isComputing = false;
-      return t2;
+      return b;
     }
     trackAndCompute() {
-      var t2 = this.value_, e2 = (this.dependenciesState_ | 0) == -1, r2 = this.computeValue_(true);
-      e2 = e2 || Pe(t2) || Pe(r2) || true !== this.equals_(t2, r2), e2 && (this.value_ = r2);
-      return e2;
+      var c = this.value_, a = (this.dependenciesState_ | 0) == -1, b = this.computeValue_(true);
+      a = a || Bb(c) || Bb(b) || true !== this.equals_(c, b), a && (this.value_ = b);
+      return a;
     }
     get() {
       if (this.isComputing) {
-        var n2 = this.name_, a2 = this.derivation, r2 = [];
-        r2.push(n2), r2.push(a2), Y(32, r2);
+        var b = this.name_, c = this.derivation, a = [];
+        a.push(b), a.push(c), Ua(32, a);
       }
-      !e.inBatch ? (n2 = this.observers_, r2 = !n2.size) : r2 = false;
-      if (r2 && !this.keepAlive_) et(this) && (i(), this.value_ = this.computeValue_(false), o());
-      else _(this), et(this) && (r2 = e.trackingContext, this.keepAlive_ && !r2 && (e.trackingContext = this), !this.trackAndCompute() || ((e2) => {
-        var r3 = e2.lowestObserverState_;
-        if (2 !== r3) e2.lowestObserverState_ = 2, r3 = me, me = e2, e2.observers_.forEach(cr), me = r3;
-      })(this), e.trackingContext = r2);
-      r2 = this.value_, Pe(r2) && je(r2.cause);
-      return r2;
+      !W.inBatch ? (b = this.observers_, a = !b.size) : a = false;
+      if (a && !this.keepAlive_) Wb(this) && ($(), this.value_ = this.computeValue_(false), aa());
+      else ka(this), Wb(this) && (a = W.trackingContext, this.keepAlive_ && !a && (W.trackingContext = this), !this.trackAndCompute() || ((a2) => {
+        var b2 = a2.lowestObserverState_;
+        if (2 !== b2) a2.lowestObserverState_ = 2, b2 = ob, ob = a2, a2.observers_.forEach(cd), ob = b2;
+      })(this), W.trackingContext = a);
+      a = this.value_, Bb(a) && xb(a.cause);
+      return a;
     }
     get isComputing() {
       return 0 != (this.flags_ & 1);
     }
-    set isComputing(t2) {
-      t2 ? this.flags_ |= 1 : this.flags_ &= ~1;
+    set isComputing(a) {
+      a ? this.flags_ |= 1 : this.flags_ &= ~1;
     }
     get isRunningSetter() {
       return 0 != (this.flags_ & 2);
     }
-    set isRunningSetter(t2) {
-      t2 ? this.flags_ |= 2 : this.flags_ &= ~2;
+    set isRunningSetter(a) {
+      a ? this.flags_ |= 2 : this.flags_ &= ~2;
     }
     get isBeingObserved() {
       return 0 != (this.flags_ & 4);
     }
-    set isBeingObserved(t2) {
-      t2 ? this.flags_ |= 4 : this.flags_ &= ~4;
+    set isBeingObserved(a) {
+      a ? this.flags_ |= 4 : this.flags_ &= ~4;
     }
     get isPendingUnobservation() {
       return 0 != (this.flags_ & 8);
     }
-    set isPendingUnobservation(t2) {
-      t2 ? this.flags_ |= 8 : this.flags_ &= ~8;
+    set isPendingUnobservation(a) {
+      a ? this.flags_ |= 8 : this.flags_ &= ~8;
     }
     get diffValue() {
       return 0 != (this.flags_ & 16) ? 1 : 0;
     }
-    set diffValue(t2) {
-      1 == (t2 | 0) ? this.flags_ |= 16 : this.flags_ &= ~16;
+    set diffValue(a) {
+      1 == (a | 0) ? this.flags_ |= 16 : this.flags_ &= ~16;
     }
     suspend_() {
-      this.keepAlive_ || (tt(this), this.value_ = void 0);
+      this.keepAlive_ || (Xb(this), this.value_ = void 0);
     }
     warnAboutUntrackedRead_() {
     }
     toString() {
-      let e2 = this.name_ + "[", r2 = this.derivation;
-      return e2 + r2.toString() + "]";
+      let a = this.name_ + "[", b = this.derivation;
+      return a + b.toString() + "]";
     }
     valueOf() {
-      return Vt(this.get());
+      return zc(this.get());
     }
     [Symbol.toPrimitive]() {
       return this.valueOf();
     }
-    set(t2) {
+    set(a) {
       if (this.setter_) {
-        !this.isRunningSetter || x(33, this.name_), this.isRunningSetter = true;
+        !this.isRunningSetter || ua(33, this.name_), this.isRunningSetter = true;
         try {
-          this.setter_.call(this.scope_, t2);
+          this.setter_.call(this.scope_, a);
         } finally {
           this.isRunningSetter = false;
         }
-      } else x(34, this.name_);
+      } else ua(34, this.name_);
     }
   };
-  X("ComputedValue", h), ka = function(e2, r2) {
-    i();
+  d = Symbol.toPrimitive, Qa("ComputedValue", ha), g = function(a, b) {
+    $();
     try {
-      return e2.apply(r2);
+      return a.apply(b);
     } finally {
-      o();
+      aa();
     }
   };
-  var Ea = function(e2) {
-    return Be(e2);
+  var m = function(a) {
+    return Cb(a);
   };
-  var Va = function(e2, r2) {
-    if (!f(e2)) return false;
-    var a2 = e2[t], n2 = a2.values_;
-    if (n2.has(r2)) return true;
-    a2.lazyComputedKeys_ ? (e2 = a2.lazyComputedKeys_, e2 = !!e2.has(r2)) : e2 = false;
-    if (e2) return true;
-    a2.lazyObservableKeys_ ? (e2 = a2.lazyObservableKeys_, e2 = !!e2.has(r2)) : e2 = false;
-    return e2 ? true : false;
+  var n = function(a, b) {
+    if (!ga(a)) return false;
+    var c = a[X], e2 = c.values_;
+    if (e2.has(b)) return true;
+    c.lazyComputedKeys_ ? (a = c.lazyComputedKeys_, a = !!a.has(b)) : a = false;
+    if (a) return true;
+    c.lazyObservableKeys_ ? (a = c.lazyObservableKeys_, a = !!a.has(b)) : a = false;
+    return a ? true : false;
   };
-  var r = void 0;
-  var Oe = void 0;
-  var ne = void 0;
-  var ae;
-  var Se = void 0;
-  var Ge = void 0;
-  var $ = void 0;
-  var We = void 0;
-  var pt;
-  var Ae;
-  var pe = function(e2) {
-    return e2;
+  var Y = void 0;
+  var qb = void 0;
+  var Za = void 0;
+  var _a;
+  var rb = void 0;
+  var Nb = void 0;
+  var Sa = void 0;
+  var Ob = void 0;
+  var ic;
+  var sb;
+  var ib = function(a) {
+    return a;
   };
-  var Q = function(e2, t2, a2) {
-    return Be(e2) ? e2 : Array.isArray(e2) ? a2 ? r.array.call(r, e2, { name: a2 }) : r.array.call(r, e2) : I(e2) ? a2 ? r.object.call(r, e2, void 0, { name: a2 }) : r.object.call(r, e2) : oe(e2) ? a2 ? r.map.call(r, e2, { name: a2 }) : r.map.call(r, e2) : se(e2) ? a2 ? r.set.call(r, e2, { name: a2 }) : r.set.call(r, e2) : "function" == typeof e2 && !Z(e2) && !ue(e2) ? Et(e2) ? $(e2) : Se(a2, e2) : e2;
+  var Ta = function(a, b, c) {
+    return Cb(a) ? a : Array.isArray(a) ? c ? Y.array.call(Y, a, { name: c }) : Y.array.call(Y, a) : Ia(a) ? c ? Y.object.call(Y, a, void 0, { name: c }) : Y.object.call(Y, a) : ab(a) ? c ? Y.map.call(Y, a, { name: c }) : Y.map.call(Y, a) : bb(a) ? c ? Y.set.call(Y, a, { name: c }) : Y.set.call(Y, a) : "function" == typeof a && !Va(a) && !cb(a) ? yc(a) ? Sa(a) : rb(c, a) : a;
   };
-  Sa = function(e2, t2, a2) {
-    return e2 == null ? e2 : f(e2) || m(e2) || l(e2) || c(e2) ? e2 : Array.isArray(e2) ? r.array.call(r, e2, { name: a2, deep: false }) : I(e2) ? r.object.call(r, e2, void 0, { name: a2, deep: false }) : oe(e2) ? r.map.call(r, e2, { name: a2, deep: false }) : se(e2) ? r.set.call(r, e2, { name: a2, deep: false }) : e2;
+  e = function(a, b, c) {
+    return a == null ? a : ga(a) || oa(a) || da(a) || fa(a) ? a : Array.isArray(a) ? Y.array.call(Y, a, { name: c, deep: false }) : Ia(a) ? Y.object.call(Y, a, void 0, { name: c, deep: false }) : ab(a) ? Y.map.call(Y, a, { name: c, deep: false }) : bb(a) ? Y.set.call(Y, a, { name: c, deep: false }) : a;
   };
-  var Da = function(e2, r2) {
-    return le(e2, r2, -1, void 0, void 0) ? r2 : e2;
+  var o = function(a, b) {
+    return db(a, b, -1, void 0, void 0) ? b : a;
   };
-  var dt = { deep: true, name: void 0, defaultDecorator: void 0 };
-  n.freeze(dt);
-  var s = class extends O {
-    constructor(e2, r2, t2 = "ObservableValue", a2, n2) {
-      var i2 = t2 + "";
-      a2;
-      var o2 = Te;
-      n2 && (o2 = n2), super(i2), this.enhancer_ = r2, this.name_ = i2, this.equals_ = o2, this.hasUnreportedChange_ = false, this.value_ = r2(e2, void 0, i2);
+  var jc = { deep: true, name: void 0, defaultDecorator: void 0 };
+  Object.freeze(jc);
+  var ba = class extends qa {
+    constructor(a, b, c = "ObservableValue", e2, t2) {
+      var d2 = c + "";
+      e2;
+      var r2 = Jb;
+      t2 && (r2 = t2), super(d2), this.enhancer_ = b, this.name_ = d2, this.equals_ = r2, this.hasUnreportedChange_ = false, this.value_ = b(a, void 0, d2);
     }
-    prepareNewValue_(r2) {
-      if (E(this)) {
-        var t2 = V(this, { object: this, type: "update", newValue: r2 });
-        if (!t2) return e.UNCHANGED;
-        r2 = t2.newValue;
+    prepareNewValue_(a) {
+      if (ya(this)) {
+        var b = za(this, { object: this, type: "update", newValue: a });
+        if (!b) return W.UNCHANGED;
+        a = b.newValue;
       }
-      r2 = this.enhancer_(r2, this.value_, this.name_);
-      return true === this.equals_(this.value_, r2) ? e.UNCHANGED : r2;
+      a = this.enhancer_(a, this.value_, this.name_);
+      return true === this.equals_(this.value_, a) ? W.UNCHANGED : a;
     }
-    setNewValue_(e2) {
-      var r2 = this.value_;
-      this.value_ = e2, R(this), P(this) && B(this, { type: "update", object: this, newValue: e2, oldValue: r2 });
+    setNewValue_(a) {
+      var b = this.value_;
+      this.value_ = a, wa(this), Ba(this) && Ca(this, { type: "update", object: this, newValue: a, oldValue: b });
     }
-    set(r2) {
-      r2 = this.prepareNewValue_(r2), r2 === e.UNCHANGED || this.setNewValue_(r2);
+    set(a) {
+      a = this.prepareNewValue_(a), a === W.UNCHANGED || this.setNewValue_(a);
     }
     get() {
-      _(this);
+      ka(this);
       return this.dehancer === void 0 ? this.value_ : this.dehancer(this.value_);
     }
     raw() {
@@ -1198,666 +1203,665 @@ var mobx = (() => {
       return this.get();
     }
     toString() {
-      let e2 = this.name_ + "[";
-      return e2 + this.value_ + "]";
+      let a = this.name_ + "[";
+      return a + this.value_ + "]";
     }
     valueOf() {
-      return Vt(this.get());
+      return zc(this.get());
     }
     [Symbol.toPrimitive]() {
       return this.valueOf();
     }
   };
-  fe = X("ObservableValue", s), Oa = { annotationType_: "override", make_: function(e2, r2) {
+  h = ba.prototype;
+  d = Symbol.toPrimitive, gb = Qa("ObservableValue", ba), d = {}, d.annotationType_ = "override", d.make_ = function(a, b) {
     return 0;
-  }, extend_: function() {
-    x(44, this.annotationType_);
+  }, d.extend_ = function() {
+    ua(44, this.annotationType_);
     return false;
-  } };
-  var _t = (0, function(e2, t2, a2, n2) {
-    if (a2.get) return ne.make_.call(ne, e2, t2, a2, n2);
-    if (a2.set) {
-      var s2 = a2.set;
-      Z(s2) || (s2 = q(k(t2), s2, false, void 0));
-      if (n2 === e2.target_) return e2.defineProperty_(t2, { configurable: true, set: s2 }) == null ? 0 : 2;
-      g(n2, t2, { configurable: true, set: s2 });
+  };
+  var kc = (0, function(a, b, c, e2) {
+    if (c.get) return Za.make_.call(Za, a, b, c, e2);
+    if (c.set) {
+      var r2 = c.set;
+      Va(r2) || (r2 = Ka(ta(b), r2, false, void 0));
+      if (e2 === a.target_) return a.defineProperty_(b, { configurable: true, set: r2 }) == null ? 0 : 2;
+      la(e2, b, { configurable: true, set: r2 });
       return 2;
     }
-    if (n2 !== e2.target_ && "function" == typeof a2.value) {
-      if (Et(a2.value)) {
-        var o2 = $;
-        if (this.options_) var l2 = this.options_, i2 = !!l2.autoBind;
+    if (e2 !== a.target_ && "function" == typeof c.value) {
+      if (yc(c.value)) {
+        var d2 = Sa;
+        if (this.options_) var i2 = this.options_, t2 = !!i2.autoBind;
         else {
-          i2 = false;
+          t2 = false;
         }
-        i2 && (o2 = We);
-        return o2.make_(e2, t2, a2, n2);
+        t2 && (d2 = Ob);
+        return d2.make_(a, b, c, e2);
       }
-      o2 = Se;
-      this.options_ ? (l2 = this.options_, i2 = !!l2.autoBind) : i2 = false, i2 && (o2 = Ge);
-      return o2.make_(e2, t2, a2, n2);
+      d2 = rb;
+      this.options_ ? (i2 = this.options_, t2 = !!i2.autoBind) : t2 = false, t2 && (d2 = Nb);
+      return d2.make_(a, b, c, e2);
     }
-    o2 = r;
-    this.options_ ? (l2 = this.options_, i2 = l2.deep, i2 = false === i2) : i2 = false, i2 && (o2 = Oe), "function" == typeof a2.value && this.options_ && this.options_.autoBind && (s2 = a2.value.bind(w(e2)), a2.value = s2);
-    return o2.make_(e2, t2, a2, n2);
+    d2 = Y;
+    this.options_ ? (i2 = this.options_, t2 = i2.deep, t2 = false === t2) : t2 = false, t2 && (d2 = qb), "function" == typeof c.value && this.options_ && this.options_.autoBind && (r2 = c.value.bind(pa(a)), c.value = r2);
+    return d2.make_(a, b, c, e2);
   });
-  var gt = (0, function(e2, t2, a2, n2) {
-    if (a2.get) return ne.extend_.call(ne, e2, t2, a2, n2);
-    if (a2.set) {
-      var o2 = e2.defineProperty_;
-      return e2.defineProperty_(t2, { configurable: true, set: q(k(t2), a2.set, false, void 0) }, n2);
+  var lc = (0, function(a, b, c, e2) {
+    if (c.get) return Za.extend_.call(Za, a, b, c, e2);
+    if (c.set) {
+      var d2 = a.defineProperty_;
+      return a.defineProperty_(b, { configurable: true, set: Ka(ta(b), c.set, false, void 0) }, e2);
     }
-    var i2;
-    "function" == typeof a2.value && this.options_ && this.options_.autoBind && (o2 = a2.value.bind(w(e2)), a2.value = o2);
-    var s2 = r;
-    this.options_ ? (o2 = this.options_, i2 = o2.deep, i2 = false === i2) : i2 = false, i2 && (s2 = Oe);
-    return s2.extend_(e2, t2, a2, n2);
+    var t2;
+    "function" == typeof c.value && this.options_ && this.options_.autoBind && (d2 = c.value.bind(pa(a)), c.value = d2);
+    var r2 = Y;
+    this.options_ ? (d2 = this.options_, t2 = d2.deep, t2 = false === t2) : t2 = false, t2 && (r2 = qb);
+    return r2.extend_(a, b, c, e2);
   });
-  pt = wa = { annotationType_: "true", options_: void 0, make_: _t, extend_: gt };
-  var yt = n.create(null);
-  var p = class {
-    constructor(e2, r2, t2, a2) {
-      this.target_ = e2, r2 ? this.values_ = r2 : this.values_ = /* @__PURE__ */ new Map(), this.name_ = t2 + "", this.defaultAnnotation_ = pt, a2 && (this.defaultAnnotation_ = a2), this.keysAtom_ = new O("ObservableObject.keys"), this.isPlainObject_ = I(this.target_);
+  h = {}, h.annotationType_ = "true", h.options_ = void 0, h.make_ = kc, h.extend_ = lc, ic = h;
+  var mc = /* @__PURE__ */ Object.create(null);
+  var ia = class {
+    constructor(a, b, c, e2) {
+      this.target_ = a, b ? this.values_ = b : this.values_ = /* @__PURE__ */ new Map(), this.name_ = c + "", this.defaultAnnotation_ = ic, e2 && (this.defaultAnnotation_ = e2), this.keysAtom_ = new qa("ObservableObject.keys"), this.isPlainObject_ = Ia(this.target_);
     }
-    materializeLazyComputed_(e2) {
+    materializeLazyComputed_(a) {
       if (!!this.lazyComputedKeys_) {
-        var r2 = this.lazyComputedKeys_;
-        if (r2 = r2.get(e2)) {
-          var t2 = this.lazyComputedKeys_;
-          t2.delete(e2), t2 = this.lazyComputedKeys_, 0 == t2.size && (this.lazyComputedKeys_ = void 0), r2 = r2(), t2 = this.values_, t2.set(e2, r2);
-          return r2;
+        var b = this.lazyComputedKeys_;
+        if (b = b.get(a)) {
+          var c = this.lazyComputedKeys_;
+          c.delete(a), c = this.lazyComputedKeys_, 0 == c.size && (this.lazyComputedKeys_ = void 0), b = b(), c = this.values_, c.set(a, b);
+          return b;
         }
       }
     }
-    materializeLazyObservable_(e2) {
+    materializeLazyObservable_(a) {
       if (!!this.lazyObservableKeys_) {
-        var r2 = this.lazyObservableKeys_;
-        if (r2 = r2.get(e2)) {
-          var t2 = this.lazyObservableKeys_;
-          t2.delete(e2), t2 = this.lazyObservableKeys_, 0 == t2.size && (this.lazyObservableKeys_ = void 0), r2 = r2(), t2 = this.values_, t2.set(e2, r2);
-          return r2;
+        var b = this.lazyObservableKeys_;
+        if (b = b.get(a)) {
+          var c = this.lazyObservableKeys_;
+          c.delete(a), c = this.lazyObservableKeys_, 0 == c.size && (this.lazyObservableKeys_ = void 0), b = b(), c = this.values_, c.set(a, b);
+          return b;
         }
       }
     }
-    getObservablePropValue_(e2) {
-      var r2 = this.values_;
-      r2 = r2.get(e2), r2 || (r2 = this.materializeLazyComputed_(e2), r2 = r2 || this.materializeLazyObservable_(e2));
-      return r2.get();
+    getObservablePropValue_(a) {
+      var b = this.values_;
+      b = b.get(a), b || (b = this.materializeLazyComputed_(a), b = b || this.materializeLazyObservable_(a));
+      return b.get();
     }
-    setObservablePropValue_(r2, t2) {
-      var a2 = this.values_;
-      a2 = a2.get(r2), a2 = a2 || this.materializeLazyComputed_(r2), a2 = a2 || this.materializeLazyObservable_(r2);
-      if (C(a2)) return a2.set(t2), true;
-      if (E(this)) {
-        var n2 = V(this, { type: "update", object: w(this), name: r2, newValue: t2 });
-        if (!n2) return null;
-        t2 = n2.newValue;
+    setObservablePropValue_(a, b) {
+      var c = this.values_;
+      c = c.get(a), c = c || this.materializeLazyComputed_(a), c = c || this.materializeLazyObservable_(a);
+      if (va(c)) return c.set(b), true;
+      if (ya(this)) {
+        var t2 = za(this, { type: "update", object: pa(this), name: a, newValue: b });
+        if (!t2) return null;
+        b = t2.newValue;
       }
-      t2 = a2.prepareNewValue_(t2);
-      if (t2 !== e.UNCHANGED) {
-        var i2 = P(this);
-        n2 = null;
-        if (i2 || false) n2 = this.name_, l = a2.value_, n2 = { type: "update", observableKind: "object", debugObjectName: n2, object: w(this), oldValue: l, name: r2, newValue: t2 };
-        a2.setNewValue_(t2), i2 && B(this, n2);
+      b = c.prepareNewValue_(b);
+      if (b !== W.UNCHANGED) {
+        var d2 = Ba(this);
+        t2 = null;
+        if (d2 || false) t2 = this.name_, e = c.value_, t2 = { type: "update", observableKind: "object", debugObjectName: t2, object: pa(this), oldValue: e, name: a, newValue: b };
+        c.setNewValue_(b), d2 && Ca(this, t2);
       }
       return true;
     }
-    get_(r2) {
-      if (e.trackingDerivation) {
-        var t2 = this.target_;
-        t2 = !U.call(t2, r2);
+    get_(a) {
+      if (W.trackingDerivation) {
+        var b = this.target_;
+        b = !La.call(b, a);
       } else {
-        t2 = false;
+        b = false;
       }
-      t2 && this.has_(r2);
-      return this.target_[r2];
+      b && this.has_(a);
+      return this.target_[a];
     }
-    set_(e2, r2) {
-      return Xt(this, e2, r2, false);
+    set_(a, b) {
+      return Nc(this, a, b, false);
     }
-    has_(r2) {
-      if (!e.trackingDerivation) return true === r2 in this.target_;
+    has_(a) {
+      if (!W.trackingDerivation) return true === a in this.target_;
       this.pendingKeys_ || (this.pendingKeys_ = /* @__PURE__ */ new Map());
-      var t2 = this.pendingKeys_;
-      t2 = t2.get(r2);
-      if (!t2) t2 = s, t2 = new t2(true === r2 in this.target_, pe, "ObservableObject.key?", false), this.pendingKeys_.set(r2, t2);
-      return t2.get();
-    }
-    extend_(e2, r2, t2, a2) {
-      var n2 = t2;
-      true === n2 && (n2 = this.defaultAnnotation_);
-      if (false === n2) return this.defineProperty_(e2, r2, a2);
-      var i2 = n2.extend_(this, e2, r2, a2);
-      if (i2) {
-      }
-      return i2;
-    }
-    notifyPropertyAddition_(e2, r2) {
-      var t2 = P(this);
-      (t2 || false) && (r2 = { type: "add", observableKind: "object", debugObjectName: this.name_, object: w(this), name: e2, newValue: r2 }, t2 && B(this, r2)), !this.pendingKeys_ || (r2 = this.pendingKeys_, e2 = r2.get(e2), !e2 || e2.set(true)), R(this.keysAtom_);
-    }
-    defineProperty_(e2, r2, t2) {
-      t2 = !!t2;
-      try {
-        i();
-        var s2 = this.delete_(e2);
-        if (!s2) return s2;
-        if (E(this)) {
-          var a2 = w(this), n2 = V(this, { object: a2, name: e2, type: "add", newValue: r2.value });
-          if (!n2) return null;
-          a2 = r2.value, a2 === n2.newValue || (a2 = r2 = A({}, r2), r2.value = n2.newValue);
-        }
-        if (t2 && (t2 = this.target_, true !== Reflect.defineProperty(t2, e2, r2))) return false;
-        else {
-          g(this.target_, e2, r2);
-        }
-        this.notifyPropertyAddition_(e2, r2.value);
-      } finally {
-        o();
-      }
-      return true;
-    }
-    defineObservableProperty_(r2, t2, a2, n2) {
-      var u2 = t2;
-      try {
-        i();
-        var b2 = this.delete_(r2);
-        if (!b2) return b2;
-        if (E(this)) {
-          var c2 = V(this, { object: w(this), name: r2, type: "add", newValue: u2 });
-          if (!c2) return null;
-          u2 = c2.newValue;
-        }
-        var m2 = Ft(r2), d2 = true;
-        !e.safeDescriptors || (d2 = !!this.isPlainObject_);
-        var l2 = d2, y2 = m2.get, S2 = { configurable: l2, enumerable: true, get: y2, set: m2.set };
-        if (n2 && (l2 = this.target_, true !== Reflect.defineProperty(l2, r2, S2))) return false;
-        else {
-          g(this.target_, r2, S2);
-        }
-        l2 = new s(u2, a2, ya, false);
-        this.values_.set(r2, l2), this.notifyPropertyAddition_(r2, l2.value_);
-      } finally {
-        o();
-      }
-      return true;
-    }
-    defineComputedProperty_(r2, t2, a2) {
-      a2 = !!a2;
-      try {
-        i();
-        var n2 = this.delete_(r2);
-        if (!n2) return n2;
-        if (E(this)) {
-          var b2 = V(this, { object: w(this), name: r2, type: "add", newValue: void 0 });
-          if (!b2) return null;
-        }
-        t2.name || (t2.name = ya);
-        t2.context = w(this);
-        var s2 = Ft(r2), l2 = true;
-        !e.safeDescriptors || (l2 = !!this.isPlainObject_);
-        var c2 = s2.get, u2 = { configurable: l2, enumerable: false, get: c2, set: s2.set };
-        if (a2 && (a2 = this.target_, true !== Reflect.defineProperty(a2, r2, u2))) return false;
-        else {
-          g(this.target_, r2, u2);
-        }
-        this.values_.set(r2, new h(t2));
-        this.notifyPropertyAddition_(r2, void 0);
-      } finally {
-        o();
-      }
-      return true;
-    }
-    delete_(e2, r2) {
-      var a2 = !!r2;
-      r2 = this.target_;
-      if (!U.call(r2, e2)) return true;
-      if (E(this) && !V(this, { object: w(this), name: e2, type: "remove" })) return null;
-      try {
-        i();
-        var l2 = P(this);
-        r2 = false;
-        var u2, b2 = r2, c2 = this.values_, s2 = c2.get(e2);
-        if (!s2 && (l2 || b2)) {
-          r2 = this.target_;
-          var t2 = n.getOwnPropertyDescriptor(r2, e2);
-          t2 && (u2 = t2.value);
-        }
-        if (a2 && (r2 = this.target_, true !== Reflect.deleteProperty(r2, e2))) return false;
-        else {
-          r2 = this.target_, true === Reflect.deleteProperty(r2, e2) || ((e3) => {
-            throw new TypeError(e3);
-          })("Cannot delete property '" + k(e2) + "'");
-        }
-        r2 = false;
-        r2 && delete this.appliedAnnotations_[e2], s2 && (r2 = this.values_, r2.delete(e2), !fe(s2) || (u2 = s2.value_), Nt(s2)), R(this.keysAtom_), this.pendingKeys_ && (r2 = this.pendingKeys_, t2 = r2.get(e2), t2 && (r2 = t2.set, a2 = t2, r2.call(a2, true === e2 in this.target_)));
-        if (l2 || b2) {
-          a2 = this.name_;
-          var m2 = { type: "remove", observableKind: "object", object: w(this), debugObjectName: a2, oldValue: u2, name: e2 };
-          if (e2 = false) {
-          }
-          l2 && B(this, m2);
-          if (false) {
-          }
-        }
-      } finally {
-        o();
-      }
-      return true;
-    }
-    ownKeys_() {
-      _(this.keysAtom_);
-      let e2 = this.target_;
-      return Reflect.ownKeys(e2);
-    }
-    keys_() {
-      _(this.keysAtom_);
-      let e2 = this.target_;
-      return n.keys(e2);
+      var b = this.pendingKeys_;
+      b = b.get(a);
+      if (!b) b = ba, b = new b(true === a in this.target_, ib, "ObservableObject.key?", false), this.pendingKeys_.set(a, b);
+      return b.get();
     }
   };
-  vt = X("ObservableObjectAdministration", p);
-  var ie = function(e2, r2) {
-    if (U.call(e2, t)) return e2;
-    var a2;
-    a2 = r2 && r2.name ? r2.name + "" : "ObservableObject", a2 = new p(e2, /* @__PURE__ */ new Map(), a2, ((e3) => {
-      if (e3) {
-        if (e3.defaultDecorator !== void 0) return e3.defaultDecorator;
-        if (e3.autoBind || false === e3.deep) return { annotationType_: "true", options_: e3, make_: _t, extend_: gt };
+  h = ia.prototype;
+  var Vi = function(a, b, c, e2) {
+    var t2 = c;
+    true === t2 && (t2 = this.defaultAnnotation_);
+    if (false === t2) return this.defineProperty_(a, b, e2);
+    var d2 = t2.extend_(this, a, b, e2);
+    if (d2) {
+    }
+    return d2;
+  };
+  h.extend_ = Vi, h = ia.prototype, h.notifyPropertyAddition_ = function(a, b) {
+    var c = Ba(this);
+    (c || false) && (b = { type: "add", observableKind: "object", debugObjectName: this.name_, object: pa(this), name: a, newValue: b }, c && Ca(this, b)), !this.pendingKeys_ || (b = this.pendingKeys_, a = b.get(a), !a || a.set(true)), wa(this.keysAtom_);
+  }, h = ia.prototype, h.defineProperty_ = function(a, b, c) {
+    c = !!c;
+    try {
+      $();
+      var d2 = this.delete_(a);
+      if (!d2) return d2;
+      if (ya(this)) {
+        var e2 = pa(this), t2 = za(this, { object: e2, name: a, type: "add", newValue: b.value });
+        if (!t2) return null;
+        e2 = b.value, e2 === t2.newValue || (e2 = b = sa({}, b), b.value = t2.newValue);
       }
-    })(r2)), g(e2, t, { enumerable: false, writable: true, configurable: true, value: a2 });
-    return e2;
-  };
-  var H = { has: function(e2, r2) {
-    let a2 = e2[t];
-    return a2.has_.call(e2[t], r2);
-  } };
-  H.get = function(e2, r2) {
-    let a2 = e2[t];
-    return a2.get_.call(e2[t], r2);
-  }, H.set = function(e2, r2, a2) {
-    if (!Qe(r2)) return false;
-    var n2 = Xt(e2[t], r2, a2, true);
-    return n2 == null ? true : !!n2;
-  }, H.deleteProperty = function(e2, r2) {
-    if (!Qe(r2)) return false;
-    var n2 = e2[t], a2 = n2.delete_.call(e2[t], r2, true);
-    return a2 == null ? true : !!a2;
-  }, H.defineProperty = function(e2, r2, a2) {
-    var i2 = e2[t], n2 = i2.defineProperty_.call(e2[t], r2, a2);
-    return n2 == null ? true : !!n2;
-  }, H.ownKeys = function(e2) {
-    let r2 = e2[t];
-    return r2.ownKeys_.call(e2[t]);
-  }, H.preventExtensions = function(e2) {
-    u(13);
-    return false;
-  };
-  var d = {};
-  var ke = {};
-  ke.get = function(e2, r2) {
-    var a2 = e2[t];
-    return r2 === t ? a2 : "length" === r2 ? a2.getArrayLength_() : "string" == typeof r2 && true !== isNaN(r2) ? a2.get_(parseInt(r2)) : U.call(d, r2) ? d[r2] : e2[r2];
-  }, ke.set = function(e2, r2, a2) {
-    var n2 = e2[t];
-    "length" === r2 && n2.setArrayLength_(a2);
-    "symbol" == typeof r2 || true === isNaN(r2) ? e2[r2] = a2 : n2.set_(parseInt(r2), a2);
+      if (c && (c = this.target_, true !== Reflect.defineProperty(c, a, b))) return false;
+      else {
+        la(this.target_, a, b);
+      }
+      this.notifyPropertyAddition_(a, b.value);
+    } finally {
+      aa();
+    }
     return true;
-  }, ke.preventExtensions = function() {
-    u(15);
+  }, h = ia.prototype, h.defineObservableProperty_ = function(a, b, c, e2) {
+    var t2 = b;
+    try {
+      $();
+      var r2 = this.delete_(a);
+      if (!r2) return r2;
+      if (ya(this)) {
+        var i2 = za(this, { object: pa(this), name: a, type: "add", newValue: t2 });
+        if (!i2) return null;
+        t2 = i2.newValue;
+      }
+      var f2 = Mc(a), n2 = true;
+      !W.safeDescriptors || (n2 = !!this.isPlainObject_);
+      var d2 = n2, g2 = f2.get, s2 = { configurable: d2, enumerable: true, get: g2, set: f2.set };
+      if (e2 && (d2 = this.target_, true !== Reflect.defineProperty(d2, a, s2))) return false;
+      else {
+        la(this.target_, a, s2);
+      }
+      d2 = new ba(t2, c, Ye, false);
+      this.values_.set(a, d2), this.notifyPropertyAddition_(a, d2.value_);
+    } finally {
+      aa();
+    }
+    return true;
+  }, h = ia.prototype, h.defineComputedProperty_ = function(a, b, c) {
+    c = !!c;
+    try {
+      $();
+      var e2 = this.delete_(a);
+      if (!e2) return e2;
+      if (ya(this)) {
+        var i2 = za(this, { object: pa(this), name: a, type: "add", newValue: void 0 });
+        if (!i2) return null;
+      }
+      b.name || (b.name = Ye);
+      b.context = pa(this);
+      var t2 = Mc(a), d2 = true;
+      !W.safeDescriptors || (d2 = !!this.isPlainObject_);
+      var f2 = t2.get, r2 = { configurable: d2, enumerable: false, get: f2, set: t2.set };
+      if (c && (c = this.target_, true !== Reflect.defineProperty(c, a, r2))) return false;
+      else {
+        la(this.target_, a, r2);
+      }
+      this.values_.set(a, new ha(b));
+      this.notifyPropertyAddition_(a, void 0);
+    } finally {
+      aa();
+    }
+    return true;
+  }, h = ia.prototype, h.delete_ = function(a, b) {
+    var c = !!b;
+    b = this.target_;
+    if (!La.call(b, a)) return true;
+    if (ya(this) && !za(this, { object: pa(this), name: a, type: "remove" })) return null;
+    try {
+      $();
+      var t2 = Ba(this);
+      b = false;
+      var d2, i2 = b, n2 = this.values_, e2 = n2.get(a);
+      if (!e2 && (t2 || i2)) {
+        b = this.target_;
+        var f2 = Z.getOwnPropertyDescriptor(b, a);
+        f2 && (d2 = f2.value);
+      }
+      if (c && (b = this.target_, true !== Reflect.deleteProperty(b, a))) return false;
+      else {
+        b = this.target_, true === Reflect.deleteProperty(b, a) || ((a2) => {
+          throw new TypeError(a2);
+        })("Cannot delete property '" + ta(a) + "'");
+      }
+      b = false;
+      b && delete this.appliedAnnotations_[a], e2 && (b = this.values_, b.delete(a), !gb(e2) || (d2 = e2.value_), Dc(e2)), wa(this.keysAtom_), this.pendingKeys_ && (b = this.pendingKeys_, f2 = b.get(a), f2 && (b = f2.set, c = f2, b.call(c, true === a in this.target_)));
+      if (t2 || i2) {
+        c = this.name_;
+        var s2 = { type: "remove", observableKind: "object", object: pa(this), debugObjectName: c, oldValue: d2, name: a };
+        if (a = false) {
+        }
+        t2 && Ca(this, s2);
+        if (false) {
+        }
+      }
+    } finally {
+      aa();
+    }
+    return true;
+  }, h = ia.prototype, h.ownKeys_ = function() {
+    ka(this.keysAtom_);
+    let a = this.target_;
+    return Reflect.ownKeys(a);
+  }, h = ia.prototype, h.keys_ = function() {
+    ka(this.keysAtom_);
+    let a = this.target_;
+    return Z.keys(a);
+  }, ec = Qa("ObservableObjectAdministration", ia);
+  var $a = function(a, b) {
+    if (La.call(a, X)) return a;
+    var c;
+    c = b && b.name ? b.name + "" : "ObservableObject", c = new ia(a, /* @__PURE__ */ new Map(), c, ((a2) => {
+      if (a2) {
+        if (a2.defaultDecorator !== void 0) return a2.defaultDecorator;
+        if (a2.autoBind || false === a2.deep) {
+          var b2 = {};
+          b2.annotationType_ = "true", b2.options_ = a2, b2.make_ = kc, b2.extend_ = lc;
+          return b2;
+        }
+      }
+    })(b)), la(a, X, { enumerable: false, writable: true, configurable: true, value: c });
+    return a;
+  };
+  var Ma = {};
+  Ma.has = function(a, b) {
+    let c = a[X];
+    return c.has_.call(a[X], b);
+  }, Ma.get = function(a, b) {
+    let c = a[X];
+    return c.get_.call(a[X], b);
+  }, Ma.set = function(a, b, c) {
+    if (!Tb(b)) return false;
+    var e2 = Nc(a[X], b, c, true);
+    return e2 == null ? true : !!e2;
+  }, Ma.deleteProperty = function(a, b) {
+    if (!Tb(b)) return false;
+    var e2 = a[X], c = e2.delete_.call(a[X], b, true);
+    return c == null ? true : !!c;
+  }, Ma.defineProperty = function(a, b, c) {
+    var t2 = a[X], e2 = t2.defineProperty_.call(a[X], b, c);
+    return e2 == null ? true : !!e2;
+  }, Ma.ownKeys = function(a) {
+    let b = a[X];
+    return b.ownKeys_.call(a[X]);
+  }, Ma.preventExtensions = function(a) {
+    ca(13);
     return false;
   };
-  var L = class {
-    constructor(e2 = "ObservableArray", r2, t2) {
-      var a2 = e2 + "";
-      this.owned_ = false, t2 !== void 0 && (this.owned_ = !!t2), this.atom_ = new O(a2), this.values_ = [], this.interceptors_ = void 0, this.changeListeners_ = void 0, this.dehancer = void 0, this.proxy_ = void 0, this.lastKnownLength_ = 0;
-      var n2 = "ObservableArray[..]";
-      this.enhancer_ = function(e3, t3, a3) {
-        return r2(e3, t3, n2);
+  var ja = {};
+  var tb = {};
+  tb.get = function(a, b) {
+    var c = a[X];
+    return b === X ? c : "length" === b ? c.getArrayLength_() : "string" == typeof b && true !== isNaN(b) ? c.get_(parseInt(b)) : La.call(ja, b) ? ja[b] : a[b];
+  }, tb.set = function(a, b, c) {
+    var e2 = a[X];
+    "length" === b && e2.setArrayLength_(c);
+    "symbol" == typeof b || true === isNaN(b) ? a[b] = c : e2.set_(parseInt(b), c);
+    return true;
+  }, tb.preventExtensions = function() {
+    ca(15);
+    return false;
+  };
+  var Ga = class {
+    constructor(a = "ObservableArray", b, c) {
+      var e2 = a + "";
+      this.owned_ = false, c !== void 0 && (this.owned_ = !!c), this.atom_ = new qa(e2), this.values_ = [], this.interceptors_ = void 0, this.changeListeners_ = void 0, this.dehancer = void 0, this.proxy_ = void 0, this.lastKnownLength_ = 0;
+      var t2 = "ObservableArray[..]";
+      this.enhancer_ = function(a2, c2, e3) {
+        return b(a2, c2, t2);
       };
     }
-    dehanceValue_(e2) {
-      return this.dehancer !== void 0 ? this.dehancer(e2) : e2;
+    dehanceValue_(a) {
+      return this.dehancer !== void 0 ? this.dehancer(a) : a;
     }
-    dehanceValues_(e2) {
-      return this.dehancer !== void 0 && e2.length > 0 ? e2.map(this.dehancer) : e2;
+    dehanceValues_(a) {
+      return this.dehancer !== void 0 && a.length > 0 ? a.map(this.dehancer) : a;
     }
     getArrayLength_() {
-      _(this.atom_);
-      let e2 = this.values_;
-      return e2.length;
+      ka(this.atom_);
+      let a = this.values_;
+      return a.length;
     }
-    setArrayLength_(e2) {
-      ("number" != typeof e2 || true === Number.isNaN(e2) || (e2 | 0) < 0) && x(40, e2), e2 = e2 | 0;
-      var t2 = this.values_, r2 = t2.length;
-      if (e2 != r2) e2 > r2 ? (e2 = new Array(e2 - r2 | 0), this.spliceWithArray_(r2, 0, e2)) : this.spliceWithArray_(e2, r2 - e2 | 0);
+    setArrayLength_(a) {
+      ("number" != typeof a || true === Number.isNaN(a) || (a | 0) < 0) && ua(40, a), a = a | 0;
+      var c = this.values_, b = c.length;
+      if (a != b) a > b ? (a = new Array(a - b | 0), this.spliceWithArray_(b, 0, a)) : this.spliceWithArray_(a, b - a | 0);
     }
-    spliceWithArray_(e2 = 0, r2, t2) {
-      var a2 = this.values_, n2 = a2.length, i2 = e2 | 0;
-      a2 = 1 == arguments.length ? n2 - i2 | 0 : r2 !== void 0 && r2 != null ? r2 | 0 : 0, n2 = void 0, n2 = t2;
-      return Ke(this, i2, a2, t2);
+    spliceWithArray_(a = 0, b, c) {
+      var e2 = this.values_, t2 = e2.length, d2 = a | 0;
+      e2 = 1 == arguments.length ? t2 - d2 | 0 : b !== void 0 && b != null ? b | 0 : 0, t2 = void 0, t2 = c;
+      return Fb(this, d2, e2, c);
     }
-    get_(e2) {
-      _(this.atom_);
-      let r2 = this.dehanceValue_;
-      return this.dehanceValue_(this.values_[e2]);
+    get_(a) {
+      ka(this.atom_);
+      let b = this.dehanceValue_;
+      return this.dehanceValue_(this.values_[a]);
     }
-    set_(e2, r2) {
-      e2 |= 0;
-      var t2 = this.values_;
-      if (e2 < t2.length) {
-        var n2 = t2[e2];
-        if (E(this)) {
-          var a2 = this.proxy_;
-          a2 = V(this, { type: "update", object: a2, index: e2, newValue: r2 });
-          if (!a2) return;
-          r2 = a2.newValue;
+    set_(a, b) {
+      a |= 0;
+      var c = this.values_;
+      if (a < c.length) {
+        var t2 = c[a];
+        if (ya(this)) {
+          var e2 = this.proxy_;
+          e2 = za(this, { type: "update", object: e2, index: a, newValue: b });
+          if (!e2) return;
+          b = e2.newValue;
         }
-        r2 = this.enhancer_(r2, n2);
-        r2 === n2 || (t2[e2] = r2, ((e3, r3, t3, a3) => {
-          var i3, o2, s2 = P(e3), n3 = null;
-          s2 && (n3 = e3.proxy_, i3 = e3.atom_, o2 = i3.name_, n3 = { observableKind: "array", object: n3, type: "update", debugObjectName: o2, index: r3, newValue: t3, oldValue: a3 }), R(e3.atom_), s2 && B(e3, n3);
-        })(this, e2, r2, n2));
+        b = this.enhancer_(b, t2);
+        b === t2 || (c[a] = b, ((a2, b2, c2, e3) => {
+          var d3, r2, i2 = Ba(a2), t3 = null;
+          i2 && (t3 = a2.proxy_, d3 = a2.atom_, r2 = d3.name_, t3 = { observableKind: "array", object: t3, type: "update", debugObjectName: r2, index: b2, newValue: c2, oldValue: e3 }), wa(a2.atom_), i2 && Ca(a2, t3);
+        })(this, a, b, t2));
       } else {
-        e2++, e2 = new Array(e2 - t2.length);
-        var i2 = e2.length - 1 | 0;
-        e2[i2] = r2, Ke(this, t2.length, 0, e2);
+        a++, a = new Array(a - c.length);
+        var d2 = a.length - 1 | 0;
+        a[d2] = b, Fb(this, c.length, 0, a);
       }
     }
   };
-  var pr = function(e2, r2, a2, n2) {
-    var i2 = "ObservableArray";
-    a2 !== void 0 && (i2 = a2 + "");
-    var o2 = false;
-    o2 = !!n2;
-    return ee(function() {
-      var a3 = new L(i2, r2, o2), n3 = a3.values_;
-      g(n3, t, { enumerable: false, writable: false, configurable: true, value: a3 }), n3 = a3.values_, n3 = new Proxy(n3, ke), a3.proxy_ = n3;
-      var s2;
-      e2 && e2.length > 0 && (s2 = a3.spliceWithArray_, a3.spliceWithArray_(0, 0, e2));
-      return n3;
+  var fd = function(a, b, c, e2) {
+    var t2 = "ObservableArray";
+    c !== void 0 && (t2 = c + "");
+    var d2 = false;
+    d2 = !!e2;
+    return Wa(function() {
+      var c2 = new Ga(t2, b, d2), e3 = c2.values_;
+      la(e3, X, { enumerable: false, writable: false, configurable: true, value: c2 }), e3 = c2.values_, e3 = new Proxy(e3, tb), c2.proxy_ = e3;
+      var r2;
+      a && a.length > 0 && (r2 = c2.spliceWithArray_, c2.spliceWithArray_(0, 0, a));
+      return e3;
     });
   };
-  lt = X("ObservableArrayAdministration", L), d.clear = function() {
+  dc = Qa("ObservableArrayAdministration", Ga), ja.clear = function() {
     return this.splice(0);
-  }, d.replace = function(e2) {
-    let r2 = this[t], n2 = r2.spliceWithArray_, a2 = r2.values_;
-    return r2.spliceWithArray_(0, a2.length, e2);
-  }, d.toJSON = function() {
+  }, ja.replace = function(a) {
+    let b = this[X], e2 = b.spliceWithArray_, c = b.values_;
+    return b.spliceWithArray_(0, c.length, a);
+  }, ja.toJSON = function() {
     return this.slice();
-  }, d.splice = function(e2, r2) {
-    var a2 = this[t];
+  }, ja.splice = function(a, b) {
+    var c = this[X];
     if (0 == arguments.length) return [];
-    if (1 == arguments.length) return a2.spliceWithArray_(e2);
-    if (2 == arguments.length) return a2.spliceWithArray_(e2, r2);
-    var n2 = J.call(arguments, 2, arguments.length);
-    return a2.spliceWithArray_(e2, r2, n2);
-  }, d.spliceWithArray = function() {
-    let e2 = this[t];
-    return e2.spliceWithArray_.apply(this[t], arguments);
-  }, d.push = function() {
-    let e2 = this[t], r2 = e2.values_;
-    Ke(e2, r2.length, 0, arguments);
-    return e2.values_.length;
-  }, d.pop = function() {
-    var r2 = this[t], a2 = r2.values_, e2 = a2.length - 1 | 0;
-    e2 < 0 && (e2 = 0);
-    return this.splice(e2, 1)[0];
-  }, d.shift = function() {
+    if (1 == arguments.length) return c.spliceWithArray_(a);
+    if (2 == arguments.length) return c.spliceWithArray_(a, b);
+    var e2 = Ra.call(arguments, 2, arguments.length);
+    return c.spliceWithArray_(a, b, e2);
+  }, ja.spliceWithArray = function() {
+    let a = this[X];
+    return a.spliceWithArray_.apply(this[X], arguments);
+  }, ja.push = function() {
+    let a = this[X], b = a.values_;
+    Fb(a, b.length, 0, arguments);
+    return a.values_.length;
+  }, ja.pop = function() {
+    var b = this[X], c = b.values_, a = c.length - 1 | 0;
+    a < 0 && (a = 0);
+    return this.splice(a, 1)[0];
+  }, ja.shift = function() {
     return this.splice(0, 1)[0];
-  }, d.unshift = function() {
-    let e2 = this[t];
-    Ke(e2, 0, 0, arguments);
-    return e2.values_.length;
-  }, d.reverse = function() {
-    return !e.trackingDerivation || x(37, "reverse"), this.replace(this.slice().reverse()), this;
-  }, d.sort = function() {
-    !e.trackingDerivation || x(37, "sort");
-    var r2 = this.slice();
-    r2.sort.apply(r2, arguments), this.replace(r2);
+  }, ja.unshift = function() {
+    let a = this[X];
+    Fb(a, 0, 0, arguments);
+    return a.values_.length;
+  }, ja.reverse = function() {
+    return !W.trackingDerivation || ua(37, "reverse"), this.replace(this.slice().reverse()), this;
+  }, ja.sort = function() {
+    !W.trackingDerivation || ua(37, "sort");
+    var a = this.slice();
+    a.sort.apply(a, arguments), this.replace(a);
     return this;
-  }, d.remove = function(e2) {
-    var r2 = this[t];
-    e2 = +r2.dehanceValues_(r2.values_).indexOf(e2);
-    return e2 > -1 ? (this.splice(e2, 1), true) : false;
-  }, S("at"), S("concat"), S("flat"), S("includes"), S("indexOf"), S("join"), S("lastIndexOf"), S("slice"), S("toString"), S("toLocaleString"), S("toSorted"), S("toSpliced"), S("with"), N("every"), N("filter"), N("find"), N("findIndex"), N("findLast"), N("findLastIndex"), N("flatMap"), N("forEach"), N("map"), N("some"), N("toReversed"), Jt("reduce"), Jt("reduceRight");
-  var dr = {};
-  var a = class {
-    constructor(e2, r2, a2 = "ObservableMap") {
-      var n2 = this;
-      n2[t] = dr, n2.enhancer_ = Q, r2 && (n2.enhancer_ = r2), r2 = a2 + "", n2.name_ = r2, n2.interceptors_ = void 0, n2.changeListeners_ = void 0, n2.dehancer = void 0, ee(function() {
-        n2.keysAtom_ = Ue("ObservableMap.keys()"), n2.data_ = /* @__PURE__ */ new Map(), n2.hasMap_ = /* @__PURE__ */ new Map(), !e2 || n2.merge(e2);
+  }, ja.remove = function(a) {
+    var b = this[X];
+    a = +b.dehanceValues_(b.values_).indexOf(a);
+    return a > -1 ? (this.splice(a, 1), true) : false;
+  }, ra("at"), ra("concat"), ra("flat"), ra("includes"), ra("indexOf"), ra("join"), ra("lastIndexOf"), ra("slice"), ra("toString"), ra("toLocaleString"), ra("toSorted"), ra("toSpliced"), ra("with"), Da("every"), Da("filter"), Da("find"), Da("findIndex"), Da("findLast"), Da("findLastIndex"), Da("flatMap"), Da("forEach"), Da("map"), Da("some"), Da("toReversed"), Oc("reduce"), Oc("reduceRight");
+  var gd = {};
+  var _ = class {
+    constructor(a, b, c = "ObservableMap") {
+      var e2 = this;
+      e2[X] = gd, e2.enhancer_ = Ta, b && (e2.enhancer_ = b), b = c + "", e2.name_ = b, e2.interceptors_ = void 0, e2.changeListeners_ = void 0, e2.dehancer = void 0, Wa(function() {
+        e2.keysAtom_ = Lb("ObservableMap.keys()"), e2.data_ = /* @__PURE__ */ new Map(), e2.hasMap_ = /* @__PURE__ */ new Map(), !a || e2.merge(a);
       });
     }
-    has_(e2) {
-      let r2 = this.data_;
-      return !!r2.has(e2);
+    has_(a) {
+      let b = this.data_;
+      return !!b.has(a);
     }
-    has(r2) {
-      var a2 = this;
-      if (!e.trackingDerivation) return a2.has_(r2);
-      var t2 = a2.hasMap_;
-      t2 = t2.get(r2);
-      if (!t2) t2 = s, t2 = new t2(a2.has_(r2), pe, "ObservableMap.key?", false), a2.hasMap_.set(r2, t2), t2.onBUOL = /* @__PURE__ */ new Set(), t2.onBUOL.add(function() {
-        a2.hasMap_.delete(r2);
+    has(a) {
+      var c = this;
+      if (!W.trackingDerivation) return c.has_(a);
+      var b = c.hasMap_;
+      b = b.get(a);
+      if (!b) b = ba, b = new b(c.has_(a), ib, "ObservableMap.key?", false), c.hasMap_.set(a, b), b.onBUOL = /* @__PURE__ */ new Set(), b.onBUOL.add(function() {
+        c.hasMap_.delete(a);
       });
-      return t2.get();
+      return b.get();
     }
-    set(t2, r2) {
-      var n2 = this.data_, a2 = !!n2.has(t2);
-      if (E(this)) {
-        n2 = a2 ? "update" : "add", n2 = V(this, { type: n2, object: this, newValue: r2, name: t2 });
-        if (!n2) return this;
-        r2 = n2.newValue;
+    set(a, b) {
+      var c = this.data_, e2 = !!c.has(a);
+      if (ya(this)) {
+        c = e2 ? "update" : "add", c = za(this, { type: c, object: this, newValue: b, name: a });
+        if (!c) return this;
+        b = c.newValue;
       }
-      a2 ? this.updateValue_(t2, r2) : this.addValue_(t2, r2);
+      e2 ? this.updateValue_(a, b) : this.addValue_(a, b);
       return this;
     }
-    updateValue_(r2, t2) {
-      var a2 = this.data_;
-      a2 = a2.get(r2), t2 = a2.prepareNewValue_(t2);
-      if (t2 !== e.UNCHANGED) {
-        var i2, o2 = P(this), n2 = null;
-        o2 && (n2 = this.name_, i2 = a2.value_, n2 = { observableKind: "map", debugObjectName: n2, type: "update", object: this, oldValue: i2, name: r2, newValue: t2 }), a2.setNewValue_(t2), o2 && B(this, n2);
+    updateValue_(a, b) {
+      var c = this.data_;
+      c = c.get(a), b = c.prepareNewValue_(b);
+      if (b !== W.UNCHANGED) {
+        var t2, d2 = Ba(this), e2 = null;
+        d2 && (e2 = this.name_, t2 = c.value_, e2 = { observableKind: "map", debugObjectName: e2, type: "update", object: this, oldValue: t2, name: a, newValue: b }), c.setNewValue_(b), d2 && Ca(this, e2);
       }
     }
-    addValue_(e2, r2) {
-      i();
+    addValue_(a, b) {
+      $();
       try {
-        var b2 = "ObservableMap.key", n2 = new s(r2, this.enhancer_, b2, false);
-        this.data_.set(e2, n2), r2 = n2.value_;
-        var t2 = this.hasMap_, a2 = t2.get(e2);
-        !a2 || a2.setNewValue_.call(a2, true), R(this.keysAtom_);
+        var i2 = "ObservableMap.key", t2 = new ba(b, this.enhancer_, i2, false);
+        this.data_.set(a, t2), b = t2.value_;
+        var c = this.hasMap_, e2 = c.get(a);
+        !e2 || e2.setNewValue_.call(e2, true), wa(this.keysAtom_);
       } finally {
-        o();
+        aa();
       }
-      t2 = false;
-      var l2 = P(this), u2 = null;
-      l2 && (t2 = true), t2 && (t2 = this.name_, u2 = { observableKind: "map", debugObjectName: t2, type: "add", object: this, name: e2, newValue: r2 }), l2 && B(this, u2);
+      c = false;
+      var d2 = Ba(this), r2 = null;
+      d2 && (c = true), c && (c = this.name_, r2 = { observableKind: "map", debugObjectName: c, type: "add", object: this, name: a, newValue: b }), d2 && Ca(this, r2);
     }
-    delete(r2) {
-      if (E(this) && !V(this, { type: "delete", object: this, name: r2 })) return false;
-      var n2 = this.data_;
-      if (n2.has(r2)) {
-        n2 = false;
-        var s2 = P(this), a2 = null;
-        s2 && (n2 = true);
-        if (n2) n2 = this.name_, a2 = this.data_.get(r2).value_, a2 = { observableKind: "map", debugObjectName: n2, type: "delete", object: this, oldValue: a2, name: r2 };
-        i();
+    delete(a) {
+      if (ya(this) && !za(this, { type: "delete", object: this, name: a })) return false;
+      var b = this.data_;
+      if (b.has(a)) {
+        b = false;
+        var t2 = Ba(this), c = null;
+        t2 && (b = true);
+        if (b) b = this.name_, c = this.data_.get(a).value_, c = { observableKind: "map", debugObjectName: b, type: "delete", object: this, oldValue: c, name: a };
+        $();
         try {
-          R(this.keysAtom_), n2 = this.hasMap_;
-          var Q2 = n2.get(r2);
-          !Q2 || Q2.setNewValue_.call(Q2, false), n2 = this.data_;
-          var Y2 = n2.get(r2);
-          Y2.setNewValue_.call(Y2, void 0), n2 = this.data_, n2.delete(r2);
+          wa(this.keysAtom_), b = this.hasMap_;
+          var e2 = b.get(a);
+          !e2 || e2.setNewValue_.call(e2, false), b = this.data_;
+          var d2 = b.get(a);
+          d2.setNewValue_.call(d2, void 0), b = this.data_, b.delete(a);
         } finally {
-          o();
+          aa();
         }
-        s2 && B(this, a2);
+        t2 && Ca(this, c);
         return true;
       }
       return false;
     }
-    get(t2) {
-      return this.has(t2) ? (t2 = this.data_.get(t2), Le(this, t2.get())) : Le(this, void 0);
+    get(a) {
+      return this.has(a) ? (a = this.data_.get(a), Gb(this, a.get())) : Gb(this, void 0);
     }
-    getOrInsert(e2, r2) {
-      this.has(e2) || this.set(e2, r2);
-      return this.get(e2);
+    getOrInsert(a, b) {
+      this.has(a) || this.set(a, b);
+      return this.get(a);
     }
-    getOrInsertComputed(e2, r2) {
-      this.has(e2) || this.set(e2, r2(e2));
-      return this.get(e2);
+    getOrInsertComputed(a, b) {
+      this.has(a) || this.set(a, b(a));
+      return this.get(a);
     }
     keys() {
-      _(this.keysAtom_);
-      let e2 = this.data_;
-      return e2.keys();
+      ka(this.keysAtom_);
+      let a = this.data_;
+      return a.keys();
     }
     values() {
-      var e2 = this;
-      let t2 = e2.keys(), r2 = { next: function() {
-        var r3 = t2.next();
-        return r3.done ? { done: true, value: void 0 } : { done: false, value: e2.get(r3.value) };
-      } };
-      r2[Symbol.toStringTag] = "MapIterator";
-      return Ee(r2);
+      var b = this;
+      let c = b.keys(), a = {};
+      a.next = function() {
+        var a2 = c.next();
+        return a2.done ? { done: true, value: void 0 } : { done: false, value: b.get(a2.value) };
+      }, a[Symbol.toStringTag] = "MapIterator";
+      return yb(a);
     }
     entries() {
-      var e2 = this;
-      let t2 = e2.keys(), r2 = { next: function() {
-        var r3 = t2.next();
-        if (r3.done) return { done: true, value: void 0 };
-        var a2 = [], n2 = r3.value;
-        a2.push(n2), a2.push(e2.get(r3.value));
-        return { done: false, value: a2 };
-      } };
-      r2[Symbol.toStringTag] = "MapIterator";
-      return Ee(r2);
+      var b = this;
+      let c = b.keys(), a = {};
+      a.next = function() {
+        var a2 = c.next();
+        if (a2.done) return { done: true, value: void 0 };
+        var e2 = [], t2 = a2.value;
+        e2.push(t2), e2.push(b.get(a2.value));
+        return { done: false, value: e2 };
+      }, a[Symbol.toStringTag] = "MapIterator";
+      return yb(a);
     }
-    forEach(e2, r2) {
-      var a2 = this.entries(), t2 = a2.next();
-      while (!t2.done) {
-        var n2 = t2.value[1];
-        e2.call(r2, n2, t2.value[0], this), t2 = n2 = a2.next();
+    forEach(a, b) {
+      var e2 = this.entries(), c = e2.next();
+      while (!c.done) {
+        var t2 = c.value[1];
+        a.call(b, t2, c.value[0], this), c = t2 = e2.next();
       }
     }
-    merge(e2) {
-      var r2 = this;
-      l(e2) && (e2 = new Map(e2)), i();
+    merge(a) {
+      var b = this;
+      da(a) && (a = new Map(a)), $();
       try {
-        if (I(e2)) for (var u2 = ((e3) => {
-          var r3 = n.keys(e3), t3 = n.getOwnPropertySymbols(e3);
-          if (0 == t3.length) return r3;
-          var a3 = J.call(r3), o2 = t3.length;
-          for (r3 = 0; r3 < o2; r3++) {
-            var i2 = t3[r3], s3 = n.prototype;
-            true === s3.propertyIsEnumerable.call(e3, i2) && a3.push(i2);
+        if (Ia(a)) for (var d2 = ((a2) => {
+          var b2 = Z.keys(a2), c2 = Z.getOwnPropertySymbols(a2);
+          if (0 == c2.length) return b2;
+          var e3 = Ra.call(b2), d3 = c2.length;
+          for (b2 = 0; b2 < d3; b2++) {
+            var t3 = c2[b2], r3 = Z.prototype;
+            true === r3.propertyIsEnumerable.call(a2, t3) && e3.push(t3);
           }
-          return a3;
-        })(e2), a2 = 0; ; a2++) {
-          var t2 = a2;
-          if (t2 >= u2.length) break;
-          t2 = r2.set;
-          var b2 = u2[a2];
-          r2.set(b2, e2[u2[a2]]);
+          return e3;
+        })(a), e2 = 0; ; e2++) {
+          var c = e2;
+          if (c >= d2.length) break;
+          c = b.set;
+          var r2 = d2[e2];
+          b.set(r2, a[d2[e2]]);
         }
-        else if (Array.isArray(e2)) for (var s2 = 0; ; s2++) {
-          t2 = s2;
-          if (t2 >= e2.length) break;
-          t2 = r2.set, b2 = e2[s2][0];
-          var c2 = e2[s2];
-          r2.set(b2, c2[1]);
+        else if (Array.isArray(a)) for (var t2 = 0; ; t2++) {
+          c = t2;
+          if (c >= a.length) break;
+          c = b.set, r2 = a[t2][0];
+          var i2 = a[t2];
+          b.set(r2, i2[1]);
         }
-        else oe(e2) ? (n.getPrototypeOf(n.getPrototypeOf(n.getPrototypeOf(e2))) == null || x(19, e2), e2.forEach(function(e3, t3) {
-          r2.set(t3, e3);
-        })) : e2 == null || x(20, e2);
+        else ab(a) ? (Z.getPrototypeOf(Z.getPrototypeOf(Z.getPrototypeOf(a))) == null || ua(19, a), a.forEach(function(a2, c2) {
+          b.set(c2, a2);
+        })) : a == null || ua(20, a);
       } finally {
-        o();
+        aa();
       }
-      return r2;
+      return b;
     }
     clear() {
-      i();
+      $();
       try {
-        var t2 = T();
+        var c = Ja();
         try {
-          for (var r2 = b(this.keys()), e2 = 0; ; e2++) {
-            if (e2 >= r2.length) break;
-            this.delete(r2[e2]);
+          for (var b = na(this.keys()), a = 0; ; a++) {
+            if (a >= b.length) break;
+            this.delete(b[a]);
           }
         } finally {
-          j(t2);
+          xa(c);
         }
       } finally {
-        o();
+        aa();
       }
     }
-    replace(e2) {
-      i();
+    replace(a) {
+      $();
       try {
-        var g2 = ((e3) => {
-          if (oe(e3) || l(e3)) return e3;
-          if (Array.isArray(e3)) return new Map(e3);
-          if (I(e3)) {
-            for (var a3, i2, o2 = /* @__PURE__ */ new Map(), t3 = n.keys(e3), r3 = 0; r3 < t3.length; r3++) a3 = t3[r3], i2 = e3[t3[r3]], o2.set(a3, i2);
-            return o2;
+        var n2 = ((a2) => {
+          if (ab(a2) || da(a2)) return a2;
+          if (Array.isArray(a2)) return new Map(a2);
+          if (Ia(a2)) {
+            for (var e3, t3, d3 = /* @__PURE__ */ new Map(), c2 = Z.keys(a2), b2 = 0; b2 < c2.length; b2++) e3 = c2[b2], t3 = a2[c2[b2]], d3.set(e3, t3);
+            return d3;
           }
-          x(21, e3);
+          ua(21, a2);
           return /* @__PURE__ */ new Map();
-        })(e2), t2 = /* @__PURE__ */ new Map(), c2 = false;
-        e2 = this.data_;
-        for (var S2 = b(e2.keys()), r2 = 0; ; r2++) {
-          e2 = r2;
-          if (e2 >= S2.length) break;
-          var u2 = S2[r2];
-          if (!g2.has(u2)) if (this.delete(u2)) c2 = true;
+        })(a), c = /* @__PURE__ */ new Map(), r2 = false;
+        a = this.data_;
+        for (var s2 = na(a.keys()), b = 0; ; b++) {
+          a = b;
+          if (a >= s2.length) break;
+          var d2 = s2[b];
+          if (!n2.has(d2)) if (this.delete(d2)) r2 = true;
           else {
-            e2 = t2;
-            var a2 = u2;
-            e2.set(a2, this.data_.get(u2));
+            a = c;
+            var e2 = d2;
+            a.set(e2, this.data_.get(d2));
           }
         }
-        var m2 = b(g2.entries());
-        for (r2 = 0; ; r2++) {
-          e2 = r2;
-          if (e2 >= m2.length) break;
-          var s2 = m2[r2][0], v2 = m2[r2][1], f2 = !!this.data_.has(s2);
-          this.set(s2, v2), !this.data_.has(s2) || (e2 = t2, a2 = s2, e2.set(a2, this.data_.get(s2)), f2 || (c2 = true));
+        var i2 = na(n2.entries());
+        for (b = 0; ; b++) {
+          a = b;
+          if (a >= i2.length) break;
+          var t2 = i2[b][0], l2 = i2[b][1], m2 = !!this.data_.has(t2);
+          this.set(t2, l2), !this.data_.has(t2) || (a = c, e2 = t2, a.set(e2, this.data_.get(t2)), m2 || (r2 = true));
         }
-        if (!c2) {
-          e2 = this.data_, a2 = e2.size;
-          if (a2 != t2.size) R(this.keysAtom_);
+        if (!r2) {
+          a = this.data_, e2 = a.size;
+          if (e2 != c.size) wa(this.keysAtom_);
           else {
-            e2 = this.data_;
-            var y2 = e2.keys(), p2 = t2.keys(), d2 = y2.next(), _2 = p2.next();
-            while (!d2.done) {
-              e2 = d2.value;
-              if (e2 !== _2.value) {
-                R(this.keysAtom_);
+            a = this.data_;
+            var o2 = a.keys(), g2 = c.keys(), f2 = o2.next(), u2 = g2.next();
+            while (!f2.done) {
+              a = f2.value;
+              if (a !== u2.value) {
+                wa(this.keysAtom_);
                 break;
               }
-              d2 = y2.next();
-              _2 = p2.next();
+              f2 = o2.next();
+              u2 = g2.next();
             }
           }
         }
-        this.data_ = t2;
+        this.data_ = c;
       } finally {
-        o();
+        aa();
       }
       return this;
     }
     toJSON() {
-      return b(this);
+      return na(this);
     }
     toString() {
       return "[object ObservableMap]";
     }
     get size() {
-      _(this.keysAtom_);
-      let r2 = this.data_;
-      return r2.size;
+      ka(this.keysAtom_);
+      let a = this.data_;
+      return a.size;
     }
     get [Symbol.toStringTag]() {
       return "Map";
@@ -1866,135 +1870,136 @@ var mobx = (() => {
       return this.entries();
     }
   };
-  var st = X("ObservableMap", a);
-  var _r = {};
-  var v = class {
-    constructor(e2, r2, a2) {
-      var n2 = this;
-      n2[t] = _r;
-      var i2 = "ObservableSet";
-      a2 === void 0 || (i2 = a2 + ""), n2.name_ = i2;
-      var o2 = Q;
-      r2 && (o2 = r2), n2.enhancer_ = function(e3, r3, t2) {
-        return o2(e3, r3, i2);
-      }, n2.data_ = /* @__PURE__ */ new Set(), n2.changeListeners_ = void 0, n2.interceptors_ = void 0, n2.dehancer = void 0, ee(function() {
-        n2.atom_ = Ue(n2.name_), !e2 || n2.replace(e2);
+  var p = Symbol.iterator;
+  bc = Qa("ObservableMap", _);
+  var hd = {};
+  var ea = class {
+    constructor(a, b, c) {
+      var e2 = this;
+      e2[X] = hd;
+      var t2 = "ObservableSet";
+      c === void 0 || (t2 = c + ""), e2.name_ = t2;
+      var d2 = Ta;
+      b && (d2 = b), e2.enhancer_ = function(a2, b2, c2) {
+        return d2(a2, b2, t2);
+      }, e2.data_ = /* @__PURE__ */ new Set(), e2.changeListeners_ = void 0, e2.interceptors_ = void 0, e2.dehancer = void 0, Wa(function() {
+        e2.atom_ = Lb(e2.name_), !a || e2.replace(a);
       });
     }
-    has(e2) {
-      _(this.atom_);
-      return !!this.data_.has(Le(this, e2));
+    has(a) {
+      ka(this.atom_);
+      return !!this.data_.has(Gb(this, a));
     }
-    add(e2) {
-      if (E(this)) {
-        var r2 = V(this, { type: "add", object: this, newValue: e2 });
-        if (!r2) return this;
-        e2 = r2.newValue;
+    add(a) {
+      if (ya(this)) {
+        var b = za(this, { type: "add", object: this, newValue: a });
+        if (!b) return this;
+        a = b.newValue;
       }
-      if (!this.has(e2)) {
-        i();
+      if (!this.has(a)) {
+        $();
         try {
-          r2 = this.data_, r2.add(this.enhancer_(e2, void 0)), R(this.atom_);
+          b = this.data_, b.add(this.enhancer_(a, void 0)), wa(this.atom_);
         } finally {
-          o();
+          aa();
         }
-        r2 = false;
-        var t2 = P(this), a2 = null;
-        t2 && (r2 = true), r2 && (r2 = this.name_, a2 = { observableKind: "set", debugObjectName: r2, type: "add", object: this, newValue: e2 }), t2 && B(this, a2);
+        b = false;
+        var c = Ba(this), e2 = null;
+        c && (b = true), b && (b = this.name_, e2 = { observableKind: "set", debugObjectName: b, type: "add", object: this, newValue: a }), c && Ca(this, e2);
       }
       return this;
     }
-    delete(r2) {
-      if (E(this) && !V(this, { type: "delete", object: this, oldValue: r2 })) return false;
-      if (this.has(r2)) {
-        var n2 = false, s2, a2;
-        s2 = P(this), a2 = null, s2 && (n2 = true), n2 && (n2 = this.name_, a2 = { observableKind: "set", debugObjectName: n2, type: "delete", object: this, oldValue: r2 }), i();
+    delete(a) {
+      if (ya(this) && !za(this, { type: "delete", object: this, oldValue: a })) return false;
+      if (this.has(a)) {
+        var b = false, c, e2;
+        c = Ba(this), e2 = null, c && (b = true), b && (b = this.name_, e2 = { observableKind: "set", debugObjectName: b, type: "delete", object: this, oldValue: a }), $();
         try {
-          R(this.atom_), n2 = this.data_, n2.delete(r2);
+          wa(this.atom_), b = this.data_, b.delete(a);
         } finally {
-          o();
+          aa();
         }
-        s2 && B(this, a2);
+        c && Ca(this, e2);
         return true;
       }
       return false;
     }
     values() {
-      var r2 = this;
-      _(r2.atom_);
-      let e2 = r2.data_, t2 = e2.values();
-      e2 = {}, e2.next = function() {
-        var e3 = t2.next();
-        return e3.done ? { done: true, value: void 0 } : { done: false, value: Le(r2, e3.value) };
-      }, e2[Symbol.toStringTag] = "SetIterator";
-      return Ee(e2);
+      var b = this;
+      ka(b.atom_);
+      let a = b.data_, c = a.values();
+      a = {}, a.next = function() {
+        var a2 = c.next();
+        return a2.done ? { done: true, value: void 0 } : { done: false, value: Gb(b, a2.value) };
+      }, a[Symbol.toStringTag] = "SetIterator";
+      return yb(a);
     }
     keys() {
       return this.values();
     }
     entries() {
-      let r2 = this.values(), e2 = {};
-      e2.next = function() {
-        var e3 = r2.next();
-        if (e3.done) return { done: true, value: void 0 };
-        var t2 = [], a2 = e3.value;
-        t2.push(a2), t2.push(e3.value);
-        return { done: false, value: t2 };
-      }, e2[Symbol.toStringTag] = "SetIterator";
-      return Ee(e2);
+      let b = this.values(), a = {};
+      a.next = function() {
+        var a2 = b.next();
+        if (a2.done) return { done: true, value: void 0 };
+        var c = [], e2 = a2.value;
+        c.push(e2), c.push(a2.value);
+        return { done: false, value: c };
+      }, a[Symbol.toStringTag] = "SetIterator";
+      return yb(a);
     }
-    forEach(e2, r2) {
-      var a2 = this.values(), t2 = a2.next();
-      while (!t2.done) {
-        e2.call(r2, t2.value, t2.value, this);
-        var n2 = a2.next();
-        t2 = n2;
+    forEach(a, b) {
+      var e2 = this.values(), c = e2.next();
+      while (!c.done) {
+        a.call(b, c.value, c.value, this);
+        var t2 = e2.next();
+        c = t2;
       }
     }
-    replace(e2) {
-      var r2 = this;
-      c(e2) && (e2 = new Set(e2)), i();
+    replace(a) {
+      var b = this;
+      fa(a) && (a = new Set(a)), $();
       try {
-        if (Array.isArray(e2)) {
-          r2.clear();
-          for (var t2 = 0; ; t2++) {
-            if (t2 >= e2.length) break;
-            r2.add(e2[t2]);
+        if (Array.isArray(a)) {
+          b.clear();
+          for (var c = 0; ; c++) {
+            if (c >= a.length) break;
+            b.add(a[c]);
           }
-        } else se(e2) ? (r2.clear(), e2.forEach(function(e3) {
-          r2.add(e3);
-        })) : e2 == null || x(41, e2);
+        } else bb(a) ? (b.clear(), a.forEach(function(a2) {
+          b.add(a2);
+        })) : a == null || ua(41, a);
       } finally {
-        o();
+        aa();
       }
-      return r2;
+      return b;
     }
     clear() {
-      i();
+      $();
       try {
-        var t2 = T();
+        var c = Ja();
         try {
-          for (var a2 = this.data_, r2 = b(a2.values()), e2 = 0; ; e2++) {
-            if (e2 >= r2.length) break;
-            this.delete(r2[e2]);
+          for (var e2 = this.data_, b = na(e2.values()), a = 0; ; a++) {
+            if (a >= b.length) break;
+            this.delete(b[a]);
           }
         } finally {
-          j(t2);
+          xa(c);
         }
       } finally {
-        o();
+        aa();
       }
     }
     toJSON() {
-      return b(this);
+      return na(this);
     }
     toString() {
       return "[object ObservableSet]";
     }
     get size() {
-      _(this.atom_);
-      let r2 = this.data_;
-      return r2.size;
+      ka(this.atom_);
+      let a = this.data_;
+      return a.size;
     }
     get [Symbol.toStringTag]() {
       return "Set";
@@ -2003,205 +2008,205 @@ var mobx = (() => {
       return this.values();
     }
   };
-  te("intersection"), te("union"), te("difference"), te("symmetricDifference"), te("isSubsetOf"), te("isSupersetOf"), te("isDisjointFrom"), ut = X("ObservableSet", v);
-  var bt = (0, function(e2, r2, t2) {
-    return this.extend_(e2, r2, t2, false) == null ? 0 : 1;
+  h = ea.prototype, Xa("intersection"), Xa("union"), Xa("difference"), Xa("symmetricDifference"), Xa("isSubsetOf"), Xa("isSupersetOf"), Xa("isDisjointFrom"), cc = Qa("ObservableSet", ea);
+  var nc = (0, function(a, b, c) {
+    return this.extend_(a, b, c, false) == null ? 0 : 1;
   });
-  var gr = (0, function(e2, r2, t2, a2) {
-    var i2, o2 = Q, n2 = !!((i2 = this.options_) && i2.enhancer_);
-    n2 && (n2 = this.options_, o2 = n2.enhancer_);
-    return e2.defineObservableProperty_(r2, t2.value, o2, a2);
+  var id = (0, function(a, b, c, e2) {
+    var d2, r2 = Ta, t2 = !!((d2 = this.options_) && d2.enhancer_);
+    t2 && (t2 = this.options_, r2 = t2.enhancer_);
+    return a.defineObservableProperty_(b, c.value, r2, e2);
   });
-  var yr = (0, function(e2, r2, t2, a2) {
-    var n2 = A({}, this.options_);
-    n2.get = t2.get, n2.set = t2.set;
-    return e2.defineComputedProperty_(r2, n2, a2);
+  var jd = (0, function(a, b, c, e2) {
+    var t2 = sa({}, this.options_);
+    t2.get = c.get, t2.set = c.set;
+    return a.defineComputedProperty_(b, t2, e2);
   });
-  var br = (0, function(e2, r2, t2, a2) {
-    var n2, i2 = !!((n2 = this.options_) && n2.bound);
-    if (i2) return this.extend_(e2, r2, t2, false) == null ? 0 : 1;
-    if (a2 === e2.target_) return this.extend_(e2, r2, t2, false) == null ? 0 : 2;
-    if (Z(t2.value)) return 1;
-    g(a2, r2, $t(e2, this, r2, t2, false));
+  var kd = (0, function(a, b, c, e2) {
+    var t2, d2 = !!((t2 = this.options_) && t2.bound);
+    if (d2) return this.extend_(a, b, c, false) == null ? 0 : 1;
+    if (e2 === a.target_) return this.extend_(a, b, c, false) == null ? 0 : 2;
+    if (Va(c.value)) return 1;
+    la(e2, b, Pc(a, this, b, c, false));
     return 2;
   });
-  var mr = (0, function(r2, t2, a2, n2) {
-    let i2 = r2.defineProperty_;
-    return r2.defineProperty_(t2, $t(r2, this, t2, a2, !!e.safeDescriptors), n2);
+  var ld = (0, function(a, b, c, e2) {
+    let t2 = a.defineProperty_;
+    return a.defineProperty_(b, Pc(a, this, b, c, !!W.safeDescriptors), e2);
   });
-  var mt = function(e2, r2, t2) {
-    var a2 = t2.name;
-    ue(r2) || (r2 = $(r2));
-    var n2, i2 = !!((n2 = e2.options_) && n2.bound);
-    i2 && t2.addInitializer(function() {
-      let e3 = this[a2];
-      e3 = e3.bind(this), e3.isMobXFlow = true, this[a2] = e3;
+  var oc = function(a, b, c) {
+    var e2 = c.name;
+    cb(b) || (b = Sa(b));
+    var t2, d2 = !!((t2 = a.options_) && t2.bound);
+    d2 && c.addInitializer(function() {
+      let a2 = this[e2];
+      a2 = a2.bind(this), a2.isMobXFlow = true, this[e2] = a2;
     });
-    return r2;
+    return b;
   };
-  var wt = (0, function(e2, r2, t2, a2) {
-    if (a2 === e2.target_) return this.extend_(e2, r2, t2, false) == null ? 0 : 2;
-    var i2, n2 = !!((i2 = this.options_) && i2.bound);
-    n2 ? (n2 = e2.target_, n2 = !U.call(n2, r2) || !ue(e2.target_[r2])) : n2 = false;
-    if (n2 && this.extend_(e2, r2, t2, false) == null) return 0;
-    if (ue(t2.value)) return 1;
-    g(a2, r2, Qt(e2, t2, false, false));
+  var pc = (0, function(a, b, c, e2) {
+    if (e2 === a.target_) return this.extend_(a, b, c, false) == null ? 0 : 2;
+    var d2, t2 = !!((d2 = this.options_) && d2.bound);
+    t2 ? (t2 = a.target_, t2 = !La.call(t2, b) || !cb(a.target_[b])) : t2 = false;
+    if (t2 && this.extend_(a, b, c, false) == null) return 0;
+    if (cb(c.value)) return 1;
+    la(e2, b, Qc(a, c, false, false));
     return 2;
   });
-  var Ot = (0, function(r2, t2, a2, n2) {
-    var i2, o2, s2 = !!((i2 = this.options_) && i2.bound);
-    o2 = r2.defineProperty_, t2;
-    return r2.defineProperty_(t2, Qt(r2, a2, s2, !!e.safeDescriptors), n2);
+  var qc = (0, function(a, b, c, e2) {
+    var t2, d2, r2 = !!((t2 = this.options_) && t2.bound);
+    d2 = a.defineProperty_, b;
+    return a.defineProperty_(b, Qc(a, c, r2, !!W.safeDescriptors), e2);
   });
-  Ae = function(e2, r2, a2, i2) {
-    var o2, s2;
-    o2 = a2, s2 = i2;
-    var l2 = n.getOwnPropertyDescriptors(r2);
-    ee(function() {
-      for (var r3, n2, u2 = ie(e2, s2)[t], i3 = Reflect.ownKeys(l2), a3 = 0; a3 < i3.length; a3++) r3 = i3[a3], n2 = o2 ? true === r3 in o2 ? o2[r3] : true : true, u2.extend_(r3, l2[r3], n2);
+  sb = function(a, b, c, e2) {
+    var t2, d2;
+    t2 = c, d2 = e2;
+    var r2 = Z.getOwnPropertyDescriptors(b);
+    Wa(function() {
+      for (var b2, e3, f2 = $a(a, d2)[X], i2 = Reflect.ownKeys(r2), c2 = 0; c2 < i2.length; c2++) b2 = i2[c2], e3 = t2 ? true === b2 in t2 ? t2[b2] : true : true, f2.extend_(b2, r2[b2], e3);
     });
-    return e2;
+    return a;
   };
-  var de = function(e2, r2, a2) {
-    if ("accessor" != a2.kind + "") return;
-    var n2 = a2.name, i2 = {};
-    i2.get = function() {
-      var a3 = this[t];
-      a3 = a3 || nt(this, e2, n2, r2.get.call(this));
-      return a3.getObservablePropValue_(n2);
-    }, i2.set = function(r3) {
-      var a3 = this[t];
-      a3 = a3 || nt(this, e2, n2, r3);
-      return a3.setObservablePropValue_(n2, r3);
-    }, i2.init = function(r3) {
-      nt(this, e2, n2, r3);
-      return r3;
+  var jb = function(a, b, c) {
+    if ("accessor" != c.kind + "") return;
+    var e2 = c.name, t2 = {};
+    t2.get = function() {
+      var c2 = this[X];
+      c2 = c2 || Zb(this, a, e2, b.get.call(this));
+      return c2.getObservablePropValue_(e2);
+    }, t2.set = function(b2) {
+      var c2 = this[X];
+      c2 = c2 || Zb(this, a, e2, b2);
+      return c2.setObservablePropValue_(e2, b2);
+    }, t2.init = function(b2) {
+      Zb(this, a, e2, b2);
+      return b2;
     };
-    return i2;
+    return t2;
   };
-  var Fe = Me("observable", void 0);
-  wa = Me("observable.ref", { enhancer_: pe }), Sa = Me("observable.shallow", { enhancer_: Sa }), Da = Me("observable.struct", { enhancer_: Da }), r = A(function(e2, t2, a2) {
-    return t2 && "string" == typeof t2.kind ? de(Fe, e2, t2) : Be(e2) ? e2 : I(e2) ? r.object.call(r, e2, t2, a2) : Array.isArray(e2) ? r.array.call(r, e2, t2) : oe(e2) ? r.map.call(r, e2, t2) : se(e2) ? r.set.call(r, e2, t2) : "object" == typeof e2 && e2 != null ? e2 : r.box.call(r, e2, t2);
-  }, Fe), r.box = function(e2, r2) {
-    let t2 = ze(r2);
-    return new s(e2, Ne(t2), t2.name, true, t2.equals);
-  }, r.array = function(e2, r2) {
-    let t2 = ze(r2);
-    return pr(e2, Ne(t2), t2.name);
-  }, r.map = function(e2, r2) {
-    let t2 = ze(r2);
-    return new a(e2, Ne(t2), t2.name);
-  }, r.set = function(e2, r2) {
-    let t2 = ze(r2);
-    return new v(e2, Ne(t2), t2.name);
-  }, r.object = function(e2, r2, a2) {
-    return ee(function() {
-      var n2 = {};
-      n2 = ie(n2, a2);
-      var i2 = n2[t];
-      i2.proxy_ || (i2.proxy_ = new Proxy(n2, H)), n2 = i2.proxy_;
-      return Ae(n2, e2, r2);
+  var Pb = Hb("observable", void 0);
+  h = Hb("observable.ref", { enhancer_: ib }), e = Hb("observable.shallow", { enhancer_: e }), o = Hb("observable.struct", { enhancer_: o }), Y = sa(function(a, b, c) {
+    return b && "string" == typeof b.kind ? jb(Pb, a, b) : Cb(a) ? a : Ia(a) ? Y.object.call(Y, a, b, c) : Array.isArray(a) ? Y.array.call(Y, a, b) : ab(a) ? Y.map.call(Y, a, b) : bb(a) ? Y.set.call(Y, a, b) : "object" == typeof a && a != null ? a : Y.box.call(Y, a, b);
+  }, Pb), Y.box = function(a, b) {
+    let c = Eb(b);
+    return new ba(a, Db(c), c.name, true, c.equals);
+  }, Y.array = function(a, b) {
+    let c = Eb(b);
+    return fd(a, Db(c), c.name);
+  }, Y.map = function(a, b) {
+    let c = Eb(b);
+    return new _(a, Db(c), c.name);
+  }, Y.set = function(a, b) {
+    let c = Eb(b);
+    return new ea(a, Db(c), c.name);
+  }, Y.object = function(a, b, c) {
+    return Wa(function() {
+      var e2 = {};
+      e2 = $a(e2, c);
+      var t2 = e2[X];
+      t2.proxy_ || (t2.proxy_ = new Proxy(e2, Ma)), e2 = t2.proxy_;
+      return sb(e2, a, b);
     });
-  }, Oe = K(wa, de), Pa = K(Sa, de);
-  var Ba = K(Fe, de);
-  Da = K(Da, de);
-  var Xe = function(e2, r2, a2) {
-    var i2, n2 = a2.name, o2 = function(t2, a3) {
-      var i3 = A({}, e2.options_);
-      i3.get = r2, i3.context = t2, i3.name || (i3.name = ba + k(n2));
-      return new h(i3);
+  }, qb = Fa(h, jb), p = Fa(e, jb);
+  var q = Fa(Pb, jb);
+  o = Fa(o, jb);
+  var Qb = function(a, b, c) {
+    var t2, e2 = c.name, d2 = function(c2, t3) {
+      var d3 = sa({}, a.options_);
+      d3.get = b, d3.context = c2, d3.name || (d3.name = Ze + ta(e2));
+      return new ha(d3);
     };
-    a2.addInitializer(function() {
-      var i3 = this, e3 = ie(i3)[t], a3 = e3.values_;
-      a3 = a3.get(n2);
-      var s2;
-      C(a3) && a3.derivation !== r2 && (s2 = e3.values_, s2.delete(n2)), e3.lazyComputedKeys_ || (e3.lazyComputedKeys_ = /* @__PURE__ */ new Map()), e3.lazyComputedKeys_.set(n2, function() {
-        return o2(i3, e3);
+    c.addInitializer(function() {
+      var t3 = this, a2 = $a(t3)[X], c2 = a2.values_;
+      c2 = c2.get(e2);
+      var r2;
+      va(c2) && c2.derivation !== b && (r2 = a2.values_, r2.delete(e2)), a2.lazyComputedKeys_ || (a2.lazyComputedKeys_ = /* @__PURE__ */ new Map()), a2.lazyComputedKeys_.set(e2, function() {
+        return d2(t3, a2);
       });
     });
     return function() {
-      var s2 = this[t], a3 = s2.values_;
-      a3 = a3.get(n2);
-      var e3;
-      return C(a3) && a3.derivation !== r2 ? (i2 = i2 || /* @__PURE__ */ new WeakMap(), e3 = i2.get(this), e3 || (e3 = o2(this, s2), i2.set(this, e3)), e3.get()) : s2.getObservablePropValue_(n2);
+      var r2 = this[X], c2 = r2.values_;
+      c2 = c2.get(e2);
+      var a2;
+      return va(c2) && c2.derivation !== b ? (t2 = t2 || /* @__PURE__ */ new WeakMap(), a2 = t2.get(this), a2 || (a2 = d2(this, r2), t2.set(this, a2)), a2.get()) : r2.getObservablePropValue_(e2);
     };
   };
-  var St = rt("computed", void 0);
-  wa = rt("computed.struct", { equals: function(e2, r2) {
-    return le(e2, r2, -1, void 0, void 0);
-  } }), ne = A(function(e2, r2) {
-    if (r2 && "string" == typeof r2.kind) return Xe(St, e2, r2);
-    if (I(e2)) return K(rt("computed", e2), Xe);
-    var t2 = {};
-    I(r2) && (t2 = A({}, r2)), t2.get = e2, t2.name || (t2.name = e2.name);
-    return new h(t2);
-  }, St);
-  var Na = K(wa, Xe);
-  Sa = (0, function(e2) {
-    var r2 = e2.name + "";
-    "" == r2 && (r2 = ma);
-    return Ut(r2, false, e2, this, void 0);
+  var rc = Yb("computed", void 0);
+  h = Yb("computed.struct", { equals: function(a, b) {
+    return db(a, b, -1, void 0, void 0);
+  } }), Za = sa(function(a, b) {
+    if (b && "string" == typeof b.kind) return Qb(rc, a, b);
+    if (Ia(a)) return Fa(Yb("computed", a), Qb);
+    var c = {};
+    Ia(b) && (c = sa({}, b)), c.get = a, c.name || (c.name = a.name);
+    return new ha(c);
+  }, rc);
+  var r = Fa(h, Qb);
+  e = (0, function(a) {
+    var b = a.name + "";
+    "" == b && (b = _e);
+    return Kc(b, false, a, this, void 0);
   });
-  var xe = function(e2, r2, t2) {
-    var n2 = t2.name, a2 = function(r3) {
-      var i3 = k(n2);
-      if (e2.options_) var a3 = e2.options_, t3 = !!a3.name;
+  var ub = function(a, b, c) {
+    var t2 = c.name, e2 = function(b2) {
+      var d3 = ta(t2);
+      if (a.options_) var e3 = a.options_, c2 = !!e3.name;
       else {
-        t3 = false;
+        c2 = false;
       }
-      t3 && (t3 = e2.options_, i3 = t3.name + "");
-      t3 = !!((a3 = e2.options_) && a3.autoAction);
-      return q(i3, r3, t3, void 0);
+      c2 && (c2 = a.options_, d3 = c2.name + "");
+      c2 = !!((e3 = a.options_) && e3.autoAction);
+      return Ka(d3, b2, c2, void 0);
     };
-    if ("field" == t2.kind + "") return function(r3) {
-      Z(r3) || (r3 = a2(r3));
-      var t3, n3 = !!((t3 = e2.options_) && t3.bound);
-      n3 && (r3 = r3.bind(this), r3.isMobxAction = true);
-      return r3;
+    if ("field" == c.kind + "") return function(b2) {
+      Va(b2) || (b2 = e2(b2));
+      var c2, t3 = !!((c2 = a.options_) && c2.bound);
+      t3 && (b2 = b2.bind(this), b2.isMobxAction = true);
+      return b2;
     };
-    if ("method" == t2.kind + "") {
-      Z(r2) || (r2 = a2(r2));
-      if (e2.options_) {
-        var i2 = e2.options_;
-        a2 = !!i2.bound;
+    if ("method" == c.kind + "") {
+      Va(b) || (b = e2(b));
+      if (a.options_) {
+        var d2 = a.options_;
+        e2 = !!d2.bound;
       } else {
-        a2 = false;
+        e2 = false;
       }
-      a2 && t2.addInitializer(function() {
-        let e3 = this[n2];
-        e3 = e3.bind(this), e3.isMobxAction = true, this[n2] = e3;
+      e2 && c.addInitializer(function() {
+        let a2 = this[t2];
+        a2 = a2.bind(this), a2.isMobxAction = true, this[t2] = a2;
       });
-      return r2;
+      return b;
     }
-    r2 = e2.annotationType_;
-    i2 = k(n2);
-    var o2 = t2.kind;
-    a2 = [], a2.push(r2), a2.push(i2), a2.push(o2), Y(43, a2);
+    b = a.annotationType_;
+    d2 = ta(t2);
+    var r2 = c.kind;
+    e2 = [], e2.push(b), e2.push(d2), e2.push(r2), Ua(43, e2);
   };
-  var At = ye("action", void 0);
-  wa = ye("action.bound", { bound: true });
-  var kt = ye("autoAction", { autoAction: true });
-  var za = ye("autoAction.bound", { autoAction: true, bound: true });
-  ae = A(function(e2, r2) {
-    if (r2 && "string" == typeof r2.kind) {
-      var t2 = At;
-      return xe(t2, e2, r2);
+  var sc = mb("action", void 0);
+  h = mb("action.bound", { bound: true });
+  var tc = mb("autoAction", { autoAction: true });
+  var s = mb("autoAction.bound", { autoAction: true, bound: true });
+  _a = sa(function(a, b) {
+    if (b && "string" == typeof b.kind) {
+      var c = sc;
+      return ub(c, a, b);
     }
-    if ("function" == typeof e2) return t2 = e2.name + "", "" == t2 && (t2 = ma), q(t2, e2, false, void 0);
-    if ("function" == typeof r2) return q(e2 + "", r2, false, void 0);
-    if (Qe(e2)) return t2 = "action", K(ye(t2, { name: e2, autoAction: false }), xe);
-  }, At), Se = A(function(e2, r2) {
-    if (r2 && "string" == typeof r2.kind) {
-      var t2 = kt;
-      return xe(t2, e2, r2);
+    if ("function" == typeof a) return c = a.name + "", "" == c && (c = _e), Ka(c, a, false, void 0);
+    if ("function" == typeof b) return Ka(a + "", b, false, void 0);
+    if (Tb(a)) return c = "action", Fa(mb(c, { name: a, autoAction: false }), ub);
+  }, sc), rb = sa(function(a, b) {
+    if (b && "string" == typeof b.kind) {
+      var c = tc;
+      return ub(c, a, b);
     }
-    if ("function" == typeof e2) return t2 = e2.name + "", "" == t2 && (t2 = ma), q(t2, e2, true, void 0);
-    if ("function" == typeof r2) return q(e2 + "", r2, true, void 0);
-    if (Qe(e2)) return t2 = "autoAction", K(ye(t2, { name: e2, autoAction: true }), xe);
-  }, kt);
-  var Ka = K(wa, xe);
-  Ge = K(za, xe);
-  var G = class extends Error {
+    if ("function" == typeof a) return c = a.name + "", "" == c && (c = _e), Ka(c, a, true, void 0);
+    if ("function" == typeof b) return Ka(a + "", b, true, void 0);
+    if (Tb(a)) return c = "autoAction", Fa(mb(c, { name: a, autoAction: true }), ub);
+  }, tc);
+  var t = Fa(h, ub);
+  Nb = Fa(s, ub);
+  var Na = class extends Error {
     constructor() {
       super(), this.message = "FLOW_CANCELLED", this.name = "FlowCancellationError";
     }
@@ -2209,378 +2214,394 @@ var mobx = (() => {
       return "Error: " + this.message;
     }
   };
-  g(G, "name", { value: "FlowCancellationError", configurable: true });
-  za = function(e2) {
-    return jt(G, e2);
+  la(Na, "name", { value: "FlowCancellationError", configurable: true });
+  h = Na.prototype, s = function(a) {
+    return xc(Na, a);
   };
-  var La = function(e2, r2) {
-    if (r2 && "string" == typeof r2.kind) return mt($, e2, r2);
-    var t2 = e2.name + "";
-    "" == t2 && (t2 = "flow");
-    var a2 = (0, function() {
-      var i2, o2, n2, a3 = ae(t2, e2).apply(this, arguments), r3 = { rejector: void 0, pending: void 0, stepId: 0 };
-      i2 = function(e3) {
-        r3.pending = void 0;
+  var u = function(a, b) {
+    if (b && "string" == typeof b.kind) return oc(Sa, a, b);
+    var c = a.name + "";
+    "" == c && (c = "flow");
+    var e2 = (0, function() {
+      var e3 = _a(c, a).apply(this, arguments), b2 = {};
+      b2.rejector = void 0, b2.pending = void 0, b2.stepId = 0;
+      var r2, i2, t2;
+      r2 = function(a2) {
+        b2.pending = void 0;
         try {
-          var i3 = ae(t2, a3.next).call(a3, e3);
-          n2(i3);
-        } catch (e4) {
-          r3.rejector(e4);
+          var r3 = _a(c, e3.next).call(e3, a2);
+          t2(r3);
+        } catch (a3) {
+          b2.rejector(a3);
         }
-      }, o2 = function(e3) {
-        r3.pending = void 0;
+      }, i2 = function(a2) {
+        b2.pending = void 0;
         try {
-          var i3 = ae(t2, a3.throw).call(a3, e3);
-          n2(i3);
-        } catch (e4) {
-          r3.rejector(e4);
+          var r3 = _a(c, e3.throw).call(e3, a2);
+          t2(r3);
+        } catch (a3) {
+          b2.rejector(a3);
         }
-      }, n2 = function(e3) {
-        if ("function" == typeof e3.then) {
-          e3.then(n2, r3.rejector);
+      }, t2 = function(a2) {
+        if ("function" == typeof a2.then) {
+          a2.then(t2, b2.rejector);
           return;
         }
-        if (e3.done) {
-          r3.resolve(e3.value);
+        if (a2.done) {
+          b2.resolve(a2.value);
           return;
         }
-        r3.pending = Promise.resolve(e3.value);
-        r3.pending.then(i2, o2);
+        b2.pending = Promise.resolve(a2.value);
+        b2.pending.then(r2, i2);
       };
-      var s2 = new Promise(function(e3, t3) {
-        r3.resolve = e3, r3.rejector = t3, i2(void 0);
+      var f2 = new Promise(function(a2, c2) {
+        b2.resolve = a2, b2.rejector = c2, r2(void 0);
       });
-      s2.cancel = ae(t2, function() {
-        var t3;
+      f2.cancel = _a(c, function() {
         try {
-          if (r3.pending) var n3 = r3.pending, e3 = "function" == typeof n3.cancel;
+          if (b2.pending) var c2 = b2.pending, a2 = "function" == typeof c2.cancel;
           else {
-            e3 = false;
+            a2 = false;
           }
-          e3 && (e3 = r3.pending, e3.cancel.call(r3.pending)), t3 = a3.return(void 0), M = Promise.resolve(t3.value);
-          M.then(re, re), "function" == typeof M.cancel && M.cancel.call(M), r3.rejector(new G());
-        } catch (e4) {
-          r3.rejector(e4);
+          a2 && (a2 = b2.pending, a2.cancel.call(b2.pending)), M = e3.return(void 0), T = Promise.resolve(M.value);
+          T.then(Ya, Ya), "function" == typeof T.cancel && T.cancel.call(T), b2.rejector(new Na());
+        } catch (a3) {
+          b2.rejector(a3);
         }
       });
-      return s2;
+      return f2;
     });
-    a2.isMobXFlow = true;
-    return a2;
-  };
-  wa = { annotationType_: "flow", options_: void 0, make_: wt, extend_: Ot }, $ = A(La, wa), wa = { annotationType_: "flow.bound", options_: { bound: true }, make_: wt, extend_: Ot }, We = K(wa, mt), wa = function(e2) {
+    e2.isMobXFlow = true;
     return e2;
-  }, La = function(e2) {
-    return ue(e2);
   };
-  var Je = function(e2, r2) {
-    var t2 = ot;
-    r2 = r2 || t2, t2 = r2.name ? r2.name + "" : "Autorun";
-    var a2, n2 = !r2.scheduler && !r2.delay, s2 = () => {
-      e2(a2);
+  h = {}, h.annotationType_ = "flow", h.options_ = void 0, h.make_ = pc, h.extend_ = qc, Sa = sa(u, h), h = {}, h.annotationType_ = "flow.bound", h.options_ = { bound: true }, h.make_ = pc, h.extend_ = qc, Ob = Fa(h, oc), h = function(a) {
+    return a;
+  }, u = function(a) {
+    return cb(a);
+  };
+  var Rb = function(a, b) {
+    var c = ac;
+    b = b || c, c = b.name ? b.name + "" : "Autorun";
+    var e2, t2 = !b.scheduler && !b.delay, i2 = () => {
+      a(e2);
     };
-    if (n2) a2 = new y(t2, function() {
-      this.track(s2);
-    }, r2.onError, r2.requiresObservable);
+    if (t2) e2 = new ma(c, function() {
+      this.track(i2);
+    }, b.onError, b.requiresObservable);
     else {
-      n2 = Yt(r2);
-      var i2 = false, o2 = y;
-      a2 = new o2(t2, function() {
-        var e3 = this;
-        i2 || (i2 = true, n2(() => {
-          i2 = false, e3.isDisposed || e3.track(s2);
+      t2 = Rc(b);
+      var d2 = false, r2 = ma;
+      e2 = new r2(c, function() {
+        var a2 = this;
+        d2 || (d2 = true, t2(() => {
+          d2 = false, a2.isDisposed || a2.track(i2);
         }));
-      }, r2.onError, r2.requiresObservable);
+      }, b.onError, b.requiresObservable);
     }
-    t2 = !!((o2 = r2.signal) && o2.aborted);
-    t2 || a2.schedule_(), t2 = a2.getDisposer_;
-    return t2.call(a2, r2.signal);
+    c = !!((r2 = b.signal) && r2.aborted);
+    c || e2.schedule_(), c = e2.getDisposer_;
+    return c.call(e2, b.signal);
   };
-  var Ma = function(r2, t2, a2) {
-    var n2 = ot;
-    a2 && (n2 = a2);
-    var o2 = n2.name ? n2.name + "" : "Reaction", b2 = Te;
-    !n2.equals || (b2 = n2.equals);
-    var s2, i2, c2 = q(o2, /* @__PURE__ */ ((e2, r3) => !e2 ? r3 : function() {
+  var v = function(a, b, c) {
+    var e2 = ac;
+    c && (e2 = c);
+    var d2 = e2.name ? e2.name + "" : "Reaction", n2 = Jb;
+    !e2.equals || (n2 = e2.equals);
+    var r2, t2, s2 = Ka(d2, /* @__PURE__ */ ((a2, b2) => !a2 ? b2 : function() {
       try {
-        return r3.apply(this, arguments);
-      } catch (r4) {
-        e2.call(this, r4);
+        return b2.apply(this, arguments);
+      } catch (b3) {
+        a2.call(this, b3);
         return;
       }
-    })(n2.onError, t2), false, void 0), l2 = true, d2 = false, g2 = () => {
-      var a3 = !!e.allowStateChanges;
-      e.allowStateChanges = false;
-      var t3;
+    })(e2.onError, b), false, void 0), i2 = true, g2 = false, u2 = () => {
+      var c2 = !!W.allowStateChanges;
+      W.allowStateChanges = false;
+      var b2;
       try {
-        t3 = r2(i2);
+        b2 = a(t2);
       } finally {
-        e.allowStateChanges = a3;
+        W.allowStateChanges = c2;
       }
-      d2 = l2 || true !== b2(s2, t3);
-      s2 = t3;
+      g2 = i2 || true !== n2(r2, b2);
+      r2 = b2;
     };
-    t2 = !n2.scheduler && !n2.delay;
-    var u2 = false, S2 = Yt(n2), m2 = () => {
-      u2 = false;
-      if (!i2.isDisposed) {
-        var e2 = s2;
-        i2.track.call(i2, g2), l2 && n2.fireImmediately ? c2(s2, e2, i2) : !l2 && false, l2 = false;
+    b = !e2.scheduler && !e2.delay;
+    var f2 = false, l2 = Rc(e2), o2 = () => {
+      f2 = false;
+      if (!t2.isDisposed) {
+        var a2 = r2;
+        t2.track.call(t2, u2), i2 && e2.fireImmediately ? s2(r2, a2, t2) : !i2 && false, i2 = false;
       }
-    }, p2 = n2.onError;
-    i2 = new y(o2, () => {
-      l2 || t2 ? m2() : u2 || (u2 = true, S2(m2));
-    }, p2, n2.requiresObservable), o2 = !!((a2 = n2.signal) && a2.aborted), o2 || (o2 = i2.schedule_, o2.call(i2)), o2 = i2.getDisposer_;
-    return o2.call(i2, n2.signal);
+    }, m2 = () => {
+      i2 || b ? o2() : f2 || (f2 = true, l2(o2));
+    }, h2 = e2.onError;
+    t2 = new ma(d2, m2, h2, e2.requiresObservable), d2 = !!((c = e2.signal) && c.aborted), d2 || (d2 = t2.schedule_, d2.call(t2)), d2 = t2.getDisposer_;
+    return d2.call(t2, e2.signal);
   };
-  var Ia = function(e2, r2, t2) {
-    var a2;
-    return 1 == arguments.length || r2 && "object" == typeof r2 ? (a2 = void 0, a2 = r2, ((e3, r3) => {
-      var t3;
-      if (r3 && r3.signal && r3.signal.aborted) return e3 = Promise.reject(new Error("WHEN_ABORTED")), e3.cancel = function() {
+  var w = function(a, b, c) {
+    var e2;
+    return 1 == arguments.length || b && "object" == typeof b ? (e2 = void 0, e2 = b, ((a2, b2) => {
+      var c2;
+      if (b2 && b2.signal && b2.signal.aborted) return a2 = Promise.reject(new Error("WHEN_ABORTED")), a2.cancel = function() {
         return null;
-      }, e3;
-      t3 = { cancel: void 0, abort: void 0 };
-      var a3 = new Promise(function(a4, n2) {
-        var i2 = A({}, r3);
-        i2.onError = n2, i2 = Zt(e3, a4, i2), t3.cancel = function() {
-          i2(), n2(new Error("WHEN_CANCELLED"));
-        }, t3.abort = function() {
-          i2(), n2(new Error("WHEN_ABORTED"));
-        }, r3 && r3.signal && "function" == typeof r3.signal.addEventListener && r3.signal.addEventListener("abort", t3.abort);
+      }, a2;
+      c2 = {}, c2.cancel = void 0, c2.abort = void 0;
+      var e3 = new Promise(function(e4, t2) {
+        var d2 = sa({}, b2);
+        d2.onError = t2, d2 = Sc(a2, e4, d2), c2.cancel = function() {
+          d2(), t2(new Error("WHEN_CANCELLED"));
+        }, c2.abort = function() {
+          d2(), t2(new Error("WHEN_ABORTED"));
+        }, b2 && b2.signal && "function" == typeof b2.signal.addEventListener && b2.signal.addEventListener("abort", c2.abort);
       });
-      r3 && r3.signal && "function" == typeof r3.signal.removeEventListener && (a3 = a3.finally(function() {
-        r3.signal.removeEventListener("abort", t3.abort);
-      })), a3.cancel = t3.cancel;
-      return a3;
-    })(e2, r2)) : Zt(e2, r2, t2);
+      b2 && b2.signal && "function" == typeof b2.signal.removeEventListener && (e3 = e3.finally(function() {
+        b2.signal.removeEventListener("abort", c2.abort);
+      })), e3.cancel = c2.cancel;
+      return e3;
+    })(a, b)) : Sc(a, b, c);
   };
-  var Ta = function(r2) {
-    var t2 = r2.isolateGlobalState;
-    true === t2 && ur(), r2.enforceActions === void 0 || (t2 = r2.enforceActions, "always" === t2 ? (e.enforceActions = "always", e.allowStateChanges = false) : "observed" === t2 ? (e.enforceActions = true, e.allowStateChanges = false) : (e.enforceActions = false, e.allowStateChanges = true)), true === "computedRequiresReaction" in r2 && (t2 = e, t2.computedRequiresReaction = !!r2.computedRequiresReaction), true === "reactionRequiresObservable" in r2 && (t2 = e, t2.reactionRequiresObservable = !!r2.reactionRequiresObservable), true === "observableRequiresReaction" in r2 && (t2 = e, t2.observableRequiresReaction = !!r2.observableRequiresReaction), true === "disableErrorBoundaries" in r2 && (t2 = e, t2.disableErrorBoundaries = !!r2.disableErrorBoundaries), true === "safeDescriptors" in r2 && (t2 = e, t2.safeDescriptors = !!r2.safeDescriptors), t2 = e, t2.allowStateReads = !e.observableRequiresReaction;
-    if (r2.reactionScheduler) {
-      t2 = r2.reactionScheduler;
-      var a2 = qe;
-      qe = (e2) => t2(() => a2(e2));
+  var x = function(a) {
+    var b = a.isolateGlobalState;
+    true === b && $c(), a.enforceActions === void 0 || (b = a.enforceActions, "always" === b ? (W.enforceActions = "always", W.allowStateChanges = false) : "observed" === b ? (W.enforceActions = true, W.allowStateChanges = false) : (W.enforceActions = false, W.allowStateChanges = true)), true === "computedRequiresReaction" in a && (b = W, b.computedRequiresReaction = !!a.computedRequiresReaction), true === "reactionRequiresObservable" in a && (b = W, b.reactionRequiresObservable = !!a.reactionRequiresObservable), true === "observableRequiresReaction" in a && (b = W, b.observableRequiresReaction = !!a.observableRequiresReaction), true === "disableErrorBoundaries" in a && (b = W, b.disableErrorBoundaries = !!a.disableErrorBoundaries), true === "safeDescriptors" in a && (b = W, b.safeDescriptors = !!a.safeDescriptors), b = W, b.allowStateReads = !W.observableRequiresReaction;
+    if (a.reactionScheduler) {
+      b = a.reactionScheduler;
+      var c = Kb;
+      Kb = (a2) => b(() => c(a2));
     }
   };
-  var $e = Symbol("mobx-keys");
-  var qa = function(e2, r2, a2) {
-    ee(function() {
-      for (var o2, s2 = ie(e2, a2)[t], i2 = Reflect.ownKeys(r2), n2 = 0; n2 < i2.length; n2++) o2 = i2[n2], er(s2, o2, r2[i2[n2]]);
+  var Sb = Symbol("mobx-keys");
+  var y = function(a, b, c) {
+    Wa(function() {
+      for (var d2, r2 = $a(a, c)[X], t2 = Reflect.ownKeys(b), e2 = 0; e2 < t2.length; e2++) d2 = t2[e2], Tc(r2, d2, b[t2[e2]]);
     });
-    return e2;
+    return a;
   };
-  var Ua = function(e2, r2, a2) {
-    if (I(e2)) return Ae(e2, e2, r2, a2);
-    ee(function() {
-      var c2 = ie(e2, a2)[t];
-      if (true !== $e in e2) {
-        for (var l2, u2 = n.getPrototypeOf(e2), o2 = /* @__PURE__ */ new Set(), s2 = Reflect.ownKeys(e2), b2 = Reflect.ownKeys(u2), i2 = 0; i2 < s2.length; i2++) l2 = s2[i2], o2.add(l2);
-        for (i2 = 0; i2 < b2.length; i2++) s2 = b2[i2], o2.add(s2);
-        o2.delete("constructor"), o2.delete(t), g(u2, $e, { enumerable: false, writable: true, configurable: true, value: o2 });
+  var z = function(a, b, c) {
+    if (Ia(a)) return sb(a, a, b, c);
+    Wa(function() {
+      var n2 = $a(a, c)[X];
+      if (true !== Sb in a) {
+        for (var r2, i2 = Z.getPrototypeOf(a), t2 = /* @__PURE__ */ new Set(), d2 = Reflect.ownKeys(a), f2 = Reflect.ownKeys(i2), e2 = 0; e2 < d2.length; e2++) r2 = d2[e2], t2.add(r2);
+        for (e2 = 0; e2 < f2.length; e2++) d2 = f2[e2], t2.add(d2);
+        t2.delete("constructor"), t2.delete(X), la(i2, Sb, { enumerable: false, writable: true, configurable: true, value: t2 });
       }
-      e2[$e].forEach(function(e3) {
-        var t2 = r2 && true === e3 in r2 ? r2[e3] : true;
-        er(c2, e3, t2);
+      a[Sb].forEach(function(a2) {
+        var c2 = b && true === a2 in b ? b[a2] : true;
+        Tc(n2, a2, c2);
       });
     });
-    return e2;
+    return a;
   };
-  var Ce = function(e2) {
-    if (f(e2)) {
-      var r2 = e2[t];
-      return r2.keys_.call(e2[t]);
+  var vb = function(a) {
+    if (ga(a)) {
+      var b = a[X];
+      return b.keys_.call(a[X]);
     }
-    if (l(e2) || c(e2)) return b(e2.keys());
-    if (m(e2)) {
-      var a2 = [];
-      for (r2 = 0; r2 < e2.length; r2++) a2.push(r2);
-      return a2;
+    if (da(a) || fa(a)) return na(a.keys());
+    if (oa(a)) {
+      var c = [];
+      for (b = 0; b < a.length; b++) c.push(b);
+      return c;
     }
-    u(5);
+    ca(5);
   };
-  var Ha = function(e2) {
-    if (f(e2)) {
-      for (var n2, t2 = Ce(e2), a2 = [], r2 = 0; r2 < t2.length; r2++) n2 = e2[t2[r2]], a2.push(n2);
-      return a2;
+  var A = function(a) {
+    if (ga(a)) {
+      for (var t2, c = vb(a), e2 = [], b = 0; b < c.length; b++) t2 = a[c[b]], e2.push(t2);
+      return e2;
     }
-    if (l(e2)) {
-      for (t2 = Ce(e2), a2 = [], r2 = 0; r2 < t2.length; r2++) a2.push(e2.get(t2[r2]));
-      return a2;
+    if (da(a)) {
+      for (c = vb(a), e2 = [], b = 0; b < c.length; b++) e2.push(a.get(c[b]));
+      return e2;
     }
-    if (c(e2)) return b(e2.values());
-    if (m(e2)) return e2.slice();
-    u(6);
+    if (fa(a)) return na(a.values());
+    if (oa(a)) return a.slice();
+    ca(6);
   };
-  var Ga = function(e2) {
-    if (f(e2) || l(e2)) {
-      for (var t2, n2, a2 = Ce(e2), i2 = [], r2 = 0; r2 < a2.length; r2++) t2 = [], n2 = a2[r2], t2.push(n2), l(e2) ? t2.push(e2.get(a2[r2])) : (n2 = e2[a2[r2]], t2.push(n2)), i2.push(t2);
-      return i2;
+  var B = function(a) {
+    if (ga(a) || da(a)) {
+      for (var c, t2, e2 = vb(a), d2 = [], b = 0; b < e2.length; b++) c = [], t2 = e2[b], c.push(t2), da(a) ? c.push(a.get(e2[b])) : (t2 = a[e2[b]], c.push(t2)), d2.push(c);
+      return d2;
     }
-    if (c(e2)) return b(e2.entries());
-    if (m(e2)) {
-      for (a2 = [], r2 = 0; r2 < e2.length; r2++) t2 = [], t2.push(r2), t2.push(e2[r2]), a2.push(t2);
-      return a2;
+    if (fa(a)) return na(a.entries());
+    if (oa(a)) {
+      for (e2 = [], b = 0; b < a.length; b++) c = [], c.push(b), c.push(a[b]), e2.push(c);
+      return e2;
     }
-    u(7);
+    ca(7);
   };
-  var xt = function(e2, r2, a2) {
-    var s2 = r2, d2 = a2;
-    if (2 == arguments.length && !c(e2)) {
-      i();
+  var uc = function(a, b, c) {
+    var e2 = b, d2 = c;
+    if (2 == arguments.length && !fa(a)) {
+      $();
       try {
-        for (var S2 = n.keys(s2), g2 = 0; ; g2++) {
-          var b2 = g2;
-          if (b2 >= S2.length) break;
-          b2 = xt, d2 = S2[g2], b2(e2, d2, s2[S2[g2]]);
+        for (var i2 = Z.keys(e2), r2 = 0; ; r2++) {
+          var t2 = r2;
+          if (t2 >= i2.length) break;
+          t2 = uc, d2 = i2[r2], t2(a, d2, e2[i2[r2]]);
         }
       } finally {
-        o();
+        aa();
       }
       return;
     }
-    f(e2) ? (b2 = e2[t], b2.set_.call(e2[t], s2, d2)) : l(e2) ? e2.set(s2, d2) : c(e2) ? e2.add(s2) : m(e2) ? (i(), b2 = s2 | 0, b2 >= e2.length && (e2.length = (s2 | 0) + 1 | 0), e2[s2] = d2, o()) : u(8);
+    ga(a) ? (t2 = a[X], t2.set_.call(a[X], e2, d2)) : da(a) ? a.set(e2, d2) : fa(a) ? a.add(e2) : oa(a) ? ($(), t2 = e2 | 0, t2 >= a.length && (a.length = (e2 | 0) + 1 | 0), a[e2] = d2, aa()) : ca(8);
   };
-  var Wa = function(e2, r2) {
-    if (f(e2)) {
-      var a2 = e2[t];
-      a2.delete_.call(e2[t], r2);
-    } else l(e2) || c(e2) ? e2.delete(r2) : m(e2) ? e2.splice(r2, 1) : u(9);
+  var C = function(a, b) {
+    if (ga(a)) {
+      var c = a[X];
+      c.delete_.call(a[X], b);
+    } else da(a) || fa(a) ? a.delete(b) : oa(a) ? a.splice(b, 1) : ca(9);
   };
-  var Ct = function(e2, r2) {
-    if (f(e2)) {
-      var a2 = e2[t];
-      return a2.has_.call(e2[t], r2);
+  var vc = function(a, b) {
+    if (ga(a)) {
+      var c = a[X];
+      return c.has_.call(a[X], b);
     }
-    if (l(e2) || c(e2)) return e2.has(r2);
-    if (m(e2)) return (r2 | 0) >= 0 ? (a2 = r2 | 0, a2 = a2 < e2.length) : a2 = false, a2;
-    u(10);
+    if (da(a) || fa(a)) return a.has(b);
+    if (oa(a)) return (b | 0) >= 0 ? (c = b | 0, c = c < a.length) : c = false, c;
+    ca(10);
     return false;
   };
-  var Fa = function(e2, r2) {
-    if (!!Ct(e2, r2)) {
-      if (f(e2)) return e2[t].get_.call(e2[t], r2);
-      if (l(e2)) return e2.get(r2);
-      if (m(e2)) return e2[r2];
-      u(11);
+  var D = function(a, b) {
+    if (!!vc(a, b)) {
+      if (ga(a)) return a[X].get_.call(a[X], b);
+      if (da(a)) return a.get(b);
+      if (oa(a)) return a[b];
+      ca(11);
     }
   };
-  var Rt = function(e2) {
-    if (f(e2)) return e2[t].ownKeys_.call(e2[t]);
-    u(38);
+  var wc = function(a) {
+    if (ga(a)) return a[X].ownKeys_.call(a[X]);
+    ca(38);
   };
-  var Xa = function(e2, r2, a2) {
-    if (f(e2)) return e2[t].defineProperty_.call(e2[t], r2, a2);
-    u(39);
+  var E = function(a, b, c) {
+    if (ga(a)) return a[X].defineProperty_.call(a[X], b, c);
+    ca(39);
   };
-  var W = function(e2, r2) {
-    if ("object" == typeof e2 && e2 != null) {
-      if (m(e2)) {
-        r2 === void 0 || u(23);
-        var a2 = e2[t];
-        return a2.atom_;
+  var Oa = function(a, b) {
+    if ("object" == typeof a && a != null) {
+      if (oa(a)) {
+        b === void 0 || ca(23);
+        var c = a[X];
+        return c.atom_;
       }
-      if (c(e2)) return e2.atom_;
-      if (l(e2)) {
-        if (r2 === void 0) return e2.keysAtom_;
-        a2 = e2.data_, a2 = a2.get(r2), a2 || (a2 = e2.hasMap_, a2 = a2.get(r2));
-        if (!a2) {
-          var i2 = e2.name_, n2 = [];
-          n2.push(r2), n2.push(i2), Y(25, n2);
+      if (fa(a)) return a.atom_;
+      if (da(a)) {
+        if (b === void 0) return a.keysAtom_;
+        c = a.data_, c = c.get(b), c || (c = a.hasMap_, c = c.get(b));
+        if (!c) {
+          var t2 = a.name_, e2 = [];
+          e2.push(b), e2.push(t2), Ua(25, e2);
         }
-        return a2;
+        return c;
       }
-      if (r2 && !e2[t] && e2[r2] === void 0) {
+      if (b && !a[X] && a[b] === void 0) {
       }
-      if (f(e2)) return r2 || u(26), n2 = e2[t], a2 = n2.values_, a2 = a2.get(r2), a2 = a2 || n2.materializeLazyComputed_(r2), a2 = a2 || n2.materializeLazyObservable_(r2), a2 || (i2 = n2.name_, e2 = [], e2.push(r2), e2.push(i2), Y(27, e2)), a2;
-      if (Ye(e2) || C(e2) || Ve(e2)) return e2;
+      if (ga(a)) return b || ca(26), e2 = a[X], c = e2.values_, c = c.get(b), c = c || e2.materializeLazyComputed_(b), c = c || e2.materializeLazyObservable_(b), c || (t2 = e2.name_, a = [], a.push(b), a.push(t2), Ua(27, a)), c;
+      if (Ub(a) || va(a) || zb(a)) return a;
     } else {
-      if ("function" == typeof e2 && Ve(e2[t])) return e2[t];
+      if ("function" == typeof a && zb(a[X])) return a[X];
     }
-    x(28, e2);
+    ua(28, a);
   };
-  var M = function(e2, r2) {
-    e2 || u(29);
-    if (r2 !== void 0) return M(W(e2, r2));
-    if (Ye(e2) || C(e2) || Ve(e2) || l(e2) || c(e2)) return e2;
-    if (e2[t]) return e2[t];
-    x(24, e2);
+  var Ha = function(a, b) {
+    a || ca(29);
+    if (b !== void 0) return Ha(Oa(a, b));
+    if (Ub(a) || va(a) || zb(a) || da(a) || fa(a)) return a;
+    if (a[X]) return a[X];
+    ua(24, a);
   };
-  var Ja = function(e2, r2) {
-    if (r2 !== void 0) var t2 = W(e2, r2);
-    else if (Z(e2)) return e2.name;
+  var F = function(a, b) {
+    if (b !== void 0) var c = Oa(a, b);
+    else if (Va(a)) return a.name;
     else {
-      t2 = f(e2) || l(e2) || c(e2) ? M(e2) : W(e2);
+      c = ga(a) || da(a) || fa(a) ? Ha(a) : Oa(a);
     }
-    return t2.name_;
+    return c.name_;
   };
-  var $a = function(e2, r2, t2, a2) {
-    var i2 = e2;
-    if (arguments.length > 2 && "function" == typeof t2) {
-      var n2 = a2;
-      i2 = M(i2, r2);
-      return tr(i2, t2, n2);
+  var G = function(a, b, c, e2) {
+    var d2 = a;
+    if (arguments.length > 2 && "function" == typeof c) {
+      var t2 = e2;
+      d2 = Ha(d2, b);
+      return Uc(d2, c, t2);
     }
-    var o2 = arguments.length > 2 && t2;
-    n2 = M(i2);
-    if (m(i2)) {
-      if (o2) {
-        var s2 = n2.values_;
-        s2 = J.call(s2), i2 = n2.proxy_, o2 = n2.atom_, r2({ observableKind: "array", object: i2, debugObjectName: o2.name_, type: "splice", index: 0, added: s2, addedCount: s2.length, removed: [], removedCount: 0 });
+    var r2 = arguments.length > 2 && c;
+    t2 = Ha(d2);
+    if (oa(d2)) {
+      if (r2) {
+        var i2 = t2.values_;
+        i2 = Ra.call(i2), d2 = t2.proxy_, r2 = t2.atom_, b({ observableKind: "array", object: d2, debugObjectName: r2.name_, type: "splice", index: 0, added: i2, addedCount: i2.length, removed: [], removedCount: 0 });
       }
-      n2 = ge(n2, r2);
-      return n2;
+      t2 = lb(t2, b);
+      return t2;
     }
-    if (l(i2)) return n2 = ge(n2, r2), n2;
-    if (c(i2)) return n2 = ge(n2, r2), n2;
-    if (f(i2)) return n2 = ge(n2, r2), n2;
-    n2 = tr(n2, r2, o2);
-    return n2;
+    if (da(d2)) return t2 = lb(t2, b), t2;
+    if (fa(d2)) return t2 = lb(t2, b), t2;
+    if (ga(d2)) return t2 = lb(t2, b), t2;
+    t2 = Uc(t2, b, r2);
+    return t2;
   };
-  var Qa = function(e2, r2, t2) {
-    if (arguments.length > 2 && "function" == typeof t2) {
-      var a2 = M(e2, r2);
-      return Ht(a2, t2);
+  var H = function(a, b, c) {
+    if (arguments.length > 2 && "function" == typeof c) {
+      var e2 = Ha(a, b);
+      return Lc(e2, c);
     }
-    a2 = M(e2);
-    return Ht(a2, r2);
+    e2 = Ha(a);
+    return Lc(e2, b);
   };
-  var Ya = function() {
-    return rr("onBOL", arguments);
+  var I = function() {
+    return Vc("onBOL", arguments);
   };
-  var Za = function() {
-    return rr("onBUOL", arguments);
+  var J = function() {
+    return Vc("onBUOL", arguments);
   };
-  var ei = function(e2) {
-    return ve(e2, /* @__PURE__ */ new Map());
+  var K = function(a) {
+    return eb(a, /* @__PURE__ */ new Map());
   };
-  var ti = function(e2, r2) {
-    return nr(W(e2, r2));
+  var L = function(a, b) {
+    return Wc(Oa(a, b));
   };
-  var ri = function(e2, r2) {
-    return ar(W(e2, r2));
+  var M = function(a, b) {
+    return Xc(Oa(a, b));
   };
-  var ni = function(e2) {
-    return C(e2);
+  var T = function(a) {
+    return va(a);
   };
-  var ai = function(e2, r2) {
-    if (!f(e2)) return false;
-    var a2 = e2[t];
-    a2.lazyComputedKeys_ ? (e2 = a2.lazyComputedKeys_, e2 = !!e2.has(r2)) : e2 = false;
-    if (e2) return true;
-    e2 = a2.values_;
-    if (!e2.has(r2)) return false;
-    e2 = a2.values_;
-    return C(e2.get(r2));
+  var O = function(a, b) {
+    if (!ga(a)) return false;
+    var c = a[X];
+    c.lazyComputedKeys_ ? (a = c.lazyComputedKeys_, a = !!a.has(b)) : a = false;
+    if (a) return true;
+    a = c.values_;
+    if (!a.has(b)) return false;
+    a = c.values_;
+    return va(a.get(b));
   };
-  var ii = function(e2, r2, t2) {
-    var a2, n2 = void 0;
-    l(e2) || m(e2) || fe(e2) || c(e2) ? (a2 = M(e2), n2 = r2) : f(e2) && (a2 = M(e2, r2), n2 = t2), a2.dehancer = n2;
+  var P = function(a, b, c) {
+    var e2, t2 = void 0;
+    da(a) || oa(a) || gb(a) || fa(a) ? (e2 = Ha(a), t2 = b) : ga(a) && (e2 = Ha(a, b), t2 = c), e2.dehancer = t2;
     return function() {
-      a2.dehancer = void 0;
+      e2.dehancer = void 0;
     };
   };
+  var Ed = (a) => {
+    W.allowStateReads = a;
+  };
+  var Fd = (a) => {
+    let b = !!W.allowStateReads;
+    W.allowStateReads = a;
+    return b;
+  };
+  var Jd = (a, b) => true === fb(a, b);
+  var Kd = (a, b) => a === b;
+  var Ld = (a, b) => db(a, b, 1, void 0, void 0);
+  var Md = (a, b) => db(a, b, -1, void 0, void 0);
+  var ee = M;
+  var ie = (a) => !!gb(a);
+  var le = () => W.trackingDerivation != null;
   return __toCommonJS(mobx_esm_exports);
 })();
 typeof module!=="undefined"&&module.exports&&(module.exports=mobx);

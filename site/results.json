@@ -3,7 +3,7 @@
   "package": "@itslil/mobx",
   "node": "v24.11.1",
   "codec": "lilscript-codec gzip-9 / brotli-11",
-  "verifiedAt": "2026-08-19T21:45:00.000Z",
+  "verifiedAt": "2026-09-02T14:53:42.811Z",
   "tests": {
     "passed": 769,
     "pending": 11,
@@ -30,9 +30,9 @@
     },
     {
       "name": "@itslil/mobx",
-      "raw": 52259,
-      "gzip9": 16391,
-      "brotli11": 14782,
+      "raw": 57978,
+      "gzip9": 17343,
+      "brotli11": 15578,
       "note": "LilScript production ESM, same 78 exports as mobx@7.0.0",
       "primary": true
     },
