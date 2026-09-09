@@ -31,6 +31,11 @@ candidate_beam_width = 12
 max_candidate_raw_growth_percent = 0
 local_name_reserve = 48
 stable_local_names = true
+# 8.15 (measured, ten pool ports): Terser's `collapse_vars` accepts a definition
+# whose value reads the name it defines, and a name the function assigns more
+# than once; the emitter's conservative collapse refuses both. Widening it is a
+# win on three ports and a loss on three, so each says so for itself.
+wide_single_use_collapse = true
 
 [mangle]
 identifiers = true
