@@ -29,7 +29,10 @@ candidate_limit = 1536
 candidate_byte_budget = 1048576
 candidate_beam_width = 12
 max_candidate_raw_growth_percent = 0
-local_name_reserve = 48
+# 8.19 (measured, fleet sweep of five reserves): the naming reserve picks the
+# basin, not the depth, and the curve is not monotone -- 8:+0, 16:-87, 32:-115, 64:+97
+# against the declared 48. Re-measure it after any emitter change.
+local_name_reserve = 32
 stable_local_names = true
 # 8.15 (measured, ten pool ports): Terser's `collapse_vars` accepts a definition
 # whose value reads the name it defines, and a name the function assigns more
