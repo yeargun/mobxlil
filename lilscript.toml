@@ -19,7 +19,11 @@ idiom_directed_naming = true
 priority = "realistic-performance-first"
 optimization_level = 13
 cost_model = "brotli"
-function_spelling = "arrow"
+# 8.24 (measured, fleet): the `function` spelling is -22 Brotli here -- the
+# keyword is a long shared prefix the codec matches at every site. It is the
+# other way on five ports (jquerylil +214, remarklil +286, markedlil +115),
+# so it is declared per port.
+function_spelling = "function"
 public_aggregate_abi = "named"
 assume_pristine_builtins = false
 strip_console = true
