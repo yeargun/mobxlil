@@ -39,6 +39,15 @@ stable_local_names = true
 # than once; the emitter's conservative collapse refuses both. Widening it is a
 # win on three ports and a loss on three, so each says so for itself.
 wide_single_use_collapse = true
+# 8.22 (measured, fleet): re-emitting a twice- or thrice-read member off a
+# short pure receiver instead of naming it. Raw goes up and Brotli down --
+# upstream repeats `e[p][1].end.offset` verbatim where SSA destruction names
+# it, and every name is a string the codec cannot match. -97 Brotli here;
+# +170 on micromarklil, +80 on markedlil, so it is declared per port.
+rematerialize_member_reads = true
+# Required by the rematerialisation above: a duplicated property read must
+# not be able to run a getter twice. This port reads plain data.
+assume_pure_property_reads = true
 
 [mangle]
 identifiers = true
