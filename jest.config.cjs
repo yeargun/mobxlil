@@ -19,6 +19,7 @@ module.exports = {
     },
     transformIgnorePatterns: ["/node_modules/", "/dist/", "/upstream/mobx/"],
     moduleNameMapper: {
+        "^\\.\\./\\.\\./dist/mobx\\.cjs\\.production\\.min\\.js$": "<rootDir>/dist/mobx.cjs.production.min.js",
         "^\\.\\./\\.\\./src/mobx(\\.ts)?$": "<rootDir>/dist/index.js",
         "^\\.\\./\\.\\./src/internal$": "<rootDir>/tests/internal-compat.cjs",
         "^\\.\\./\\.\\./src/api/flow$": "<rootDir>/dist/index.js",

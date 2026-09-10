@@ -1,0 +1,325 @@
+{
+  "schemaVersion": 1,
+  "name": "mobxlil",
+  "measuredAt": "2026-09-10T13:58:38Z",
+  "status": "verified",
+  "buildPassed": true,
+  "summary": "The fresh artifact was checked against the repository test command.",
+  "sourceCommit": "69c47f127fbe96e63e5ace4bfe08e6f35367f719",
+  "previousPublicCommit": "d26997f0c5d933c690d87e1abd8affb0934ac357",
+  "compiler": {
+    "commit": "63c2896a71e60cbcca7870fe979f9d6ecaff3452",
+    "sha256": "2319462ef7d858c8e2a5a767260aa4f80d325e0045afa0cc86cc122d1299b059",
+    "profile": "release",
+    "dirty": false
+  },
+  "machine": {
+    "cpu": "AMD EPYC 9V45 96-Core Processor",
+    "logicalCpus": 16,
+    "affinityCpus": 16,
+    "memoryBytes": 33648431104,
+    "os": "Ubuntu 24.04.4 LTS",
+    "kernel": "6.17.0-1022-azure",
+    "architecture": "x86_64",
+    "node": "v22.23.2",
+    "rayonThreads": 16,
+    "provider": "Azure",
+    "instanceClass": "Standard_D16als_v7",
+    "parallelPortBuildsOnMachine": 1,
+    "loadAtStart": [
+      4.07763671875,
+      2.69091796875,
+      1.439453125
+    ],
+    "loadAtEnd": [
+      2.02392578125,
+      2.38623046875,
+      1.5693359375
+    ],
+    "concurrencyNote": "The audit scheduled one port per worker, but this is a shared pool. Outside compiler jobs were observed during the run; timings are contextual wall times, not controlled speedup benchmarks."
+  },
+  "upstream": {
+    "name": "mobxlil",
+    "package": "mobx",
+    "pinned": "7.0.0",
+    "latest": "7.0.3",
+    "source": "https://www.npmjs.com/package/mobx"
+  },
+  "comparisonScope": "mobx@7.0.0 public ESM runtime graph; dependency installation excluded; this is a comparison bundle build, not the upstream vendor release pipeline Sizes use canonical zlib 1.3.1 gzip-9 and Google Brotli 1.1.0 quality 11.",
+  "sizes": {
+    "previous": {
+      "name": "@itslil/mobx",
+      "raw": 57978,
+      "gzip9": 17343,
+      "brotli11": 15578,
+      "note": "LilScript production ESM, same 78 exports as mobx@7.0.0",
+      "primary": true
+    },
+    "current": {
+      "path": "dist/mobx.esm.js",
+      "raw": 59333,
+      "gzip9": 16777,
+      "brotli11": 15057,
+      "sha256": "d1cc3874d5f12ca0ebd41f208d175f56acf39be9d778a422a8605fe06e3ffaf3"
+    },
+    "upstream": {
+      "path": ".page-audit/upstream/official.esm.js",
+      "raw": 52638,
+      "gzip9": 15094,
+      "brotli11": 13646,
+      "sha256": "4c46031ddc726f635c5c11c719a4135eaaba33df9071da611992700e50d915db"
+    }
+  },
+  "officialArtifacts": [
+    {
+      "path": ".page-audit/upstream/official.terser-nomangle.js",
+      "raw": 85057,
+      "gzip9": 18904,
+      "brotli11": 16932,
+      "sha256": "17fb502ff69b6d41a20d425325a9cadbf7d664896183e93c03d0dc5507d32793"
+    },
+    {
+      "path": ".page-audit/upstream/official.esm.js",
+      "raw": 52638,
+      "gzip9": 15094,
+      "brotli11": 13646,
+      "sha256": "4c46031ddc726f635c5c11c719a4135eaaba33df9071da611992700e50d915db"
+    },
+    {
+      "path": ".page-audit/upstream/official.unminified.js",
+      "raw": 139731,
+      "gzip9": 27436,
+      "brotli11": 23286,
+      "sha256": "c257f67f61f3fc243f31c39772e6a7e2f99b869bd4bc40b76f129225c8f58264"
+    },
+    {
+      "path": ".page-audit/upstream/official.esbuild.js",
+      "raw": 53464,
+      "gzip9": 15468,
+      "brotli11": 13970,
+      "sha256": "bd3a50b5ab0c57082ced9e3e65c0b9b0b0dccb76c24e52ef741a8a1f4e35ab82"
+    }
+  ],
+  "candidateArtifacts": [
+    {
+      "path": "dist/mobx.umd.development.js",
+      "raw": 173411,
+      "gzip9": 39259,
+      "brotli11": 32125,
+      "sha256": "ac6dbb48b811924bc42467bf8056d33295678e4e90f61346e7747b9909d25702"
+    },
+    {
+      "path": "dist/mobx.dev.esm.js",
+      "raw": 130934,
+      "gzip9": 34894,
+      "brotli11": 29168,
+      "sha256": "5426d20a3c349dfdceef97d0d148f92bf8f7bd316cfcd2b9b2a10c76420098d1"
+    },
+    {
+      "path": "dist/mobx.esm.development.js",
+      "raw": 130934,
+      "gzip9": 34894,
+      "brotli11": 29168,
+      "sha256": "5426d20a3c349dfdceef97d0d148f92bf8f7bd316cfcd2b9b2a10c76420098d1"
+    },
+    {
+      "path": "dist/mobx.umd.production.js",
+      "raw": 87902,
+      "gzip9": 19884,
+      "brotli11": 17480,
+      "sha256": "6650b34f51e200cc95d2e8b67b23036a378770d878da1eb34d0c1f1d71011d6c"
+    },
+    {
+      "path": "dist/index.js",
+      "raw": 185,
+      "gzip9": 142,
+      "brotli11": 111,
+      "sha256": "d3f67adc0979c1eb51d60f3848c52f0277d3901608badf96e5ee0b722bb41557"
+    },
+    {
+      "path": "dist/mobx.esm.js",
+      "raw": 59333,
+      "gzip9": 16777,
+      "brotli11": 15057,
+      "sha256": "d1cc3874d5f12ca0ebd41f208d175f56acf39be9d778a422a8605fe06e3ffaf3"
+    },
+    {
+      "path": "dist/mobx.mjs",
+      "raw": 59333,
+      "gzip9": 16777,
+      "brotli11": 15057,
+      "sha256": "d1cc3874d5f12ca0ebd41f208d175f56acf39be9d778a422a8605fe06e3ffaf3"
+    },
+    {
+      "path": "dist/mobx.esm.production.min.js",
+      "raw": 61010,
+      "gzip9": 17416,
+      "brotli11": 15635,
+      "sha256": "1353ddb98f15a6f0428316188cd4161f893e3a8500f2061a0e11249e0240d828"
+    },
+    {
+      "path": "dist/mobx.cjs.production.min.js",
+      "raw": 85069,
+      "gzip9": 20408,
+      "brotli11": 18016,
+      "sha256": "8669556ffe78d9c870825a190883c76dc5fc9ffce03f90e979db11d4495a85ad"
+    },
+    {
+      "path": "dist/mobx.umd.production.min.js",
+      "raw": 90145,
+      "gzip9": 20693,
+      "brotli11": 18184,
+      "sha256": "92b1988b173a5a50fb6f5bbb832cc1c76d3087cd82a113af64b62598b09c8306"
+    },
+    {
+      "path": "dist/mobx.cjs.development.js",
+      "raw": 165163,
+      "gzip9": 38881,
+      "brotli11": 31847,
+      "sha256": "db75e705a1a126d35ec50f7bfcfda0e72bca28476f7aeff9c7a583cebed47b99"
+    },
+    {
+      "path": "dist/mobx.cjs.production.js",
+      "raw": 83018,
+      "gzip9": 19628,
+      "brotli11": 17330,
+      "sha256": "498c2fee41bbc4b07aea15d996de27409b19b7e4f644261b02c27fcc4c039af9"
+    },
+    {
+      "path": ".page-audit/upstream/official.esbuild.js",
+      "raw": 53464,
+      "gzip9": 15468,
+      "brotli11": 13970,
+      "sha256": "bd3a50b5ab0c57082ced9e3e65c0b9b0b0dccb76c24e52ef741a8a1f4e35ab82"
+    },
+    {
+      "path": ".page-audit/upstream/official.terser-nomangle.js",
+      "raw": 85057,
+      "gzip9": 18904,
+      "brotli11": 16932,
+      "sha256": "17fb502ff69b6d41a20d425325a9cadbf7d664896183e93c03d0dc5507d32793"
+    },
+    {
+      "path": ".page-audit/upstream/official.unminified.js",
+      "raw": 139731,
+      "gzip9": 27436,
+      "brotli11": 23286,
+      "sha256": "c257f67f61f3fc243f31c39772e6a7e2f99b869bd4bc40b76f129225c8f58264"
+    },
+    {
+      "path": ".page-audit/upstream/official.esm.js",
+      "raw": 52638,
+      "gzip9": 15094,
+      "brotli11": 13646,
+      "sha256": "4c46031ddc726f635c5c11c719a4135eaaba33df9071da611992700e50d915db"
+    }
+  ],
+  "timing": {
+    "primaryCompilerSeconds": null,
+    "primaryScope": "One real compiler process, including code generation and codec-guided search; excludes subsequent package wrapping.",
+    "packageSeconds": 103.9537455430002,
+    "packageScope": "node scripts/build.mjs --compile --force; 3 successful compiler invocations plus package generation.",
+    "upstreamSeconds": 0.24785695499999996,
+    "upstreamScope": "mobx@7.0.0 public ESM runtime graph; dependency installation excluded; this is a comparison bundle build, not the upstream vendor release pipeline",
+    "protocol": "Same shared worker for both lanes; one fresh LilScript package build; median of three sequential upstream ESM builds (PlayCanvas records one native reference build). Outside compiler jobs were observed in the pool, so contention is not excluded. Dependencies, tests and compression measurement are outside these build times.",
+    "upstreamSamples": [
+      {
+        "bundleSeconds": 0.007960454000000006,
+        "wallSeconds": 0.361957633
+      },
+      {
+        "bundleSeconds": 0.007861545999999976,
+        "wallSeconds": 0.24785695499999996
+      },
+      {
+        "bundleSeconds": 0.00848646599999995,
+        "wallSeconds": 0.20499862199999996
+      }
+    ]
+  },
+  "behavior": {
+    "command": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.config.cjs --runInBand",
+    "summary": "Repository test command passed (exit 0). Test Suites: 37 passed, 37 total \u00b7 Tests:       11 skipped, 769 passed, 780 total",
+    "before": {
+      "exitCode": 0,
+      "failures": [],
+      "logSha256": "1449a11881120cf24abfaac87a1d3c0189f3e353e5eb8b7009cb9fb2c1b18960"
+    },
+    "after": {
+      "exitCode": 0,
+      "tail": "lfarm/page-refresh-current-20260910/repos/mobxlil/dist/mobx.cjs.development.js:432:5)\n          at $m10$reportChanged (<snapshot>/dist/mobx.cjs.development.js:486:3)\n          at $m29$ObservableValue.v388.setNewValue_ (<snapshot>/dist/mobx.cjs.development.js:2194:3)\n          at $m29$ObservableValue.v394.set (<snapshot>/dist/mobx.cjs.development.js:2204:10)\n          at <snapshot>/tests/differential/graph.test.js:62:20\n          at Object.<anonymous> (<snapshot>/node_modules/expect/build/index.js:1824:9)\n          at Object.throwingMatcher [as toThrow] (<snapshot>/node_modules/expect/build/index.js:2235:93)\n          at Object.<anonymous> (<snapshot>/tests/differential/graph.test.js:62:32)\n          at Promise.finally.completed (<snapshot>/node_modules/jest-circus/build/jestAdapterInit.js:1561:28)\n          at new Promise (<anonymous>)\n          at callAsyncCircusFn (<snapshot>/node_modules/jest-circus/build/jestAdapterInit.js:1501:10)\n          at _callCircusTest (<snapshot>/node_modules/jest-circus/build/jestAdapterInit.js:1011:40)\n          at _runTest (<snapshot>/node_modules/jest-circus/build/jestAdapterInit.js:951:3)\n          at <snapshot>/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n          at _runTestsForDescribeBlock (<snapshot>/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n          at run (<snapshot>/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n          at runAndTransformResultsToJestFormat (<snapshot>/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n          at jestAdapter (<snapshot>/node_modules/jest-circus/build/runner.js:111:19)\n          at runTestInternal (<snapshot>/node_modules/jest-runner/build/index.js:276:16)\n          at runTest (<snapshot>/node_modules/jest-runner/build/index.js:344:7)\n\n      1932 |   \"[mobx] uncaught error in '\" + this;\n      1933 |   var v32 = \"[mobx] Encountered an uncaught exception that was thrown by a reaction or observer component, in: '\" + this + \"'\";\n    > 1934 |   !$m8$globalState.suppressReactionErrors ? console.error(v32, error) : console.warn(\"[mobx] (error in reaction '\" + this.name_ + \"' suppressed, fix error of causing action below)\");\n           |                                                     ^\n      1935 |   var v53 = $m9$isSpyEnabled();\n      1936 |   if (v53) {\n      1937 |     var v60 = this.name_;\n\n      at $m15$Reaction.v209.reportExceptionInDerivation_ (dist/mobx.cjs.development.js:1934:53)\n      at $m15$Reaction.v203.track (dist/mobx.cjs.development.js:1923:39)\n      at $m15$Reaction.onInvalidate_ (dist/mobx.cjs.development.js:3589:10)\n      at $m15$Reaction.v197.runReaction_ (dist/mobx.cjs.development.js:1896:14)\n      at $m10$runReactionsHelperFn (dist/mobx.cjs.development.js:1620:11)\n      at $m10$reactionScheduler (dist/mobx.cjs.development.js:1607:10)\n      at $m10$runReactions (dist/mobx.cjs.development.js:501:3)\n      at $m10$endBatch (dist/mobx.cjs.development.js:432:5)\n      at $m10$reportChanged (dist/mobx.cjs.development.js:486:3)\n      at $m29$ObservableValue.v388.setNewValue_ (dist/mobx.cjs.development.js:2194:3)\n      at $m29$ObservableValue.v394.set (dist/mobx.cjs.development.js:2204:10)\n      at tests/differential/graph.test.js:62:20\n      at Object.<anonymous> (node_modules/expect/build/index.js:1824:9)\n      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:2235:93)\n      at Object.<anonymous> (tests/differential/graph.test.js:62:32)\n\nPASS tests/differential/async.test.js\nPASS tests/upstream/base/spy.js\nPASS tests/upstream/base/intercept.js\nPASS tests/upstream/base/extendObservable.js\nPASS tests/upstream/base/cycles.js\nPASS tests/differential/proxy.test.js\nPASS tests/upstream/base/api.js\nPASS tests/differential/lifecycle.test.js\nPASS tests/differential/descriptors.test.js\nPASS tests/upstream/base/stage3-decorators-inheritance.ts\nPASS tests/upstream/base/become-observed.ts\nPASS tests/upstream/base/observe.ts\nPASS tests/upstream/base/untracked.ts\n\nTest Suites: 37 passed, 37 total\nTests:       11 skipped, 769 passed, 780 total\nSnapshots:   32 passed, 32 total\nTime:        14.101 s, estimated 18 s\nRan all test suites.\n",
+      "failures": [],
+      "logSha256": "a7533f43378837d3b6c1ed47871090369d7194c0b76f7f05184c83e46ec634a3"
+    }
+  },
+  "findings": [
+    "7 committed port changes were absent from GitHub at the start of the audit.",
+    "Published-to-fresh Brotli drift: -521 bytes (-3.34%). This includes port source/config changes and compiler changes.",
+    "The repository suite selects the development CommonJS lane; production ESM sizes and build timings are recorded separately. Passing this suite alone does not prove production behavior.",
+    "npm ci rejected missing optional dependency entries; npm install --package-lock-only repaired the lock, followed by successful npm ci.",
+    "Map the upstream tests' nested production CJS import to this repository's rebuilt production distribution.",
+    "Fresh production ESM and UMD browser checks passed for observables, computed values, actions, collections, flow, disposal and page isolation.",
+    "Upstream version gap: pinned 7.0.0; npm latest was 7.0.3 at the audit. No compatibility upgrade is implied."
+  ],
+  "primaryArtifact": "dist/mobx.esm.js",
+  "beforePage": {
+    "url": "https://yeargun.github.io/mobxlil/",
+    "status": 200,
+    "sha256": "d04bd8c5eca091e231dba73489b21a64529a129c83d9f749b27906d5b45d1d5f",
+    "lastModified": "Wed, 02 Sep 2026 15:24:16 GMT"
+  },
+  "codecSha256": "9257fd055728895c11b9c4b0d882895d7d11bb3dd3495f560123879ca2bc3cd6",
+  "publicationArtifacts": [
+    {
+      "path": "dist/mobx.umd.development.js",
+      "sha256": "ac6dbb48b811924bc42467bf8056d33295678e4e90f61346e7747b9909d25702"
+    },
+    {
+      "path": "dist/mobx.dev.esm.js",
+      "sha256": "5426d20a3c349dfdceef97d0d148f92bf8f7bd316cfcd2b9b2a10c76420098d1"
+    },
+    {
+      "path": "dist/mobx.esm.development.js",
+      "sha256": "5426d20a3c349dfdceef97d0d148f92bf8f7bd316cfcd2b9b2a10c76420098d1"
+    },
+    {
+      "path": "dist/mobx.umd.production.js",
+      "sha256": "6650b34f51e200cc95d2e8b67b23036a378770d878da1eb34d0c1f1d71011d6c"
+    },
+    {
+      "path": "dist/index.js",
+      "sha256": "d3f67adc0979c1eb51d60f3848c52f0277d3901608badf96e5ee0b722bb41557"
+    },
+    {
+      "path": "dist/mobx.esm.js",
+      "sha256": "d1cc3874d5f12ca0ebd41f208d175f56acf39be9d778a422a8605fe06e3ffaf3"
+    },
+    {
+      "path": "dist/mobx.mjs",
+      "sha256": "d1cc3874d5f12ca0ebd41f208d175f56acf39be9d778a422a8605fe06e3ffaf3"
+    },
+    {
+      "path": "dist/mobx.esm.production.min.js",
+      "sha256": "1353ddb98f15a6f0428316188cd4161f893e3a8500f2061a0e11249e0240d828"
+    },
+    {
+      "path": "dist/mobx.cjs.production.min.js",
+      "sha256": "8669556ffe78d9c870825a190883c76dc5fc9ffce03f90e979db11d4495a85ad"
+    },
+    {
+      "path": "dist/mobx.umd.production.min.js",
+      "sha256": "92b1988b173a5a50fb6f5bbb832cc1c76d3087cd82a113af64b62598b09c8306"
+    },
+    {
+      "path": "dist/mobx.cjs.development.js",
+      "sha256": "db75e705a1a126d35ec50f7bfcfda0e72bca28476f7aeff9c7a583cebed47b99"
+    },
+    {
+      "path": "dist/mobx.cjs.production.js",
+      "sha256": "498c2fee41bbc4b07aea15d996de27409b19b7e4f644261b02c27fcc4c039af9"
+    }
+  ],
+  "publicationPolicy": "Promote freshly tested distribution",
+  "publicationBase": "69c47f127fbe96e63e5ace4bfe08e6f35367f719",
+  "publicationSourceFingerprint": "15f672a45b3a89ead1ef146a84982b6b57fbe22d22e7781667b740a727ab338b"
+}
