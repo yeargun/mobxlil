@@ -1,4 +1,3 @@
-import { renderCompilerComparison } from "./compiler-comparison.js"
 
 const data = await fetch("./results.json").then((response) => {
   if (!response.ok) throw new Error(`Unable to load results: ${response.status}`)
@@ -104,8 +103,6 @@ function renderPerf() {
 renderDemos()
 renderSize()
 renderPerf()
-renderCompilerComparison(data)
-
 document.addEventListener("click", async (event) => {
   const button = event.target.closest("[data-copy]")
   if (!button) return

@@ -32,29 +32,22 @@ describe("github pages artifact", () => {
     assert.doesNotMatch(counter, /\/dist\/mobx/)
   })
 
-  it("headlines Vite size and official tests", () => {
+  it("headlines complete ESM size and official tests", () => {
     const html = readFileSync(resolve(site, "index.html"), "utf8")
     assert.match(html, /@itslil\/mobx/)
-    assert.match(html, /Vite 8 Oxc/)
+    assert.match(html, /original ESM \+ Terser/)
     assert.match(html, /769/)
     assert.doesNotMatch(html, /Closure/)
   })
 
-  it("publishes a frozen compiler baseline with provenance", () => {
-    const results = JSON.parse(readFileSync(resolve(site, "results.json"), "utf8"))
-    const comparison = results.compilerComparison
-    const before = comparison.runs.find((run) => run.role === "before")
-    assert.equal(comparison.schemaVersion, 1)
-    assert.equal(comparison.objective, "brotli11")
-    assert.deepEqual(before.artifact.sizes, { raw: 65664, gzip9: 18690, brotli11: 16736 })
-    assert.match(before.source.revision, /^[0-9a-f]{40}$/)
-    assert.match(before.artifact.sha256, /^[0-9a-f]{64}$/)
-    assert.deepEqual(before.timing.samples, [])
-    assert.match(readFileSync(resolve(site, "index.html"), "utf8"), /id="compiler-comparison"/)
-    const checked = spawnSync(process.execPath, ["--input-type=module", "--check"], {
-      encoding: "utf8",
-      input: readFileSync(resolve(site, "compiler-comparison.js"), "utf8"),
-    })
-    assert.equal(checked.status, 0, checked.stderr)
+  it("publishes the current ESM comparison and build facts", () => {
+    const comparison = JSON.parse(readFileSync(resolve(site, "comparison.json"), "utf8"))
+    assert.match(comparison.compiler.commit, /^[0-9a-f]{40}$/)
+    assert.ok(comparison.esm.lilscript.brotli11 > 0)
+    assert.ok(comparison.esm.original.brotli11 > 0)
+    assert.ok(comparison.build.originalSeconds > 0)
+    const html = readFileSync(resolve(site, "index.html"), "utf8")
+    assert.match(html, /id="build-comparison"/)
+    assert.doesNotMatch(html, /id="(?:build-audit|compiler-progress)"/)
   })
 })

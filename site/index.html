@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="@itslil/mobx: MobX 7.0.0 reimplemented in LilScript. Official tests passed. Smaller Brotli than Vite 8 Oxc and Vite+Terser of official ESM." />
+    <meta name="description" content="MobX 7.0.0 rewritten in LilScript. Current public ESM sizes compared with original MobX ESM, with build times and compatibility results." />
     <meta name="theme-color" content="#ff7a3c" />
     <title>itslil/mobx — MobX 7 through LilScript</title>
     <link rel="stylesheet" href="./styles.css" />
@@ -29,7 +29,7 @@
         <div class="hero-copy">
           <p class="eyebrow"><span class="live-dot"></span> MobX 7.0.0 · LilScript port · @itslil/mobx</p>
           <h1>MobX,<br /><em>compiled.</em></h1>
-          <p class="lede">The <code>mobx@7.0.0</code> public API, rewritten in LilScript. Official MobX tests pass. The size gate is current Vite of official unminified ESM — not official’s own DEV-stripped <code>production.min</code>. Brotli is 16,736 B versus Vite 8 Oxc 17,159 B and Vite+Terser 17,610 B.</p>
+          <p class="lede">The <code>mobx@7.0.0</code> public API, rewritten in LilScript. The complete package ESM is compared with the original production ESM graph, preserving the same 78 public exports.</p>
           <div class="install-row">
             <code>npm install @itslil/mobx</code>
             <button class="copy" data-copy="npm install @itslil/mobx" type="button">copy</button>
@@ -41,26 +41,15 @@
         </div>
 
         <div class="scoreboard" aria-label="Compression and performance results">
-          <div class="score-main">
-            <span class="score-label">Brotli-11 vs Vite 8 Oxc of official ESM</span>
-            <strong>0.975<span>×</span></strong>
-            <p>17,159 B → 16,736 B</p>
-          </div>
-          <div class="score-grid">
-            <div><strong>769</strong><span>official tests passed</span></div>
-            <div><strong>8/12</strong><span>suites ≤ 1.05×</span></div>
-            <div><strong>0.98×</strong><span>retained memory</span></div>
-            <div><strong>0.95×</strong><span>Brotli vs Vite+Terser</span></div>
-          </div>
-          <p class="score-note">Verified 2026-08-19, Node v24.11.1, <code>lilscript-codec</code> gzip-9 / Brotli-11. Vite 8 Oxc is the current Vite client minifier. Official <code>production.min</code> is a different, DEV-stripped compile (12,937 B Brotli) and is not the Vite lane. Throughput is @itslil/mobx / official, <code>NODE_ENV=production</code>.</p>
+          <div class="score-main"><span class="score-label">Brotli-11 · LilScript / original ESM + Terser</span><strong>1.10<span>×</span></strong><p>13,646 B original · 15,057 B LilScript</p></div>
+          <div class="score-grid"><div><strong>59,333 B</strong><span>LilScript raw ESM</span></div><div><strong>16,777 B</strong><span>LilScript gzip-9</span></div><div><strong>15,057 B</strong><span>LilScript Brotli-11</span></div><div><strong>13,646 B</strong><span>original ESM Brotli-11</span></div></div>
+          <p class="score-note">Complete production ESM graphs, measured with canonical gzip-9 and Brotli-11. Repository checks pass.</p>
         </div>
       </section>
 
       <section class="ticker" aria-label="Supported APIs">
         <div>observable <span>✦</span> computed <span>✦</span> autorun <span>✦</span> reaction <span>✦</span> action <span>✦</span> flow <span>✦</span> when <span>✦</span> makeAutoObservable <span>✦</span> map <span>✦</span> set <span>✦</span> intercept <span>✦</span> spy</div>
       </section>
-
-      <p data-audit-history="2026-09-10" style="max-width:1160px;margin:18px auto;padding:12px 20px;font:14px/1.6 system-ui;color:#344b54;background:#edf3f4">The build audit above records the current compiler check. Runtime throughput and application benchmarks below retain their earlier measurement dates.</p>
 <section class="performance shell" id="performance">
         <div class="section-heading">
           <div>
@@ -104,7 +93,7 @@
               <p class="eyebrow">The receipts</p>
               <h2>Raw, gzip,<br />and Brotli.</h2>
             </div>
-            <p>The size gate is current Vite of official unminified <code>mobx.esm.js</code>. Vite 8 Oxc is 17,159 B Brotli; Vite+Terser is 17,610 B. This package is 16,736 B. Official <code>production.min</code> (12,937 B) is shown as a diagnostic — it is DEV-stripped at compile, not a Vite minify of the published ESM.</p>
+            <p>The current LilScript package ESM and the original MobX production ESM graph, bundled with esbuild and minified with Terser. Every public export is retained.</p>
           </div>
           <div class="total-bar" id="total-bar"></div>
           <div class="table-wrap">
@@ -115,36 +104,22 @@
                   <th>Raw</th>
                   <th>gzip-9</th>
                   <th>Brotli-11</th>
-                  <th>vs Vite 8 Oxc</th>
+                  <th>vs original ESM</th>
                 </tr>
               </thead>
               <tbody id="results-body"></tbody>
             </table>
           </div>
           <div class="method-note">
-            <p><strong>Why this wins Vite and still loses official min.</strong> Same 78 exports. Vite minifies the published unminified ESM, which still carries development paths. Official <code>production.min</code> strips those at compile. A later size-first compile was smaller on disk but did not load. The shipped file is the last runtime that passes the official suite. Official tests: 769 passed, 0 failed.</p>
+            <p><strong>Comparison scope.</strong> The complete public ESM entries preserve all 78 exports. Original ESM rows use the production runtime graph with the listed minifier. LilScript sizes describe the compiled package ESM.</p>
             <a href="https://github.com/yeargun/mobxlil#size">README ↗</a>
           </div>
         </div>
       </section>
 
-
-      <section class="compiler-progress shell" id="compiler-progress">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Compiler progress</p>
-            <h2>Frozen before.<br />Verified after.</h2>
-          </div>
-          <p>This is a separate record for the exact shipped library artifact compiled from pinned source. It keeps the published result intact, then adds the final compiler run only after syntax and semantic gates pass.</p>
-        </div>
-        <div class="compiler-comparison" id="compiler-comparison" aria-live="polite">
-          Loading compiler comparison…
-        </div>
-      </section>
-
       <section class="closing shell">
         <p class="eyebrow">Zero runtime dependencies</p>
-        <h2>Drop MobX 7 into<br />a smaller box.</h2>
+        <h2>Use MobX 7,<br />through LilScript.</h2>
         <div class="install-row large">
           <code>npm install @itslil/mobx</code>
           <button class="copy" data-copy="npm install @itslil/mobx" type="button">copy</button>

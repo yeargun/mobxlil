@@ -1,7 +1,5 @@
 # @itslil/mobx
 
-<!-- current-build-audit -->
-**Build audit, 2026-09-10:** [verified; compiler, machine, build times, version gaps and behavior checks](https://yeargun.github.io/mobxlil/#build-audit). The [JSON receipt](site/build-audit.json) records the current comparison; older benchmark prose retains its original scope.
 
 
 MobX 7.0.0, reimplemented in [LilScript](https://github.com/yeargun/lilscript) and published as a dependency-free drop-in.

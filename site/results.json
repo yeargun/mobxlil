@@ -14,13 +14,14 @@
   },
   "size": [
     {
-      "name": "Vite + Terser of official ESM",
+      "name": "Original ESM + Terser",
       "raw": 52638,
       "gzip9": 15094,
       "brotli11": 13646,
-      "note": "toplevel Terser, 3 passes",
+      "note": "Complete production ESM graph; Terser with mangling and three compression passes.",
       "measuredAt": "2026-09-10T13:58:38Z",
-      "artifactSha256": "4c46031ddc726f635c5c11c719a4135eaaba33df9071da611992700e50d915db"
+      "artifactSha256": "4c46031ddc726f635c5c11c719a4135eaaba33df9071da611992700e50d915db",
+      "baseline": true
     },
     {
       "name": "@itslil/mobx",
@@ -134,60 +135,5 @@
       "blurb": "reaction, intercept, and observe."
     }
   ],
-  "compilerComparison": {
-    "schemaVersion": 1,
-    "objective": "brotli11",
-    "runs": [
-      {
-        "id": "published-before",
-        "role": "before",
-        "label": "Published production ESM before compiler work",
-        "recordedAt": "2026-08-24T00:00:00.000Z",
-        "source": {
-          "revision": "ef1d18487d2b153e1fa9fab7a90dd1518a0cda0b",
-          "tree": "cb4217662c9b262092b8ffc0fbdf41ecfb5f348f",
-          "entrySha256": "daffae3ebb3585f3f6751c8d38b715b9f311062f76e63fbc7530a27789453e2a",
-          "packageLockSha256": "d327ae7b0093237874f64263ee3fe922ad4695cf00e27a1761a951a55af85667"
-        },
-        "config": {
-          "path": "lilscript.toml",
-          "sha256": "15c1dec745765dc87eb9fca0cbd3423f917091dd21d2ef0caf305dc332b51cbe",
-          "derivation": {
-            "kind": "identity"
-          }
-        },
-        "compiler": {
-          "revision": null,
-          "binarySha256": null
-        },
-        "codec": {
-          "binarySha256": "b3d93da88e4516f3b22e5e67b288bb2504868f1c438010e0ac9492ec33de2063",
-          "gzipLevel": 9,
-          "brotliQuality": 11
-        },
-        "artifact": {
-          "path": "dist/mobx.esm.js",
-          "sha256": "d953a70c359ff3c13ab6439916155d82eb89680c8c6ba74cb04992473d1c3c96",
-          "sizes": {
-            "raw": 65664,
-            "gzip9": 18690,
-            "brotli11": 16736
-          }
-        },
-        "timing": {
-          "scope": "compile",
-          "samples": [],
-          "unavailableReason": "published artifact has no reproducible compiler timing"
-        },
-        "semantic": {
-          "status": "reported-passed",
-          "command": null,
-          "summary": "project report: 78 exports; 769 passed, 0 failed, and 11 skipped"
-        }
-      }
-    ]
-  },
-  "sizeMeasuredAt": "2026-09-10T13:58:38Z",
-  "buildAudit": "./build-audit.json",
-  "runtimeEvidenceStatus": "Historical; runtime throughput was not republished as a measurement of this compiler."
+  "sizeMeasuredAt": "2026-09-10T13:58:38Z"
 }
