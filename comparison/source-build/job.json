@@ -1,0 +1,40 @@
+{
+  "source": {
+    "repository": "https://github.com/mobxjs/mobx.git",
+    "commit": "c9f2e3f8e95bd7b1836bd02734fdcde46800fb6d",
+    "package": "mobx",
+    "version": "7.0.0",
+    "directory": "packages/mobx"
+  },
+  "portSource": {
+    "commit": "69c47f127fbe96e63e5ace4bfe08e6f35367f719"
+  },
+  "compilerCommit": "4dc4e3337d9ffd758d65e3852682d6e13d9331c1",
+  "install": [
+    "npm",
+    "ci",
+    "--ignore-scripts",
+    "--no-audit",
+    "--no-fund"
+  ],
+  "setup": [],
+  "build": [
+    "npm",
+    "run",
+    "build",
+    "--workspace",
+    "mobx",
+    "--",
+    "--environment",
+    "TARGET:publish"
+  ],
+  "clean": [
+    "packages/mobx/dist"
+  ],
+  "entry": "packages/mobx/dist/mobx.esm.js",
+  "defaultExport": false,
+  "external": [],
+  "esmScope": "mobx@7.0.0 public ESM runtime graph; dependency installation excluded; this is a comparison bundle build, not the upstream vendor release pipeline",
+  "lilscriptBuild": "node scripts/build.mjs --compile --force",
+  "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.config.cjs --runInBand"
+}

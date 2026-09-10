@@ -1,0 +1,65 @@
+{
+  "source": {
+    "repository": "https://github.com/mobxjs/mobx.git",
+    "commit": "c9f2e3f8e95bd7b1836bd02734fdcde46800fb6d",
+    "package": "mobx",
+    "version": "7.0.0",
+    "directory": "packages/mobx"
+  },
+  "entry": "packages/mobx/dist/mobx.esm.js",
+  "scope": "mobx@7.0.0 public ESM runtime graph; dependency installation excluded; this is a comparison bundle build, not the upstream vendor release pipeline",
+  "external": [],
+  "samples": [
+    {
+      "bundleSeconds": 0.012971858000000005,
+      "wallSeconds": 0.31089252200000006
+    },
+    {
+      "bundleSeconds": 0.008592782999999998,
+      "wallSeconds": 0.24320681300000008
+    },
+    {
+      "bundleSeconds": 0.008878825000000007,
+      "wallSeconds": 0.21895192799999996
+    }
+  ],
+  "medianSeconds": 0.24320681300000008,
+  "toolchain": {
+    "esbuild": "0.28.1",
+    "terser": "5.51.2"
+  },
+  "artifacts": [
+    {
+      "path": "original.esm.js",
+      "raw": 52638,
+      "gzip9": 15094,
+      "brotli11": 13646,
+      "sha256": "4c46031ddc726f635c5c11c719a4135eaaba33df9071da611992700e50d915db"
+    },
+    {
+      "path": "original.unminified.js",
+      "raw": 139730,
+      "gzip9": 27435,
+      "brotli11": 23286,
+      "sha256": "4478a66148777a474745bc831ae857eac14d0b3042a13b9e0ff9d0a04d883537"
+    },
+    {
+      "path": "original.terser-nomangle.js",
+      "raw": 85057,
+      "gzip9": 18904,
+      "brotli11": 16932,
+      "sha256": "17fb502ff69b6d41a20d425325a9cadbf7d664896183e93c03d0dc5507d32793"
+    },
+    {
+      "path": "original.esbuild.js",
+      "raw": 53464,
+      "gzip9": 15468,
+      "brotli11": 13970,
+      "sha256": "bd3a50b5ab0c57082ced9e3e65c0b9b0b0dccb76c24e52ef741a8a1f4e35ab82"
+    }
+  ],
+  "inputs": [
+    "packages/mobx/dist/mobx.esm.js",
+    "public-esm-entry.mjs"
+  ]
+}

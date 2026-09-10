@@ -1,0 +1,910 @@
+{
+  "schemaVersion": 1,
+  "name": "mobxlil",
+  "startedAt": "2026-09-10T20:41:06Z",
+  "machine": {
+    "provider": "Azure",
+    "instanceClass": "Standard_D16als_v7",
+    "cpu": "AMD EPYC 9V45 96-Core Processor",
+    "logicalCpus": 16,
+    "memoryBytes": 33648435200,
+    "os": "Ubuntu 24.04.4 LTS",
+    "kernel": "6.17.0-1022-azure",
+    "node": "v24.11.1",
+    "rayonThreads": 8,
+    "loadAtStart": [
+      2.98681640625,
+      3.7734375,
+      3.3828125
+    ],
+    "loadAtEnd": [
+      4.0810546875,
+      4.83740234375,
+      4.04248046875
+    ]
+  },
+  "compiler": {
+    "commit": "4dc4e3337d9ffd758d65e3852682d6e13d9331c1",
+    "sha256": "0616048498eb9eb2e4bd75b39e8e6a083733ada647e16108edfee30ad183beeb"
+  },
+  "source": {
+    "repository": "https://github.com/mobxjs/mobx.git",
+    "commit": "c9f2e3f8e95bd7b1836bd02734fdcde46800fb6d",
+    "package": "mobx",
+    "version": "7.0.0",
+    "directory": "packages/mobx"
+  },
+  "portSource": {
+    "commit": "69c47f127fbe96e63e5ace4bfe08e6f35367f719"
+  },
+  "steps": {
+    "original-install": {
+      "command": [
+        "npm",
+        "ci",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "cwd": "upstream",
+      "wallSeconds": 20.446157447000587,
+      "cpuSeconds": 8.743637,
+      "exitCode": 0,
+      "timedOut": false,
+      "log": "original-install.log",
+      "logSha256": "3df48f5250796e8bdccb57c92d6e2f9ab0d053f688c38f9ea5b2b9219bae4eb9",
+      "tail": "ndard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.\nnpm warn deprecated @babel/plugin-proposal-optional-chaining@7.21.0: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-chaining instead.\nnpm warn deprecated browserslist@1.7.7: Browserslist 2 could fail on reading Browserslist >3.0 config used in other tools.\nnpm warn deprecated source-map-resolve@0.5.3: See https://github.com/lydell/source-map-resolve#deprecated\nnpm warn deprecated babel-preset-babili@0.1.4: babili has been renamed to babel-minify. Please update to babel-preset-minify\nnpm warn deprecated browserslist@1.7.7: Browserslist 2 could fail on reading Browserslist >3.0 config used in other tools.\nnpm warn deprecated browserslist@1.7.7: Browserslist 2 could fail on reading Browserslist >3.0 config used in other tools.\nnpm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead\nnpm warn deprecated source-map-resolve@0.6.0: See https://github.com/lydell/source-map-resolve#deprecated\nnpm warn deprecated fs-write-stream-atomic@1.0.10: This package is no longer supported.\nnpm warn deprecated uuid@3.4.0: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).\nnpm warn deprecated @humanwhocodes/object-schema@1.2.1: Use @eslint/object-schema instead\nnpm warn deprecated @ungap/structured-clone@1.3.0: Potential CWE-502 - Update to 1.3.1 or higher\nnpm warn deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142\nnpm warn deprecated svgo@0.7.2: This SVGO version is no longer supported. Upgrade to v2.x.x.\nnpm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me\nnpm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me\nnpm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me\nnpm warn deprecated eslint@6.8.0: This version is no longer supported. Please see https://eslint.org/version-support for other options.\nnpm warn deprecated eslint@7.32.0: This version is no longer supported. Please see https://eslint.org/version-support for other options.\nnpm warn deprecated eslint@7.32.0: This version is no longer supported. Please see https://eslint.org/version-support for other options.\nnpm warn deprecated core-js@2.6.12: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.\n\nadded 1729 packages in 20s\n"
+    },
+    "lilscript-install": {
+      "command": [
+        "npm",
+        "ci",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "cwd": "port",
+      "wallSeconds": 2.468045689000064,
+      "cpuSeconds": 3.712482999999999,
+      "exitCode": 0,
+      "timedOut": false,
+      "log": "lilscript-install.log",
+      "logSha256": "543fcef80daa310cc3e78af103c40a918091e1cc6907967d0e3b41128bfb63a3",
+      "tail": "npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.\nnpm warn deprecated whatwg-encoding@3.1.1: Use @exodus/bytes instead for a more spec-conformant and faster implementation\nnpm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me\nnpm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me\nnpm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me\n\nadded 552 packages in 2s\n"
+    },
+    "original-build-1": {
+      "command": [
+        "npm",
+        "run",
+        "build",
+        "--workspace",
+        "mobx",
+        "--",
+        "--environment",
+        "TARGET:publish"
+      ],
+      "cwd": "upstream",
+      "wallSeconds": 17.595922167000026,
+      "cpuSeconds": 24.677148000000006,
+      "exitCode": 0,
+      "timedOut": false,
+      "log": "original-build-1.log",
+      "logSha256": "1b1a9fb9daa0afffe717133c837d66a9bb29e4c89a5019c72ad78305e45fd3bb",
+      "tail": "\n> mobx@7.0.0 build\n> rollup --config rollup.config.mjs --environment TARGET:publish\n\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.cjs.development.js\u001b[22m...\u001b[39m\nBrowserslist: browsers data (caniuse-lite) is 6 months old. Please run:\n  npx update-browserslist-db@latest\n  Why you should do it regularly: https://github.com/browserslist/update-db#readme\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.cjs.development.js\u001b[22m in \u001b[1m5.6s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.cjs.production.min.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.cjs.production.min.js\u001b[22m in \u001b[1m2.4s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.esm.development.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.esm.development.js\u001b[22m in \u001b[1m1.5s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.esm.production.min.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.esm.production.min.js\u001b[22m in \u001b[1m2.2s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.esm.js, dist/mobx.mjs\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.esm.js, dist/mobx.mjs\u001b[22m in \u001b[1m1.4s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.umd.development.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.umd.development.js\u001b[22m in \u001b[1m1.4s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.umd.production.min.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.umd.production.min.js\u001b[22m in \u001b[1m2.1s\u001b[22m\u001b[39m\n"
+    },
+    "lilscript-build-1": {
+      "command": [
+        "bash",
+        "-c",
+        "node scripts/build.mjs --compile --force"
+      ],
+      "cwd": "port",
+      "wallSeconds": 105.00818260000051,
+      "cpuSeconds": 303.231242,
+      "exitCode": 0,
+      "timedOut": false,
+      "log": "lilscript-build-1.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tail": "",
+      "invocations": [
+        {
+          "args": [
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/src/mobx.lil",
+            "--target",
+            "js-module",
+            "--config",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/config/dev.toml",
+            "-o",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.dev.esm.js"
+          ],
+          "startedAt": 1789072907.0413063,
+          "wallSeconds": 1.1710295677185059,
+          "exitCode": 0,
+          "output": "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.dev.esm.js",
+          "sha256": "5426d20a3c349dfdceef97d0d148f92bf8f7bd316cfcd2b9b2a10c76420098d1"
+        },
+        {
+          "args": [
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/src/mobx.lil",
+            "--target",
+            "js-module",
+            "--config",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/lilscript.toml",
+            "-o",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.js"
+          ],
+          "startedAt": 1789072908.2562811,
+          "wallSeconds": 51.900938272476196,
+          "exitCode": 0,
+          "output": "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.js",
+          "sha256": "d1cc3874d5f12ca0ebd41f208d175f56acf39be9d778a422a8605fe06e3ffaf3"
+        },
+        {
+          "args": [
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/src/mobx.lil",
+            "--target",
+            "js-module",
+            "--config",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/config/production.min.toml",
+            "-o",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.production.min.js"
+          ],
+          "startedAt": 1789072960.194781,
+          "wallSeconds": 51.62568426132202,
+          "exitCode": 0,
+          "output": "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.production.min.js",
+          "sha256": "1353ddb98f15a6f0428316188cd4161f893e3a8500f2061a0e11249e0240d828"
+        }
+      ]
+    },
+    "lilscript-build-2": {
+      "command": [
+        "bash",
+        "-c",
+        "node scripts/build.mjs --compile --force"
+      ],
+      "cwd": "port",
+      "wallSeconds": 122.69270198899994,
+      "cpuSeconds": 356.3402280000001,
+      "exitCode": 0,
+      "timedOut": false,
+      "log": "lilscript-build-2.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tail": "",
+      "invocations": [
+        {
+          "args": [
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/src/mobx.lil",
+            "--target",
+            "js-module",
+            "--config",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/config/dev.toml",
+            "-o",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.dev.esm.js"
+          ],
+          "startedAt": 1789073012.018156,
+          "wallSeconds": 0.7297501564025879,
+          "exitCode": 0,
+          "output": "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.dev.esm.js",
+          "sha256": "5426d20a3c349dfdceef97d0d148f92bf8f7bd316cfcd2b9b2a10c76420098d1"
+        },
+        {
+          "args": [
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/src/mobx.lil",
+            "--target",
+            "js-module",
+            "--config",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/lilscript.toml",
+            "-o",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.js"
+          ],
+          "startedAt": 1789073012.7897935,
+          "wallSeconds": 61.940836906433105,
+          "exitCode": 0,
+          "output": "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.js",
+          "sha256": "d1cc3874d5f12ca0ebd41f208d175f56acf39be9d778a422a8605fe06e3ffaf3"
+        },
+        {
+          "args": [
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/src/mobx.lil",
+            "--target",
+            "js-module",
+            "--config",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/config/production.min.toml",
+            "-o",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.production.min.js"
+          ],
+          "startedAt": 1789073074.7691984,
+          "wallSeconds": 59.7898108959198,
+          "exitCode": 0,
+          "output": "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.production.min.js",
+          "sha256": "1353ddb98f15a6f0428316188cd4161f893e3a8500f2061a0e11249e0240d828"
+        }
+      ]
+    },
+    "original-build-2": {
+      "command": [
+        "npm",
+        "run",
+        "build",
+        "--workspace",
+        "mobx",
+        "--",
+        "--environment",
+        "TARGET:publish"
+      ],
+      "cwd": "upstream",
+      "wallSeconds": 7.529334529999687,
+      "cpuSeconds": 14.228763999999893,
+      "exitCode": 0,
+      "timedOut": false,
+      "log": "original-build-2.log",
+      "logSha256": "d33a93f87de93b98a27249742bc267a747e992fd9adf317d0c024a274bfdb421",
+      "tail": "\n> mobx@7.0.0 build\n> rollup --config rollup.config.mjs --environment TARGET:publish\n\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.cjs.development.js\u001b[22m...\u001b[39m\nBrowserslist: browsers data (caniuse-lite) is 6 months old. Please run:\n  npx update-browserslist-db@latest\n  Why you should do it regularly: https://github.com/browserslist/update-db#readme\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.cjs.development.js\u001b[22m in \u001b[1m1.5s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.cjs.production.min.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.cjs.production.min.js\u001b[22m in \u001b[1m1.4s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.esm.development.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.esm.development.js\u001b[22m in \u001b[1m471ms\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.esm.production.min.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.esm.production.min.js\u001b[22m in \u001b[1m1.3s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.esm.js, dist/mobx.mjs\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.esm.js, dist/mobx.mjs\u001b[22m in \u001b[1m437ms\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.umd.development.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.umd.development.js\u001b[22m in \u001b[1m404ms\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.umd.production.min.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.umd.production.min.js\u001b[22m in \u001b[1m1.2s\u001b[22m\u001b[39m\n"
+    },
+    "original-build-3": {
+      "command": [
+        "npm",
+        "run",
+        "build",
+        "--workspace",
+        "mobx",
+        "--",
+        "--environment",
+        "TARGET:publish"
+      ],
+      "cwd": "upstream",
+      "wallSeconds": 6.878496848000395,
+      "cpuSeconds": 12.87230900000005,
+      "exitCode": 0,
+      "timedOut": false,
+      "log": "original-build-3.log",
+      "logSha256": "43be1a5d19e05172912039e75a0f45fee33bda35eb68604fb19205c2458e0ff3",
+      "tail": "\n> mobx@7.0.0 build\n> rollup --config rollup.config.mjs --environment TARGET:publish\n\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.cjs.development.js\u001b[22m...\u001b[39m\nBrowserslist: browsers data (caniuse-lite) is 6 months old. Please run:\n  npx update-browserslist-db@latest\n  Why you should do it regularly: https://github.com/browserslist/update-db#readme\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.cjs.development.js\u001b[22m in \u001b[1m1.4s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.cjs.production.min.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.cjs.production.min.js\u001b[22m in \u001b[1m1.2s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.esm.development.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.esm.development.js\u001b[22m in \u001b[1m402ms\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.esm.production.min.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.esm.production.min.js\u001b[22m in \u001b[1m1.1s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.esm.js, dist/mobx.mjs\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.esm.js, dist/mobx.mjs\u001b[22m in \u001b[1m383ms\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.umd.development.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.umd.development.js\u001b[22m in \u001b[1m393ms\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.umd.production.min.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.umd.production.min.js\u001b[22m in \u001b[1m1.2s\u001b[22m\u001b[39m\n"
+    },
+    "lilscript-build-3": {
+      "command": [
+        "bash",
+        "-c",
+        "node scripts/build.mjs --compile --force"
+      ],
+      "cwd": "port",
+      "wallSeconds": 116.5193008770002,
+      "cpuSeconds": 338.5729369999999,
+      "exitCode": 0,
+      "timedOut": false,
+      "log": "lilscript-build-3.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tail": "",
+      "invocations": [
+        {
+          "args": [
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/src/mobx.lil",
+            "--target",
+            "js-module",
+            "--config",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/config/dev.toml",
+            "-o",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.dev.esm.js"
+          ],
+          "startedAt": 1789073149.1269524,
+          "wallSeconds": 0.7443935871124268,
+          "exitCode": 0,
+          "output": "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.dev.esm.js",
+          "sha256": "5426d20a3c349dfdceef97d0d148f92bf8f7bd316cfcd2b9b2a10c76420098d1"
+        },
+        {
+          "args": [
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/src/mobx.lil",
+            "--target",
+            "js-module",
+            "--config",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/lilscript.toml",
+            "-o",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.js"
+          ],
+          "startedAt": 1789073149.9143252,
+          "wallSeconds": 58.74067759513855,
+          "exitCode": 0,
+          "output": "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.js",
+          "sha256": "d1cc3874d5f12ca0ebd41f208d175f56acf39be9d778a422a8605fe06e3ffaf3"
+        },
+        {
+          "args": [
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/src/mobx.lil",
+            "--target",
+            "js-module",
+            "--config",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/config/production.min.toml",
+            "-o",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.production.min.js"
+          ],
+          "startedAt": 1789073208.693258,
+          "wallSeconds": 56.80145621299744,
+          "exitCode": 0,
+          "output": "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.production.min.js",
+          "sha256": "1353ddb98f15a6f0428316188cd4161f893e3a8500f2061a0e11249e0240d828"
+        }
+      ]
+    },
+    "original-esm": {
+      "command": [
+        "node",
+        "/home/lilfarm/source-perf-20260910/tools/source-esm.mjs",
+        "/home/lilfarm/source-perf-20260910",
+        "mobxlil"
+      ],
+      "cwd": "upstream",
+      "wallSeconds": 1.366593534000458,
+      "cpuSeconds": 2.3209480000000315,
+      "exitCode": 0,
+      "timedOut": false,
+      "log": "original-esm.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tail": ""
+    },
+    "lilscript-tests": {
+      "command": [
+        "bash",
+        "-c",
+        "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.config.cjs --runInBand"
+      ],
+      "cwd": "port",
+      "wallSeconds": 15.791855405000206,
+      "cpuSeconds": 9.34558299999992,
+      "exitCode": 0,
+      "timedOut": false,
+      "log": "lilscript-tests.log",
+      "logSha256": "b33ece23255a97bfb7b4c1e53807481b857cbdef9ccf1bc502cf69132615e4ba",
+      "tail": " /home/lilfarm/source-perf-20260910/ports/mobxlil/node_modules/jest-circus/build/jestAdapterInit.js:853:7\n          at _runTestsForDescribeBlock (/home/lilfarm/source-perf-20260910/ports/mobxlil/node_modules/jest-circus/build/jestAdapterInit.js:866:11)\n          at run (/home/lilfarm/source-perf-20260910/ports/mobxlil/node_modules/jest-circus/build/jestAdapterInit.js:765:3)\n          at runAndTransformResultsToJestFormat (/home/lilfarm/source-perf-20260910/ports/mobxlil/node_modules/jest-circus/build/jestAdapterInit.js:1993:21)\n          at jestAdapter (/home/lilfarm/source-perf-20260910/ports/mobxlil/node_modules/jest-circus/build/runner.js:111:19)\n          at runTestInternal (/home/lilfarm/source-perf-20260910/ports/mobxlil/node_modules/jest-runner/build/index.js:276:16)\n          at runTest (/home/lilfarm/source-perf-20260910/ports/mobxlil/node_modules/jest-runner/build/index.js:344:7)\n\n    \u001b[0m \u001b[90m 1932 |\u001b[39m   \u001b[32m\"[mobx] uncaught error in '\"\u001b[39m \u001b[33m+\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m;\u001b[39m\n     \u001b[90m 1933 |\u001b[39m   \u001b[36mvar\u001b[39m v32 \u001b[33m=\u001b[39m \u001b[32m\"[mobx] Encountered an uncaught exception that was thrown by a reaction or observer component, in: '\"\u001b[39m \u001b[33m+\u001b[39m \u001b[36mthis\u001b[39m \u001b[33m+\u001b[39m \u001b[32m\"'\"\u001b[39m\u001b[33m;\u001b[39m\n    \u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 1934 |\u001b[39m   \u001b[33m!\u001b[39m$m8$globalState\u001b[33m.\u001b[39msuppressReactionErrors \u001b[33m?\u001b[39m console\u001b[33m.\u001b[39merror(v32\u001b[33m,\u001b[39m error) \u001b[33m:\u001b[39m console\u001b[33m.\u001b[39mwarn(\u001b[32m\"[mobx] (error in reaction '\"\u001b[39m \u001b[33m+\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mname_ \u001b[33m+\u001b[39m \u001b[32m\"' suppressed, fix error of causing action below)\"\u001b[39m)\u001b[33m;\u001b[39m\n     \u001b[90m      |\u001b[39m                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n     \u001b[90m 1935 |\u001b[39m   \u001b[36mvar\u001b[39m v53 \u001b[33m=\u001b[39m $m9$isSpyEnabled()\u001b[33m;\u001b[39m\n     \u001b[90m 1936 |\u001b[39m   \u001b[36mif\u001b[39m (v53) {\n     \u001b[90m 1937 |\u001b[39m     \u001b[36mvar\u001b[39m v60 \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mname_\u001b[33m;\u001b[39m\u001b[0m\n\n      at $m15$Reaction.v209.reportExceptionInDerivation_ (dist/mobx.cjs.development.js:1934:53)\n      at $m15$Reaction.v203.track (dist/mobx.cjs.development.js:1923:39)\n      at $m15$Reaction.onInvalidate_ (dist/mobx.cjs.development.js:3589:10)\n      at $m15$Reaction.v197.runReaction_ (dist/mobx.cjs.development.js:1896:14)\n      at $m10$runReactionsHelperFn (dist/mobx.cjs.development.js:1620:11)\n      at $m10$reactionScheduler (dist/mobx.cjs.development.js:1607:10)\n      at $m10$runReactions (dist/mobx.cjs.development.js:501:3)\n      at $m10$endBatch (dist/mobx.cjs.development.js:432:5)\n      at $m10$reportChanged (dist/mobx.cjs.development.js:486:3)\n      at $m29$ObservableValue.v388.setNewValue_ (dist/mobx.cjs.development.js:2194:3)\n      at $m29$ObservableValue.v394.set (dist/mobx.cjs.development.js:2204:10)\n      at tests/differential/graph.test.js:62:20\n      at Object.<anonymous> (node_modules/expect/build/index.js:1824:9)\n      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:2235:93)\n      at Object.<anonymous> (tests/differential/graph.test.js:62:32)\n\nPASS tests/upstream/base/api.js\nPASS tests/upstream/base/nested.js\nPASS tests/differential/proxy.test.js\nPASS tests/upstream/base/observe.ts\nPASS tests/differential/async.test.js\nPASS tests/differential/descriptors.test.js\nPASS tests/upstream/base/untracked.ts\nPASS tests/differential/lifecycle.test.js\n\nTest Suites: 37 passed, 37 total\nTests:       11 skipped, 769 passed, 780 total\nSnapshots:   32 passed, 32 total\nTime:        15.493 s\nRan all test suites.\n"
+    }
+  },
+  "nativeBuilds": [
+    {
+      "command": [
+        "npm",
+        "run",
+        "build",
+        "--workspace",
+        "mobx",
+        "--",
+        "--environment",
+        "TARGET:publish"
+      ],
+      "cwd": "upstream",
+      "wallSeconds": 17.595922167000026,
+      "cpuSeconds": 24.677148000000006,
+      "exitCode": 0,
+      "timedOut": false,
+      "log": "original-build-1.log",
+      "logSha256": "1b1a9fb9daa0afffe717133c837d66a9bb29e4c89a5019c72ad78305e45fd3bb",
+      "tail": "\n> mobx@7.0.0 build\n> rollup --config rollup.config.mjs --environment TARGET:publish\n\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.cjs.development.js\u001b[22m...\u001b[39m\nBrowserslist: browsers data (caniuse-lite) is 6 months old. Please run:\n  npx update-browserslist-db@latest\n  Why you should do it regularly: https://github.com/browserslist/update-db#readme\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.cjs.development.js\u001b[22m in \u001b[1m5.6s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.cjs.production.min.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.cjs.production.min.js\u001b[22m in \u001b[1m2.4s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.esm.development.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.esm.development.js\u001b[22m in \u001b[1m1.5s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.esm.production.min.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.esm.production.min.js\u001b[22m in \u001b[1m2.2s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.esm.js, dist/mobx.mjs\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.esm.js, dist/mobx.mjs\u001b[22m in \u001b[1m1.4s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.umd.development.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.umd.development.js\u001b[22m in \u001b[1m1.4s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.umd.production.min.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.umd.production.min.js\u001b[22m in \u001b[1m2.1s\u001b[22m\u001b[39m\n"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build",
+        "--workspace",
+        "mobx",
+        "--",
+        "--environment",
+        "TARGET:publish"
+      ],
+      "cwd": "upstream",
+      "wallSeconds": 7.529334529999687,
+      "cpuSeconds": 14.228763999999893,
+      "exitCode": 0,
+      "timedOut": false,
+      "log": "original-build-2.log",
+      "logSha256": "d33a93f87de93b98a27249742bc267a747e992fd9adf317d0c024a274bfdb421",
+      "tail": "\n> mobx@7.0.0 build\n> rollup --config rollup.config.mjs --environment TARGET:publish\n\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.cjs.development.js\u001b[22m...\u001b[39m\nBrowserslist: browsers data (caniuse-lite) is 6 months old. Please run:\n  npx update-browserslist-db@latest\n  Why you should do it regularly: https://github.com/browserslist/update-db#readme\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.cjs.development.js\u001b[22m in \u001b[1m1.5s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.cjs.production.min.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.cjs.production.min.js\u001b[22m in \u001b[1m1.4s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.esm.development.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.esm.development.js\u001b[22m in \u001b[1m471ms\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.esm.production.min.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.esm.production.min.js\u001b[22m in \u001b[1m1.3s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.esm.js, dist/mobx.mjs\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.esm.js, dist/mobx.mjs\u001b[22m in \u001b[1m437ms\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.umd.development.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.umd.development.js\u001b[22m in \u001b[1m404ms\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.umd.production.min.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.umd.production.min.js\u001b[22m in \u001b[1m1.2s\u001b[22m\u001b[39m\n"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build",
+        "--workspace",
+        "mobx",
+        "--",
+        "--environment",
+        "TARGET:publish"
+      ],
+      "cwd": "upstream",
+      "wallSeconds": 6.878496848000395,
+      "cpuSeconds": 12.87230900000005,
+      "exitCode": 0,
+      "timedOut": false,
+      "log": "original-build-3.log",
+      "logSha256": "43be1a5d19e05172912039e75a0f45fee33bda35eb68604fb19205c2458e0ff3",
+      "tail": "\n> mobx@7.0.0 build\n> rollup --config rollup.config.mjs --environment TARGET:publish\n\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.cjs.development.js\u001b[22m...\u001b[39m\nBrowserslist: browsers data (caniuse-lite) is 6 months old. Please run:\n  npx update-browserslist-db@latest\n  Why you should do it regularly: https://github.com/browserslist/update-db#readme\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.cjs.development.js\u001b[22m in \u001b[1m1.4s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.cjs.production.min.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.cjs.production.min.js\u001b[22m in \u001b[1m1.2s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.esm.development.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.esm.development.js\u001b[22m in \u001b[1m402ms\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.esm.production.min.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.esm.production.min.js\u001b[22m in \u001b[1m1.1s\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.esm.js, dist/mobx.mjs\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.esm.js, dist/mobx.mjs\u001b[22m in \u001b[1m383ms\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.umd.development.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.umd.development.js\u001b[22m in \u001b[1m393ms\u001b[22m\u001b[39m\n\u001b[36m\n\u001b[1msrc/mobx.ts\u001b[22m \u2192 \u001b[1mdist/mobx.umd.production.min.js\u001b[22m...\u001b[39m\n\u001b[1m\u001b[33m(!) Circular dependencies\u001b[39m\u001b[22m\nsrc/internal.ts -> src/utils/utils.ts -> src/internal.ts\nsrc/internal.ts -> src/api/decorators.ts -> src/internal.ts\nsrc/internal.ts -> src/core/atom.ts -> src/internal.ts\n...and 45 more\n\u001b[32mcreated \u001b[1mdist/mobx.umd.production.min.js\u001b[22m in \u001b[1m1.2s\u001b[22m\u001b[39m\n"
+    }
+  ],
+  "lilscriptBuilds": [
+    {
+      "command": [
+        "bash",
+        "-c",
+        "node scripts/build.mjs --compile --force"
+      ],
+      "cwd": "port",
+      "wallSeconds": 105.00818260000051,
+      "cpuSeconds": 303.231242,
+      "exitCode": 0,
+      "timedOut": false,
+      "log": "lilscript-build-1.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tail": "",
+      "invocations": [
+        {
+          "args": [
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/src/mobx.lil",
+            "--target",
+            "js-module",
+            "--config",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/config/dev.toml",
+            "-o",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.dev.esm.js"
+          ],
+          "startedAt": 1789072907.0413063,
+          "wallSeconds": 1.1710295677185059,
+          "exitCode": 0,
+          "output": "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.dev.esm.js",
+          "sha256": "5426d20a3c349dfdceef97d0d148f92bf8f7bd316cfcd2b9b2a10c76420098d1"
+        },
+        {
+          "args": [
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/src/mobx.lil",
+            "--target",
+            "js-module",
+            "--config",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/lilscript.toml",
+            "-o",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.js"
+          ],
+          "startedAt": 1789072908.2562811,
+          "wallSeconds": 51.900938272476196,
+          "exitCode": 0,
+          "output": "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.js",
+          "sha256": "d1cc3874d5f12ca0ebd41f208d175f56acf39be9d778a422a8605fe06e3ffaf3"
+        },
+        {
+          "args": [
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/src/mobx.lil",
+            "--target",
+            "js-module",
+            "--config",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/config/production.min.toml",
+            "-o",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.production.min.js"
+          ],
+          "startedAt": 1789072960.194781,
+          "wallSeconds": 51.62568426132202,
+          "exitCode": 0,
+          "output": "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.production.min.js",
+          "sha256": "1353ddb98f15a6f0428316188cd4161f893e3a8500f2061a0e11249e0240d828"
+        }
+      ]
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "node scripts/build.mjs --compile --force"
+      ],
+      "cwd": "port",
+      "wallSeconds": 122.69270198899994,
+      "cpuSeconds": 356.3402280000001,
+      "exitCode": 0,
+      "timedOut": false,
+      "log": "lilscript-build-2.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tail": "",
+      "invocations": [
+        {
+          "args": [
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/src/mobx.lil",
+            "--target",
+            "js-module",
+            "--config",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/config/dev.toml",
+            "-o",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.dev.esm.js"
+          ],
+          "startedAt": 1789073012.018156,
+          "wallSeconds": 0.7297501564025879,
+          "exitCode": 0,
+          "output": "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.dev.esm.js",
+          "sha256": "5426d20a3c349dfdceef97d0d148f92bf8f7bd316cfcd2b9b2a10c76420098d1"
+        },
+        {
+          "args": [
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/src/mobx.lil",
+            "--target",
+            "js-module",
+            "--config",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/lilscript.toml",
+            "-o",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.js"
+          ],
+          "startedAt": 1789073012.7897935,
+          "wallSeconds": 61.940836906433105,
+          "exitCode": 0,
+          "output": "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.js",
+          "sha256": "d1cc3874d5f12ca0ebd41f208d175f56acf39be9d778a422a8605fe06e3ffaf3"
+        },
+        {
+          "args": [
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/src/mobx.lil",
+            "--target",
+            "js-module",
+            "--config",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/config/production.min.toml",
+            "-o",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.production.min.js"
+          ],
+          "startedAt": 1789073074.7691984,
+          "wallSeconds": 59.7898108959198,
+          "exitCode": 0,
+          "output": "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.production.min.js",
+          "sha256": "1353ddb98f15a6f0428316188cd4161f893e3a8500f2061a0e11249e0240d828"
+        }
+      ]
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "node scripts/build.mjs --compile --force"
+      ],
+      "cwd": "port",
+      "wallSeconds": 116.5193008770002,
+      "cpuSeconds": 338.5729369999999,
+      "exitCode": 0,
+      "timedOut": false,
+      "log": "lilscript-build-3.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tail": "",
+      "invocations": [
+        {
+          "args": [
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/src/mobx.lil",
+            "--target",
+            "js-module",
+            "--config",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/config/dev.toml",
+            "-o",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.dev.esm.js"
+          ],
+          "startedAt": 1789073149.1269524,
+          "wallSeconds": 0.7443935871124268,
+          "exitCode": 0,
+          "output": "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.dev.esm.js",
+          "sha256": "5426d20a3c349dfdceef97d0d148f92bf8f7bd316cfcd2b9b2a10c76420098d1"
+        },
+        {
+          "args": [
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/src/mobx.lil",
+            "--target",
+            "js-module",
+            "--config",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/lilscript.toml",
+            "-o",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.js"
+          ],
+          "startedAt": 1789073149.9143252,
+          "wallSeconds": 58.74067759513855,
+          "exitCode": 0,
+          "output": "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.js",
+          "sha256": "d1cc3874d5f12ca0ebd41f208d175f56acf39be9d778a422a8605fe06e3ffaf3"
+        },
+        {
+          "args": [
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/src/mobx.lil",
+            "--target",
+            "js-module",
+            "--config",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/config/production.min.toml",
+            "-o",
+            "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.production.min.js"
+          ],
+          "startedAt": 1789073208.693258,
+          "wallSeconds": 56.80145621299744,
+          "exitCode": 0,
+          "output": "/home/lilfarm/source-perf-20260910/ports/mobxlil/dist/mobx.esm.production.min.js",
+          "sha256": "1353ddb98f15a6f0428316188cd4161f893e3a8500f2061a0e11249e0240d828"
+        }
+      ]
+    }
+  ],
+  "protocol": {
+    "repetitions": 3,
+    "cleanOutputs": true,
+    "dependencyInstallationTimedSeparately": true,
+    "sourceArchives": "Pinned Git checkouts; original repository package build commands, followed by production ESM assembly.",
+    "workerUse": "Both implementations use the same machine and Node version. This shared build pool also runs unrelated jobs; timings are contextual wall times, with CPU time recorded separately."
+  },
+  "esm": {
+    "source": {
+      "repository": "https://github.com/mobxjs/mobx.git",
+      "commit": "c9f2e3f8e95bd7b1836bd02734fdcde46800fb6d",
+      "package": "mobx",
+      "version": "7.0.0",
+      "directory": "packages/mobx"
+    },
+    "entry": "packages/mobx/dist/mobx.esm.js",
+    "scope": "mobx@7.0.0 public ESM runtime graph; dependency installation excluded; this is a comparison bundle build, not the upstream vendor release pipeline",
+    "external": [],
+    "samples": [
+      {
+        "bundleSeconds": 0.012971858000000005,
+        "wallSeconds": 0.31089252200000006
+      },
+      {
+        "bundleSeconds": 0.008592782999999998,
+        "wallSeconds": 0.24320681300000008
+      },
+      {
+        "bundleSeconds": 0.008878825000000007,
+        "wallSeconds": 0.21895192799999996
+      }
+    ],
+    "medianSeconds": 0.24320681300000008,
+    "toolchain": {
+      "esbuild": "0.28.1",
+      "terser": "5.51.2"
+    },
+    "artifacts": [
+      {
+        "path": "original.esm.js",
+        "raw": 52638,
+        "gzip9": 15094,
+        "brotli11": 13646,
+        "sha256": "4c46031ddc726f635c5c11c719a4135eaaba33df9071da611992700e50d915db"
+      },
+      {
+        "path": "original.unminified.js",
+        "raw": 139730,
+        "gzip9": 27435,
+        "brotli11": 23286,
+        "sha256": "4478a66148777a474745bc831ae857eac14d0b3042a13b9e0ff9d0a04d883537"
+      },
+      {
+        "path": "original.terser-nomangle.js",
+        "raw": 85057,
+        "gzip9": 18904,
+        "brotli11": 16932,
+        "sha256": "17fb502ff69b6d41a20d425325a9cadbf7d664896183e93c03d0dc5507d32793"
+      },
+      {
+        "path": "original.esbuild.js",
+        "raw": 53464,
+        "gzip9": 15468,
+        "brotli11": 13970,
+        "sha256": "bd3a50b5ab0c57082ced9e3e65c0b9b0b0dccb76c24e52ef741a8a1f4e35ab82"
+      }
+    ],
+    "inputs": [
+      "packages/mobx/dist/mobx.esm.js",
+      "public-esm-entry.mjs"
+    ]
+  },
+  "lilscriptArtifacts": [
+    {
+      "path": "dist/mobx.umd.development.js",
+      "raw": 173411,
+      "gzip9": 39259,
+      "brotli11": 32125,
+      "sha256": "ac6dbb48b811924bc42467bf8056d33295678e4e90f61346e7747b9909d25702"
+    },
+    {
+      "path": "dist/mobx.dev.esm.js",
+      "raw": 130934,
+      "gzip9": 34894,
+      "brotli11": 29168,
+      "sha256": "5426d20a3c349dfdceef97d0d148f92bf8f7bd316cfcd2b9b2a10c76420098d1"
+    },
+    {
+      "path": "dist/mobx.esm.development.js",
+      "raw": 130934,
+      "gzip9": 34894,
+      "brotli11": 29168,
+      "sha256": "5426d20a3c349dfdceef97d0d148f92bf8f7bd316cfcd2b9b2a10c76420098d1"
+    },
+    {
+      "path": "dist/mobx.umd.production.js",
+      "raw": 87902,
+      "gzip9": 19884,
+      "brotli11": 17480,
+      "sha256": "6650b34f51e200cc95d2e8b67b23036a378770d878da1eb34d0c1f1d71011d6c"
+    },
+    {
+      "path": "dist/index.js",
+      "raw": 185,
+      "gzip9": 142,
+      "brotli11": 111,
+      "sha256": "d3f67adc0979c1eb51d60f3848c52f0277d3901608badf96e5ee0b722bb41557"
+    },
+    {
+      "path": "dist/mobx.esm.js",
+      "raw": 59333,
+      "gzip9": 16777,
+      "brotli11": 15057,
+      "sha256": "d1cc3874d5f12ca0ebd41f208d175f56acf39be9d778a422a8605fe06e3ffaf3"
+    },
+    {
+      "path": "dist/mobx.mjs",
+      "raw": 59333,
+      "gzip9": 16777,
+      "brotli11": 15057,
+      "sha256": "d1cc3874d5f12ca0ebd41f208d175f56acf39be9d778a422a8605fe06e3ffaf3"
+    },
+    {
+      "path": "dist/mobx.esm.production.min.js",
+      "raw": 61010,
+      "gzip9": 17416,
+      "brotli11": 15635,
+      "sha256": "1353ddb98f15a6f0428316188cd4161f893e3a8500f2061a0e11249e0240d828"
+    },
+    {
+      "path": "dist/mobx.cjs.production.min.js",
+      "raw": 85069,
+      "gzip9": 20408,
+      "brotli11": 18016,
+      "sha256": "8669556ffe78d9c870825a190883c76dc5fc9ffce03f90e979db11d4495a85ad"
+    },
+    {
+      "path": "dist/mobx.umd.production.min.js",
+      "raw": 90145,
+      "gzip9": 20693,
+      "brotli11": 18184,
+      "sha256": "92b1988b173a5a50fb6f5bbb832cc1c76d3087cd82a113af64b62598b09c8306"
+    },
+    {
+      "path": "dist/mobx.cjs.development.js",
+      "raw": 165163,
+      "gzip9": 38881,
+      "brotli11": 31847,
+      "sha256": "db75e705a1a126d35ec50f7bfcfda0e72bca28476f7aeff9c7a583cebed47b99"
+    },
+    {
+      "path": "dist/mobx.cjs.production.js",
+      "raw": 83018,
+      "gzip9": 19628,
+      "brotli11": 17330,
+      "sha256": "498c2fee41bbc4b07aea15d996de27409b19b7e4f644261b02c27fcc4c039af9"
+    }
+  ],
+  "nativeBuildsSummary": {
+    "samples": 3,
+    "successful": 3,
+    "medianSeconds": 7.529334529999687,
+    "minimumSeconds": 6.878496848000395,
+    "maximumSeconds": 17.595922167000026
+  },
+  "lilscriptBuildsSummary": {
+    "samples": 3,
+    "successful": 3,
+    "medianSeconds": 116.5193008770002,
+    "minimumSeconds": 105.00818260000051,
+    "maximumSeconds": 122.69270198899994
+  },
+  "status": "complete",
+  "finishedAt": "2026-09-10T20:48:03Z",
+  "sourceBuild": {
+    "original": {
+      "complete": true,
+      "medianSeconds": 7.529334529999687,
+      "minimumSeconds": 6.878496848000395,
+      "maximumSeconds": 17.595922167000026,
+      "samples": [
+        {
+          "command": [
+            "npm",
+            "run",
+            "build",
+            "--workspace",
+            "mobx",
+            "--",
+            "--environment",
+            "TARGET:publish"
+          ],
+          "wallSeconds": 17.595922167000026,
+          "cpuSeconds": 24.677148000000006,
+          "exitCode": 0,
+          "timedOut": false,
+          "log": "original-build-1.log",
+          "logSha256": "1b1a9fb9daa0afffe717133c837d66a9bb29e4c89a5019c72ad78305e45fd3bb"
+        },
+        {
+          "command": [
+            "npm",
+            "run",
+            "build",
+            "--workspace",
+            "mobx",
+            "--",
+            "--environment",
+            "TARGET:publish"
+          ],
+          "wallSeconds": 7.529334529999687,
+          "cpuSeconds": 14.228763999999893,
+          "exitCode": 0,
+          "timedOut": false,
+          "log": "original-build-2.log",
+          "logSha256": "d33a93f87de93b98a27249742bc267a747e992fd9adf317d0c024a274bfdb421"
+        },
+        {
+          "command": [
+            "npm",
+            "run",
+            "build",
+            "--workspace",
+            "mobx",
+            "--",
+            "--environment",
+            "TARGET:publish"
+          ],
+          "wallSeconds": 6.878496848000395,
+          "cpuSeconds": 12.87230900000005,
+          "exitCode": 0,
+          "timedOut": false,
+          "log": "original-build-3.log",
+          "logSha256": "43be1a5d19e05172912039e75a0f45fee33bda35eb68604fb19205c2458e0ff3"
+        }
+      ]
+    },
+    "lilscript": {
+      "complete": true,
+      "medianSeconds": 116.5193008770002,
+      "minimumSeconds": 105.00818260000051,
+      "maximumSeconds": 122.69270198899994,
+      "samples": [
+        {
+          "command": [
+            "bash",
+            "-c",
+            "node scripts/build.mjs --compile --force"
+          ],
+          "wallSeconds": 105.00818260000051,
+          "cpuSeconds": 303.231242,
+          "exitCode": 0,
+          "timedOut": false,
+          "log": "lilscript-build-1.log",
+          "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "node scripts/build.mjs --compile --force"
+          ],
+          "wallSeconds": 122.69270198899994,
+          "cpuSeconds": 356.3402280000001,
+          "exitCode": 0,
+          "timedOut": false,
+          "log": "lilscript-build-2.log",
+          "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "command": [
+            "bash",
+            "-c",
+            "node scripts/build.mjs --compile --force"
+          ],
+          "wallSeconds": 116.5193008770002,
+          "cpuSeconds": 338.5729369999999,
+          "exitCode": 0,
+          "timedOut": false,
+          "log": "lilscript-build-3.log",
+          "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    "scopeNote": "Both timings cover each repository\u2019s package build command; their output formats and build checks can differ.",
+    "cleanOutputs": true,
+    "installationExcluded": true
+  },
+  "prerequisiteAdjustments": null,
+  "recordRepository": "https://github.com/yeargun/mobxlil/tree/main/comparison/source-build"
+}

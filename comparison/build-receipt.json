@@ -324,12 +324,38 @@
   "publicationSourceFingerprint": "15f672a45b3a89ead1ef146a84982b6b57fbe22d22e7781667b740a727ab338b",
   "comparisonArtifacts": [
     {
+      "path": "site/esm-comparison/original.js",
+      "sha256": "4c46031ddc726f635c5c11c719a4135eaaba33df9071da611992700e50d915db"
+    },
+    {
       "path": "site/esm-comparison/lilscript.js",
       "sha256": "d1cc3874d5f12ca0ebd41f208d175f56acf39be9d778a422a8605fe06e3ffaf3"
     },
     {
-      "path": "site/esm-comparison/original.js",
-      "sha256": "4c46031ddc726f635c5c11c719a4135eaaba33df9071da611992700e50d915db"
+      "path": "site/source-build.json",
+      "sha256": "762d7c9a264c880c8aaa81e71ca85a7973c70a5870f385f4d32a9b7d0d701a14"
+    },
+    {
+      "path": "site/comparison.json",
+      "sha256": "35a55d054fd1fe721bef1d2bf84cdaf64e1b8a4f04b8d54328e4761ec9b207ae"
     }
-  ]
+  ],
+  "sourceBuildReceipt": "comparison/source-build/result.json",
+  "currentMeasurement": {
+    "compiler": {
+      "commit": "4dc4e3337d9ffd758d65e3852682d6e13d9331c1",
+      "sha256": "0616048498eb9eb2e4bd75b39e8e6a083733ada647e16108edfee30ad183beeb"
+    },
+    "source": {
+      "commit": "69c47f127fbe96e63e5ace4bfe08e6f35367f719"
+    },
+    "upstream": {
+      "repository": "https://github.com/mobxjs/mobx.git",
+      "commit": "c9f2e3f8e95bd7b1836bd02734fdcde46800fb6d",
+      "package": "mobx",
+      "version": "7.0.0",
+      "directory": "packages/mobx"
+    },
+    "compatibility": "Repository checks completed successfully."
+  }
 }

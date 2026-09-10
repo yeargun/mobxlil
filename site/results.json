@@ -19,7 +19,7 @@
       "gzip9": 15094,
       "brotli11": 13646,
       "note": "Complete production ESM graph; Terser with mangling and three compression passes.",
-      "measuredAt": "2026-09-10T13:58:38Z",
+      "measuredAt": "2026-09-10T20:48:03Z",
       "artifactSha256": "4c46031ddc726f635c5c11c719a4135eaaba33df9071da611992700e50d915db",
       "baseline": true
     },
@@ -30,7 +30,7 @@
       "brotli11": 15057,
       "note": "LilScript production ESM, same 78 exports as mobx@7.0.0",
       "primary": true,
-      "measuredAt": "2026-09-10T13:58:38Z",
+      "measuredAt": "2026-09-10T20:48:03Z",
       "artifactSha256": "d1cc3874d5f12ca0ebd41f208d175f56acf39be9d778a422a8605fe06e3ffaf3"
     }
   ],
@@ -135,5 +135,5 @@
       "blurb": "reaction, intercept, and observe."
     }
   ],
-  "sizeMeasuredAt": "2026-09-10T13:58:38Z"
+  "sizeMeasuredAt": "2026-09-10T20:48:03Z"
 }
