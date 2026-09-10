@@ -12,6 +12,10 @@ capture_signature_cloning = true
 identical_function_folding = true
 
 [javascript]
+# 8.62: the naming that reuses one spelling for one token shape. A per-port
+# option, not a default: +552 as a default across ten ports, -341 on the five
+# it wins, which is 8.15's rule for a shape that splits.
+name_ordering = "idiom-converged"
 # 8.4 (measured, ten pool ports): the terminal's idiom-directed naming search
 # is a per-port win -- this port -92/-32/-19/-6 Brotli, rehypelil +209 -- so it is
 # declared here rather than defaulted on.
