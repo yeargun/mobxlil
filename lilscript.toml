@@ -29,7 +29,7 @@ cost_model = "brotli"
 # so it is declared per port.
 function_spelling = "function"
 public_aggregate_abi = "named"
-assume_pristine_builtins = false
+assume_pristine_builtins = true
 strip_console = true
 pool_numeric_literals = true
 candidate_search = "always"
