@@ -47,7 +47,14 @@
     "NOTICE.md",
     "README.md"
   ],
-  "sideEffects": false,
+  "sideEffects": [
+    "./dist/index.js",
+    "./dist/mobx.cjs.development.js",
+    "./dist/mobx.dev.esm.js",
+    "./dist/mobx.esm.development.js",
+    "./dist/mobx.mjs",
+    "./dist/mobx.umd.development.js"
+  ],
   "dependencies": {},
   "engines": {
     "node": ">=18"

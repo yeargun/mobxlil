@@ -1,1 +1,2 @@
-export bool DEV = false;
+// The build overrides this typed define through TOML; it never edits source.
+export define bool DEV = true;

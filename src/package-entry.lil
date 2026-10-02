@@ -1,0 +1,8 @@
+extern JsValue process;
+extern JsValue require(string name);
+JsValue api = if (process.env.NODE_ENV == "production") {
+  require("./mobx.cjs.production.min.js")
+} else {
+  require("./mobx.cjs.development.js")
+};
+export {api as default};

@@ -1,68 +1,50 @@
+# Compiler-owned delivery; no JavaScript post-minifier or export rewriting.
+[policy]
+version = 3
 [package]
 name = "mobxlil"
 version = "7.0.0"
 abi = 1
 entry = "src/mobx.lil"
-
 [optimization]
 preset = "maximum"
 call_site_specialization = true
-capture_signature_cloning = true
-identical_function_folding = true
-
 [javascript]
 priority = "size-first"
-optimization_level = 15
-cost_model = "brotli"
-public_aggregate_abi = "named"
+# Assumes unpatched platform builtins; disable when consumers replace them.
 assume_pristine_builtins = false
-strip_console = true
-pool_numeric_literals = true
-candidate_search = "production"
-candidate_limit = 1536
-candidate_byte_budget = 1048576
-candidate_beam_width = 12
-max_candidate_raw_growth_percent = 0
-local_name_reserve = 8
-stable_local_names = true
-compression = [
-  "identifier-mangling",
-  "entropy-aware-mangling",
-  "quote-style-selection",
-  "property-mangling",
-  "string-pooling",
-  "size-aware-inlining",
-  "compact-boolean-literals",
-  "standard-grammar-elision",
-  "structured-closure-inlining",
-  "pure-helper-inlining",
-  "dense-string-return-tables",
-  "host-alias-spelling",
-  "string-array-packing",
-  "regex-literals",
-  "unused-catch-binding-elision",
-  "compact-generator-star",
-  "callee-default-arguments",
-  "scalar-phi-copies",
-  "phi-affinity-coalescing",
-  "ir-inlining-variants",
-  "ir-closure-factory-variants",
-  "ir-phase-ordering-variants",
-  "loop-spelling-selection",
-  "mutation-spelling-selection",
-  "parameterized-function-merging",
-  "expression-superoptimization",
-  "path-sensitive-propagation",
-  "joint-representation-search",
-  "array-pipeline-fusion",
-  "partial-escape-sinking",
-]
+# Remove debugLog instrumentation; ordinary print and host console effects remain.
+strip_debug = true
+compression = ["identifier-mangling", "property-mangling", "string-pooling", "string-array-packing", "parameterized-function-merging"]
 
+# Preserved effort setting. 13 favors size; 14/15 allow more expensive marginal searches.
+[effort]
+level = 15
+
+# Optimize the delivered files for this codec, independently of raw/gzip objectives.
+[objective]
+codecs = "brotli"
 [mangle]
 identifiers = true
 properties = true
-exports = false
 pool_strings = true
 
-[bundle]
+# DEV controls assertions and diagnostics; compression effort never changes it.
+[defines]
+DEV = false
+[delivery]
 mode = "single"
+directory = "."
+entry_names = "mobx.esm.production.min.js"
+[delivery.entries]
+mobx = "../src/mobx.lil"
+[[delivery.also]]
+name = "cjs"
+format = "cjs"
+entry_names = "mobx.cjs.production.min.js"
+[[delivery.also]]
+name = "browser"
+format = "umd"
+global = "mobx"
+global_binding = "property"
+entry_names = "mobx.umd.production.min.js"

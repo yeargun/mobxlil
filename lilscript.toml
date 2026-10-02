@@ -1,67 +1,51 @@
+# Compiler-owned delivery; no JavaScript post-minifier or export rewriting.
+[policy]
+version = 3
 [package]
 name = "mobxlil"
 version = "7.0.0"
 abi = 1
 entry = "src/mobx.lil"
-
 [optimization]
 preset = "maximum"
-profile_guided = true
 call_site_specialization = true
-capture_signature_cloning = true
-identical_function_folding = true
-
 [javascript]
-# 8.62: the naming that reuses one spelling for one token shape. A per-port
-# option, not a default: +552 as a default across ten ports, -341 on the five
-# it wins, which is 8.15's rule for a shape that splits.
-name_ordering = "idiom-converged"
-# 8.4 (measured, ten pool ports): the terminal's idiom-directed naming search
-# is a per-port win -- this port -92/-32/-19/-6 Brotli, rehypelil +209 -- so it is
-# declared here rather than defaulted on.
-idiom_directed_naming = true
-priority = "realistic-performance-first"
-optimization_level = 13
-cost_model = "brotli"
-# 8.24 (measured, fleet): the `function` spelling is -22 Brotli here -- the
-# keyword is a long shared prefix the codec matches at every site. It is the
-# other way on five ports (jquerylil +214, remarklil +286, markedlil +115),
-# so it is declared per port.
-function_spelling = "function"
-public_aggregate_abi = "named"
+priority = "size-first"
+# Assumes unpatched platform builtins; disable when consumers replace them.
 assume_pristine_builtins = true
-strip_console = true
-pool_numeric_literals = true
-candidate_search = "always"
-candidate_limit = 1536
-candidate_byte_budget = 1048576
-candidate_beam_width = 12
-max_candidate_raw_growth_percent = 0
-# 8.19 (measured, fleet sweep of five reserves): the naming reserve picks the
-# basin, not the depth, and the curve is not monotone -- 8:+0, 16:-87, 32:-115, 64:+97
-# against the declared 48. Re-measure it after any emitter change.
-local_name_reserve = 32
-stable_local_names = true
-# 8.15 (measured, ten pool ports): Terser's `collapse_vars` accepts a definition
-# whose value reads the name it defines, and a name the function assigns more
-# than once; the emitter's conservative collapse refuses both. Widening it is a
-# win on three ports and a loss on three, so each says so for itself.
-wide_single_use_collapse = true
-# 8.22 (measured, fleet): re-emitting a twice- or thrice-read member off a
-# short pure receiver instead of naming it. Raw goes up and Brotli down --
-# upstream repeats `e[p][1].end.offset` verbatim where SSA destruction names
-# it, and every name is a string the codec cannot match. -97 Brotli here;
-# +170 on micromarklil, +80 on markedlil, so it is declared per port.
-rematerialize_member_reads = true
-# Required by the rematerialisation above: a duplicated property read must
-# not be able to run a getter twice. This port reads plain data.
+# Remove debugLog instrumentation; ordinary print and host console effects remain.
+strip_debug = true
+# Plain-data reads must not run getters; disable for effectful accessor integrations.
 assume_pure_property_reads = true
 
+# Preserved effort setting. 13 favors size; 14/15 allow more expensive marginal searches.
+[effort]
+level = 13
+
+# Optimize the delivered files for this codec, independently of raw/gzip objectives.
+[objective]
+codecs = "brotli"
 [mangle]
 identifiers = true
 properties = false
-exports = false
 pool_strings = true
 
-[bundle]
+# DEV controls assertions and diagnostics; compression effort never changes it.
+[defines]
+DEV = false
+[delivery]
 mode = "single"
+directory = "."
+entry_names = "mobx.esm.js"
+[delivery.entries]
+mobx = "src/mobx.lil"
+[[delivery.also]]
+name = "cjs"
+format = "cjs"
+entry_names = "mobx.cjs.production.js"
+[[delivery.also]]
+name = "browser"
+format = "umd"
+global = "mobx"
+global_binding = "property"
+entry_names = "mobx.umd.production.js"
