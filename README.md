@@ -86,6 +86,7 @@ Compiled JavaScript in `dist/` is what npm installs. Rebuilding from `src/**/*.l
 
 ```sh
 npm run build     # development + production artifacts
+npm test          # upstream/differential tests against those artifacts
 npm run check     # tests, types, mixed-version, bench, size, Playwright
 npm run examples  # http://127.0.0.1:4177/examples/
 ```
