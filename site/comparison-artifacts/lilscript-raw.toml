@@ -12,45 +12,33 @@ call_site_specialization = true
 [javascript]
 priority = "size-first"
 # Assumes unpatched platform builtins; disable when consumers replace them.
-assume_pristine_builtins = false
+assume_pristine_builtins = true
 # Remove debugLog instrumentation; ordinary print and host console effects remain.
 strip_debug = true
-compression = ["identifier-mangling", "property-mangling", "string-pooling", "string-array-packing", "parameterized-function-merging"]
+# Plain-data reads must not run getters; disable for effectful accessor integrations.
+assume_pure_property_reads = true
 
 # Preserved effort setting. 13 favors size; 14/15 allow more expensive marginal searches.
 [effort]
-level = 15
+level = 13
 
 # Optimize the delivered files for this codec, independently of raw/gzip objectives.
 [objective]
-codecs = "brotli"
+codecs = "raw"
 [mangle]
 identifiers = true
-properties = true
+properties = false
 pool_strings = true
 
 # DEV controls assertions and diagnostics; compression effort never changes it.
 [defines]
 DEV = false
+
 [delivery]
 mode = "single"
-directory = "."
-entry_names = "mobx.esm.production.min.js"
+host_modules = "embed"
+entry_names = "index.mjs"
 [delivery.entries]
-mobx = "../src/mobx.lil"
-[[delivery.also]]
-name = "cjs"
-format = "cjs"
-entry_names = "mobx.cjs.production.min.js"
-[[delivery.also]]
-name = "browser"
-format = "umd"
-global = "mobx"
-global_binding = "property"
-entry_names = "mobx.umd.production.min.js"
-
-[policy.resources]
-logical_work = 2000000000
-
+index = "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/mobx.lil"
 [execution]
 jobs = 1

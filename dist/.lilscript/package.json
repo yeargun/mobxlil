@@ -1,0 +1,115 @@
+{
+  "version": 3,
+  "codec": "raw",
+  "outputs": [
+    {
+      "mode": "single",
+      "format": "cjs",
+      "entries": [
+        {
+          "name": "index",
+          "file": "index.js",
+          "dynamic": false,
+          "closure": [
+            "index.js"
+          ],
+          "row": 255,
+          "raw_row": 255
+        }
+      ],
+      "files": [
+        {
+          "file": "index.js",
+          "role": "entry",
+          "source_map_for": null,
+          "label": [
+            "index"
+          ],
+          "modules": [
+            "package-entry.lil"
+          ],
+          "anchored": true,
+          "imports": [],
+          "dynamic_imports": [],
+          "bytes": 255,
+          "codec_bytes": 255,
+          "sha256": "945050791144e28077bade9b417acf8ab34b5f3e52bd1730512145b4be2fea7c"
+        }
+      ],
+      "side_effects": [
+        "index.js"
+      ],
+      "codec_total": 255,
+      "rows_total": 255,
+      "setters": 0,
+      "output": "primary",
+      "codec": "raw",
+      "codec_settings": {
+        "brotli": {
+          "quality": 11,
+          "window": 22,
+          "mode": "generic"
+        },
+        "gzip": {
+          "level": 9,
+          "window": 15
+        }
+      },
+      "policy_fingerprint": [
+        186,
+        151,
+        171,
+        150,
+        252,
+        236,
+        24,
+        11,
+        203,
+        50,
+        34,
+        56,
+        180,
+        12,
+        90,
+        148,
+        17,
+        63,
+        246,
+        69,
+        150,
+        1,
+        157,
+        171,
+        97,
+        27,
+        234,
+        128,
+        171,
+        12,
+        246,
+        112
+      ]
+    }
+  ],
+  "source_sha256": "5a1c566743abdca20cbc00fee554169b4b7d910d8a98d4225928ec5a18f11aa3",
+  "inputs": {
+    "root": 0,
+    "entries": [
+      {
+        "name": "index",
+        "module": 0
+      }
+    ],
+    "modules": [
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/package-entry.lil",
+        "bytes": 237,
+        "sha256": "775d9db67895899db3d0bcfa26c7482748403dec4ac437e05b07fdc7017acdf1",
+        "dependencies": [],
+        "dynamic_dependencies": []
+      }
+    ],
+    "host_modules": [],
+    "host_reserved": []
+  }
+}

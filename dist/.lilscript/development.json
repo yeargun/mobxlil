@@ -1,0 +1,1315 @@
+{
+  "version": 5,
+  "source_sha256": "97dc89dffdcc8cba4d2bc57e6f19e1ecdca1de81ec12c8b8e661cdccc45a4c7d",
+  "inputs": {
+    "root": 0,
+    "entries": [
+      {
+        "name": "mobx",
+        "module": 0
+      }
+    ],
+    "modules": [
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/mobx.lil",
+        "bytes": 6081,
+        "sha256": "daffae3ebb3585f3f6751c8d38b715b9f311062f76e63fbc7530a27789453e2a",
+        "dependencies": [
+          1,
+          24
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/kernel.lil",
+        "bytes": 4520,
+        "sha256": "90fec96fa0de11b9752da6b721e7679516b4141e3a44312b1fdfdaa11d1496f0",
+        "dependencies": [
+          2,
+          4,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/constants.lil",
+        "bytes": 1191,
+        "sha256": "9f1024f04c3d11818450add6e84edfc3167f74f39c6247a4750576daf18db93b",
+        "dependencies": [
+          3
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/host.lil",
+        "bytes": 15172,
+        "sha256": "edf2bb5c407d47043a23d644f8f37a27973857e71423e0ab3fa77316e4993600",
+        "dependencies": [],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/errors.lil",
+        "bytes": 5680,
+        "sha256": "fbd05d46cc4a700dd6b051889e8e352183bea3d61793a487a40f5c56efefdbe2",
+        "dependencies": [
+          5,
+          3
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/dev-flag.lil",
+        "bytes": 109,
+        "sha256": "b5b7428667fc97334224e4b0fcffa54b03422f6184ecedecdea9a73515b3bbfc",
+        "dependencies": [],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/utils/comparer.lil",
+        "bytes": 320,
+        "sha256": "9c2451d9e13ce4275511985f6414093101549a5ac906bd391fb08126a20f52c7",
+        "dependencies": [
+          3
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/core/predicates.lil",
+        "bytes": 1693,
+        "sha256": "1573adec4a2d1e77d5cc9a597c8c7bd7283dc9df71d44bf791a068d709ed5c3a",
+        "dependencies": [
+          3,
+          2
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/core/globalstate.lil",
+        "bytes": 3766,
+        "sha256": "0216af76e95e412c2407cb413291182156696a0398a711d492401b35298a1299",
+        "dependencies": [
+          5,
+          3,
+          4
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/core/spy.lil",
+        "bytes": 1737,
+        "sha256": "20f4925cc180b95fd67dab93396266510cdc1a5b468471dd46d45fff1122087c",
+        "dependencies": [
+          5,
+          3,
+          8
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/core/observable.lil",
+        "bytes": 6761,
+        "sha256": "712563bc38b18e0b986f52e234fb446c853e12114309d935fec8e04c1c025747",
+        "dependencies": [
+          5,
+          3,
+          2,
+          8,
+          7
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/core/derivation.lil",
+        "bytes": 8371,
+        "sha256": "3d548ec52994b32e360944973706ebdc32088c9b85c36e2e66d8f5a0d0fa1c79",
+        "dependencies": [
+          5,
+          3,
+          2,
+          8,
+          4,
+          7,
+          10,
+          12
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/core/shared.lil",
+        "bytes": 2580,
+        "sha256": "fb03846c6dde3d68f1e51377b38be579a928fb1c204ecbf17c6bd35e85330937",
+        "dependencies": [
+          3
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/core/atom.lil",
+        "bytes": 2090,
+        "sha256": "be6e613796fc0aac7b7b117640a5ef0408a3eae1b588a9f54f50b1dec0ba7a9e",
+        "dependencies": [
+          5,
+          3,
+          2,
+          8,
+          10,
+          12,
+          7
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/core/action.lil",
+        "bytes": 4441,
+        "sha256": "b7d0c64a4641654ad7b61be49d85ca6c64d8c6941217d0ada66e428220bfddfc",
+        "dependencies": [
+          5,
+          3,
+          2,
+          4,
+          8,
+          10,
+          11,
+          9
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/core/reaction.lil",
+        "bytes": 6242,
+        "sha256": "2e4e01c285c54ce52c0ac793a785a1d623f4a6b03176cae4af5c7bb1b0b8c77c",
+        "dependencies": [
+          5,
+          3,
+          2,
+          8,
+          10,
+          11,
+          9,
+          7,
+          12,
+          3
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/core/computedvalue.lil",
+        "bytes": 6804,
+        "sha256": "7e986a9f7aea8fac436bd4c6e95431777cc7ffbd28e0a8d83c25483bad32f7d3",
+        "dependencies": [
+          5,
+          3,
+          2,
+          4,
+          6,
+          8,
+          10,
+          11,
+          14,
+          9,
+          7,
+          12
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/types/listen-utils.lil",
+        "bytes": 1165,
+        "sha256": "2cf85b94d18e7209bb38a85525a33a24e5d760a54735d847b80efdf40c00da6c",
+        "dependencies": [
+          3,
+          11
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/types/intercept-utils.lil",
+        "bytes": 1491,
+        "sha256": "952c84be80590b2c3405badfabb6c54730655a915eda9feedc851fca9661fce2",
+        "dependencies": [
+          3,
+          4,
+          11
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/transaction.lil",
+        "bytes": 272,
+        "sha256": "22416495b8f42f1e11a49667129f7b2acf7804a05be7c4e37df8454efdd135e2",
+        "dependencies": [
+          10
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/annotation.lil",
+        "bytes": 220,
+        "sha256": "4dcd65f81891ea53e88b1cc840f8992f1019f480fbfa2f92b7915c36a270567b",
+        "dependencies": [
+          3
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/decorators.lil",
+        "bytes": 407,
+        "sha256": "63aa5583d0069973e0fc56f848892c031b7d31bdf70023c06033b46bad91d3a4",
+        "dependencies": [
+          5,
+          3,
+          4
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/decoratorannotation.lil",
+        "bytes": 571,
+        "sha256": "00641c717579a97497e2a3b240106341c1a52b083efe816f04c70785aa72a0b0",
+        "dependencies": [
+          5,
+          3,
+          4
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/types/type-utils-init.lil",
+        "bytes": 614,
+        "sha256": "f9eecfbc03c7d40ca3cc2947a95b966e7908519a474e2b74f0e2c3ea274bad98",
+        "dependencies": [
+          5,
+          3,
+          10,
+          11
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/types.lil",
+        "bytes": 4013,
+        "sha256": "c353aebc363ed2f9d411de016772d635f342b93c086f25787c253f3095f253ff",
+        "dependencies": [
+          25,
+          26,
+          27,
+          29,
+          30,
+          31,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/isobservable.lil",
+        "bytes": 1216,
+        "sha256": "90f5eee6c8e074bed3c2eee063cebcabf38b93e8cf8e14943d2e154e551bc041",
+        "dependencies": [
+          5,
+          3,
+          2,
+          4,
+          7
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/utils/eq.lil",
+        "bytes": 4226,
+        "sha256": "f10df2b22403fe371afd4f86415989170c35967d3ebd70c27db8b7d71e4ad468",
+        "dependencies": [
+          3,
+          7
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/types/modifiers.lil",
+        "bytes": 3875,
+        "sha256": "5a1c8c2b4ce61989b11ce4c84b2d37a3cbf7c75e023cb024e289cf407fcbd34d",
+        "dependencies": [
+          5,
+          3,
+          4,
+          7,
+          28,
+          25,
+          26
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/bindings.lil",
+        "bytes": 620,
+        "sha256": "81f7ee31a91c70d6c51dc926341ecff943de259201e415dcd5b67aafac472575",
+        "dependencies": [
+          3
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/types/observablevalue.lil",
+        "bytes": 4600,
+        "sha256": "ec6ef3b454ced18084a1586f5dadda349b9a597c54bcb398989cfb85f143ec69",
+        "dependencies": [
+          5,
+          3,
+          13,
+          2,
+          11,
+          6,
+          8,
+          18,
+          17,
+          7,
+          9,
+          10
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/types/overrideannotation.lil",
+        "bytes": 1087,
+        "sha256": "4f647589d118c9d4843554c4dfa498be311215be5499a2624c74990e6f3201bd",
+        "dependencies": [
+          5,
+          3,
+          4,
+          2
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/types/autoannotation.lil",
+        "bytes": 3737,
+        "sha256": "ca46cd24de279c37c36a103cc775f538226222944ebcdc4cbeec35f289b45306",
+        "dependencies": [
+          3,
+          2,
+          14,
+          7,
+          28,
+          32
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/types/adm-proxy.lil",
+        "bytes": 140,
+        "sha256": "013539e8b85d6088397aefecf196fd1498c3c057a3fa8357a4acde92e0bbfd1c",
+        "dependencies": [],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/types/observableobject.lil",
+        "bytes": 19046,
+        "sha256": "fffa2981df863b46bbfc04818f5d995eeec443d7c4fc3873711a48e1b91159b7",
+        "dependencies": [
+          5,
+          3,
+          2,
+          13,
+          16,
+          11,
+          4,
+          10,
+          8,
+          18,
+          17,
+          20,
+          7,
+          9,
+          28,
+          32,
+          30,
+          31,
+          29,
+          27
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/types/dynamicobject.lil",
+        "bytes": 2062,
+        "sha256": "eeef737f56e68a607138cafecd6aabd5fcd68cc55477fa998fea723a63ac5f18",
+        "dependencies": [
+          3,
+          2,
+          4,
+          33
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/types/observablearray.lil",
+        "bytes": 16006,
+        "sha256": "bfaf1020bfb55986ebe90ac83d9564aee85cad0cf27bd8a1ef3c7781a3f6e8e9",
+        "dependencies": [
+          5,
+          3,
+          2,
+          13,
+          11,
+          4,
+          8,
+          18,
+          17,
+          23,
+          7,
+          9,
+          10
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/types/observablemap.lil",
+        "bytes": 14473,
+        "sha256": "14c715fb30f922a19e56467e6783435c32eeee80f1b804c51e6da539d8a43797",
+        "dependencies": [
+          5,
+          3,
+          2,
+          11,
+          13,
+          4,
+          10,
+          8,
+          18,
+          17,
+          23,
+          7,
+          9,
+          27,
+          29
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/types/observableset.lil",
+        "bytes": 8770,
+        "sha256": "01ecd0dcc682384c36e65884a69fc5c6fdc9bdde6a62de4e494c2d9011e95f84",
+        "dependencies": [
+          5,
+          3,
+          2,
+          11,
+          13,
+          4,
+          10,
+          8,
+          18,
+          17,
+          23,
+          7,
+          9,
+          27
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/types/observableannotation.lil",
+        "bytes": 1589,
+        "sha256": "2c8f70b74cdd253114608618f5a23e0edc7bcb29f00fe5376ea729dd77d81c46",
+        "dependencies": [
+          5,
+          3,
+          2,
+          4,
+          27
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/types/computedannotation.lil",
+        "bytes": 1185,
+        "sha256": "7c5d1c59351cb3965caa371ed9d9419eb4eae8e35f4fcaf17fbfa51114b41b32",
+        "dependencies": [
+          5,
+          3,
+          4,
+          38
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/types/actionannotation.lil",
+        "bytes": 3278,
+        "sha256": "530e31c10b516085c6eb7ec2a2fe7c96c1d56c0a29da016547a01ba8bfdd11ae",
+        "dependencies": [
+          5,
+          3,
+          2,
+          14,
+          4,
+          8,
+          7,
+          32
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/types/flowannotation.lil",
+        "bytes": 3365,
+        "sha256": "cdd51fbc545243def93b24f6cfdbe3ee0737292fe38a72a11967d4aaa82e3c87",
+        "dependencies": [
+          5,
+          3,
+          2,
+          21,
+          8,
+          7,
+          28,
+          32
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/extendobservable.lil",
+        "bytes": 2105,
+        "sha256": "ca01b857ef247c8f9d47226aee1239522e2ad5f1f0b49728100ee50fc4d131ab",
+        "dependencies": [
+          5,
+          3,
+          2,
+          4,
+          23,
+          7,
+          28,
+          25,
+          33
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/observable.lil",
+        "bytes": 6609,
+        "sha256": "fd143ba6b6bd0df83fdfdde4779de28cb13d9934b25f29950aa5e5225c3bcd9f",
+        "dependencies": [
+          5,
+          3,
+          2,
+          21,
+          22,
+          4,
+          23,
+          28,
+          25,
+          42,
+          27,
+          29,
+          35,
+          36,
+          37,
+          34,
+          33,
+          38
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/computed.lil",
+        "bytes": 4188,
+        "sha256": "0b57b615c35c634903a40db12aa37475431c64f0483daca1b645875de628b9d5",
+        "dependencies": [
+          5,
+          3,
+          2,
+          16,
+          21,
+          22,
+          4,
+          7,
+          28,
+          26,
+          39,
+          33
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/action.lil",
+        "bytes": 4231,
+        "sha256": "142a008864588312a94427ae2ef3f6fa89448bc290b9700eb88d73a18168c21a",
+        "dependencies": [
+          5,
+          3,
+          2,
+          21,
+          14,
+          22,
+          4,
+          7,
+          28,
+          40,
+          46
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/run-in-action.lil",
+        "bytes": 315,
+        "sha256": "86b130e6b1c9ae5be96a9d3c97e16cd65d2645cc1d915695c099cf046157768e",
+        "dependencies": [
+          3,
+          14
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/flow.lil",
+        "bytes": 5438,
+        "sha256": "5c3431c8c4970d34ead75ad0925c44dda75433a8773f9cef2031af874b129977",
+        "dependencies": [
+          5,
+          3,
+          2,
+          22,
+          7,
+          28,
+          45,
+          41
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/autorun.lil",
+        "bytes": 8941,
+        "sha256": "805a0ba8041e4ef2951e3985c07292dab47da6a60d8285720c039dbeafcfc88f",
+        "dependencies": [
+          5,
+          3,
+          2,
+          4,
+          6,
+          8,
+          7,
+          15,
+          14,
+          11
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/configure.lil",
+        "bytes": 1796,
+        "sha256": "53cb86e128d2d67a446ccbafe1d75b27e3848e7fedcf83e59bcd1e3e4e1e3964",
+        "dependencies": [
+          3,
+          8,
+          10
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/makeobservable.lil",
+        "bytes": 3734,
+        "sha256": "2843a5b42a7702bf51b9dce22060bf1aa09b12ecdbdfa3093fbe105f70b63d8c",
+        "dependencies": [
+          5,
+          3,
+          2,
+          4,
+          23,
+          7,
+          42,
+          33
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/object-api.lil",
+        "bytes": 5066,
+        "sha256": "00bf49700fe7176c1ab563f0670536cf5032675d3acd67272a062bdafa888dec",
+        "dependencies": [
+          3,
+          2,
+          4,
+          10,
+          7
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/types/type-utils.lil",
+        "bytes": 3103,
+        "sha256": "8df49f89e55f28626675ec878737d67d21a4e715ad08d021c36114b79db5b9a2",
+        "dependencies": [
+          3,
+          2,
+          4,
+          7
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/observe.lil",
+        "bytes": 3280,
+        "sha256": "1fc43ed0f1825f571926c020d7a09b19c0ea9c0e1e19d22401789c393aec939e",
+        "dependencies": [
+          5,
+          3,
+          2,
+          4,
+          7,
+          17,
+          11,
+          48,
+          52
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/intercept.lil",
+        "bytes": 509,
+        "sha256": "b59d9757739d3d41efd026517d6b54ffe3cd1e14f41f772cfff429ab3af99378",
+        "dependencies": [
+          3,
+          18,
+          52
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/become-observed.lil",
+        "bytes": 1156,
+        "sha256": "472fbcf6a09e4d9ead753b5d070064d3750f3812f2146cb85c5a0a8e25ed21df",
+        "dependencies": [
+          3,
+          52
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/tojs.lil",
+        "bytes": 2385,
+        "sha256": "ec3b2d4aafebb7dfdf28ebf2cef0d2bb33cc6acca593abe0cb728357c1887e0c",
+        "dependencies": [
+          3,
+          5,
+          4,
+          7,
+          25,
+          51
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/extras.lil",
+        "bytes": 1334,
+        "sha256": "5fc1c8b41a677fbe7f87089c573c8034d4d3b4a394cf6c3823b882bb963f914e",
+        "dependencies": [
+          3,
+          10,
+          52
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/iscomputed.lil",
+        "bytes": 906,
+        "sha256": "1e8bb64881765e2222a2baffd4ae59eed6c15aee23ce41e8d785ded7760088a4",
+        "dependencies": [
+          5,
+          3,
+          2,
+          4,
+          7
+        ],
+        "dynamic_dependencies": []
+      },
+      {
+        "path": "/home/azureuser/lilscript-rebuild-reports/2026-10-03-site-refresh/ports/mobxlil/src/api/intercept-read.lil",
+        "bytes": 1312,
+        "sha256": "5529d0ce60356897a2713eb3eed6a689394f29c95b0af10d13ef82c51a976c8a",
+        "dependencies": [
+          5,
+          3,
+          4,
+          7,
+          52
+        ],
+        "dynamic_dependencies": []
+      }
+    ],
+    "host_modules": [],
+    "host_reserved": []
+  },
+  "outputs": [
+    {
+      "mode": "single",
+      "format": "esm",
+      "entries": [
+        {
+          "name": "mobx",
+          "file": "mobx.dev.esm.js",
+          "dynamic": false,
+          "closure": [
+            "mobx.dev.esm.js"
+          ],
+          "row": null,
+          "raw_row": 113012
+        }
+      ],
+      "files": [
+        {
+          "file": "mobx.dev.esm.js",
+          "role": "entry",
+          "source_map_for": null,
+          "label": [
+            "mobx"
+          ],
+          "modules": [
+            "mobx.lil",
+            "kernel.lil",
+            "constants.lil",
+            "host.lil",
+            "errors.lil",
+            "dev-flag.lil",
+            "utils/comparer.lil",
+            "core/predicates.lil",
+            "core/globalstate.lil",
+            "core/spy.lil",
+            "core/observable.lil",
+            "core/derivation.lil",
+            "core/shared.lil",
+            "core/atom.lil",
+            "core/action.lil",
+            "core/reaction.lil",
+            "core/computedvalue.lil",
+            "types/listen-utils.lil",
+            "types/intercept-utils.lil",
+            "api/transaction.lil",
+            "api/annotation.lil",
+            "api/decorators.lil",
+            "api/decoratorannotation.lil",
+            "types/type-utils-init.lil",
+            "types.lil",
+            "api/isobservable.lil",
+            "utils/eq.lil",
+            "types/modifiers.lil",
+            "api/bindings.lil",
+            "types/observablevalue.lil",
+            "types/overrideannotation.lil",
+            "types/autoannotation.lil",
+            "types/adm-proxy.lil",
+            "types/observableobject.lil",
+            "types/dynamicobject.lil",
+            "types/observablearray.lil",
+            "types/observablemap.lil",
+            "types/observableset.lil",
+            "types/observableannotation.lil",
+            "types/computedannotation.lil",
+            "types/actionannotation.lil",
+            "types/flowannotation.lil",
+            "api/extendobservable.lil",
+            "api/observable.lil",
+            "api/computed.lil",
+            "api/action.lil",
+            "api/run-in-action.lil",
+            "api/flow.lil",
+            "api/autorun.lil",
+            "api/configure.lil",
+            "api/makeobservable.lil",
+            "api/object-api.lil",
+            "types/type-utils.lil",
+            "api/observe.lil",
+            "api/intercept.lil",
+            "api/become-observed.lil",
+            "api/tojs.lil",
+            "api/extras.lil",
+            "api/iscomputed.lil",
+            "api/intercept-read.lil"
+          ],
+          "anchored": true,
+          "imports": [],
+          "dynamic_imports": [],
+          "bytes": 113012,
+          "codec_bytes": null,
+          "sha256": "e2354eff3714df17a74f07391d6fac27533f78459b9919722d78d50b0aef1546"
+        }
+      ],
+      "side_effects": [
+        "mobx.dev.esm.js"
+      ],
+      "codec_total": null,
+      "rows_total": null,
+      "setters": 0,
+      "output": "primary",
+      "codec": "brotli",
+      "codec_settings": {
+        "brotli": {
+          "quality": 11,
+          "window": 22,
+          "mode": "generic"
+        },
+        "gzip": {
+          "level": 9,
+          "window": 15
+        }
+      },
+      "policy_fingerprint": [
+        158,
+        244,
+        145,
+        200,
+        37,
+        24,
+        11,
+        138,
+        255,
+        87,
+        53,
+        12,
+        100,
+        40,
+        151,
+        252,
+        194,
+        167,
+        131,
+        221,
+        9,
+        70,
+        70,
+        73,
+        121,
+        3,
+        212,
+        101,
+        116,
+        128,
+        156,
+        192
+      ]
+    },
+    {
+      "mode": "single",
+      "format": "umd",
+      "entries": [
+        {
+          "name": "mobx",
+          "file": "mobx.umd.development.js",
+          "dynamic": false,
+          "closure": [
+            "mobx.umd.development.js"
+          ],
+          "row": null,
+          "raw_row": 117457
+        }
+      ],
+      "files": [
+        {
+          "file": "mobx.umd.development.js",
+          "role": "entry",
+          "source_map_for": null,
+          "label": [
+            "mobx"
+          ],
+          "modules": [
+            "mobx.lil",
+            "constants.lil",
+            "host.lil",
+            "errors.lil",
+            "utils/comparer.lil",
+            "core/predicates.lil",
+            "core/globalstate.lil",
+            "core/spy.lil",
+            "core/observable.lil",
+            "core/derivation.lil",
+            "core/shared.lil",
+            "core/atom.lil",
+            "core/action.lil",
+            "core/reaction.lil",
+            "core/computedvalue.lil",
+            "types/listen-utils.lil",
+            "types/intercept-utils.lil",
+            "api/transaction.lil",
+            "api/annotation.lil",
+            "api/decorators.lil",
+            "api/decoratorannotation.lil",
+            "types/type-utils-init.lil",
+            "api/isobservable.lil",
+            "utils/eq.lil",
+            "types/modifiers.lil",
+            "api/bindings.lil",
+            "types/observablevalue.lil",
+            "types/overrideannotation.lil",
+            "types/autoannotation.lil",
+            "types/adm-proxy.lil",
+            "types/observableobject.lil",
+            "types/dynamicobject.lil",
+            "types/observablearray.lil",
+            "types/observablemap.lil",
+            "types/observableset.lil",
+            "types/observableannotation.lil",
+            "types/computedannotation.lil",
+            "types/actionannotation.lil",
+            "types/flowannotation.lil",
+            "api/extendobservable.lil",
+            "api/observable.lil",
+            "api/computed.lil",
+            "api/action.lil",
+            "api/run-in-action.lil",
+            "api/flow.lil",
+            "api/autorun.lil",
+            "api/configure.lil",
+            "api/makeobservable.lil",
+            "api/object-api.lil",
+            "types/type-utils.lil",
+            "api/observe.lil",
+            "api/intercept.lil",
+            "api/become-observed.lil",
+            "api/tojs.lil",
+            "api/extras.lil",
+            "api/iscomputed.lil",
+            "api/intercept-read.lil"
+          ],
+          "anchored": true,
+          "imports": [],
+          "dynamic_imports": [],
+          "bytes": 117457,
+          "codec_bytes": null,
+          "sha256": "8d8cbefc5c0a80fccc3af5a3a6017514fbe9dc43b0fd9a07b9da54148e0c6fcf"
+        }
+      ],
+      "side_effects": [
+        "mobx.umd.development.js"
+      ],
+      "codec_total": null,
+      "rows_total": null,
+      "setters": 0,
+      "output": "browser",
+      "codec": "brotli",
+      "codec_settings": {
+        "brotli": {
+          "quality": 11,
+          "window": 22,
+          "mode": "generic"
+        },
+        "gzip": {
+          "level": 9,
+          "window": 15
+        }
+      },
+      "policy_fingerprint": [
+        162,
+        73,
+        123,
+        170,
+        184,
+        75,
+        83,
+        122,
+        118,
+        61,
+        74,
+        189,
+        152,
+        11,
+        142,
+        161,
+        92,
+        55,
+        73,
+        140,
+        163,
+        7,
+        12,
+        32,
+        175,
+        164,
+        84,
+        1,
+        7,
+        12,
+        128,
+        130
+      ]
+    },
+    {
+      "mode": "single",
+      "format": "cjs",
+      "entries": [
+        {
+          "name": "mobx",
+          "file": "mobx.cjs.development.js",
+          "dynamic": false,
+          "closure": [
+            "mobx.cjs.development.js"
+          ],
+          "row": null,
+          "raw_row": 117145
+        }
+      ],
+      "files": [
+        {
+          "file": "mobx.cjs.development.js",
+          "role": "entry",
+          "source_map_for": null,
+          "label": [
+            "mobx"
+          ],
+          "modules": [
+            "mobx.lil",
+            "constants.lil",
+            "host.lil",
+            "errors.lil",
+            "utils/comparer.lil",
+            "core/predicates.lil",
+            "core/globalstate.lil",
+            "core/spy.lil",
+            "core/observable.lil",
+            "core/derivation.lil",
+            "core/shared.lil",
+            "core/atom.lil",
+            "core/action.lil",
+            "core/reaction.lil",
+            "core/computedvalue.lil",
+            "types/listen-utils.lil",
+            "types/intercept-utils.lil",
+            "api/transaction.lil",
+            "api/annotation.lil",
+            "api/decorators.lil",
+            "api/decoratorannotation.lil",
+            "types/type-utils-init.lil",
+            "api/isobservable.lil",
+            "utils/eq.lil",
+            "types/modifiers.lil",
+            "api/bindings.lil",
+            "types/observablevalue.lil",
+            "types/overrideannotation.lil",
+            "types/autoannotation.lil",
+            "types/adm-proxy.lil",
+            "types/observableobject.lil",
+            "types/dynamicobject.lil",
+            "types/observablearray.lil",
+            "types/observablemap.lil",
+            "types/observableset.lil",
+            "types/observableannotation.lil",
+            "types/computedannotation.lil",
+            "types/actionannotation.lil",
+            "types/flowannotation.lil",
+            "api/extendobservable.lil",
+            "api/observable.lil",
+            "api/computed.lil",
+            "api/action.lil",
+            "api/run-in-action.lil",
+            "api/flow.lil",
+            "api/autorun.lil",
+            "api/configure.lil",
+            "api/makeobservable.lil",
+            "api/object-api.lil",
+            "types/type-utils.lil",
+            "api/observe.lil",
+            "api/intercept.lil",
+            "api/become-observed.lil",
+            "api/tojs.lil",
+            "api/extras.lil",
+            "api/iscomputed.lil",
+            "api/intercept-read.lil"
+          ],
+          "anchored": true,
+          "imports": [],
+          "dynamic_imports": [],
+          "bytes": 117145,
+          "codec_bytes": null,
+          "sha256": "1b51a91aa37a3750d505e976f4af90c2c15a31a6cfa487616456ae3072b99006"
+        }
+      ],
+      "side_effects": [
+        "mobx.cjs.development.js"
+      ],
+      "codec_total": null,
+      "rows_total": null,
+      "setters": 0,
+      "output": "cjs",
+      "codec": "brotli",
+      "codec_settings": {
+        "brotli": {
+          "quality": 11,
+          "window": 22,
+          "mode": "generic"
+        },
+        "gzip": {
+          "level": 9,
+          "window": 15
+        }
+      },
+      "policy_fingerprint": [
+        224,
+        125,
+        173,
+        213,
+        157,
+        124,
+        224,
+        236,
+        240,
+        144,
+        72,
+        231,
+        26,
+        219,
+        234,
+        102,
+        144,
+        38,
+        126,
+        202,
+        145,
+        251,
+        233,
+        36,
+        123,
+        5,
+        133,
+        85,
+        150,
+        186,
+        90,
+        135
+      ]
+    }
+  ]
+}

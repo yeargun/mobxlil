@@ -1,0 +1,5 @@
+
+> @itslil/mobx@7.0.1 check:pack
+> node scripts/check-pack.mjs
+
+npm pack: 190 files, 311451 bytes packed, 1355324 bytes unpacked

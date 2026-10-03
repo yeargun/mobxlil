@@ -1,0 +1,22 @@
+# The package's CommonJS environment switch is compiled source too.
+[policy]
+version = 3
+[effort]
+level = 0
+[objective]
+codecs = "raw"
+[target.javascript]
+format = "cjs"
+[delivery]
+mode = "single"
+exports = "default"
+es_module_marker = "never"
+entry_names = "index.js"
+[delivery.entries]
+index = "../src/package-entry.lil"
+
+[policy.resources]
+logical_work = 2000000000
+
+[execution]
+jobs = 1

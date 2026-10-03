@@ -1,7 +1,1 @@
-'use strict'
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = require('./mobx.cjs.production.min.js')
-} else {
-  module.exports = require('./mobx.cjs.development.js')
-}
+module.exports=(($e,$r,$o)=>{"use strict";$o.defineProperty($e,"default",{enumerable:true,get:()=>a});let a=process.env.NODE_ENV=="production"?require("./mobx.cjs.production.min.js"):require("./mobx.cjs.development.js");return a})(exports,require,Object);
